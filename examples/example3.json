@@ -1,0 +1,3510 @@
+{
+  "forecast": "Based on the available information, the Tampa Bay Rays are more likely to win this game. Their stronger overall record, home field advantage, and slightly better pitching staff give them an edge. However, the Marlins' recent offensive performance and the uncertainty around Jeffrey Springs' first start of the season for the Rays introduce some unpredictability.",
+  "resolution_criteria": "This question resolves when the final score of the Miami Marlins vs Tampa Bay Rays game on July 30, 2024 is officially recorded.",
+  "date": 1722350604,
+  "reasoning": "The Rays have a better overall record (54-52) compared to the Marlins (39-67). They also have a strong home record (29-28) and are favored by the odds. The Rays' key batters like Yandy D\u00edaz have been performing well. However, the Marlins have shown recent improvement, winning 2 out of 3 games against the Orioles. The pitching matchup is uncertain with Jeffrey Springs making his first start of the season for the Rays.",
+  "sources": [
+    {
+      "article_url": "https://www.goal.com/en-us/news/rays-vs-marlins-watch-stream-MLB-game/blt50f732e79879d6f8",
+      "article_id": "718009af-d805-56ef-8e4f-6afdeb5427d1",
+      "classification": "Sports",
+      "country": "GB",
+      "source_id": "GOAL",
+      "page_rank": 2262,
+      "domain_url": "goal.com",
+      "eng_title": "How to watch and listen to today's Tampa Bay Rays vs Miami Marlins MLB game: Live stream, TV channel, radio station and start time",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 30, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "47 RBIs",
+          ".245",
+          "39-67",
+          "18 home runs",
+          "4-1",
+          ".270",
+          "29-28",
+          "17-33",
+          "54-52"
+        ],
+        "Time": [
+          "6:50 pm ET",
+          "3:50 pm PT"
+        ],
+        "Sports": [
+          "Miami Marlins",
+          "Rays",
+          "Marlins",
+          "AL East",
+          "Tampa Bay Rays",
+          "NL East"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "FuboTV",
+          "MLB.TV",
+          "BSFL"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://assets.goal.com/images/v3/blt6f28106eba2e0214/Bryan_De_La_Cruz_Miami_Marlins_MLB_2024.jpg",
+      "keywords": [
+        "MLB",
+        "Tampa Bay Rays",
+        "Miami Marlins",
+        "Live Stream",
+        "TV Channel"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T12:50:00Z",
+      "summary": "The Tampa Bay Rays are set to host the Miami Marlins on July 30, 2024, at 6:50 pm ET/3:50 pm PT. The Rays are in fourth place in the AL East with a record of 54-52 overall and 29-28 at home, while the Marlins are at the bottom of the NL East with a record of 39-67 overall and 17-33 away. The game will be broadcast on MLB.TV, BSFL, and FuboTV, and can be streamed online. The Rays' Yandy D\u00edaz has 47 RBIs and a batting average of.270, while the Marlins' Bryan De La Cruz has hit.245 and 18 home runs. The Rays have a projected starting pitcher and the Marlins have a projected starting pitcher. The Rays have a head-to-head record of 4-1 against the Marlins in their last five meetings.",
+      "title": "How to watch and listen to today's Tampa Bay Rays vs Miami Marlins MLB game: Live stream, TV channel, radio station and start time",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[GOA](https://www.goal.com/en-us/news/rays-vs-marlins-watch-stream-MLB-game/blt50f732e79879d6f8)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://www.eagletribune.com/marlins-take-on-the-rays-after-edwards-hit-for-the-cycle/article_37cf5c9f-f1be-58bd-8d7a-2f40e6b48164.html",
+      "article_id": "7cf9477f-1b65-5be7-b8df-1f5563f60149",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "The Eagle-Tribune",
+      "page_rank": 15555,
+      "domain_url": "eagletribune.com",
+      "eng_title": "Marlins take on the Rays after Edwards hit for the cycle",
+      "entities": {
+        "Person": [
+          "Jose Siri",
+          "Xavier Edwards",
+          "Jesus Sanchez",
+          "Brandon Lowe"
+        ],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Sunday",
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "54-52",
+          "four doubles",
+          "15 doubles",
+          "four home runs",
+          "17-33",
+          "20-47",
+          "triple",
+          "39-67",
+          "22-8",
+          "39 RBI",
+          "6-4",
+          "12 home runs",
+          "27 extra base hits",
+          "eight RBI",
+          "29-28"
+        ],
+        "Time": [],
+        "Sports": [
+          "Tampa Bay Rays",
+          "Brewers",
+          "Marlins",
+          "Rays",
+          "Miami Marlins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://bloximages.chicago2.vip.townnews.com/eagletribune.com/content/tncms/custom/image/ae213140-df8c-11e7-b06d-b798580d75a5.jpg?resize=600%2C333",
+      "keywords": [
+        "Marlins",
+        "Rays",
+        "Xavier Edwards",
+        "Tropicana Field",
+        "Jose Siri"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T08:01:20Z",
+      "summary": "The Miami Marlins are set to face the Tampa Bay Rays in a matchup at Tropicana Field on Tuesday. The Marlins' Xavier Edwards hit for the cycle against the Brewers on Sunday, and the team is looking to build on that momentum. The Rays are 54-52 overall and 29-28 at home, while the Marlins are 39-67 overall and 17-33 on the road. The game is the third time these teams have faced each other this season. The Rays have a strong record when they don't give up a home run, going 22-8 in those games. The Marlins, on the other hand, have struggled when they give up a home run, going 20-47 in those games. The top performers for the Rays include Jose Siri, who has 27 extra base hits, and Brandon Lowe, who has been on a hot streak with four doubles, four home runs, and eight RBI over the last 10 games. For the Marlins, Jesus Sanchez has been a key player with 15 doubles, a triple, 12 home runs, and 39 RBI. The teams have similar records over their last 10 games, with the Rays going 6-4 and the Marlins also going 6-4.",
+      "title": "Marlins take on the Rays after Edwards hit for the cycle",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[ET](https://www.eagletribune.com/marlins-take-on-the-rays-after-edwards-hit-for-the-cycle/article_37cf5c9f-f1be-58bd-8d7a-2f40e6b48164.html)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/josh-bell-player-props-july-30-marlins-vs-rays",
+      "article_id": "7e68e8f9-664c-54a1-89d9-542acc8f0619",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Josh Bell Player Props: July 30, Marlins vs. Rays",
+      "entities": {
+        "Person": [
+          "Jeffrey Springs",
+          "Josh Bell"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 30"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "0-for-1",
+          "13.5%"
+        ],
+        "Time": [
+          "6:50 PM ET"
+        ],
+        "Sports": [
+          "Tampa Bay Rays",
+          "Rays",
+          "Miami Marlins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "seven",
+          "64",
+          "104",
+          "27"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23835178-4.jpg?w=640",
+      "keywords": [
+        "Josh Bell",
+        "Miami Marlins",
+        "Tampa Bay Rays",
+        "Player Props"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T07:40:38Z",
+      "summary": "Josh Bell's Miami Marlins are set to face the Tampa Bay Rays on July 30 at 6:50 PM ET, with Jeffrey Springs starting for the Rays. Bell has been on a hot streak, with a hit in seven consecutive games, and has gone yard in 13.5% of his games this year. He has a hit in 64 of 104 games this year, with multiple hits in 27 of them. Bell has a hit in 0-for-1 over his career versus Jeffrey Springs. Find odds, stats, and more below to make your Josh Bell player prop bets.",
+      "title": "Josh Bell Player Props: July 30, Marlins vs. Rays",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/josh-bell-player-props-july-30-marlins-vs-rays)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/tampa-bay-rays-vs-miami-marlins-live-stream-tv-channel-start-time-odds-july-30",
+      "article_id": "2fde69d2-84c1-5ba4-844d-c7cbc7bf74a4",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Tampa Bay Rays vs. Miami Marlins live stream, TV channel, start time, odds | July 30",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "7.5",
+          "+143",
+          "4.07",
+          ".237",
+          "-170"
+        ],
+        "Time": [
+          "6:50 PM ET"
+        ],
+        "Sports": [
+          "Tampa Bay Rays",
+          "Miami Marlins",
+          "Rays",
+          "Marlins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "21st",
+          "17th"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "Bally Sports",
+          "Fubo"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23841233-5.jpg?w=640",
+      "keywords": [
+        "Tampa Bay Rays",
+        "Miami Marlins",
+        "MLB",
+        "Tropicana Field",
+        "Fubo"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T07:23:52Z",
+      "summary": "The Tampa Bay Rays and Miami Marlins are set to face off in a two-game series at Tropicana Field, with the Rays' 4.07 team ERA ranking 17th in the league and the Marlins' .237 team batting average ranking 21st. The game is scheduled for Tuesday at 6:50 PM ET and can be streamed on Fubo or watched on Bally Sports. The Rays are favored to win at -170, with the Marlins at +143. The over/under is set at 7.5.",
+      "title": "Tampa Bay Rays vs. Miami Marlins live stream, TV channel, start time, odds | July 30",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/tampa-bay-rays-vs-miami-marlins-live-stream-tv-channel-start-time-odds-july-30)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/rays-vs-marlins-mlb-player-props-and-odds-tuesday-july-30",
+      "article_id": "05fd2850-8cc0-59f7-a344-4c2faedfa79d",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Rays vs. Marlins MLB player props and odds - Tuesday, July 30",
+      "entities": {
+        "Person": [
+          "Bryan De La Cruz",
+          "Josh Bell",
+          "Yandy Diaz"
+        ],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 30",
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "7.5"
+        ],
+        "Time": [],
+        "Sports": [
+          "Miami Marlins",
+          "Tampa Bay Rays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23841233-4.jpg?w=640",
+      "keywords": [
+        "MLB",
+        "Rays",
+        "Marlins",
+        "Player Props",
+        "Tropicana Field"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T05:24:44Z",
+      "summary": "The Tampa Bay Rays are set to face the Miami Marlins at Tropicana Field on Tuesday, July 30, with player prop betting options available for Yandy Diaz, Josh Bell, and others. The Rays are favored on the moneyline and run line, with the over/under for the game set at 7.5. The article provides player prop betting options and recent game stats for the players mentioned, including Diaz, Bell, and Bryan De La Cruz.",
+      "title": "Rays vs. Marlins MLB player props and odds - Tuesday, July 30",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/rays-vs-marlins-mlb-player-props-and-odds-tuesday-july-30)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://www.bleachernation.com/how-to-watch/2024/07/29/rays-vs-marlins-start-time-streaming-live-tv-channel-how-to-watch-3",
+      "article_id": "0252019f-532c-5fa3-a299-4ab073de8644",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Bleacher Nation",
+      "page_rank": 123754,
+      "domain_url": "bleachernation.com",
+      "eng_title": "Rays vs. Marlins: Start Time, Streaming Live, TV Channel, How to Watch",
+      "entities": {
+        "Person": [
+          "Jesus Sanchez",
+          "Edward Cabrera",
+          "Jeffrey Springs",
+          "Richard Palacios",
+          "Brandon Lowe",
+          "Yandy Diaz",
+          "Bryan De La Cruz"
+        ],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Tuesday",
+          "July 30, 2024"
+        ],
+        "Event": [],
+        "Money": [
+          "moneyline"
+        ],
+        "Law": [],
+        "Quantity": [
+          "29-26",
+          "39-67",
+          "39.3%"
+        ],
+        "Time": [
+          "6:50 PM ET"
+        ],
+        "Sports": [
+          "Miami Marlins",
+          "Marlins",
+          "Tampa Bay Rays",
+          "Rays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.bleachernation.com/wp-content/uploads/2024/07/httpscdn.dataskrive.comapiassetMnSqPyj.jpg",
+      "keywords": [
+        "Rays",
+        "Marlins",
+        "Tropicana Field",
+        "Jeffrey Springs",
+        "Edward Cabrera"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T23:20:12Z",
+      "summary": "The Tampa Bay Rays will face the Miami Marlins at Tropicana Field on Tuesday, July 30, 2024, with a first pitch scheduled for 6:50 PM ET. The Rays are favored to win, with a 29-26 record in games they were favored on the moneyline. The Marlins have struggled, with a 39-67 record and a 39.3% winning percentage in games they've been the underdog. The Rays' starting pitcher, Jeffrey Springs, will make his first start of the season, while the Marlins will send Edward Cabrera to the mound. The article provides statistics and insights on both teams, as well as key players to watch, including Yandy Diaz, Richard Palacios, and Brandon Lowe for the Rays, and Josh Bell, Bryan De La Cruz, and Jesus Sanchez for the Marlins.",
+      "title": "Rays vs. Marlins: Start Time, Streaming Live, TV Channel, How to Watch",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[BN](https://www.bleachernation.com/how-to-watch/2024/07/29/rays-vs-marlins-start-time-streaming-live-tv-channel-how-to-watch-3)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[6]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/where-to-watch-the-rays-vs-marlins-series-tv-channel-live-stream-game-times-and-more",
+      "article_id": "a386e334-ac94-534a-b883-a08672bee8a1",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Where to Watch the Rays vs. Marlins Series: TV Channel, Live Stream, Game Times and more",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "39-67",
+          "54-52"
+        ],
+        "Time": [
+          "6:50 PM ET"
+        ],
+        "Sports": [
+          "Rays",
+          "Tampa Bay Rays",
+          "Marlins",
+          "Miami Marlins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "TV channels"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [
+          "live streaming"
+        ],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23841233-3.jpg?w=640",
+      "keywords": [
+        "Rays",
+        "Marlins",
+        "Tropicana Field",
+        "MLB"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T23:08:37Z",
+      "summary": "The Tampa Bay Rays and Miami Marlins are set to play a two-game series at Tropicana Field, starting on Tuesday at 6:50 PM ET. The Rays are currently 54-52, while the Marlins are 39-67. The article provides information on how to watch the series, including TV channels and live streaming options. It also highlights the leading hitters and pitching rankings for both teams, as well as the injury reports for each team.",
+      "title": "Where to Watch the Rays vs. Marlins Series: TV Channel, Live Stream, Game Times and more",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/where-to-watch-the-rays-vs-marlins-series-tv-channel-live-stream-game-times-and-more)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[7]"
+    },
+    {
+      "article_url": "https://triblive.com/sports/how-to-watch-rays-vs-marlins-on-tv-or-streaming-live-tuesday-july-30",
+      "article_id": "2a875882-4fea-52d8-95ec-eed9c65dc91e",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "TribLive.com",
+      "page_rank": 3937,
+      "domain_url": "triblive.com",
+      "eng_title": "How to Watch Rays vs. Marlins on TV or Streaming Live - Tuesday, July 30",
+      "entities": {
+        "Person": [
+          "Jeffrey Springs",
+          "Edward Cabrera"
+        ],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 30, 2024",
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "39-67",
+          "54-52"
+        ],
+        "Time": [
+          "6:50 PM ET"
+        ],
+        "Sports": [
+          "Marlins",
+          "Miami Marlins",
+          "Rays",
+          "Tampa Bay Rays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "BSFL"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://assets-varnish.triblive.com/2024/07/aQ0TDDo.jpg",
+      "keywords": [
+        "Rays",
+        "Marlins",
+        "Tropicana Field",
+        "Jeffrey Springs",
+        "Edward Cabrera"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T22:41:11Z",
+      "summary": "The Tampa Bay Rays will face the Miami Marlins on Tuesday, July 30, 2024, at Tropicana Field. The game will start at 6:50 PM ET and will be broadcast on BSFL. Jeffrey Springs will make his first start of the season for the Rays, while Edward Cabrera will start for the Marlins. The Rays are currently 54-52, while the Marlins are 39-67. The article provides information on the pitching matchup, team comparison, and offensive leaders for both teams.",
+      "title": "How to Watch Rays vs. Marlins on TV or Streaming Live - Tuesday, July 30",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[TL](https://triblive.com/sports/how-to-watch-rays-vs-marlins-on-tv-or-streaming-live-tuesday-july-30)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[8]"
+    },
+    {
+      "article_url": "https://www.foxsports.com/articles/mlb/rays-vs-marlins-prediction-odds-picks-july-30",
+      "article_id": "a651cff4-141f-55fb-9909-f76f718f9e38",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "FOX Sports",
+      "page_rank": 4283,
+      "domain_url": "foxsports.com",
+      "eng_title": "Rays vs. Marlins Prediction, Odds, Picks - July 30",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [
+          "moneyline"
+        ],
+        "Law": [],
+        "Quantity": [
+          "-175",
+          "+146",
+          "7.5",
+          "run line",
+          "total"
+        ],
+        "Time": [
+          "6:50 PM ET"
+        ],
+        "Sports": [
+          "Rays",
+          "Tampa Bay Rays",
+          "Marlins",
+          "Miami Marlins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://b.fssta.com/uploads/application/fscom/SiteShareImage.vresize.1200.630.high.0.png",
+      "keywords": [
+        "Rays",
+        "Marlins",
+        "Prediction",
+        "Odds",
+        "Picks"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T18:00:20Z",
+      "summary": "The Tampa Bay Rays will face the Miami Marlins on Tuesday at 6:50 PM ET at Tropicana Field. The Rays are favored at -175, while the Marlins have +146 odds to upset. The game's over/under is set at 7.5 runs. The article provides information on the run line, moneyline, and total, as well as expert picks.",
+      "title": "Rays vs. Marlins Prediction, Odds, Picks - July 30",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FOX](https://www.foxsports.com/articles/mlb/rays-vs-marlins-prediction-odds-picks-july-30)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[9]"
+    },
+    {
+      "article_url": "https://www.journaldemontreal.com/2024/07/29/le-choix-du-jour-de-notre-expert--les-brewers-disposeront-des-braves",
+      "article_id": "8d232fc7-e27a-58c9-9fd1-0bb0d29444c5",
+      "classification": "Sports",
+      "country": "CA",
+      "source_id": "Le Journal de Montreal",
+      "page_rank": 12625,
+      "domain_url": "journaldemontreal.com",
+      "eng_title": "MLB Predictions: Brewers, White Sox, and Diamondbacks",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "14-game",
+          "2"
+        ],
+        "Time": [],
+        "Sports": [
+          "Royals",
+          "White Sox",
+          "Nationals",
+          "Brewers",
+          "Diamondbacks",
+          "Braves",
+          "MLB"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://m1.quebecormedia.com/emp/emp/a97d0610-4d20-11ef-8410-15e87a23ddf5_ORIGINAL.jpg?impolicy=crop-resize&x=0&y=0&w=1200&h=675&width=1200",
+      "keywords": [
+        "MLB",
+        "Brewers",
+        "White Sox",
+        "Diamondbacks"
+      ],
+      "language": "fr",
+      "pub_date": "2024-07-29T16:00:00Z",
+      "summary": "The article discusses three MLB game predictions. The first prediction is that the Brewers will win against the Braves, citing the Brewers' home advantage and the Braves' recent struggles. The second prediction is based on a system called 'The duel of the teams in a slump 2', which suggests betting on the home team when the visiting team is on a losing streak. The article recommends betting on the White Sox, who are facing the Royals, who are on a 14-game losing streak. The third prediction is that the Diamondbacks will win against the Nationals, citing the Diamondbacks' recent form and the Nationals' struggles. The article also discusses the pitching performances of the teams' starting pitchers.",
+      "title": "Les Brewers disposeront des Braves",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[LJM](https://www.journaldemontreal.com/2024/07/29/le-choix-du-jour-de-notre-expert--les-brewers-disposeront-des-braves)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[10]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/cubs-reds-prediction-odds-pick-7-29-2024",
+      "article_id": "24f84fad-3424-50a5-8be2-7579a15963df",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 12578,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Cubs vs. Reds prediction, odds, pick - 7/29/2024",
+      "entities": {
+        "Person": [
+          "Jameson Taillon",
+          "Carson Spiers"
+        ],
+        "Organization": [
+          "MLB"
+        ],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Monday"
+        ],
+        "Event": [
+          "All-Star break"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "-110"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cubs",
+          "Chicago Cubs",
+          "Cincinnati Reds",
+          "Cubs ML",
+          "Reds"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/07/Cubs-vs.-Reds-prediction-odds-pick-1.jpg",
+      "keywords": [
+        "Cubs",
+        "Reds",
+        "MLB",
+        "Jameson Taillon",
+        "Carson Spiers"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T12:51:50Z",
+      "summary": "The Chicago Cubs are set to face the Cincinnati Reds on Monday night, with Jameson Taillon taking on Carson Spiers. The article provides an analysis of the two pitchers and their recent performances, as well as the MLB odds for the game. The author predicts that the Cubs will win the game, citing Taillon's hot streak and the Cubs' ability to score runs. The article also notes that the Reds' offense has been struggling, and that the Cubs' poor offense since the All-Star break could be a factor in the game. The final prediction is for the Cubs to win straight up, with a pick of Cubs ML (-110).",
+      "title": "Cubs vs. Reds prediction, odds, pick - 7/29/2024",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/cubs-reds-prediction-odds-pick-7-29-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/pirates-vs-astros-prediction-odds-pick-7-29-2024",
+      "article_id": "6a4f1444-3408-5123-81eb-4e0cd96987d1",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 12578,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Pirates Vs Astros Prediction, Odds, Pick",
+      "entities": {
+        "Person": [
+          "Paul Skenes",
+          "Jake Bloss"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "1.93 ERA",
+          "6.94 ERA"
+        ],
+        "Time": [],
+        "Sports": [
+          "Houston Astros",
+          "Pirates",
+          "MLB",
+          "Pittsburgh Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/07/Pirates-vs.-Astros-prediction-odds-pick.jpg",
+      "keywords": [
+        "MLB",
+        "Pirates",
+        "Astros",
+        "Paul Skenes",
+        "Jake Bloss"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T07:32:20Z",
+      "summary": "The article discusses the upcoming MLB game between the Pittsburgh Pirates and the Houston Astros, focusing on the pitching matchup between Paul Skenes and Jake Bloss. Skenes, a rookie with a 1.93 ERA, is expected to dominate the game, while Bloss, with a 6.94 ERA, needs to improve his performance. The article provides statistics and analysis of the two pitchers, as well as the teams' recent performances. It concludes that the Pirates are likely to win, with a prediction of Pirates -1.5.",
+      "title": "Pirates Vs Astros Prediction, Odds, Pick",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/pirates-vs-astros-prediction-odds-pick-7-29-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://www.espn.com.au/mlb/recap/_/gameId/401570053",
+      "article_id": "455227eb-07a9-5d3b-9b8f-df6c71df04ee",
+      "classification": "Sports",
+      "country": "AU",
+      "source_id": "ESPN",
+      "page_rank": 19819,
+      "domain_url": "espn.com.au",
+      "eng_title": "Rays 2-1 Reds (29 Jul, 2024) Game Recap - ESPN (AU)",
+      "entities": {
+        "Person": [
+          "Elly de la Cruz",
+          "Pete Fairbanks",
+          "Garrett Cleavinger",
+          "Hunter Greene",
+          "Jeffrey Springs",
+          "Lucas Sims"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "two",
+          "2-1",
+          "four",
+          "three hits",
+          "one",
+          "five"
+        ],
+        "Time": [
+          "eighth inning"
+        ],
+        "Sports": [
+          "Tampa Bay Rays",
+          "Rays",
+          "Miami Marlins",
+          "Reds",
+          "Cincinnati Reds"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "20th"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500-dark/scoreboard/cin.png&cquality=80&h=256&w=256",
+      "keywords": [
+        "Tampa Bay Rays",
+        "Cincinnati Reds",
+        "MLB",
+        "Lucas Sims",
+        "Garrett Cleavinger"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T19:18:20Z",
+      "summary": "The Tampa Bay Rays came from behind to defeat the Cincinnati Reds 2-1 in a game that saw the Rays take advantage of the Reds' bullpen in the eighth inning. The Rays loaded the bases with two outs and scored twice, with Lucas Sims walking in the winning run. Garrett Cleavinger pitched a scoreless eighth inning and Pete Fairbanks earned his 20th save of the season. Reds starter Hunter Greene pitched seven scoreless innings, striking out five and walking one. Elly de la Cruz had three hits and four stolen bases for the Reds, while Rays left-hander Jeffrey Springs has been reinstated from the 60-day injured list and is expected to start Tuesday against the Miami Marlins.",
+      "title": "Rays 2-1 Reds (29 Jul, 2024) Game Recap - ESPN (AU)",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[ESP](https://www.espn.com.au/mlb/recap/_/gameId/401570053)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://sportstalkflorida.com/featured/pete-fairbanks-closes-out-win-on-bullpen-day-rays-take-rubber-game-2-1-over-reds",
+      "article_id": "ab22540b-0921-5573-ba20-4187e8bc1719",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Talk Florida",
+      "page_rank": 438808,
+      "domain_url": "sportstalkflorida.com",
+      "eng_title": "Pete Fairbanks Closes Out Win On Bullpen Day, Rays Take Rubber Game 2-1 Over Reds",
+      "entities": {
+        "Person": [
+          "Garrett Cleavinger",
+          "Fernando Cruz",
+          "Pete Fairbanks",
+          "Richie Palacios"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "rubber game"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "7",
+          "2-1"
+        ],
+        "Time": [
+          "11:35 AM",
+          "9th"
+        ],
+        "Sports": [
+          "Tampa Bay Rays",
+          "Rays",
+          "Reds",
+          "Cincinnati Reds"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "20th",
+          "10th"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://sportstalkflorida.com/wp-content/uploads/2024/07/TBRays-Defeat-Reds-2-1.jpg",
+      "keywords": [
+        "Rays",
+        "Reds",
+        "Pete Fairbanks",
+        "Rubber Game",
+        "Bullpen"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T19:16:48Z",
+      "summary": "The Tampa Bay Rays won the rubber game 2-1 against the Cincinnati Reds, thanks to a walk-off walk by Richie Palacios and a save by Pete Fairbanks. The Rays' bullpen, led by Garrett Cleavinger, pitched 7 scoreless innings, and Fairbanks closed out the game in the 9th. The win marks the Rays' 10th straight rubber game victory, a franchise record. The Reds' Fernando Cruz took the loss, and the Rays' Pete Fairbanks earned his 20th save. The game was played on a unique schedule, with a 11:35 AM start time, which some players found challenging.",
+      "title": "Pete Fairbanks Closes Out Win On Bullpen Day, Rays Take Rubber Game 2-1 Over Reds",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[STF](https://sportstalkflorida.com/featured/pete-fairbanks-closes-out-win-on-bullpen-day-rays-take-rubber-game-2-1-over-reds)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://www.nouvelles-du-monde.com/reds-vs-rays-apercu-des-paris-du-28-juillet",
+      "article_id": "30a98f11-e9e2-5bc7-9f79-753651c0171b",
+      "classification": "Sports",
+      "country": "FR",
+      "source_id": "Nouvelles Du Monde",
+      "page_rank": 249065,
+      "domain_url": "nouvelles-du-monde.com",
+      "eng_title": "Reds vs. Rays: Preview of the July 28 Match",
+      "entities": {
+        "Person": [
+          "Hunter Greene"
+        ],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 28",
+          "Sunday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "3.84",
+          "7.5 points",
+          "-130",
+          "117.1 innings",
+          "+105",
+          "133 strikeouts",
+          "ERA",
+          "7-4",
+          ".229",
+          "50-54",
+          "3.14 ERA"
+        ],
+        "Time": [],
+        "Sports": [
+          "Reds",
+          "Tampa Bay Rays",
+          "Rays",
+          "Cincinnati Reds",
+          "MLB"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "53-52",
+          "12th",
+          "28th",
+          "four"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.amnews.com/wp-content/uploads/sites/41/2024/07/reds-vs-rays-betting-preview-for-july-28.jpg",
+      "keywords": [
+        "Cincinnati Reds",
+        "Tampa Bay Rays",
+        "MLB",
+        "Hunter Greene",
+        "Tropicana Field"
+      ],
+      "language": "fr",
+      "pub_date": "2024-07-28T18:55:03Z",
+      "summary": "The Cincinnati Reds (50-54) and Tampa Bay Rays (53-52) will face off in a decisive game on Sunday, July 28 at Tropicana Field. The Reds are favored to win, with odds of -130, while the Rays have odds of +105. The over/under for the game is set at 7.5 points. Hunter Greene, the Reds' probable starting pitcher, has a 7-4 record with a 3.14 ERA and 133 strikeouts in 117.1 innings pitched. He will try to extend his streak of four consecutive quality starts. The Reds have a team batting average of .229, which ranks 28th in the MLB, and a team ERA of 3.84, which ranks 12th in the MLB.",
+      "title": "Reds vs. Rays : aper\u00e7u des paris du 28 juillet",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[NDM](https://www.nouvelles-du-monde.com/reds-vs-rays-apercu-des-paris-du-28-juillet)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://www.daytondailynews.com/news/ohio/rays-score-twice-in-the-8th-for-2-1-victory-over-the-reds/47KRTFACWNC2TPTR4TU7PE5ROM",
+      "article_id": "3a78d3c3-86ac-5500-9780-48f9e78fd626",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Dayton Daily News",
+      "page_rank": 6120,
+      "domain_url": "daytondailynews.com",
+      "eng_title": "Rays score twice in the 8th for 2-1 victory over the Reds",
+      "entities": {
+        "Person": [
+          "Pete Fairbanks",
+          "Kevin Cash",
+          "Jason Adam",
+          "Hunter Greene",
+          "Caballero"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "7"
+        ],
+        "Time": [
+          "8th inning"
+        ],
+        "Sports": [
+          "Tampa Bay Rays",
+          "Rays",
+          "Cincinnati Reds",
+          "Reds",
+          "San Diego Padres",
+          "Miami Marlins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "20th"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.daytondailynews.com/resizer/A-qcRJx89rQSo_q26mmirLPAf6Y=/814x458/cloudfront-us-east-1.images.arcpublishing.com/coxohio/FXXZQNY677LBJPLI6CCOHPFK6A.jpg",
+      "keywords": [
+        "Baseball",
+        "Tampa Bay Rays",
+        "Cincinnati Reds",
+        "8th inning"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T18:35:51Z",
+      "summary": "The Tampa Bay Rays came from behind to defeat the Cincinnati Reds 2-1 in a game that saw the Rays score twice in the 8th inning. The Rays loaded the bases with two outs and scored on a walk and a single. Rays manager Kevin Cash praised the team's at-bats, saying 'Good at-bat by Yandy. Great job by (Caballero) by putting pressure on him.' Garrett Cleavinger pitched a scoreless 8th inning and Pete Fairbanks earned his 20th save of the season. Reds starter Hunter Greene pitched 7 scoreless innings, but took the loss. The Rays also made a trade prior to the game, sending reliever Jason Adam to the San Diego Padres for three players. Left-hander Jeffrey Springs has been reinstated from the 60-day injured list and is expected to start Tuesday against the Miami Marlins.",
+      "title": "Rays score twice in the 8th for 2-1 victory over the Reds",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[DDN](https://www.daytondailynews.com/news/ohio/rays-score-twice-in-the-8th-for-2-1-victory-over-the-reds/47KRTFACWNC2TPTR4TU7PE5ROM)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[6]"
+    },
+    {
+      "article_url": "https://www.orlandosentinel.com/2024/07/28/rays-score-twice-in-the-8th-for-2-1-victory-over-the-reds-2",
+      "article_id": "813d34b2-247c-58cc-bf95-fd17cd8fe9f0",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Orlando Sentinel",
+      "page_rank": 2042,
+      "domain_url": "orlandosentinel.com",
+      "eng_title": "Rays score twice in the 8th for 2-1 victory\u2026",
+      "entities": {
+        "Person": [
+          "Jason Adam",
+          "Pete Fairbanks"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "three prospects",
+          "7"
+        ],
+        "Time": [
+          "8th inning"
+        ],
+        "Sports": [
+          "Tampa Bay Rays",
+          "Miami Marlins",
+          "Cincinnati Reds",
+          "San Diego Padres",
+          "Reds"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "20th"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.orlandosentinel.com/wp-content/uploads/2024/07/rayswin.jpg?w=1024&h=744",
+      "keywords": [
+        "Tampa Bay Rays",
+        "Cincinnati Reds",
+        "MLB",
+        "Garrett Cleavinger",
+        "Pete Fairbanks"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T18:35:10Z",
+      "summary": "The Tampa Bay Rays came from behind to defeat the Cincinnati Reds 2-1 in a game that saw the Rays score twice in the 8th inning. The Rays loaded the bases with two outs against the Reds' bullpen, and a walk and a single scored the go-ahead runs. Garrett Cleavinger pitched a scoreless 8th inning and Pete Fairbanks earned his 20th save of the season. Reds starter Hunter Greene pitched 7 scoreless innings, but took the loss. The Rays also made a trade prior to the game, sending reliever Jason Adam to the San Diego Padres for three prospects. Left-hander Jeffrey Springs has been reinstated from the 60-day injured list and is expected to start Tuesday against the Miami Marlins.",
+      "title": "Rays score twice in the 8th for 2-1 victory\u2026",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[OS](https://www.orlandosentinel.com/2024/07/28/rays-score-twice-in-the-8th-for-2-1-victory-over-the-reds-2)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[7]"
+    },
+    {
+      "article_url": "https://969thegame.iheart.com/content/2024-07-28-rays-take-series-from-reds",
+      "article_id": "ab07338e-1781-5ae2-a86e-483bf174c8d5",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "iHeartRadio",
+      "page_rank": 852,
+      "domain_url": "iheart.com",
+      "eng_title": "Rays Take Series From Reds",
+      "entities": {
+        "Person": [
+          "Shawn Armstrong",
+          "Hunter Greene",
+          "Pete Fairbanks",
+          "Garret Cleavinger"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Sunday",
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "2-1",
+          "7",
+          "2 games",
+          ".500"
+        ],
+        "Time": [
+          "8th inning"
+        ],
+        "Sports": [
+          "Tampa Bay Rays",
+          "Cincinnati Reds",
+          "Reds",
+          "Rays",
+          "Miami Marlins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "20th"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://i.iheart.com/v3/re/assets.getty/66a68ca31b853d1e2ffb9d71?ops=gravity(%22north%22),fit(1200,675),quality(65)",
+      "keywords": [
+        "Tampa Bay Rays",
+        "Cincinnati Reds",
+        "MLB",
+        "Series Win"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T18:19:00Z",
+      "summary": "The Tampa Bay Rays defeated the Cincinnati Reds 2-1 on Sunday, taking the series. The Rays struggled to get hits early, but managed to score in the 8th inning. Hunter Greene pitched 7 shutout innings for the Reds, while Shawn Armstrong and Garret Cleavinger contributed to the Rays' win. Pete Fairbanks earned his 20th save. The Rays are now 2 games above .500 and will host the Miami Marlins on Tuesday.",
+      "title": "Rays Take Series From Reds",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[HR](https://969thegame.iheart.com/content/2024-07-28-rays-take-series-from-reds)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[8]"
+    },
+    {
+      "article_url": "https://headtopics.com/us/guardians-vs-phillies-prediction-picks-odds-for-today-s-56541375",
+      "article_id": "9a4699ff-5e90-553e-b6fb-2f6cd1a799d1",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Head Topics",
+      "page_rank": 15511,
+      "domain_url": "headtopics.com",
+      "eng_title": "Guardians vs Phillies Prediction, Picks & Odds for Today's MLB Game",
+      "entities": {
+        "Person": [
+          "author",
+          "Trea Turner"
+        ],
+        "Organization": [
+          "MLB"
+        ],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "same-game parlay"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "9.5",
+          "Under",
+          "dozen hits",
+          "38-17",
+          "29-27"
+        ],
+        "Time": [],
+        "Sports": [
+          "Phillies",
+          "Philadelphia Phillies",
+          "Cleveland Guardians",
+          "Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "four",
+          "two"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://i.headtopics.com/images/2024/7/28/covers/guardians-vs-phillies-prediction-picks-odds-for-to-guardians-vs-phillies-prediction-picks-odds-for-to-B6284F63081F45967F3D15543BD62965.webp",
+      "keywords": [
+        "MLB",
+        "Guardians",
+        "Phillies",
+        "Prediction",
+        "Picks"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T14:28:00Z",
+      "summary": "The article discusses the upcoming MLB game between the Cleveland Guardians and the Philadelphia Phillies. The author predicts that the Phillies will win the game due to their strong offense, which has been shown in their recent game where four players hit homers and had a dozen hits. The author also mentions that the Phillies are 38-17 at home, while the Guardians are 29-27 on the road. The author suggests that Trea Turner will get a hit again and recommends a same-game parlay. The total is set at 9.5 with two lackluster pitchers on the mound, making the author's prediction for the Under.",
+      "title": "Guardians vs Phillies Prediction, Picks & Odds for Today's MLB Game",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[HT](https://headtopics.com/us/guardians-vs-phillies-prediction-picks-odds-for-today-s-56541375)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[9]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/yankees-vs-red-sox-prediction-odds-pick-7-28-2024",
+      "article_id": "d994c53f-338e-5b1e-922d-60b287b52468",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 15417,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Yankees Vs. Red Sox Prediction, Odds, Pick",
+      "entities": {
+        "Person": [
+          "Tanner Houck",
+          "Danny Jansen",
+          "Carlos Rodon",
+          "Rafael Devers"
+        ],
+        "Organization": [],
+        "Location": [
+          "Boston"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Saturday"
+        ],
+        "Event": [
+          "Sunday Night Baseball"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "11-8"
+        ],
+        "Time": [],
+        "Sports": [
+          "Yankees",
+          "MLB",
+          "Orioles",
+          "Red Sox"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "-112"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/06/Yankees-vs.-Red-Sox-prediction-odds-pick-2.jpg",
+      "keywords": [
+        "MLB",
+        "Yankees",
+        "Red Sox",
+        "Rafael Devers",
+        "Danny Jansen"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T13:34:06Z",
+      "summary": "The Yankees and Red Sox face off in Sunday Night Baseball. Our MLB odds series provides a prediction, odds, and pick for the game. The Yankees fought back to win 11-8 against the Red Sox on Saturday, but the Red Sox are still in the hunt for the division title. Boston has a legitimate superstar in Rafael Devers, but lacks high-end pitching. The Red Sox traded for catcher Danny Jansen, signaling they are all-in on making a run at the Yankees and Orioles. Carlos Rodon has settled down and emerged from his rough patch, while Tanner Houck has been tremendous for Boston. Houck needs to stand tall and deliver for his team, and the Red Sox would rather have him on the mound than any other starter. The price is right at -112, making the Sox moneyline the play.",
+      "title": "Yankees Vs. Red Sox Prediction, Odds, Pick",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/yankees-vs-red-sox-prediction-odds-pick-7-28-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[10]"
+    },
+    {
+      "article_url": "https://www.covers.com/mlb/reds-vs-rays-prediction-picks-today-sunday-7-28-2024",
+      "article_id": "82e5aa56-2cf8-5e09-9947-8557fe3b8d04",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Covers.com",
+      "page_rank": 14922,
+      "domain_url": "covers.com",
+      "eng_title": "Rays vs Reds Predictions, Picks, Odds  --  7-28",
+      "entities": {
+        "Person": [
+          "Elly De La Cruz",
+          "Greene"
+        ],
+        "Organization": [],
+        "Location": [
+          "Tampa"
+        ],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "3-game series"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "Under"
+        ],
+        "Time": [],
+        "Sports": [
+          "Reds",
+          "Rays",
+          "Tampa Bay Rays",
+          "Cincinnati Reds"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "24-year-old"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://img.covers.com/cms/covers/58cc7aab-a129-49dd-803e-228c4b57907f.gif",
+      "keywords": [
+        "Rays",
+        "Reds",
+        "Predictions",
+        "Picks",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T12:35:51Z",
+      "summary": "The Cincinnati Reds and Tampa Bay Rays are set to face off in the rubber match of a 3-game series. The article focuses on the total, with the Under being the highlighted pick. The Reds' 24-year-old righty, Greene, has been lights out lately, but the Reds' offense has struggled to support him. The Rays, meanwhile, have been inconsistent offensively. The article suggests targeting the Under due to Greene's recent performance and the Reds' quiet bats against Tampa's pitching. Additionally, the article recommends a same-game parlay featuring Greene and Reds' shortstop Elly De La Cruz's total base prop.",
+      "title": "Rays vs Reds Predictions, Picks, Odds  --  7-28",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[C](https://www.covers.com/mlb/reds-vs-rays-prediction-picks-today-sunday-7-28-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/brewers-vs-marlins-mlb-player-props-and-odds-sunday-july-28",
+      "article_id": "2e1fffd9-44c8-55ad-a8d9-d3d9d9167cda",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Brewers vs. Marlins MLB player props and odds - Sunday, July 28",
+      "entities": {
+        "Person": [
+          "Bryan De La Cruz",
+          "William Contreras",
+          "Josh Bell"
+        ],
+        "Organization": [],
+        "Location": [
+          "American Family Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Sunday",
+          "July 28"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "18 home runs",
+          "-207",
+          "+172",
+          "50 RBI",
+          "8.5"
+        ],
+        "Time": [],
+        "Sports": [
+          "Miami Marlins",
+          "Marlins",
+          "Milwaukee Brewers",
+          "Brewers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23835178-3.jpg?w=640",
+      "keywords": [
+        "MLB",
+        "Brewers",
+        "Marlins",
+        "Prop bets",
+        "William Contreras",
+        "Josh Bell",
+        "Bryan De La Cruz"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T09:22:57Z",
+      "summary": "The Milwaukee Brewers are set to face the Miami Marlins at American Family Field on Sunday, July 28. The Brewers are favored to win, with odds of -207, while the Marlins have odds of +172. The total for the game is 8.5. Prop bets are available for several players, including William Contreras, Josh Bell, and Bryan De La Cruz. Contreras has a strong track record against the Marlins, while Bell has been hitting well recently. De La Cruz has also been consistent, with 18 home runs and 50 RBI this season.",
+      "title": "Brewers vs. Marlins MLB player props and odds - Sunday, July 28",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/brewers-vs-marlins-mlb-player-props-and-odds-sunday-july-28)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://www.sportsbettingdime.com/news/mlb/cincinnati-reds-vs-tampa-bay-rays-predictions-odds-starting-pitchers-sunday-july-28",
+      "article_id": "5639684c-e298-5b65-81d4-6434e2c3ac90",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "SportsBettingDime",
+      "page_rank": 56411,
+      "domain_url": "sportsbettingdime.com",
+      "eng_title": "Cincinnati Reds vs Tampa Bay Rays Predictions, Odds & Starting Pitchers for Sunday (July 28)",
+      "entities": {
+        "Person": [
+          "Hunter Greene"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Sunday",
+          "July 28, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "7.5"
+        ],
+        "Time": [],
+        "Sports": [
+          "Reds",
+          "Rays",
+          "Tampa Bay Rays",
+          "Cincinnati Reds"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://cdn.sportsbettingdime.com/app/uploads/media/4/USATSI_23801947-1024x683.jpg",
+      "keywords": [
+        "Cincinnati Reds",
+        "Tampa Bay Rays",
+        "MLB",
+        "Predictions",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T23:04:39Z",
+      "summary": "The Cincinnati Reds are favored to win against the Tampa Bay Rays in the final game of their three-game series on Sunday, July 28, 2024. The Reds' ace Hunter Greene will start, while the Rays have not announced their starter. The article predicts that the Rays will keep the game close and cover the run line, and the top play is the 'under' for a low-scoring game. The odds are Reds -125, Rays +105, and the over/under for total runs scored is 7.5.",
+      "title": "Cincinnati Reds vs Tampa Bay Rays Predictions, Odds & Starting Pitchers for Sunday (July 28)",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SBD](https://www.sportsbettingdime.com/news/mlb/cincinnati-reds-vs-tampa-bay-rays-predictions-odds-starting-pitchers-sunday-july-28)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://www.foxsports.com/articles/mlb/reds-vs-rays-prediction-odds-picks-july-28",
+      "article_id": "e2d922ad-7c1f-5eac-a8ba-9eacac02b646",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "FOX Sports",
+      "page_rank": 2145,
+      "domain_url": "foxsports.com",
+      "eng_title": "Reds vs. Rays Prediction, Odds, Picks",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Sunday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "-125",
+          "+106",
+          "7.5 runs",
+          "5-4"
+        ],
+        "Time": [
+          "11:35 AM ET"
+        ],
+        "Sports": [
+          "Reds",
+          "Rays",
+          "Tampa Bay Rays",
+          "Cincinnati Reds"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://b.fssta.com/uploads/application/fscom/SiteShareImage.vresize.1200.630.high.0.png",
+      "keywords": [
+        "Reds",
+        "Rays",
+        "Prediction",
+        "Odds",
+        "Picks"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T22:00:31Z",
+      "summary": "The Cincinnati Reds are set to face the Tampa Bay Rays on Sunday at 11:35 AM ET at Tropicana Field. The Reds are favored to win with -125 moneyline odds, while the Rays have +106 odds. The over/under is set at 7.5 runs. The article provides betting insights, including the Reds' and Rays' recent performance, stats, and player insights. The prediction is that the Rays will win 5-4, with the total going over 7.5 runs. The win probabilities are 50% for both teams.",
+      "title": "Reds vs. Rays Prediction, Odds, Picks",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FOX](https://www.foxsports.com/articles/mlb/reds-vs-rays-prediction-odds-picks-july-28)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://www.thespread.com/mlb-articles/reds-vs-rays-mlb-betting-odds-trends-prediction",
+      "article_id": "20cb7aeb-7572-5c47-b699-281b0892dee2",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "810TheSpread",
+      "page_rank": 337055,
+      "domain_url": "thespread.com",
+      "eng_title": "Reds vs. Rays MLB Betting Odds, Trends & Prediction",
+      "entities": {
+        "Person": [
+          "Zack Littell",
+          "Andrew Abbott",
+          "Randy Arozarena"
+        ],
+        "Organization": [],
+        "Location": [
+          "Seattle",
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Saturday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "7.5 runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Reds",
+          "Rays",
+          "Cincinnati Reds",
+          "Tampa Bay Rays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "4"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.thespread.com/wp-content/uploads/2024/07/Elly-De-La-Cruz-Reds.jpg",
+      "keywords": [
+        "MLB",
+        "Cincinnati Reds",
+        "Tampa Bay Rays",
+        "Tropicana Field"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T13:21:47Z",
+      "summary": "The Cincinnati Reds will face the Tampa Bay Rays on Saturday at Tropicana Field. Andrew Abbott will pitch for the Reds, while Zack Littell will pitch for the Rays. The Rays are favored, with a total of 7.5 runs. Despite the Rays' strong home record, the Reds are expected to win, as the Rays' offense is expected to struggle without Randy Arozarena, who was traded to Seattle. The Reds have been consistent this season, with Andrew Abbott performing well, while Littell has struggled. The total has gone under in 4 of the last 5 home games for the Rays.",
+      "title": "Reds vs. Rays MLB Betting Odds, Trends & Prediction",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[TS](https://www.thespread.com/mlb-articles/reds-vs-rays-mlb-betting-odds-trends-prediction)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://www.bleachernation.com/picks/2024/07/27/rays-vs-reds-probable-starting-pitchers-july-27",
+      "article_id": "78ae462e-68c0-5af0-9c85-5c74b6638b4b",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Bleacher Nation",
+      "page_rank": 123754,
+      "domain_url": "bleachernation.com",
+      "eng_title": "Rays vs. Reds Probable Starting Pitchers",
+      "entities": {
+        "Person": [
+          "Zack Littell",
+          "Andrew Abbott"
+        ],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Saturday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "6.9",
+          "3-7",
+          "50-53",
+          "3.19 ERA",
+          "4.46 ERA",
+          "3.19",
+          "+103",
+          "Total",
+          "nine innings",
+          "100 strikeouts",
+          "107 2/3 innings",
+          "7.5",
+          "52-52",
+          "9-6"
+        ],
+        "Time": [
+          "4:10 PM ET"
+        ],
+        "Sports": [
+          "Cincinnati Reds",
+          "Tampa Bay Rays",
+          "Reds"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.bleachernation.com/wp-content/uploads/2024/07/httpscdn.dataskrive.comapiassetYqAIrfD.jpg",
+      "keywords": [
+        "Tampa Bay Rays",
+        "Cincinnati Reds",
+        "Zack Littell",
+        "Andrew Abbott"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T10:35:29Z",
+      "summary": "The Tampa Bay Rays (52-52) will face the Cincinnati Reds (50-53) at Tropicana Field on Saturday, with first pitch at 4:10 PM ET. The Rays will start Zack Littell (3-7, 4.46 ERA) against the Reds' Andrew Abbott (9-6, 3.19 ERA). Littell has a 4.46 ERA and 100 strikeouts in 107 2/3 innings pitched, while Abbott has an ERA of 3.19 and 6.9 strikeouts per nine innings. The game's odds are Reds to win: +103, Reds to win: +103, Spread: Reds -1.5, and Total: 7.5 runs.",
+      "title": "Rays vs. Reds Probable Starting Pitchers",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[BN](https://www.bleachernation.com/picks/2024/07/27/rays-vs-reds-probable-starting-pitchers-july-27)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://www.theinteriorjournal.com/2024/07/27/reds-vs-rays-betting-preview-for-july-27",
+      "article_id": "38018f9e-f560-54fe-ac9f-a3f833fba1e7",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "The Interior Journal",
+      "page_rank": 362536,
+      "domain_url": "theinteriorjournal.com",
+      "eng_title": "Reds vs. Rays: Betting Preview for July 27",
+      "entities": {
+        "Person": [
+          "Zack Littell",
+          "Andrew Abbott",
+          "Abbott"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 27",
+          "Saturday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "114 home runs",
+          "9-6",
+          "-105",
+          "-115",
+          "7.5 runs",
+          ".230",
+          "on-base percentage",
+          "slugging percentage",
+          ".304",
+          "batting average"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cincinnati Reds",
+          "Rays",
+          "Reds",
+          "Tampa Bay Rays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "18",
+          "14th",
+          "eight",
+          "21"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.theinteriorjournal.com/wp-content/uploads/sites/51/2024/07/reds-vs-rays-betting-preview-for-july-27.jpg",
+      "keywords": [
+        "Reds",
+        "Rays",
+        "Baseball",
+        "Betting",
+        "Zack Littell",
+        "Andrew Abbott"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T09:25:02Z",
+      "summary": "The Tampa Bay Rays will face the Cincinnati Reds on Saturday, July 27, with Zack Littell starting for the Rays and Andrew Abbott for the Reds. The Rays are favored to win at -115, while the Reds are at -105. The over/under for the game is set at 7.5 runs, with the odds to go over at -115 and under at -105. The Reds' Abbott has a 9-6 record and has made 21 starts this season, with eight quality starts and 18 appearances lasting five or more innings. The Reds have hit 114 home runs this season and rank 14th in the league in slugging percentage, but struggle with a team batting average of .230 and on-base percentage of .304.",
+      "title": "Reds vs. Rays: Betting Preview for July 27",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[IJ](https://www.theinteriorjournal.com/2024/07/27/reds-vs-rays-betting-preview-for-july-27)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://pickdawgz.com/mlb-picks/2024-07-27/cincinnati-reds-vs-tampa-bay-rays-prediction-mlb-picks",
+      "article_id": "86e19753-0a51-5425-a477-150a629c5920",
+      "classification": "Sports",
+      "country": "unknown",
+      "source_id": "pickdawgz.com",
+      "page_rank": 395620,
+      "domain_url": "pickdawgz.com",
+      "eng_title": "Cincinnati Reds vs Tampa Bay Rays Prediction MLB Picks 7/27/24",
+      "entities": {
+        "Person": [
+          "Zack Littell",
+          "Andrew Abbott"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 27th, 2024"
+        ],
+        "Event": [],
+        "Money": [
+          "money line"
+        ],
+        "Law": [],
+        "Quantity": [
+          "3.19",
+          "ERA",
+          "9-6",
+          "3-7",
+          "4.46"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cincinnati Reds",
+          "Reds",
+          "MLB",
+          "Tampa Bay Rays",
+          "American League",
+          "Rays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.gannett-cdn.com/usatsimg/image/thumb/650-650nw/23833816.jpg",
+      "keywords": [
+        "MLB",
+        "Cincinnati Reds",
+        "Tampa Bay Rays",
+        "Andrew Abbott",
+        "Zack Littell"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T23:25:00Z",
+      "summary": "This article predicts the outcome of the Cincinnati Reds vs Tampa Bay Rays MLB game on July 27th, 2024. The Reds have won four consecutive games as road underdogs against American League opponents, while the Rays have lost four of their last six games as favorites. The Reds' starting pitcher, Andrew Abbott, has a 9-6 record and an ERA of 3.19, and the Rays' starting pitcher, Zack Littell, has a 3-7 record and an ERA of 4.46. The article concludes that the Reds will find success and recommends backing them on the money line.",
+      "title": "Cincinnati Reds vs Tampa Bay Rays Prediction MLB Picks 7/27/24",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[PI](https://pickdawgz.com/mlb-picks/2024-07-27/cincinnati-reds-vs-tampa-bay-rays-prediction-mlb-picks)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://www.weeklycitizen.com/story/sports/sports-betting/2024/07/26/cincinnati-reds-at-tampa-bay-rays-odds-picks-and-predictions/74557069007",
+      "article_id": "105b3c97-fcc6-58c1-87ac-1c87d38826b3",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Weekly Citizen",
+      "page_rank": 412876,
+      "domain_url": "weeklycitizen.com",
+      "eng_title": "Cincinnati Reds at Tampa Bay Rays odds, picks and predictions",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "moneyline",
+          "3-game series"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "9-4",
+          "5-4",
+          "7.5 runs",
+          "13-0"
+        ],
+        "Time": [],
+        "Sports": [
+          "Atlanta Braves",
+          "Rays",
+          "Cincinnati Reds",
+          "Tampa Bay Rays",
+          "Reds",
+          "Toronto Blue Jays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.weeklycitizen.com/gcdn/authoring/images/smg/2024/07/26/SMGW/74557066007-USATSI_23815697-e1722003732979_1.jpeg?crop=3107,1747,x182,y0&width=3107&height=1747&format=pjpg&auto=webp",
+      "keywords": [
+        "Cincinnati Reds",
+        "Tampa Bay Rays",
+        "MLB",
+        "Odds",
+        "Predictions"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T14:23:11Z",
+      "summary": "The Cincinnati Reds and Tampa Bay Rays are set to face off in a 3-game series, with the Reds looking to build on their recent wins. The Reds have won back-to-back games, including a 9-4 victory over the Atlanta Braves, while the Rays got back in the win column with a 13-0 domination over the Toronto Blue Jays. The projected starters for the series are LHP Nick Lodolo for the Reds and RHP Shane Baz for the Rays. The article provides odds and predictions for the series, including a prediction of a 5-4 Reds win, a recommendation to bet on the Reds moneyline, and a suggestion to bet on the over 7.5 runs.",
+      "title": "Cincinnati Reds at Tampa Bay Rays odds, picks and predictions",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[WC](https://www.weeklycitizen.com/story/sports/sports-betting/2024/07/26/cincinnati-reds-at-tampa-bay-rays-odds-picks-and-predictions/74557069007)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/reds-vs-rays-prediction-odds-pick-7-26-2024",
+      "article_id": "5dcd302d-ce22-550c-aec5-7ec7149437d1",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 12578,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Reds vs. Rays prediction, odds, pick - 7/26/2024",
+      "entities": {
+        "Person": [
+          "Nick Lodolo",
+          "Shane Baz"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [],
+        "Sports": [
+          "Rays",
+          "Reds",
+          "Cincinnati Reds",
+          "Tampa Bay Rays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "-112"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/07/Reds-vs.-Rays-prediction-odds-pick.jpg",
+      "keywords": [
+        "Reds",
+        "Rays",
+        "MLB",
+        "Prediction",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T14:18:23Z",
+      "summary": "The Cincinnati Reds face the Tampa Bay Rays in a matchup between Nick Lodolo and Shane Baz. The Reds have a better offense and pitcher, and have been hitting better since the break. The Rays have a struggling offense and have been relying on a few players to drive in runs. The Reds are predicted to win with a moneyline of -112.",
+      "title": "Reds vs. Rays prediction, odds, pick - 7/26/2024",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/reds-vs-rays-prediction-odds-pick-7-26-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://triblive.com/sports/rays-vs-reds-predictions-picks-odds-moneyline-july-26",
+      "article_id": "b42dd362-a5c3-5a86-82cb-24da0b3f230c",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "TribLive.com",
+      "page_rank": 3937,
+      "domain_url": "triblive.com",
+      "eng_title": "Rays vs. Reds Predictions & Picks: Odds, Moneyline",
+      "entities": {
+        "Person": [
+          "Nick Lodolo",
+          "Shane Baz"
+        ],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 26"
+        ],
+        "Event": [
+          "computer predictions"
+        ],
+        "Money": [
+          "moneyline"
+        ],
+        "Law": [],
+        "Quantity": [
+          "51.9%",
+          "-115",
+          "7.5 runs",
+          "40.7%",
+          "5-4"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cincinnati Reds",
+          "Tampa Bay Rays",
+          "Rays",
+          "Reds"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://assets-varnish.triblive.com/2024/07/NQBYry5.jpg",
+      "keywords": [
+        "Rays",
+        "Reds",
+        "Predictions",
+        "Picks",
+        "Odds",
+        "Moneyline"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T22:48:11Z",
+      "summary": "The Tampa Bay Rays are predicted to win against the Cincinnati Reds with a score of 5-4, according to computer predictions. The game will take place on July 26 at Tropicana Field. Shane Baz will pitch for the Rays, while Nick Lodolo will pitch for the Reds. The Rays have a 51.9% win rate when favored by at least -115 on the moneyline, and the Reds have a 40.7% win rate when underdogs. The total prediction is over 7.5 runs.",
+      "title": "Rays vs. Reds Predictions & Picks: Odds, Moneyline",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[TL](https://triblive.com/sports/rays-vs-reds-predictions-picks-odds-moneyline-july-26)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://www.foxsports.com/articles/mlb/rays-vs-reds-prediction-odds-picks-july-26",
+      "article_id": "782ea86b-6784-5b2a-a152-9e8fbfa317d1",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "FOX Sports",
+      "page_rank": 2145,
+      "domain_url": "foxsports.com",
+      "eng_title": "Rays vs. Reds Prediction, Odds, Picks",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Tropicana Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Friday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "-110"
+        ],
+        "Time": [],
+        "Sports": [
+          "Reds",
+          "Rays",
+          "Cincinnati Reds",
+          "Tampa Bay Rays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "-106",
+          "7.5",
+          "-112"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://b.fssta.com/uploads/application/fscom/SiteShareImage.vresize.1200.630.high.0.png",
+      "keywords": [
+        "Rays",
+        "Reds",
+        "Prediction",
+        "Odds",
+        "Picks"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T21:46:29Z",
+      "summary": "The Tampa Bay Rays will face the Cincinnati Reds on Friday at Tropicana Field. The Rays are favored to win with -112 moneyline odds, while the Reds have -106 odds. The over/under is set at 7.5 runs with -110 odds on the over and -110 odds to go under. The Rays have a 50% win probability and the Reds have a 50% win probability. The article provides information on the Rays and Reds recent betting performance, stats, and player insights.",
+      "title": "Rays vs. Reds Prediction, Odds, Picks",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FOX](https://www.foxsports.com/articles/mlb/rays-vs-reds-prediction-odds-picks-july-26)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://www.bettingnews.com/articles/mlb/rays-blue-jays-predictions-odds-best-bets-2024-07-25",
+      "article_id": "a025c714-dfd5-54a7-9b97-b338301e1db7",
+      "classification": "Sports",
+      "country": "unknown",
+      "source_id": "Betting News",
+      "page_rank": 390430,
+      "domain_url": "bettingnews.com",
+      "eng_title": "Rays vs Blue Jays MLB Predictions, Odds & Best Bets (7/25)",
+      "entities": {
+        "Person": [
+          "Taj Bradley",
+          "Chris Bassitt"
+        ],
+        "Organization": [
+          "MLB"
+        ],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 25, 2024"
+        ],
+        "Event": [
+          "moneyline"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [],
+        "Sports": [
+          "Rays",
+          "Toronto Blue Jays",
+          "Tampa Bay Rays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "eight"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.bettingnews.com/wp-content/uploads/2023/05/Taj-Bradley.jpeg",
+      "keywords": [
+        "MLB",
+        "Rays",
+        "Blue Jays",
+        "Taj Bradley",
+        "Chris Bassitt"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T16:01:59Z",
+      "summary": "The article provides MLB predictions and best bets for the game between the Tampa Bay Rays and the Toronto Blue Jays on July 25, 2024. The Rays are looking to win the series after losing the first game, and the article suggests that they have a good chance of doing so with their starting pitcher Taj Bradley, who has been nearly unhittable in his last eight starts. The article also recommends taking the Rays on the moneyline and Chris Bassitt o2.5 earned runs in a player prop bet.",
+      "title": "Rays vs Blue Jays MLB Predictions, Odds & Best Bets (7/25)",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[BN](https://www.bettingnews.com/articles/mlb/rays-blue-jays-predictions-odds-best-bets-2024-07-25)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://eu.oklahoman.com/story/sports/sports-betting/2024/07/25/tampa-bay-rays-at-toronto-blue-jays-odds-picks-and-predictions-12/74541529007",
+      "article_id": "e00d02ff-bfb0-5c17-bc35-33f0c4baedc4",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "The Oklahoman",
+      "page_rank": 5756,
+      "domain_url": "oklahoman.com",
+      "eng_title": "Tampa Bay Rays at Toronto Blue Jays odds, picks and predictions",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Thursday"
+        ],
+        "Event": [
+          "Against the spread"
+        ],
+        "Money": [
+          "Over 7.5",
+          "+107"
+        ],
+        "Law": [],
+        "Quantity": [
+          "6 games",
+          "5 games",
+          "5-4",
+          "6-3",
+          "6-4",
+          "3"
+        ],
+        "Time": [
+          "3rd",
+          "6th inning"
+        ],
+        "Sports": [
+          "Rays",
+          "Toronto Blue Jays",
+          "Blue Jays",
+          "Tampa Bay Rays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "2",
+          "5th"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": null,
+      "keywords": [
+        "Tampa Bay Rays",
+        "Toronto Blue Jays",
+        "MLB",
+        "Randy Arozarena",
+        "Vladimir Guerrero Jr."
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T14:23:29Z",
+      "summary": "The Tampa Bay Rays and Toronto Blue Jays conclude their 3-game series on Thursday. The Rays lead the season series 5-4. The Blue Jays won the previous game 6-3 as +107 home underdogs. The Rays' Randy Arozarena had 2 hits, including a game-tying RBI single in the 6th inning. The Blue Jays' Vladimir Guerrero Jr. hit a solo shot in the 3rd, his 5th HR in 6 games. The projected starters are RHP Taj Bradley for the Rays and RHP Chris Bassitt for the Blue Jays. The Rays are 6-4 in their last 10 games, while the Blue Jays have dropped 3 of their last 5 games. The recommended bets are the Rays to win, the Over 7.5, and to pass on the run line/Against the spread.",
+      "title": "Tampa Bay Rays at Toronto Blue Jays odds, picks and predictions",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[O](https://eu.oklahoman.com/story/sports/sports-betting/2024/07/25/tampa-bay-rays-at-toronto-blue-jays-odds-picks-and-predictions-12/74541529007)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://www.oddsshark.com/mlb/expert-picks-july-25-2024",
+      "article_id": "dee13224-932d-5fd7-aaa2-a4400abc6e32",
+      "classification": "Sports",
+      "country": "GB",
+      "source_id": "Odds Shark",
+      "page_rank": 36801,
+      "domain_url": "oddsshark.com",
+      "eng_title": "MLB Predictions Today: Padres vs Nationals, Orioles vs Marlins",
+      "entities": {
+        "Person": [
+          "Dylan Cease",
+          "Roddery Munoz"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 25th"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "-115",
+          "UNDER 8.5",
+          "-1.5"
+        ],
+        "Time": [],
+        "Sports": [
+          "MLB",
+          "Nationals",
+          "Orioles",
+          "Padres",
+          "Marlins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.oddsshark.com/themes/custom/os/src/images/footer_as_seen_on_icons/fox.svg",
+      "keywords": [
+        "MLB",
+        "Padres",
+        "Nationals",
+        "Orioles",
+        "Marlins"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T12:20:47Z",
+      "summary": "The article provides two MLB expert picks for July 25th: the Padres -1.5 (-115) against the Nationals and the UNDER 8.5 runs in the Orioles vs Marlins game. The author believes Dylan Cease will out-pitch the Nationals, and the Padres will win with a multi-run gap. For the Orioles vs Marlins game, the author is betting on the UNDER 8.5 runs due to the struggles of the Orioles' offense and the propensity for hard contact by Marlins starter Roddery Munoz.",
+      "title": "MLB Predictions Today: Padres vs Nationals, Orioles vs Marlins",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[OS](https://www.oddsshark.com/mlb/expert-picks-july-25-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://www.yardbarker.com/mlb/articles/mlb_betting_orioles_vs_marlins_pick_odds_predictions_for_thu_725/s1_17354_40652641",
+      "article_id": "bcf79f05-c980-5322-b4f9-ac14a7071157",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Yardbarker",
+      "page_rank": 10824,
+      "domain_url": "yardbarker.com",
+      "eng_title": "MLB betting: Orioles vs. Marlins pick, odds, predictions for Thu. 7/25",
+      "entities": {
+        "Person": [
+          "Roddery Munoz",
+          "Corbin Burnes"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 25"
+        ],
+        "Event": [],
+        "Money": [
+          "-2.5",
+          "-275"
+        ],
+        "Law": [],
+        "Quantity": [
+          "7.5"
+        ],
+        "Time": [],
+        "Sports": [
+          "Marlins",
+          "Orioles",
+          "MLB"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.yardbarker.com/media/9/9/9953d8f6cb378383a0704122a6038664c8de6083/thumb_16x9/Ryan-Mountcastle-Orioles.jpg",
+      "keywords": [
+        "MLB",
+        "Orioles",
+        "Marlins",
+        "Corbin Burnes",
+        "Roddery Munoz"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T06:07:21Z",
+      "summary": "The article provides a preview and prediction for the MLB game between the Orioles and the Marlins on July 25. The Orioles are favored to win with a moneyline of -275 and an over/under of 7.5. The author recommends betting on the Orioles to cover the alternate run line of -2.5, citing the strong performance of Orioles' pitcher Corbin Burnes and the weak performance of Marlins' pitcher Roddery Munoz. The article also highlights the Orioles' strong bullpen and offense, as well as the Marlins' struggles at the plate.",
+      "title": "MLB betting: Orioles vs. Marlins pick, odds, predictions for Thu. 7/25",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[Y](https://www.yardbarker.com/mlb/articles/mlb_betting_orioles_vs_marlins_pick_odds_predictions_for_thu_725/s1_17354_40652641)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://eu.dispatch.com/story/sports/sports-betting/2024/07/25/baltimore-orioles-at-miami-marlins-odds-picks-and-predictions-2/74538113007",
+      "article_id": "932ef1d3-d13c-5909-bc68-cfdeb169d17d",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "The Columbus Dispatch",
+      "page_rank": 2727,
+      "domain_url": "dispatch.com",
+      "eng_title": "Baltimore Orioles at Miami Marlins odds, picks and predictions",
+      "entities": {
+        "Person": [
+          "Roddery Munoz",
+          "Corbin Burnes"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "Over",
+          "3-game series"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "3 games",
+          "60-41",
+          "37-65",
+          "3 runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Marlins",
+          "Orioles",
+          "Miami Marlins",
+          "Baltimore Orioles"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "2",
+          "8"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://staticassets.gannettdigital.com/gci-static-assets/assets/global/checkout/meta-generic.png",
+      "keywords": [
+        "Baltimore Orioles",
+        "Miami Marlins",
+        "MLB",
+        "Baseball",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T04:38:58Z",
+      "summary": "The Baltimore Orioles (60-41) and Miami Marlins (37-65) meet for the finale of a 3-game series. The Orioles have lost their last 3 games and failed to score more than 3 runs in their last 8 losses. The Marlins have won 2 of the 3 games in the series so far. The projected starters are Corbin Burnes for the Orioles and Roddery Munoz for the Marlins. The article provides odds and predictions for the game, including a pick for the Marlins to cover the spread and the Over to hit.",
+      "title": "Baltimore Orioles at Miami Marlins odds, picks and predictions",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[CD](https://eu.dispatch.com/story/sports/sports-betting/2024/07/25/baltimore-orioles-at-miami-marlins-odds-picks-and-predictions-2/74538113007)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/rays-vs-blue-jays-prediction-odds-pick-7-25-2024",
+      "article_id": "a87bbde1-e2d3-5368-9585-f0532cc08a63",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 12578,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Rays vs. Blue Jays prediction, odds, pick - 7/25/2024",
+      "entities": {
+        "Person": [
+          "Chris Bassitt",
+          "Taj Bradley",
+          "Vladimir Guerrero Jr."
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "3.71 ERA",
+          "5-4",
+          "2.63 ERA",
+          "8-8"
+        ],
+        "Time": [],
+        "Sports": [
+          "Tampa Bay Rays",
+          "Toronto Blue Jays",
+          "Rays",
+          "Blue Jays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/05/Rays-vs.-Blue-Jays-prediction-odds-pick-1.jpg",
+      "keywords": [
+        "Rays",
+        "Blue Jays",
+        "Taj Bradley",
+        "Chris Bassitt",
+        "Vladimir Guerrero Jr."
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T03:15:54Z",
+      "summary": "The Tampa Bay Rays are set to face the Toronto Blue Jays in a matchup between two teams struggling to find consistency. The Rays have won three of their last four games, while the Blue Jays have lost three of their last four. Taj Bradley will start for the Rays, with a 5-4 record and 2.63 ERA, while Chris Bassitt will start for the Blue Jays, with an 8-8 record and 3.71 ERA. The Rays' offense has struggled, but they have a favorable matchup against the Blue Jays' pitching. The Blue Jays' offense has also struggled, but they have a strong lineup led by Vladimir Guerrero Jr. The prediction is for the Blue Jays to cover the spread and potentially win against the Rays at home.",
+      "title": "Rays vs. Blue Jays prediction, odds, pick - 7/25/2024",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/rays-vs-blue-jays-prediction-odds-pick-7-25-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://www.actionnetwork.com/mlb/mlb-best-bets-wednesday-odds-picks-predictions-july-24",
+      "article_id": "51472bc6-36f0-52ca-811c-f1002aff64ea",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Action Network",
+      "page_rank": 15134,
+      "domain_url": "actionnetwork.com",
+      "eng_title": "MLB Best Bets: 2 Picks & Predictions for Wednesday",
+      "entities": {
+        "Person": [
+          "Yariel Rodr\u00edguez",
+          "Jack Flaherty",
+          "Zach Eflin",
+          "Tanner Bibee"
+        ],
+        "Organization": [],
+        "Location": [
+          "Cleveland",
+          "Detroit",
+          "Tampa Bay",
+          "Toronto"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Wednesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "under 7.5 runs",
+          "under 8.5 runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Guardians",
+          "MLB",
+          "Tigers",
+          "Rays",
+          "Blue Jays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://images.actionnetwork.com/blog/2024/07/MLBBestBetsJuly24.jpg",
+      "keywords": [
+        "MLB",
+        "Best Bets",
+        "Tigers",
+        "Guardians",
+        "Rays",
+        "Blue Jays"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T20:33:17Z",
+      "summary": "The article presents two MLB best bets for Wednesday's games. The first bet is on the under 7.5 runs in the Tigers vs Guardians game, with Jack Flaherty starting for Detroit and Tanner Bibee for Cleveland. The second bet is on the under 8.5 runs in the Rays vs Blue Jays game, with Yariel Rodr\u00edguez starting for Toronto and Zach Eflin for Tampa Bay. The article highlights the strengths of each starting pitcher and the potential for dominant pitching to lead to a low-scoring game.",
+      "title": "MLB Best Bets: 2 Picks & Predictions for Wednesday",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[AN](https://www.actionnetwork.com/mlb/mlb-best-bets-wednesday-odds-picks-predictions-july-24)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://elclarinweb.com/2024/07/24/predicciones-del-juego-miami-marlins-vs-baltimore-orioles-mlb",
+      "article_id": "dc54070b-4069-580d-88b7-527dd38ef913",
+      "classification": "Sports",
+      "country": "VE",
+      "source_id": "El Clar\u00edn",
+      "page_rank": 776323,
+      "domain_url": "elclarinweb.com",
+      "eng_title": "Miami Marlins vs. Baltimore Orioles: A High-Scoring Game Expected",
+      "entities": {
+        "Person": [
+          "Edwar Cabrera"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 24, 2024"
+        ],
+        "Event": [
+          "Triple-A"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "1.85",
+          "4-run",
+          "9.5 runs"
+        ],
+        "Time": [
+          "third",
+          "second inning"
+        ],
+        "Sports": [
+          "MLB",
+          "American League",
+          "Orioles",
+          "Baltimore Orioles",
+          "Marlins",
+          "Miami Marlins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://elclarinweb.com/wp-content/uploads/2024/07/miami-baltimore.jpg",
+      "keywords": [
+        "MLB",
+        "Miami Marlins",
+        "Baltimore Orioles",
+        "Edwar Cabrera",
+        "Over 9.5 runs"
+      ],
+      "language": "es",
+      "pub_date": "2024-07-24T18:00:55Z",
+      "summary": "The Miami Marlins and Baltimore Orioles will face off for the second time in their MLB series on July 24, 2024. The Marlins surprised the Orioles in the first game with a strong offensive start. This second game promises to be equally exciting and action-packed. Analysis of the Game: Miami Marlins: The Marlins achieved a surprising victory in the first game of the series, with a 4-run rally in the second inning and 2 more in the third. Their offense showed efficiency and took advantage of the Orioles' pitcher's weaknesses. Edwar Cabrera, the designated pitcher for this game, has had an inconsistent season, with moments of great performance and others of difficulty. However, if the Marlins' bats continue their good streak, they could offer him solid support. Baltimore Orioles: The Orioles will face this game with a rookie pitcher recently promoted from Triple-A. This could complicate their chances, as inexperience on the mound can be a decisive factor. However, the Orioles have a powerful offensive lineup, co-leaders in the American League. If they can exploit Cabrera's weaknesses, they have the potential to surpass the Marlins in this matchup. Prediction: Given the offensive performance shown by the Marlins in the first game and the uncertainty on the mound for both teams, a game with high scoring is expected. Both teams have the potential to exploit the weaknesses of the opposing pitcher, suggesting a game with many runs. Betting Recommendation: Betting Option: Over 9.5 runs in the game. Odds: 1.85. This odds offers a good value considering the offensive performance of both teams and the inexperience of the Orioles' rookie pitcher. The game between the Miami Marlins and the Baltimore Orioles promises to be an exciting duel with many runs. Betting on a total of over 9.5 runs seems like a solid option based on the Marlins' offensive performance and the Orioles' rookie pitcher's inexperience. Good luck with your bets and enjoy the exciting game!",
+      "title": "Predicciones del juego Miami Marlins vs. Baltimore Orioles",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[EC](https://elclarinweb.com/2024/07/24/predicciones-del-juego-miami-marlins-vs-baltimore-orioles-mlb)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://listindiario.com/el-deporte/beisbol/20240724/mets-superan-yanquis-ramirez-noel-clase-guian-cleveland-perez-sanchez-vladdy-jr-dan-hrs_818452.html",
+      "article_id": "e5e33702-ed68-5e47-be0f-d8fe80254cba",
+      "classification": "Sports",
+      "country": "DO",
+      "source_id": "List\u00edn Diario",
+      "page_rank": 22349,
+      "domain_url": "listindiario.com",
+      "eng_title": "MLB: Mets, Guardians, Padres, Cardinals, Marlins, Rays, Phillies win",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "6-3",
+          "4-2",
+          "4-0",
+          "3-2",
+          "2-1",
+          "3-0",
+          "5-4"
+        ],
+        "Time": [
+          "ninth inning"
+        ],
+        "Sports": [
+          "Miami Marlins",
+          "San Diego Padres",
+          "Cleveland Guardians",
+          "Detroit Tigers",
+          "New York Mets",
+          "Washington Nationals",
+          "Yankees",
+          "Tampa Bay Rays",
+          "Baltimore Orioles",
+          "Minnesota Twins",
+          "Pittsburgh Pirates",
+          "Philadelphia Phillies",
+          "St. Louis Cardinals",
+          "Toronto Blue Jays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://listindiario.com/files/main_image/files/fp/uploads/2024/07/24/66a0de7049e85.r_d.707-378-0.jpeg",
+      "keywords": [
+        "MLB",
+        "Mets",
+        "Guardians",
+        "Padres",
+        "Cardinals",
+        "Marlins",
+        "Rays",
+        "Phillies"
+      ],
+      "language": "es",
+      "pub_date": "2024-07-24T11:04:02Z",
+      "summary": "The New York Mets defeated their local rivals, the Yankees, 3-2, with Jos\u00e9 Quintana's dominant pitching and Jeff McNeil's two-run homer. In another game, the Cleveland Guardians, led by Jos\u00e9 Ram\u00edrez's home run and two RBIs, defeated the Detroit Tigers 5-4. The San Diego Padres shut out the Washington Nationals 4-0, with Luis Arr\u00e1ez and Jurickson Profar hitting consecutive home runs. The St. Louis Cardinals won 2-1 against the Pittsburgh Pirates, with Nolan Arenado's home run breaking the tie in the ninth inning. The Miami Marlins defeated the Baltimore Orioles 6-3, with Jes\u00fas S\u00e1nchez's home run and two RBIs. The Tampa Bay Rays won 4-2 against the Toronto Blue Jays, with Brandon Lowe's home run and two RBIs. Finally, the Philadelphia Phillies defeated the Minnesota Twins 3-0, with Nick Castellanos' two-run double being crucial.",
+      "title": "Mets superan a Yanquis, Ram\u00edrez, Noel y Clase gu\u00edan a Cleveland, P\u00e9rez, S\u00e1nchez y Vladdy Jr. dan Hrs",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[LD](https://listindiario.com/el-deporte/beisbol/20240724/mets-superan-yanquis-ramirez-noel-clase-guian-cleveland-perez-sanchez-vladdy-jr-dan-hrs_818452.html)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://www.yardbarker.com/mlb/articles/mlb_best_bets_reds_vs_braves_prediction_odds_picks_for_wed_724/s1_17354_40647656",
+      "article_id": "269116b9-9514-5952-8069-9070265f3337",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Yardbarker",
+      "page_rank": 10824,
+      "domain_url": "yardbarker.com",
+      "eng_title": "MLB best bets: Reds vs. Braves prediction, odds, picks for Wed. 7/24",
+      "entities": {
+        "Person": [
+          "Allan Winans",
+          "Frankie Montas",
+          "Winans"
+        ],
+        "Organization": [
+          "MLB"
+        ],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Wednesday",
+          "July 24"
+        ],
+        "Event": [],
+        "Money": [
+          "+105"
+        ],
+        "Law": [],
+        "Quantity": [
+          "4.85 ERA",
+          "7.5",
+          "4-8"
+        ],
+        "Time": [],
+        "Sports": [
+          "Reds",
+          "Atlanta Braves",
+          "Cincinnati Reds",
+          "Braves"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "8"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.yardbarker.com/media/c/b/cb1202c1ed3d1c5b601d89c9cc4cb44e796bf365/thumb_16x9/mlb-best-bets-reds-vs-braves-prediction-odds.jpg",
+      "keywords": [
+        "MLB",
+        "Reds",
+        "Braves",
+        "Frankie Montas",
+        "Allan Winans"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T03:08:08Z",
+      "summary": "The article discusses the MLB matchup between the Cincinnati Reds and the Atlanta Braves on Wednesday, July 24. The starting pitchers are Frankie Montas for the Reds and Allan Winans for the Braves. Montas has struggled this season with a 4-8 record and a 4.85 ERA, while Winans has also struggled in his recent outing. The article predicts that the game will have 8 or more total runs scored, citing the strong lineups of both teams and the poor performances of the starting pitchers. The over/under is set at 7.5 with a +105 payout, making it a good bet.",
+      "title": "MLB best bets: Reds vs. Braves prediction, odds, picks for Wed. 7/24",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[Y](https://www.yardbarker.com/mlb/articles/mlb_best_bets_reds_vs_braves_prediction_odds_picks_for_wed_724/s1_17354_40647656)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://triblive.com/sports/rays-vs-blue-jays-predictions-picks-odds-moneyline-july-24",
+      "article_id": "d67f2ee5-0a34-526c-89b4-8e2cfeff18b9",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "TribLive.com",
+      "page_rank": 3937,
+      "domain_url": "triblive.com",
+      "eng_title": "Rays vs. Blue Jays Predictions & Picks: Odds, Moneyline",
+      "entities": {
+        "Person": [
+          "Yariel Rodriguez",
+          "Zach Eflin"
+        ],
+        "Organization": [],
+        "Location": [
+          "Rogers Centre"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 24"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "8.5 runs",
+          "28 games",
+          "5-4"
+        ],
+        "Time": [
+          "ET",
+          "7:07 PM"
+        ],
+        "Sports": [
+          "Rays",
+          "Toronto Blue Jays",
+          "Tampa Bay Rays",
+          "Blue Jays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://assets-varnish.triblive.com/2024/07/f27FwaJ.jpg",
+      "keywords": [
+        "Rays",
+        "Blue Jays",
+        "Predictions",
+        "Picks",
+        "Odds",
+        "Moneyline"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T02:48:16Z",
+      "summary": "The Toronto Blue Jays are predicted to win against the Tampa Bay Rays with a score of 5-4. The game will be played on July 24 at 7:07 PM ET at Rogers Centre. The Rays will be led by Zach Eflin, while the Blue Jays will be led by Yariel Rodriguez. The Blue Jays have won 28 games as favorites this season, while the Rays have won 28 games as favorites. The total prediction for the game is under 8.5 runs.",
+      "title": "Rays vs. Blue Jays Predictions & Picks: Odds, Moneyline",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[TL](https://triblive.com/sports/rays-vs-blue-jays-predictions-picks-odds-moneyline-july-24)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://headtopics.com/us/rays-vs-blue-jays-prediction-picks-odds-for-tonight-s-56309849",
+      "article_id": "cb737474-11c0-53e2-9ce0-78633ddcfdea",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Head Topics",
+      "page_rank": 15511,
+      "domain_url": "headtopics.com",
+      "eng_title": "Rays vs Blue Jays Prediction, Picks, & Odds for Tonight's MLB Game",
+      "entities": {
+        "Person": [
+          "Jos\u00e9 Berrios",
+          "Vladimir Guerrero Jr."
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "postseason"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "16 home runs",
+          ".833 OPS",
+          ".292",
+          "9 games",
+          ".500",
+          "10 games"
+        ],
+        "Time": [],
+        "Sports": [
+          "New York Yankees",
+          "Boston Red Sox",
+          "Toronto Blue Jays",
+          "Rays",
+          "Blue Jays",
+          "Tampa Bay Rays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://i.headtopics.com/images/2024/7/23/covers/rays-vs-blue-jays-prediction-picks-odds-for-tonigh-rays-vs-blue-jays-prediction-picks-odds-for-tonigh-DC18F0ACED7B5812165716F14799EE3B.webp",
+      "keywords": [
+        "MLB",
+        "Toronto Blue Jays",
+        "Tampa Bay Rays",
+        "Vladimir Guerrero Jr."
+      ],
+      "language": "en",
+      "pub_date": "2024-07-23T20:44:00Z",
+      "summary": "The Toronto Blue Jays are struggling, with a record of 9 games under .500 and 10 games out of a postseason spot. Jos\u00e9 Berrios, their starting pitcher, has strong numbers against the Tampa Bay Rays, but the team's bullpen is a concern. Vladimir Guerrero Jr. has been hot lately, hitting .292 with a .833 OPS and 16 home runs. The article discusses the Blue Jays' chances against the Rays and other teams, including the Boston Red Sox and New York Yankees.",
+      "title": "Rays vs Blue Jays Prediction, Picks, & Odds for Tonight's MLB Game",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[HT](https://headtopics.com/us/rays-vs-blue-jays-prediction-picks-odds-for-tonight-s-56309849)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://elclarinweb.com/2024/07/23/pronostico-de-apuesta-new-york-yankees-vs-new-york-mets-mlb",
+      "article_id": "9513cef7-4ba2-503a-862c-a2b36f209440",
+      "classification": "Sports",
+      "country": "VE",
+      "source_id": "El Clar\u00edn",
+      "page_rank": 776323,
+      "domain_url": "elclarinweb.com",
+      "eng_title": "Pron\u00f3stico de Apuesta: New York Yankees vs. New York Mets",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "June 26, 2024",
+          "July 23"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "18",
+          "2 wins",
+          "4.4 goals",
+          "7 wins",
+          "5.2 goals",
+          "9-1",
+          "7",
+          "32",
+          "2 losses",
+          "3.8 goals",
+          "4.6 points",
+          "14",
+          "12-2",
+          "4.4 points",
+          "5 wins",
+          "3.6 goals",
+          "4-6",
+          "5 losses",
+          "3 losses"
+        ],
+        "Time": [
+          "7:05 pm"
+        ],
+        "Sports": [
+          "MLB",
+          "New York Yankees",
+          "New York Mets",
+          "Mets",
+          "Tampa Bay Rays",
+          "Yankees",
+          "Miami Marlins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "35"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://elclarinweb.com/wp-content/uploads/2024/07/mets-new-york.jpg",
+      "keywords": [
+        "New York Yankees",
+        "New York Mets",
+        "MLB",
+        "Betting Predictions"
+      ],
+      "language": "es",
+      "pub_date": "2024-07-23T19:35:42Z",
+      "summary": "The New York Yankees and New York Mets will face off in an exciting MLB matchup on July 23 at 7:05 pm. According to betting predictions, the Yankees have a slight advantage going into this game. Analysis of the game: Head-to-Head: The last time these teams faced off was on June 26, 2024, where the Yankees won 12-2. Historically, the Yankees have won 35 head-to-head matchups, including 18 home victories, while the Mets have won 32 times, with 14 away victories. The Yankees average 4.4 points per game in these matchups, while the Mets average 4.6 points. New York Yankees - Team Summary: In their last 10 games, the Yankees have had a balanced performance with 5 wins and 5 losses. At home, their performance is similar with 2 wins and 2 losses. In their last game, the Yankees defeated the Tampa Bay Rays 9-1. Currently, the team averages 4.4 goals per game and receives 3.6 goals. New York Mets - Team Summary: The Mets have had a solid performance in their last 10 games, with 7 wins and 3 losses. Away from home, they have won 7 of those games, losing only once. In their last game, the Mets defeated the Miami Marlins 4-6. On average, the team scores 5.2 goals per game and receives 3.8 goals. Prediction: In this matchup, both teams will showcase their defensive and offensive skills. However, considering recent performance and head-to-head history, the Yankees seem to have a slight advantage, especially playing at home. Betting Recommendation: Bet on the New York Yankees to win. The Yankees have shown consistency and solidity in their recent games, and their home performance gives them an additional advantage. Odds: 1.70. This odds offer good value considering the Yankees' historical and recent advantage in head-to-head matchups and their home performance.",
+      "title": "Pron\u00f3stico de Apuesta: New York Yankees vs. New York Mets",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[EC](https://elclarinweb.com/2024/07/23/pronostico-de-apuesta-new-york-yankees-vs-new-york-mets-mlb)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    }
+  ],
+  "timeline": [
+    "July 28, 2024: Rays win series against Reds",
+    "July 29, 2024: Marlins win against Orioles",
+    "July 30, 2024 14:40: Current time",
+    "July 30, 2024 18:50: Scheduled game start",
+    "July 30, 2024 ~22:00: Expected game end and result"
+  ],
+  "opposite_request": "Can you predict the loser for the upcoming game of Miami Marlins vs Tampa Bay Rays?",
+  "confidence": 0.0,
+  "choice": "Tampa Bay Rays",
+  "llm_confidence": 6,
+  "model_used": "claude-3-5-sonnet-20240620",
+  "likelihood": "Somewhat Likely",
+  "probability": 60,
+  "web_search_results": [
+    {
+      "title": "NFL.com | Official Site of the National Football League",
+      "source": "NFL.com",
+      "key_points": [
+        "Official site for all 32 NFL teams.",
+        "Teams are categorized into two conferences: AFC and NFC.",
+        "Each conference is divided into four divisions: North, South, East, and West.",
+        "Links provided for each team, allowing access to their official pages.",
+        "Additional features include NFL+, Fantasy, ticket purchasing, and merchandise shopping."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "Team",
+      "source": "Wikipedia",
+      "key_points": [
+        "A team is a group of individuals working together to achieve common goals.",
+        "Effective teams have members with complementary skills, fostering synergy and maximizing strengths.",
+        "Teams can be categorized into various types, including action teams, advisory teams, command teams, executive teams, and project teams.",
+        "Interdependent teams require collaboration for success, while independent teams allow for individual performance.",
+        "Team composition, size, and structure significantly impact team effectiveness and outcomes.",
+        "Self-directed teams have the highest potential for innovation and motivation among members.",
+        "Transformational leadership is crucial for team success, focusing on collaboration rather than control."
+      ],
+      "published": "October 27, 2002 20:41"
+    },
+    {
+      "title": "Microsoft Teams",
+      "source": "Wikipedia",
+      "key_points": [
+        "Microsoft Teams is a team collaboration application developed by Microsoft, launched on March 14, 2017.",
+        "As of January 2023, Microsoft Teams had approximately 280 million monthly users.",
+        "Teams replaced Microsoft-operated platforms like Skype for Business and was announced as a competitor to Slack in November 2016.",
+        "In 2020, Teams experienced significant growth, reaching 44 million daily users due to the shift to virtual meetings during the pandemic.",
+        "Microsoft Teams supports communication through chat, video conferencing, and integrates with various third-party applications.",
+        "The platform is available in 48 languages and functions across multiple operating systems including Windows, macOS, iOS, and Android.",
+        "Microsoft Teams has faced antitrust scrutiny, leading to changes in its bundling practices with the Office suite."
+      ],
+      "published": "December 07, 2016 18:07"
+    },
+    {
+      "title": "Team Sport",
+      "source": "Wikipedia",
+      "key_points": [
+        "A team sport requires multiple individuals working together, making it impractical to execute as a single-player endeavor.",
+        "Team sports emphasize teamwork, strategy, and coordination among members to achieve common goals, often involving scoring points.",
+        "Examples of team sports include soccer, basketball, and various forms of hockey and volleyball.",
+        "The definition of team sports has evolved, with distinctions made between pure team sports and those with individual components.",
+        "Team sports have a rich history, dating back to ancient civilizations, serving social, cultural, and political purposes.",
+        "Current Olympic team sports include 14 in the Summer Olympics and 2 in the Winter Olympics, with additional sports planned for future events.",
+        "Team sports reflect cultural values and priorities, influencing modern sports practices."
+      ],
+      "published": "September 15, 2004 17:43"
+    },
+    {
+      "title": "Just a moment...",
+      "source": "asq.org",
+      "key_points": [
+        "The content indicates a verification process for users.",
+        "Users may experience a delay as their connection is reviewed.",
+        "The purpose is to ensure security before proceeding."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "Drafting starting pitchers for the 2024 All-Star Game",
+      "source": "MLB.com",
+      "key_points": [
+        "The 2024 MLB All-Star Game will take place on July 16 at Globe Life Field.",
+        "Managers Bruce Bochy (AL) and Torey Lovullo (NL) will select starting pitchers from a pool of All-Star candidates.",
+        "Key factors for selection include performance, stature, and availability due to injuries or recent pitching.",
+        "Proposed matchups include: Paul Skenes vs. Garrett Crochet, Chris Sale vs. Max Scherzer, Ranger Su\u00e1rez vs. Corbin Burnes, Max Fried vs. Jack Flaherty, and Zack Wheeler vs. Tarik Skubal.",
+        "Chris Sale is having a standout season with an 11-3 record and 2.71 ERA, while Max Scherzer has a 1.74 ERA in his return.",
+        "Ranger Su\u00e1rez and Corbin Burnes are top performers in ERA, with Burnes potentially being the Orioles' first All-Star starter since 1980.",
+        "Zack Wheeler leads all starters in Wins Above Replacement (22.0) since 2020, while Tarik Skubal has made a strong comeback with a 2.45 ERA."
+      ],
+      "published": "July 06, 2024 04:35"
+    },
+    {
+      "title": "2024 MLB All-Star Game rosters, lineups: Every player picked with Shohei Ohtani, Aaron Judge, more in Texas",
+      "source": "CBSSports.com",
+      "key_points": [
+        "The 2024 MLB All-Star Game features prominent players including Shohei Ohtani and Aaron Judge.",
+        "The event is scheduled to take place in Texas.",
+        "The article provides a comprehensive list of all players selected for the All-Star Game.",
+        "Details about the lineups for the game are included."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "Who should start the 2024 MLB All-Star Game? Paul Skenes has earned NL honors, but who deserves AL nod?",
+      "source": "CBSSports.com",
+      "key_points": [
+        "Paul Skenes is a leading candidate for the National League All-Star Game starter.",
+        "Discussion is ongoing about who should represent the American League.",
+        "The article highlights key players and their performances in the MLB season leading up to the All-Star Game.",
+        "The All-Star Game is a significant event in the MLB calendar, showcasing top talent."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "Who should be the NL starting pitcher in the all star game?",
+      "source": "r/baseball",
+      "key_points": [
+        "Discussion on potential candidates for the NL starting pitcher in the All-Star Game.",
+        "The author believes there are 5-10 strong candidates and invites community input.",
+        "Comments suggest various pitchers including Glasnow, Suarez, and Skenes as options.",
+        "Debate over the qualifications of pitchers based on their performance and innings pitched."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "2024 MLB All-Star Game: Meet the All-Velo team",
+      "source": "ESPN",
+      "key_points": [
+        "2024 MLB season sees record-high average fastball velocity at 93.8 mph.",
+        "Batters are improving against high-velocity pitches, with a .240 average off pitches at 95 mph or greater.",
+        "All-Star Game features standout pitchers averaging over 100 mph, including Clase, Crochet, and Miller.",
+        "Hitters like Judge, Soto, and Ohtani excel against high-velocity pitches, with Soto leading with 7 home runs off 95 mph or greater.",
+        "Judge has a .375 batting average against pitches at 95 mph or higher, with 27 hits in this category.",
+        "Ohtani recorded a max exit velocity of 119.2 mph while rehabbing Tommy John surgery."
+      ],
+      "published": "July 16, 2024 11:00"
+    }
+  ],
+  "summary": "The Tampa Bay Rays are set to host the Miami Marlins in a game with significant implications for both teams' standings. The Rays are favored to win, but recent performance and key player stats suggest a potentially close game.",
+  "key_people": [
+    "Jeffrey Springs (Rays' projected starting pitcher)",
+    "Edward Cabrera (Marlins' projected starting pitcher)",
+    "Yandy D\u00edaz (Rays' key batter)",
+    "Bryan De La Cruz (Marlins' key batter)",
+    "Josh Bell (Marlins' hot streak batter)"
+  ],
+  "key_facets": [
+    "Recent team performance",
+    "Starting pitchers' stats and form",
+    "Key players' current form",
+    "Home/away performance",
+    "Head-to-head record",
+    "Bullpen strength"
+  ],
+  "reconciled_information": "While the Rays are favored and have a better overall record, the Marlins have shown recent improvement. The Rays' home performance and slightly stronger pitching give them an edge, but the Marlins' recent offensive output could make the game competitive.",
+  "candidate_models": [
+    "Elo rating system for MLB teams",
+    "Pythagorean expectation based on runs scored and allowed",
+    "Monte Carlo simulation using recent performance data",
+    "Regression analysis of key player stats"
+  ],
+  "unique_information": "Jeffrey Springs is making his first start of the season for the Rays, which adds an element of uncertainty to the pitching matchup.",
+  "game": "Miami Marlins vs Tampa Bay Rays",
+  "query": "Can you predict the winner for the upcoming game of Miami Marlins vs Tampa Bay Rays?",
+  "home_team": "Tampa Bay Rays",
+  "away_team": "Miami Marlins",
+  "odds_info": "Current odds from fanduel, caesars, bet365:\nTampa Bay Rays: -168, -164, -165\nMiami Marlins: 142, 140, 140\n",
+  "sport": "MLB",
+  "matchup": "Miami Marlins vs Tampa Bay Rays, 2024-07-30T18:50:00-04:00",
+  "event_uuid": "550ecf0d-6651-41c2-9448-861e9015240a",
+  "forecast_uuid": "cdf4b8a9-84ca-4942-a938-cf9692407e5c"
+}

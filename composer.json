@@ -1,0 +1,11 @@
+{
+    "config": {
+        "allow-plugins": {
+            "alleyinteractive/composer-wordpress-autoloader": true
+        }
+    },
+    "require": {
+        "alleyinteractive/wp-block-converter": "^1.2",
+        "yahnis-elsts/plugin-update-checker": "^4.5"
+    }
+}

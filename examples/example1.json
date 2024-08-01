@@ -1,0 +1,3483 @@
+{
+  "forecast": "Based on the available information, the Houston Astros are favored to win this game. Their home field advantage, stronger overall record, and more experienced starting pitcher give them an edge. However, the Pirates' recent good form and their rookie pitcher's potential make an upset possible.",
+  "resolution_criteria": "This question resolves when the final score of the Pittsburgh Pirates vs Houston Astros game on July 30, 2024 is officially recorded.",
+  "date": 1722350839,
+  "reasoning": "The Astros' home record, Hunter Brown's consistent performance, and their strong lineup led by Yordan Alvarez are key factors. The Pirates, while improving, are facing a tough road game against a playoff-contending team. The betting odds also heavily favor the Astros, reflecting the general expectation.",
+  "sources": [
+    {
+      "article_url": "https://www.chron.com/sports/watching-games/article/astros-pirates-mlb-prediction-7-30-2024-19606463.php",
+      "article_id": "11bc4809-719a-5030-b82e-717ca3f873f0",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Chron",
+      "page_rank": 652,
+      "domain_url": "chron.com",
+      "eng_title": "Astros vs. Pirates Prediction & Game Info",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 30, 2024",
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "9.6",
+          "nine innings",
+          "4.00 ERA"
+        ],
+        "Time": [
+          "8:10 PM ET"
+        ],
+        "Sports": [
+          "Houston Astros",
+          "Pirates",
+          "Pittsburgh Pirates",
+          "Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "SCHN"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://s.hdnux.com/photos/01/41/12/75/25472880/3/rawImage.jpg",
+      "keywords": [
+        "Astros",
+        "Pirates",
+        "Minute Maid Park",
+        "Hunter Brown",
+        "Bailey Falter"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T13:33:12Z",
+      "summary": "The Houston Astros will face the Pittsburgh Pirates on Tuesday, July 30, 2024, at Minute Maid Park. Hunter Brown will start for the Astros, while Bailey Falter will start for the Pirates. The Astros are predicted to win, with Brown having a 4.00 ERA and 9.6 strikeouts per nine innings. The Pirates' top hitters include Bryan Reynolds, Oneil Cruz, Andrew McCutchen, and Connor Joe. The game is scheduled for 8:10 PM ET and will be televised on SCHN.",
+      "title": "Astros vs. Pirates Prediction & Game Info",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[C](https://www.chron.com/sports/watching-games/article/astros-pirates-mlb-prediction-7-30-2024-19606463.php)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/houston-astros-vs-pittsburgh-pirates-live-stream-tv-channel-start-time-odds-july-30",
+      "article_id": "04a63a9d-eda7-5413-8a36-6d5e18e0c9a7",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Houston Astros vs. Pittsburgh Pirates live stream, TV channel, start time, odds | July 30",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "-171",
+          "8.5",
+          "over/under",
+          "106 homers",
+          "second-best batting average"
+        ],
+        "Time": [
+          "8:10 PM ET"
+        ],
+        "Sports": [
+          "Astros",
+          "Houston Astros",
+          "Pirates",
+          "Pittsburgh Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "Fubo",
+          "SportsNet Pittsburgh"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23841667-7.jpg?w=640",
+      "keywords": [
+        "Houston Astros",
+        "Pittsburgh Pirates",
+        "Minute Maid Park",
+        "Fubo"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T13:25:13Z",
+      "summary": "The Houston Astros will face the Pittsburgh Pirates on Tuesday at 8:10 PM ET at Minute Maid Park. The Astros have the second-best batting average in the league, while the Pirates have hit 106 homers this season. The game will be broadcast on SportsNet Pittsburgh and can be streamed live on Fubo. The odds favor the Astros, with a moneyline of -171 and an over/under of 8.5.",
+      "title": "Houston Astros vs. Pittsburgh Pirates live stream, TV channel, start time, odds | July 30",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/houston-astros-vs-pittsburgh-pirates-live-stream-tv-channel-start-time-odds-july-30)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://www.chron.com/sports/watching-games/article/astros-pirates-mlb-watch-info-19606274.php",
+      "article_id": "7e54d3a8-5a49-5ead-9541-2266b72b6f97",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Chron",
+      "page_rank": 652,
+      "domain_url": "chron.com",
+      "eng_title": "Astros vs. Pirates TV Channel and Live Stream Info for July 30",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Tuesday",
+          "July 30, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "9-6",
+          "4-7"
+        ],
+        "Time": [
+          "8:10 PM ET"
+        ],
+        "Sports": [
+          "Pirates",
+          "Astros",
+          "Houston Astros",
+          "Pittsburgh Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "54-52",
+          "55-51"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "SCHN",
+          "Fubo"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://s.hdnux.com/photos/01/41/12/64/25472266/3/rawImage.jpg",
+      "keywords": [
+        "Astros",
+        "Pirates",
+        "Minute Maid Park",
+        "Fubo"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T11:18:12Z",
+      "summary": "The Houston Astros (55-51) will face the Pittsburgh Pirates (54-52) at Minute Maid Park on Tuesday, July 30, 2024, at 8:10 PM ET. The game will be broadcast on SCHN and streamed live on Fubo. The pitching matchup features Hunter Brown (9-6) for the Astros and Bailey Falter (4-7) for the Pirates. The article provides statistics and player information for both teams, including hitting leaders Yordan Alvarez, Jose Altuve, Alex Bregman, Jeremy Pena, Bryan Reynolds, Oneil Cruz, Andrew McCutchen, and Connor Joe.",
+      "title": "Astros vs. Pirates TV Channel and Live Stream Info for July 30",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[C](https://www.chron.com/sports/watching-games/article/astros-pirates-mlb-watch-info-19606274.php)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://sportsbookwire.usatoday.com/article/houston-astros-vs-pittsburgh-pirates-odds-tips-and-betting-trends-july-30",
+      "article_id": "abddf0fb-64b9-5e05-8d06-a0dbe48cdd68",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "USA TODAY",
+      "page_rank": 147,
+      "domain_url": "usatoday.com",
+      "eng_title": "Houston Astros vs. Pittsburgh Pirates odds, tips and betting trends",
+      "entities": {
+        "Person": [
+          "Bailey Falter",
+          "Hunter Brown"
+        ],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "9-6",
+          "41",
+          "76 games",
+          "62 games",
+          "4-7",
+          "+159",
+          "-189"
+        ],
+        "Time": [
+          "8:10 PM ET"
+        ],
+        "Sports": [
+          "Astros",
+          "Pittsburgh Pirates",
+          "Pirates",
+          "Houston Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "30"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://sportsbookwire.usatoday.com/wp-content/uploads/sites/16/2024/07/23858843.jpg?w=1024&h=576&crop=1",
+      "keywords": [
+        "Houston Astros",
+        "Pittsburgh Pirates",
+        "Baseball",
+        "Minute Maid Park",
+        "Hunter Brown"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T09:16:00Z",
+      "summary": "The Houston Astros are set to face the Pittsburgh Pirates in the second game of a three-game set at Minute Maid Park on Tuesday at 8:10 PM ET. The Astros are favored at home (-189) against the Pirates (+159). Hunter Brown (9-6) will start for the Astros, while Bailey Falter (4-7) will start for the Pirates. The Astros have been favored in 76 games this season and have won 41 (53.9%) of those contests. The Pirates have been chosen as underdogs in 62 games this year and have won 30 times (48.4%) in those games.",
+      "title": "Houston Astros vs. Pittsburgh Pirates odds, tips and betting trends",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[USA](https://sportsbookwire.usatoday.com/article/houston-astros-vs-pittsburgh-pirates-odds-tips-and-betting-trends-july-30)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://sportschatplace.com/mlb-picks/houston-astros-vs-pittsburgh-pirates-prediction-7-30-24-picks",
+      "article_id": "6b51b09e-04d2-54d2-a977-8ee6275e138c",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Chat Place",
+      "page_rank": 204729,
+      "domain_url": "sportschatplace.com",
+      "eng_title": "Houston Astros vs Pittsburgh Pirates Prediction 7-30-24 Picks",
+      "entities": {
+        "Person": [
+          "Yainer Diaz",
+          "Hunter Brown",
+          "Bryan Reynolds"
+        ],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 30, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "1.50 ERA",
+          "3-0",
+          "5-3",
+          "three-game"
+        ],
+        "Time": [],
+        "Sports": [
+          "NL Central",
+          "AL",
+          "Houston Astros",
+          "Pirates",
+          "Pittsburgh Pirates",
+          "Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://sportschatplace.com/wp-content/uploads/2024/07/3-hou-2-scaled.jpg",
+      "keywords": [
+        "Houston Astros",
+        "Pittsburgh Pirates",
+        "Minute Maid Park",
+        "Hunter Brown"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T03:41:14Z",
+      "summary": "The Houston Astros and Pittsburgh Pirates meet on July 30, 2024, at Minute Maid Park. The Pirates won the previous game 5-3, but the Astros are expected to bounce back with a strong start from Hunter Brown. Brown has been doing well lately, going 3-0 with a 1.50 ERA in his last three starts. The article also provides information on player props, including Yainer Diaz's three-game home run streak against NL Central opponents and Bryan Reynolds' consistent performance in night games against AL teams with a winning record.",
+      "title": "Houston Astros vs Pittsburgh Pirates Prediction 7-30-24 Picks",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SCP](https://sportschatplace.com/mlb-picks/houston-astros-vs-pittsburgh-pirates-prediction-7-30-24-picks)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://www.actionnetwork.com/mlb/pirates-vs-astros-pick-mlb-odds-predictions-july-29",
+      "article_id": "13dda145-7902-53e1-aa05-133cfb8c8e37",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Action Network",
+      "page_rank": 15134,
+      "domain_url": "actionnetwork.com",
+      "eng_title": "Pirates vs Astros Odds & Predictions: Fade Paul Skenes",
+      "entities": {
+        "Person": [
+          "Jake Bloss",
+          "Paul Skenes",
+          "Skenes"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [
+          "+115"
+        ],
+        "Law": [],
+        "Quantity": [
+          "6-1",
+          "1.93 ERA"
+        ],
+        "Time": [],
+        "Sports": [
+          "Astros",
+          "Pittsburgh Pirates",
+          "Houston Astros",
+          "Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [
+          "right-handed pitching"
+        ],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://images.actionnetwork.com/blog/2024/07/skenes-tuve.jpg",
+      "keywords": [
+        "Pirates",
+        "Astros",
+        "Paul Skenes",
+        "Jake Bloss"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T23:14:53Z",
+      "summary": "The Pittsburgh Pirates' Paul Skenes will face the Houston Astros in a matchup that could be a challenge for him. Skenes has a 6-1 record with a 1.93 ERA, but the Astros' lineup has been potent against right-handed pitching. The Pirates have struggled on the road and against right-handed pitching, and Skenes may not get much run support. The Astros' Jake Bloss will start for them, and while he has struggled in his initial appearances, he has shown promise in the minor leagues. The article suggests fading Skenes and taking the Astros moneyline at +115.",
+      "title": "Pirates vs Astros Odds & Predictions: Fade Paul Skenes",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[AN](https://www.actionnetwork.com/mlb/pirates-vs-astros-pick-mlb-odds-predictions-july-29)",
+      "provocative": "medium",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[6]"
+    },
+    {
+      "article_url": "http://newsok.com/story/sports/sports-betting/2024/07/29/pittsburgh-pirates-at-houston-astros-odds-picks-and-predictions/74588904007",
+      "article_id": "b7349907-4260-5f5b-a310-987678eff383",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "NewsOK",
+      "page_rank": 6506,
+      "domain_url": "newsok.com",
+      "eng_title": "Pittsburgh Pirates at Houston Astros odds, picks and predictions",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [
+          "run line",
+          "moneyline"
+        ],
+        "Law": [],
+        "Quantity": [],
+        "Time": [],
+        "Sports": [
+          "Houston Astros",
+          "Pirates",
+          "Astros",
+          "Pittsburgh Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "BaseballHQ.com"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.gannett-cdn.com/sites/oklahoman/images/favicon.png",
+      "keywords": [
+        "Pittsburgh Pirates",
+        "Houston Astros",
+        "MLB",
+        "Odds",
+        "Predictions"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T15:57:30Z",
+      "summary": "The Pittsburgh Pirates are set to face the Houston Astros, with the Pirates' starter having a strong road record and the Astros' starter having a poor home record. The article provides odds and predictions for the game, including moneyline, run line, and over/under bets. It also suggests a pick'em challenge and fantasy baseball help from BaseballHQ.com.",
+      "title": "Pittsburgh Pirates at Houston Astros odds, picks and predictions",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[NOK](http://newsok.com/story/sports/sports-betting/2024/07/29/pittsburgh-pirates-at-houston-astros-odds-picks-and-predictions/74588904007)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[7]"
+    },
+    {
+      "article_url": "https://www.nbcsports.com/news/pirates-vs-astros-best-bets-odds-predictions-recent-stats-and-trends-for-july-29",
+      "article_id": "8c08afab-01fa-58ca-b679-cd3f1e32dbf4",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "NBC Sports",
+      "page_rank": 1360,
+      "domain_url": "nbcsports.com",
+      "eng_title": "Pirates vs. Astros Best bets: Odds, predictions, recent stats, and trends for July 29",
+      "entities": {
+        "Person": [
+          "Paul Skenes",
+          "Jake Bloss"
+        ],
+        "Organization": [],
+        "Location": [
+          "TX",
+          "Minute Maid Park",
+          "Houston"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 29"
+        ],
+        "Event": [],
+        "Money": [
+          "spread",
+          "moneyline"
+        ],
+        "Law": [],
+        "Quantity": [
+          "6-1",
+          "1.93 ERA",
+          "6",
+          "6.94 ERA",
+          "55-50",
+          "5",
+          "53-52"
+        ],
+        "Time": [],
+        "Sports": [
+          "Houston Astros",
+          "Pittsburgh Pirates",
+          "Astros",
+          "Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "0-1",
+          "10"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://nbcsports.brightspotcdn.com/dims4/default/c2404ef/2147483647/strip/true/crop/2709x1524+0+0/resize/1440x810!/quality/90/?url=https%3A%2F%2Fnbc-sports-production-nbc-sports.s3.us-east-1.amazonaws.com%2Fbrightspot%2F74%2Fa9%2F216b83bb4473b192c170e09d8283%2Fhttps-api-imagn.com%2Frest%2Fdownload%2FimageID%3D22773444",
+      "keywords": [
+        "Pirates",
+        "Astros",
+        "Baseball",
+        "Minute Maid Park",
+        "Paul Skenes"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T15:41:38Z",
+      "summary": "The Pittsburgh Pirates (53-52) and Houston Astros (55-50) begin a series at Minute Maid Park in Houston, TX on July 29. The Pirates have won 6 of their last 10 games, while the Astros have won 5 of their last 10. The pitching matchup for today's game is Paul Skenes (6-1, 1.93 ERA) for the Pirates and Jake Bloss (0-1, 6.94 ERA) for the Astros. Our model has calculated projections for each moneyline, spread, and over/under bet for the game, and has identified the best bets for the game.",
+      "title": "Pirates vs. Astros Best bets: Odds, predictions, recent stats, and trends for July 29",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[NBC](https://www.nbcsports.com/news/pirates-vs-astros-best-bets-odds-predictions-recent-stats-and-trends-for-july-29)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[8]"
+    },
+    {
+      "article_url": "https://www.si.com/mlb-betting-picks/pirates-vs-astros-prediction-odds-and-probable-pitchers-for-monday-july-29-bet-on-paul-skenes",
+      "article_id": "0f28be47-d290-5d0b-86b4-b8bab3c84322",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Illustrated",
+      "page_rank": 1407,
+      "domain_url": "si.com",
+      "eng_title": "Pirates vs. Astros Prediction, Odds and Probable Pitchers for Monday, July 29 (Bet on Paul Skenes)",
+      "entities": {
+        "Person": [
+          "Paul Skenes"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 29",
+          "Monday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [],
+        "Sports": [
+          "Astros",
+          "Pittsburgh Pirates",
+          "Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://images2.minutemediacdn.com/image/upload/c_crop,w_5505,h_3096,x_0,y_99/c_fill,w_1440,ar_16:9,f_auto,q_auto,g_auto/images/ImagnImages/mmsport/si/01j3zcgv6gx78aacy8a9.jpg",
+      "keywords": [
+        "Pirates",
+        "Astros",
+        "Paul Skenes",
+        "Prediction",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T14:17:34Z",
+      "summary": "The article provides a prediction, odds, and probable pitchers for the Pirates vs. Astros game on Monday, July 29. The focus is on Paul Skenes, the starting pitcher for the Pittsburgh Pirates. The content is intended for entertainment and educational purposes only, and all betting advice is based on individual commentators' opinions.",
+      "title": "Pirates vs. Astros Prediction, Odds and Probable Pitchers for Monday, July 29 (Bet on Paul Skenes)",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SI](https://www.si.com/mlb-betting-picks/pirates-vs-astros-prediction-odds-and-probable-pitchers-for-monday-july-29-bet-on-paul-skenes)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[9]"
+    },
+    {
+      "article_url": "https://www.forbes.com/betting/mlb/skenes-pirates-astros-7-29-24",
+      "article_id": "f77305bb-6607-5bfc-a0fa-bfd7a9ce55fc",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Forbes",
+      "page_rank": 63,
+      "domain_url": "forbes.com",
+      "eng_title": "Best Paul Skenes MLB Prop Bets: Pirates vs. Astros (7/29/24)",
+      "entities": {
+        "Person": [
+          "Paul Skenes"
+        ],
+        "Organization": [
+          "Bet365"
+        ],
+        "Location": [
+          "Pennsylvania"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Monday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "1.93 ERA",
+          "6-1"
+        ],
+        "Time": [],
+        "Sports": [
+          "Pittsburgh Pirates",
+          "Houston Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "12"
+        ],
+        "Arms": [],
+        "Product": [
+          "prop bets"
+        ],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/betting/wp-content/uploads/2024/07/gettyimages-2161780905-612x612-1.jpeg",
+      "keywords": [
+        "MLB",
+        "Paul Skenes",
+        "Pirates",
+        "Astros",
+        "Bet365"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T12:07:22Z",
+      "summary": "Pittsburgh Pirates rookie Paul Skenes has emerged as one of the best pitchers in baseball, with a 6-1 record and 1.93 ERA in his first 12 starts. He will face the Houston Astros on Monday, and several prop bets are available for his performance. The article discusses Skenes' impressive stats, including his ability to strike out batters and complete innings, and provides analysis on his potential to win and record a certain number of strikeouts and outs. It also mentions a special welcome offer for new customers at Bet365, a sportsbook now available in Pennsylvania.",
+      "title": "Best Paul Skenes MLB Prop Bets: Pirates vs. Astros (7/29/24)",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[F](https://www.forbes.com/betting/mlb/skenes-pirates-astros-7-29-24)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[10]"
+    },
+    {
+      "article_url": "https://www.bettingpros.com/articles/mlb-same-game-parlay-odds-picks-predictions-monday-7-29",
+      "article_id": "08155b69-58cd-5279-93f1-bee617e6086f",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "BettingPros",
+      "page_rank": 297003,
+      "domain_url": "bettingpros.com",
+      "eng_title": "MLB Same Game Parlay Odds, Picks & Predictions: Monday (7/29)",
+      "entities": {
+        "Person": [
+          "Oneil Cruz",
+          "Michael A. Taylor",
+          "Jameson Taillon",
+          "Michael Busch",
+          "Ian Happ",
+          "Josh Palacios"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Monday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "1.5",
+          "4.5",
+          "0.5"
+        ],
+        "Time": [],
+        "Sports": [
+          "MLB",
+          "Cincinnati Reds",
+          "Pittsburgh Pirates",
+          "Chicago Cubs",
+          "Houston Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.bettingpros.com/img/Oneil_Cruz_Pirates_1470x650-2-scaled-e1712855424664.jpg/1470x650.webp",
+      "keywords": [
+        "MLB",
+        "Same Game Parlay",
+        "Chicago Cubs",
+        "Cincinnati Reds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T11:54:52Z",
+      "summary": "The article discusses two same-game parlay bets for Monday's MLB games. The first parlay is for the Chicago Cubs vs. Cincinnati Reds game, with legs including Michael Busch and Ian Happ to hit over 1.5 total bases, and Jameson Taillon to strike out over 4.5 batters. The second parlay is for the Pittsburgh Pirates vs. Houston Astros game, with legs including Oneil Cruz and Josh Palacios to hit over 1.5 total bases, and Michael A. Taylor to hit over 0.5 hits.",
+      "title": "MLB Same Game Parlay Odds, Picks & Predictions: Monday (7/29)",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[BP](https://www.bettingpros.com/articles/mlb-same-game-parlay-odds-picks-predictions-monday-7-29)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://www.bleachernation.com/stats-and-news/2024/07/29/pirates-vs-astros-injury-report-updates-probable-starters-july-29",
+      "article_id": "82b97c42-b9f7-51d3-92af-ccd33e109e32",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Bleacher Nation",
+      "page_rank": 123754,
+      "domain_url": "bleachernation.com",
+      "eng_title": "Pirates vs. Astros: Injury Report, Updates & Probable Starters",
+      "entities": {
+        "Person": [
+          "Jake Bloss",
+          "Paul Skenes"
+        ],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 29, 2024",
+          "Monday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [
+          "10-day",
+          "60-day",
+          "15-day"
+        ],
+        "Sports": [
+          "Houston Astros",
+          "Astros",
+          "Pittsburgh Pirates",
+          "Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "55-50",
+          "53-52"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.bleachernation.com/wp-content/uploads/2024/07/httpscdn.dataskrive.comapiassetQiXNnRW.jpg",
+      "keywords": [
+        "Pirates",
+        "Astros",
+        "Injury Report",
+        "Probable Starters"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T09:57:39Z",
+      "summary": "The Houston Astros (55-50) are set to face the Pittsburgh Pirates (53-52) in a three-game series at Minute Maid Park on Monday, July 29, 2024. The article provides injury reports for both teams, including players on the 10-day, 15-day, and 60-day injury lists. It also includes recent hitting insights for both teams, as well as information on the starting pitchers for each team, Paul Skenes for the Pirates and Jake Bloss for the Astros.",
+      "title": "Pirates vs. Astros: Injury Report, Updates & Probable Starters",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[BN](https://www.bleachernation.com/stats-and-news/2024/07/29/pirates-vs-astros-injury-report-updates-probable-starters-july-29)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/pirates-vs-astros-mlb-player-props-and-odds-monday-july-29",
+      "article_id": "9658dd1a-0f11-589e-a2c2-ea416fb3c8f4",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Pirates vs. Astros MLB player props and odds - Monday, July 29",
+      "entities": {
+        "Person": [
+          "Yordan Alvarez",
+          "Oneil Cruz",
+          "Jose Altuve",
+          "Andrew McCutchen"
+        ],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Monday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [
+          "8:10 PM ET"
+        ],
+        "Sports": [
+          "Houston Astros",
+          "Pirates",
+          "Pittsburgh Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "7.5"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23841667-5.jpg?w=640",
+      "keywords": [
+        "MLB",
+        "Pirates",
+        "Astros",
+        "Player Props",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T09:24:12Z",
+      "summary": "The Pittsburgh Pirates are set to face the Houston Astros at Minute Maid Park on Monday at 8:10 PM ET. The article provides player prop odds for Oneil Cruz, Yordan Alvarez, Andrew McCutchen, and Jose Altuve. The Pirates are favored to win, with the over/under for the game set at 7.5. The article also includes recent game stats for each player.",
+      "title": "Pirates vs. Astros MLB player props and odds - Monday, July 29",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/pirates-vs-astros-mlb-player-props-and-odds-monday-july-29)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://www.dailygazette.com/ap/sports/astros-host-the-pirates-in-first-of-3-game-series/article_b85bceba-ef77-5c59-b756-c383e80c324c.html",
+      "article_id": "260dd4d4-76bd-57dd-8780-65217af2f4c2",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "The Daily Gazette",
+      "page_rank": 15294,
+      "domain_url": "dailygazette.com",
+      "eng_title": "Astros host the Pirates in first of 3-game series",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "AL West"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Monday"
+        ],
+        "Event": [
+          "three-game series"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "55-50",
+          "3.83",
+          "ERA",
+          "54 RBI",
+          "53-52",
+          "25 doubles",
+          "20 home runs",
+          "-153"
+        ],
+        "Time": [],
+        "Sports": [
+          "Houston Astros",
+          "Pirates",
+          "NL Central",
+          "Astros",
+          "Pittsburgh Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://bloximages.chicago2.vip.townnews.com/dailygazette.com/content/tncms/custom/image/2c4dbcd4-2c97-11ee-8535-9737ebc25907.png?resize=600%2C315",
+      "keywords": [
+        "Astros",
+        "Pirates",
+        "MLB",
+        "Yordan Alvarez"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T08:00:39Z",
+      "summary": "The Houston Astros will host the Pittsburgh Pirates in the first game of a three-game series on Monday. The Astros have a 55-50 record and are first in the AL West, while the Pirates have a 53-52 record and are third in the NL Central. The teams will face off for the first time this season. The Astros have a strong offense, led by Yordan Alvarez, who has 25 doubles, 20 home runs, and 54 RBI. The Pirates have a solid pitching staff, with a team ERA of 3.83. The game is expected to be a competitive one, with the Astros favored to win at -153.",
+      "title": "Astros host the Pirates in first of 3-game series",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[DG](https://www.dailygazette.com/ap/sports/astros-host-the-pirates-in-first-of-3-game-series/article_b85bceba-ef77-5c59-b756-c383e80c324c.html)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/jose-altuve-player-props-july-29-astros-vs-pirates",
+      "article_id": "adef2ac2-4e79-539c-a2ba-3905d2fda8a9",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Jose Altuve Player Props: July 29, Astros vs. Pirates",
+      "entities": {
+        "Person": [
+          "Paul Skenes",
+          "Jose Altuve",
+          "Skenes"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Monday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "1.93 ERA",
+          "total bases",
+          "11.7 strikeouts",
+          "home runs",
+          "hits",
+          ".368",
+          "RBI",
+          ".309",
+          "14 home runs",
+          "stolen bases",
+          "runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Pittsburgh Pirates",
+          "Houston Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23848453.jpg?w=640",
+      "keywords": [
+        "Jose Altuve",
+        "Houston Astros",
+        "Pittsburgh Pirates",
+        "Paul Skenes"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T07:43:02Z",
+      "summary": "Jose Altuve, the Houston Astros' star player, is set to face off against Paul Skenes and the Pittsburgh Pirates on Monday. Altuve has been on a hot streak, with a .309 batting average and 14 home runs. He's also on a four-game hitting streak and has hit .368 in his last five games. The article provides odds, stats, and prop bets for Altuve's performance, including hits, home runs, RBI, runs, total bases, and stolen bases. Additionally, it provides information on Skenes' pitching record and statistics, including his 1.93 ERA and 11.7 strikeouts per nine innings.",
+      "title": "Jose Altuve Player Props: July 29, Astros vs. Pirates",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/jose-altuve-player-props-july-29-astros-vs-pirates)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/pirates-vs-astros-prediction-odds-pick-7-29-2024",
+      "article_id": "6a4f1444-3408-5123-81eb-4e0cd96987d1",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 12578,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Pirates Vs Astros Prediction, Odds, Pick",
+      "entities": {
+        "Person": [
+          "Paul Skenes",
+          "Jake Bloss"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "1.93 ERA",
+          "6.94 ERA"
+        ],
+        "Time": [],
+        "Sports": [
+          "Houston Astros",
+          "Pirates",
+          "MLB",
+          "Pittsburgh Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/07/Pirates-vs.-Astros-prediction-odds-pick.jpg",
+      "keywords": [
+        "MLB",
+        "Pirates",
+        "Astros",
+        "Paul Skenes",
+        "Jake Bloss"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T07:32:20Z",
+      "summary": "The article discusses the upcoming MLB game between the Pittsburgh Pirates and the Houston Astros, focusing on the pitching matchup between Paul Skenes and Jake Bloss. Skenes, a rookie with a 1.93 ERA, is expected to dominate the game, while Bloss, with a 6.94 ERA, needs to improve his performance. The article provides statistics and analysis of the two pitchers, as well as the teams' recent performances. It concludes that the Pirates are likely to win, with a prediction of Pirates -1.5.",
+      "title": "Pirates Vs Astros Prediction, Odds, Pick",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/pirates-vs-astros-prediction-odds-pick-7-29-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[6]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/pittsburgh-pirates-vs-houston-astros-live-stream-tv-channel-start-time-odds-july-29",
+      "article_id": "b2a5eeed-5616-5981-93de-0be497a1ffc3",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Pittsburgh Pirates vs. Houston Astros live stream, TV channel, start time, odds | July 29",
+      "entities": {
+        "Person": [
+          "Paul Skenes",
+          "Yainer Diaz"
+        ],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Monday",
+          "July 29, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "7.5",
+          "-154",
+          "8.9",
+          ".232",
+          "+130"
+        ],
+        "Time": [
+          "8:10 PM ET"
+        ],
+        "Sports": [
+          "Astros",
+          "Pittsburgh Pirates",
+          "majors",
+          "Houston Astros",
+          "Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "25th-ranked",
+          "5th-best"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "SportsNet Pittsburgh",
+          "Fubo"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23841667-3.jpg?w=640",
+      "keywords": [
+        "Pittsburgh Pirates",
+        "Houston Astros",
+        "MLB",
+        "Minute Maid Park",
+        "Fubo"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T07:24:42Z",
+      "summary": "The Pittsburgh Pirates will face the Houston Astros on Monday, July 29, 2024, at Minute Maid Park. Paul Skenes will take the mound for the Pirates against Yainer Diaz and the Astros. The game is scheduled to start at 8:10 PM ET. The Pirates have a 25th-ranked batting average in the majors (.232), while the Astros' pitching staff has a 5th-best strikeout rate of 8.9 batters per nine innings. The game will be broadcast on SportsNet Pittsburgh and can be streamed live on Fubo. The odds favor the Pirates (-154) over the Astros (+130), with an over/under of 7.5.",
+      "title": "Pittsburgh Pirates vs. Houston Astros live stream, TV channel, start time, odds | July 29",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/pittsburgh-pirates-vs-houston-astros-live-stream-tv-channel-start-time-odds-july-29)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[7]"
+    },
+    {
+      "article_url": "https://sportschatplace.com/mlb-picks/houston-astros-vs-pittsburgh-pirates-prediction-7-29-24-picks",
+      "article_id": "e9fb04a4-aa7c-5b72-8cc2-bafcc7273050",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Chat Place",
+      "page_rank": 204729,
+      "domain_url": "sportschatplace.com",
+      "eng_title": "Houston Astros vs Pittsburgh Pirates Prediction 7-29-24 Picks",
+      "entities": {
+        "Person": [
+          "Paul Skenes",
+          "Jake Bloss"
+        ],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park",
+          "AL West"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 29, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [],
+        "Sports": [
+          "Astros",
+          "Houston Astros",
+          "Pittsburgh Pirates",
+          "Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://sportschatplace.com/wp-content/uploads/2024/07/USATSI_20448776-scaled.jpg",
+      "keywords": [
+        "Houston Astros",
+        "Pittsburgh Pirates",
+        "MLB",
+        "Prediction",
+        "Pick"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T03:36:20Z",
+      "summary": "The Houston Astros and Pittsburgh Pirates meet on July 29, 2024, at Minute Maid Park. The article provides a prediction and pick for the game, highlighting the Pirates' struggles as favorites against AL West opponents and the Astros' recent success as underdogs. Paul Skenes will start for the Pirates, while Jake Bloss will start for the Astros. The article concludes that the Astros are a good value as a home underdog and recommends taking them to win.",
+      "title": "Houston Astros vs Pittsburgh Pirates Prediction 7-29-24 Picks",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[SCP](https://sportschatplace.com/mlb-picks/houston-astros-vs-pittsburgh-pirates-prediction-7-29-24-picks)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[8]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/where-to-watch-the-astros-vs-pirates-series-tv-channel-live-stream-game-times-and-more",
+      "article_id": "246b4d24-6951-55f9-a551-b80c43ffd6ee",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "USA TODAY",
+      "page_rank": 147,
+      "domain_url": "usatoday.com",
+      "eng_title": "Where to Watch the Astros vs. Pirates Series: TV Channel, Live Stream, Game Times and more",
+      "entities": {
+        "Person": [
+          "Luis Ortiz",
+          "Paul Skenes"
+        ],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Monday",
+          "Tuesday",
+          "Wednesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [
+          "8:10 PM ET"
+        ],
+        "Sports": [
+          "Houston Astros",
+          "Pirates",
+          "Pittsburgh Pirates",
+          "Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23834874-2.jpg?w=1024&h=576&crop=1",
+      "keywords": [
+        "Astros",
+        "Pirates",
+        "MLB",
+        "Baseball",
+        "Minute Maid Park"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T22:56:00Z",
+      "summary": "The Houston Astros and Pittsburgh Pirates are set to play a three-game series starting on Monday at 8:10 PM ET at Minute Maid Park. The series will feature Jake Bloss vs. Paul Skenes on Monday, Hunter Brown vs. Mart\u00edn P\u00e9rez on Tuesday, and Framber Valdez vs. Luis Ortiz on Wednesday. The article provides information on the leading hitters for both teams, including Yordan Alvarez, Jose Altuve, Alex Bregman, and Jeremy Pena for the Astros, and Oneil Cruz, Andrew McCutchen, Connor Joe, and Rowdy Tellez for the Pirates. Additionally, it provides pitching rankings and injury reports for both teams.",
+      "title": "Where to Watch the Astros vs. Pirates Series: TV Channel, Live Stream, Game Times and more",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[USA](https://ftw.usatoday.com/article/where-to-watch-the-astros-vs-pirates-series-tv-channel-live-stream-game-times-and-more)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[9]"
+    },
+    {
+      "article_url": "https://triblive.com/sports/how-to-watch-astros-vs-pirates-on-tv-or-streaming-live-monday-july-29",
+      "article_id": "8cd0a3fe-2e3f-52a7-81d4-4376ed769c22",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "TribLive.com",
+      "page_rank": 3937,
+      "domain_url": "triblive.com",
+      "eng_title": "How to Watch Astros vs. Pirates on TV or Streaming Live - Monday, July 29",
+      "entities": {
+        "Person": [
+          "Paul Skenes"
+        ],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 29",
+          "Monday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          ".262",
+          ".232"
+        ],
+        "Time": [
+          "8:10 PM ET"
+        ],
+        "Sports": [
+          "Houston Astros",
+          "Astros",
+          "Pittsburgh Pirates",
+          "Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "Fubo",
+          "SCHN"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://assets-varnish.triblive.com/2024/07/0qD2I8o.jpg",
+      "keywords": [
+        "Astros",
+        "Pirates",
+        "Minute Maid Park",
+        "Fubo"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T22:41:12Z",
+      "summary": "The Houston Astros will face the Pittsburgh Pirates at Minute Maid Park on Monday, July 29, at 8:10 PM ET. Yordan Alvarez will lead the Astros, while Oneil Cruz will lead the Pirates. The game will be broadcast on SCHN and can be streamed live on Fubo. The pitching matchup features Jake Bloss for the Astros and Paul Skenes for the Pirates. The Astros have a team batting average of .262, while the Pirates have a team batting average of .232. The game will feature several key players, including Alvarez, Jose Altuve, Alex Bregman, and Jeremy Pena for the Astros, and Cruz, Andrew McCutchen, Connor Joe, and Rowdy Tellez for the Pirates.",
+      "title": "How to Watch Astros vs. Pirates on TV or Streaming Live - Monday, July 29",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[TL](https://triblive.com/sports/how-to-watch-astros-vs-pirates-on-tv-or-streaming-live-monday-july-29)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[10]"
+    },
+    {
+      "article_url": "https://www.si.com/betting/pirates-vs-diamondbacks-prediction-odds-probable-pitchers-sunday-july-28",
+      "article_id": "cf82757b-72e2-555b-ad87-be3b8ff5257f",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Illustrated",
+      "page_rank": 3870,
+      "domain_url": "si.com",
+      "eng_title": "Pirates vs. Diamondbacks Prediction, Odds and Probable Pitchers for Sunday, July 28",
+      "entities": {
+        "Person": [
+          "Yilber Diaz",
+          "Mitch Keller"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Sunday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          ".500",
+          "-108",
+          "3.34 ERA",
+          "20 starts"
+        ],
+        "Time": [],
+        "Sports": [
+          "Pirates",
+          "MLB",
+          "Diamondbacks",
+          "Pittsburgh Pirates",
+          "NL",
+          "Arizona Diamondbacks"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://images2.minutemediacdn.com/image/upload/c_crop,w_4368,h_2457,x_0,y_0/c_fill,w_1440,ar_16:9,f_auto,q_auto,g_auto/images/ImagnImages/mmsport/si/01j3wpz2schb22772vx7.jpg",
+      "keywords": [
+        "Pirates",
+        "Diamondbacks",
+        "Prediction",
+        "Odds",
+        "Probable Pitchers"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T13:03:16Z",
+      "summary": "The Pittsburgh Pirates and Arizona Diamondbacks are set to face off on Sunday in a crucial NL wild card race matchup. The Pirates' Mitch Keller, a solid pitcher with a 3.34 ERA in 20 starts, will take on the Diamondbacks' Yilber Diaz, who is making his third MLB appearance. Despite the Diamondbacks' strong start to the series, Keller's impressive record and the Pirates' .500 road record make them the more trustworthy team. The recommended pick is the Pirates moneyline at -108.",
+      "title": "Pirates vs. Diamondbacks Prediction, Odds and Probable Pitchers for Sunday, July 28",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SI](https://www.si.com/betting/pirates-vs-diamondbacks-prediction-odds-probable-pitchers-sunday-july-28)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/pirates-vs-diamondbacks-prediction-odds-pick-7-28-2024",
+      "article_id": "29443684-2133-55f4-8dee-00c36b40ee95",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 15417,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Pirates Vs Diamondbacks Prediction, Odds, Pick",
+      "entities": {
+        "Person": [
+          "Mitch Keller",
+          "Yilber Diaz"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "3.34 ERA",
+          "5.40 ERA"
+        ],
+        "Time": [],
+        "Sports": [
+          "MLB",
+          "Diamondbacks",
+          "National League",
+          "Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "16",
+          "23"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2023/07/Pirates_vs._Diamondbacks_prediction_odds_pick_how_to_watch.jpg",
+      "keywords": [
+        "MLB",
+        "Pirates",
+        "Diamondbacks",
+        "Mitch Keller",
+        "Yilber Diaz"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T12:20:29Z",
+      "summary": "The Pirates face the Diamondbacks in a crucial MLB game. The Diamondbacks have been on a hot streak, winning 16 of their last 23 games, and are now in a tight race for the National League's three wild card playoff positions. The Pirates, on the other hand, have been struggling, with holes in their batting order. The game features a mismatch in the pitching department, with Mitch Keller, the Pirates' veteran starter, facing off against Yilber Diaz, the Diamondbacks' rookie. Keller has a 3.34 ERA, while Diaz has a 5.40 ERA. The Pirates are expected to cover the spread and win, given their pitching advantage.",
+      "title": "Pirates Vs Diamondbacks Prediction, Odds, Pick",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/pirates-vs-diamondbacks-prediction-odds-pick-7-28-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/dodgers-vs-astros-prediction-odds-pick-7-28-2024",
+      "article_id": "d09f4c1f-608f-5985-85fd-e2baf86010c2",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 15417,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Dodgers Vs Astros Prediction, Odds, Pick",
+      "entities": {
+        "Person": [
+          "Arrighetti",
+          "River Ryan",
+          "Spencer Arrighetti",
+          "Ryan"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "five good innings"
+        ],
+        "Time": [],
+        "Sports": [
+          "Astros",
+          "MLB",
+          "Dodgers",
+          "Los Angeles Dodgers",
+          "Houston Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/07/Dodgers-vs.-Astros-prediction-odds-pick.jpg",
+      "keywords": [
+        "MLB",
+        "Dodgers",
+        "Astros",
+        "River Ryan",
+        "Spencer Arrighetti"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T11:54:55Z",
+      "summary": "The Los Angeles Dodgers face the Houston Astros in a crucial MLB matchup. Our prediction and pick for the game is based on the performance of River Ryan and Spencer Arrighetti, the starting pitchers for the Dodgers and Astros respectively. Ryan had a strong debut, while Arrighetti has improved in recent weeks. The Dodgers need to get five good innings from Ryan and exploit Arrighetti's vulnerabilities to win the game.",
+      "title": "Dodgers Vs Astros Prediction, Odds, Pick",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/dodgers-vs-astros-prediction-odds-pick-7-28-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/pirates-vs-diamondbacks-prediction-odds-pick-7-27-2024",
+      "article_id": "1b9ab7c3-2ded-595a-8bc7-a8fdf55fbf2f",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 15417,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Pirates vs. Diamondbacks prediction, odds, pick - 7/27/2024",
+      "entities": {
+        "Person": [
+          "Bryan Reynolds",
+          "Brandon Pfaadt",
+          "Marco Gonzales"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "Left Fielder",
+          "10-5",
+          "15 games"
+        ],
+        "Time": [],
+        "Sports": [
+          "Arizona Diamondbacks",
+          "Pittsburgh Pirates",
+          "Diamondbacks",
+          "NL West",
+          "Pirates",
+          "NL Central"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/07/Pirates-vs.-Diamondbacks-prediction-odds-pick.jpg",
+      "keywords": [
+        "Pirates",
+        "Diamondbacks",
+        "MLB",
+        "Brandon Pfaadt",
+        "Marco Gonzales"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T14:43:08Z",
+      "summary": "The Pittsburgh Pirates and Arizona Diamondbacks meet for the first time this season. The Pirates are currently in third place in the NL Central, while the Diamondbacks are third in the NL West. The Pirates have been on a six-game winning streak, while the Diamondbacks have gone 10-5 in their last 15 games. The Diamondbacks' Brandon Pfaadt will start against the Pirates' Marco Gonzales. The Diamondbacks have a better pitching record and are expected to have a strong performance from the plate. The Pirates are still without Left Fielder Bryan Reynolds, who is their most productive hitter. The Diamondbacks are expected to win this game due to their pitching edge and strong performance from the plate.",
+      "title": "Pirates vs. Diamondbacks prediction, odds, pick - 7/27/2024",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/pirates-vs-diamondbacks-prediction-odds-pick-7-27-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/dodgers-vs-astros-prediction-odds-pick-7-27-2024",
+      "article_id": "a39b3b70-1dc2-5cf8-a65b-9918eb649855",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 15417,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Dodgers vs. Astros prediction, odds, pick - 7/27/2024",
+      "entities": {
+        "Person": [
+          "Ronel Blanco",
+          "Justin Wrobleski"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "62-42"
+        ],
+        "Time": [],
+        "Sports": [
+          "Dodgers",
+          "Los Angeles Dodgers",
+          "Houston Astros",
+          "MLB",
+          "Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/07/Dodgers-vs.-Astros-prediction-odds-pick.jpg",
+      "keywords": [
+        "MLB",
+        "Los Angeles Dodgers",
+        "Houston Astros",
+        "Justin Wrobleski",
+        "Ronel Blanco"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T14:28:44Z",
+      "summary": "The Los Angeles Dodgers are set to face the Houston Astros in a crucial MLB matchup. The Dodgers are one of the top teams in the league, with a 62-42 record and a strong offense and pitching staff. The Astros, on the other hand, are struggling to find consistency, but have a talented offense and a solid pitcher in Ronel Blanco. The Dodgers will be starting Justin Wrobleski on the mound, who has been solid but not spectacular this season. The Astros will be looking to take advantage of Wrobleski's limitations and use their strong offense to get the win. Despite the Dodgers' talent, the Astros have a good chance of winning this game.",
+      "title": "Dodgers vs. Astros prediction, odds, pick - 7/27/2024",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/dodgers-vs-astros-prediction-odds-pick-7-27-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/arizona-diamondbacks-vs-pittsburgh-pirates-live-stream-tv-channel-start-time-odds-july-27",
+      "article_id": "d1f48f4f-5a29-50c9-b317-beb39857868b",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Arizona Diamondbacks vs. Pittsburgh Pirates live stream, TV channel, start time, odds | July 27",
+      "entities": {
+        "Person": [
+          "Christian Walker",
+          "Marco Gonzales"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Saturday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "7.4 strikeouts",
+          "nine innings",
+          "+137",
+          "102 home runs",
+          "-164"
+        ],
+        "Time": [
+          "8:10 PM ET"
+        ],
+        "Sports": [
+          "Diamondbacks",
+          "Pittsburgh Pirates",
+          "Arizona Diamondbacks",
+          "MLB",
+          "Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "24th",
+          "29th"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "Fubo"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23815445.jpg?w=640",
+      "keywords": [
+        "Arizona Diamondbacks",
+        "Pittsburgh Pirates",
+        "MLB",
+        "Baseball",
+        "Fubo"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T07:23:43Z",
+      "summary": "The Arizona Diamondbacks will face the Pittsburgh Pirates on Saturday at 8:10 PM ET, with Christian Walker and Marco Gonzales taking the mound. The Diamondbacks' pitching staff ranks 29th in MLB with 7.4 strikeouts per nine innings, while the Pirates have 102 home runs, ranking 24th in the league. The game will be broadcast on Diamondbacks and can be streamed live on Fubo. The odds favor the Diamondbacks at -164, with the Pirates at +137, and the over/under set at 8.",
+      "title": "Arizona Diamondbacks vs. Pittsburgh Pirates live stream, TV channel, start time, odds | July 27",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/arizona-diamondbacks-vs-pittsburgh-pirates-live-stream-tv-channel-start-time-odds-july-27)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://www.yardbarker.com/mlb/articles/dodgers_vs_astros_odds_predictions_and_an_f5_total_bet_for_fri_726/s1_17354_40660025",
+      "article_id": "dfae3634-3c2c-52f4-9b67-a0146886dbd4",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Yardbarker",
+      "page_rank": 10824,
+      "domain_url": "yardbarker.com",
+      "eng_title": "Dodgers vs. Astros: Odds, predictions and an F5 total bet for Fri. 7/26",
+      "entities": {
+        "Person": [
+          "Gavin Stone",
+          "Framber Valdez"
+        ],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "4.5"
+        ],
+        "Time": [],
+        "Sports": [
+          "Astros",
+          "Dodgers"
+        ],
+        "Politics": [],
+        "Title": [
+          "author"
+        ],
+        "Number": [],
+        "Arms": [
+          "right-handed",
+          "left-handed"
+        ],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.yardbarker.com/media/5/5/553bcf05a2407464f902991b8b707d78ab6a9fc0/thumb_16x9/Dodgers72624.jpg",
+      "keywords": [
+        "Dodgers",
+        "Astros",
+        "Minute Maid Park",
+        "Gavin Stone",
+        "Framber Valdez"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T18:49:53Z",
+      "summary": "The Dodgers and Astros are set to face off in an interleague matchup at Minute Maid Park. Gavin Stone will start for the Dodgers, while Framber Valdez will start for the Astros. The article analyzes the strengths and weaknesses of both pitchers and the teams' performances against left-handed and right-handed pitching. The author predicts a lower-scoring matchup and recommends betting on the first five innings to stay under 4.5.",
+      "title": "Dodgers vs. Astros: Odds, predictions and an F5 total bet for Fri. 7/26",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[Y](https://www.yardbarker.com/mlb/articles/dodgers_vs_astros_odds_predictions_and_an_f5_total_bet_for_fri_726/s1_17354_40660025)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://www.si.com/betting/dodgers-vs-astros-prediction-odds-probable-pitchers-for-friday-july-26-01j3r24k942h",
+      "article_id": "665f97d5-6e28-5cef-898e-b7a4fd12d2c3",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Illustrated",
+      "page_rank": 3870,
+      "domain_url": "si.com",
+      "eng_title": "Dodgers vs. Astros Prediction, Odds, Probable Pitchers for Friday, July 26",
+      "entities": {
+        "Person": [
+          "Gavin Stone",
+          "Framber Valdez",
+          "Yordan Alvarez"
+        ],
+        "Organization": [],
+        "Location": [
+          "AL West"
+        ],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "World Series"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "32 RBIs",
+          "40 games",
+          "11 home runs",
+          ".350"
+        ],
+        "Time": [],
+        "Sports": [
+          "Astros",
+          "Dodgers",
+          "Los Angeles Dodgers",
+          "Houston Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://images2.minutemediacdn.com/image/upload/c_crop,w_4042,h_2273,x_0,y_0/c_fill,w_1440,ar_16:9,f_auto,q_auto,g_auto/images/ImagnImages/mmsport/si/01j3r26mvshqt9e1d7km.jpg",
+      "keywords": [
+        "Dodgers",
+        "Astros",
+        "World Series",
+        "Yordan Alvarez",
+        "Framber Valdez"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T18:10:03Z",
+      "summary": "The Los Angeles Dodgers and Houston Astros are set to face off in a potential World Series preview. Despite injuries, the Dodgers have remained strong, while the Astros have regained their lead in the AL West. The Astros' Yordan Alvarez has been on a hot streak, hitting .350 with 11 home runs and 32 RBIs in 40 games. The Dodgers, however, are the best-hitting team against left-handed pitching, and Framber Valdez's struggles with hard contact and injuries make him a vulnerable opponent. Rookie Gavin Stone will start for the Dodgers, and while he faces a tough task against the Astros' lineup, he may be able to outperform Valdez and give the Dodgers an edge.",
+      "title": "Dodgers vs. Astros Prediction, Odds, Probable Pitchers for Friday, July 26",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SI](https://www.si.com/betting/dodgers-vs-astros-prediction-odds-probable-pitchers-for-friday-july-26-01j3r24k942h)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://www.si.com/mlb/pirates/news/pittsburgh-pirates-face-tough-battle-for-wild-card-national-league",
+      "article_id": "b2cde273-46c6-5f89-b81b-2bccda43bdd5",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Illustrated",
+      "page_rank": 1407,
+      "domain_url": "si.com",
+      "eng_title": "Pirates Face Tough Battle for Wild Card",
+      "entities": {
+        "Person": [
+          "Bailey Falter",
+          "Dennis Santana",
+          "Paul Skenes",
+          "Kyle Nicolas",
+          "Mitch Keller",
+          "Carmen Mlodzinski",
+          "Jared Jones",
+          "Colin Holderman"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "2015"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "1.5 games"
+        ],
+        "Time": [],
+        "Sports": [
+          "Arizona Diamondbacks",
+          "Pittsburgh Pirates",
+          "Houston Astros",
+          "National League"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "eight",
+          "10",
+          "four"
+        ],
+        "Arms": [
+          "bullpen arms"
+        ],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://images2.minutemediacdn.com/image/upload/c_crop,w_3204,h_1802,x_0,y_0/c_fill,w_1440,ar_16:9,f_auto,q_auto,g_auto/images/ImagnImages/mmsport/pittsburgh_pirates/01j3qyfymn676v8rpmmn.jpg",
+      "keywords": [
+        "Pittsburgh Pirates",
+        "Wild Card",
+        "National League",
+        "Arizona Diamondbacks",
+        "Houston Astros"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T17:30:16Z",
+      "summary": "The Pittsburgh Pirates are in contention for a National League wild card spot after winning four straight series and eight of their last 10 games. They are currently 1.5 games back from the wild card spot and will face the Arizona Diamondbacks and Houston Astros in their upcoming series. The Pirates have a strong pitching staff, led by starters Paul Skenes, Jared Jones, Mitch Keller, and Bailey Falter, and bullpen arms David Bednar, Colin Holderman, Carmen Mlodzinski, Kyle Nicolas, and Dennis Santana. If they can get more offense going, they have a chance to make a run at their first postseason since 2015.",
+      "title": "Pirates Face Tough Battle for Wild Card",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[SI](https://www.si.com/mlb/pirates/news/pittsburgh-pirates-face-tough-battle-for-wild-card-national-league)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://www.covers.com/mlb/dodgers-vs-astros-prediction-picks-tonight-friday-7-26-2024",
+      "article_id": "35480e1e-0544-541a-8f84-d8a5950e68a1",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Covers.com",
+      "page_rank": 14922,
+      "domain_url": "covers.com",
+      "eng_title": "Astros vs Dodgers Predictions, Picks, Odds  --  7-26",
+      "entities": {
+        "Person": [
+          "Gavin Stone",
+          "Stone",
+          "Framber Valdez"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "RHP",
+          "62-42",
+          "LHP",
+          "53-49"
+        ],
+        "Time": [],
+        "Sports": [
+          "Dodgers",
+          "Astros",
+          "Houston Astros",
+          "Los Angeles Dodgers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://img.covers.com/cms/covers/91c6b395-98cf-4003-ace9-0086acd9a456.jpg",
+      "keywords": [
+        "Astros",
+        "Dodgers",
+        "MLB",
+        "Gavin Stone",
+        "Framber Valdez"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T16:23:58Z",
+      "summary": "The Los Angeles Dodgers (62-42) and Houston Astros (53-49) begin a three-game weekend series with a matchup between Gavin Stone and Framber Valdez. Both starters have been effective this season, and the total is the focus of the article. The article highlights Stone's dominance this year, including his ability to limit hard contact and his encouraging strikeout rates. The Astros' lineup has struggled against RHP lately, and the Dodgers have been more muted in their approach against LHP. The article concludes by recommending an under bet for the game and a same-game parlay featuring Stone's potential for strikeouts.",
+      "title": "Astros vs Dodgers Predictions, Picks, Odds  --  7-26",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[C](https://www.covers.com/mlb/dodgers-vs-astros-prediction-picks-tonight-friday-7-26-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://www.sportingnews.com/us/betting/news/mlb-nrfi-betting-odds-picks-friday-july-26-dodgers-astros/2eee93251981c6a42769e8e2",
+      "article_id": "535803d3-8ea9-5b1c-920c-f8a11e8585f9",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "The Sporting News",
+      "page_rank": 2837,
+      "domain_url": "sportingnews.com",
+      "eng_title": "MLB NRFI betting odds, picks for Friday, July 26: Dodgers' Stone, Astros' Valdez duel tonight in Houston",
+      "entities": {
+        "Person": [
+          "Gavin Stone",
+          "Framber Valdez"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Friday",
+          "July 26"
+        ],
+        "Event": [
+          "No Run First Inning",
+          "MLB NRFI",
+          "NRFI"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [],
+        "Sports": [
+          "Seattle Mariners",
+          "Chicago White Sox",
+          "Pittsburgh Pirates",
+          "Houston Astros",
+          "Astros",
+          "Arizona Diamondbacks",
+          "Los Angeles Dodgers",
+          "Dodgers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://library.sportingnews.com/styles/crop_style_16_9_desktop/s3/2024-07/mlb-nrfi-odds-picks.jpg?h=722e9e6e&itok=iVuWXWJA",
+      "keywords": [
+        "MLB",
+        "NRFI",
+        "Dodgers",
+        "Astros",
+        "Gavin Stone",
+        "Framber Valdez"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T13:47:55Z",
+      "summary": "The article discusses the MLB NRFI (No Run First Inning) betting odds and picks for Friday, July 26. The author analyzes three games, highlighting the pitching matchups and low-scoring potential. The NRFI picks include the Seattle Mariners vs. Chicago White Sox, Pittsburgh Pirates vs. Arizona Diamondbacks, and Los Angeles Dodgers vs. Houston Astros. The article concludes with a pick of the day, favoring the Dodgers' Gavin Stone against the Astros' Framber Valdez.",
+      "title": "MLB NRFI betting odds, picks for Friday, July 26: Dodgers' Stone, Astros' Valdez duel tonight in Houston",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SN](https://www.sportingnews.com/us/betting/news/mlb-nrfi-betting-odds-picks-friday-july-26-dodgers-astros/2eee93251981c6a42769e8e2)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/diamondbacks-vs-pirates-mlb-player-props-and-odds-friday-july-26",
+      "article_id": "ef4f4b2b-4640-5a9a-a313-9a729455553c",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "USA TODAY",
+      "page_rank": 147,
+      "domain_url": "usatoday.com",
+      "eng_title": "Diamondbacks vs. Pirates MLB player props and odds - Friday, July 26",
+      "entities": {
+        "Person": [
+          "Ketel Marte",
+          "Oneil Cruz",
+          "Christian Walker"
+        ],
+        "Organization": [],
+        "Location": [
+          "Chase Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Friday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "8.5",
+          "-119",
+          "-101",
+          "-175",
+          "+147"
+        ],
+        "Time": [],
+        "Sports": [
+          "Diamondbacks",
+          "Pittsburgh Pirates",
+          "Pirates",
+          "Arizona Diamondbacks"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2015/11/ftw-icon-section-head.png?w=200",
+      "keywords": [
+        "MLB",
+        "Diamondbacks",
+        "Pirates",
+        "Chase Field",
+        "Player Props"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T13:14:00Z",
+      "summary": "The Arizona Diamondbacks are set to face the Pittsburgh Pirates at Chase Field on Friday, with several player props available. Ketel Marte, Christian Walker, and Oneil Cruz are among the top players with prop bets. The Diamondbacks are favored at -175, while the Pirates are underdogs at +147. The total for the game is 8.5, with the odds to eclipse the over at -101 and the odds to go under at -119.",
+      "title": "Diamondbacks vs. Pirates MLB player props and odds - Friday, July 26",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[USA](https://ftw.usatoday.com/article/diamondbacks-vs-pirates-mlb-player-props-and-odds-friday-july-26)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://triblive.com/sports/astros-vs-dodgers-predictions-picks-odds-moneyline-july-26",
+      "article_id": "a6e62b0c-27b2-5046-ae71-5d8383cc87a7",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "TribLive.com",
+      "page_rank": 3937,
+      "domain_url": "triblive.com",
+      "eng_title": "Astros vs. Dodgers Predictions & Picks: Odds, Moneyline",
+      "entities": {
+        "Person": [
+          "Framber Valdez",
+          "Gavin Stone"
+        ],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 26"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "5-4",
+          "8-5",
+          "9-3",
+          "ERA"
+        ],
+        "Time": [],
+        "Sports": [
+          "Los Angeles Dodgers",
+          "Dodgers",
+          "Astros",
+          "Houston Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://assets-varnish.triblive.com/2024/07/eiooEUA.jpg",
+      "keywords": [
+        "Astros",
+        "Dodgers",
+        "MLB",
+        "Predictions",
+        "Picks"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T22:48:15Z",
+      "summary": "The Houston Astros are set to face the Los Angeles Dodgers at Minute Maid Park on July 26, with Framber Valdez (8-5) taking the mound for the Astros against Gavin Stone (9-3) for the Dodgers. Our computer prediction projects a 5-4 win for the Astros, making it a tight matchup. The article provides insights into the teams' performance, including their records as favorites and underdogs, as well as their team ERA and scoring averages.",
+      "title": "Astros vs. Dodgers Predictions & Picks: Odds, Moneyline",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[TL](https://triblive.com/sports/astros-vs-dodgers-predictions-picks-odds-moneyline-july-26)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/astros-vs-dodgers-mlb-player-props-and-odds-friday-july-26",
+      "article_id": "a322b2b9-8b45-59a9-b3c7-2a4ea9dcd261",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "USA TODAY",
+      "page_rank": 147,
+      "domain_url": "usatoday.com",
+      "eng_title": "Astros vs. Dodgers MLB player props and odds - Friday, July 26",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Minute Maid Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Friday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "-101",
+          "8.5 runs",
+          "-119",
+          "-122",
+          "+102"
+        ],
+        "Time": [
+          "8:10 PM ET"
+        ],
+        "Sports": [
+          "Los Angeles Dodgers",
+          "Astros",
+          "Dodgers",
+          "Houston Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23802770-5.jpg?w=1024&h=576&crop=1",
+      "keywords": [
+        "MLB",
+        "Astros",
+        "Dodgers",
+        "Player Props",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T21:14:00Z",
+      "summary": "The Houston Astros are set to host the Los Angeles Dodgers at Minute Maid Park on Friday at 8:10 PM ET. The Astros are favored to win, with odds of -122, while the Dodgers have odds of +102. The game has an over/under of 8.5 runs, with the over priced at -101 and the under priced at -119. The article provides player prop bets for several players, including Yordan Alvarez, Shohei Ohtani, Jose Altuve, and Freddie Freeman.",
+      "title": "Astros vs. Dodgers MLB player props and odds - Friday, July 26",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[USA](https://ftw.usatoday.com/article/astros-vs-dodgers-mlb-player-props-and-odds-friday-july-26)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://www.foxsports.com/articles/mlb/diamondbacks-vs-pirates-prediction-odds-picks-july-26",
+      "article_id": "0c6c6296-bf83-5555-846a-83384e8a0a52",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "FOX Sports",
+      "page_rank": 2145,
+      "domain_url": "foxsports.com",
+      "eng_title": "Diamondbacks vs. Pirates Prediction, Odds, Picks",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Chase Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Friday"
+        ],
+        "Event": [],
+        "Money": [
+          "moneyline",
+          "-172",
+          "+144"
+        ],
+        "Law": [],
+        "Quantity": [
+          "59 games",
+          "11-5",
+          "3-1",
+          "8.5 runs",
+          "-172",
+          "45 games",
+          "4-1",
+          "7-3",
+          "5-11",
+          "6-4",
+          "-105",
+          "-115",
+          "26"
+        ],
+        "Time": [
+          "9:40 PM ET"
+        ],
+        "Sports": [
+          "Arizona Diamondbacks",
+          "Diamondbacks",
+          "Pittsburgh Pirates",
+          "Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "29"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://b.fssta.com/uploads/application/fscom/SiteShareImage.vresize.1200.630.high.0.png",
+      "keywords": [
+        "Diamondbacks",
+        "Pirates",
+        "Prediction",
+        "Odds",
+        "Picks"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T18:00:50Z",
+      "summary": "The Arizona Diamondbacks are set to face the Pittsburgh Pirates on Friday at 9:40 PM ET at Chase Field. The Diamondbacks are favored to win with a moneyline of -172, while the Pirates have a moneyline of +144. The total for the game is set at 8.5 runs, with odds of -105 to go over and -115 to go under. The Diamondbacks have a 54% chance of winning, while the Pirates have a 46% chance. The Diamondbacks have been favorites in 45 games this season and have won 26 of those contests. The Pirates have been underdogs in 59 games and have won 29 of those games. The Diamondbacks have a record of 11-5 in games when favored by at least -172, while the Pirates have a record of 5-11 in games when favored by at least +144. The Diamondbacks have a 63.2% implied probability of winning, while the Pirates have a 41% implied probability. The Diamondbacks have gone 3-1 in their last 10 games as moneyline favorites, while the Pirates have gone 4-1 in their last 10 games as underdogs. The Diamondbacks have a 7-3 record against the spread in their last 10 games, while the Pirates have a 6-4 record against the spread in their last 10 games.",
+      "title": "Diamondbacks vs. Pirates Prediction, Odds, Picks",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FOX](https://www.foxsports.com/articles/mlb/diamondbacks-vs-pirates-prediction-odds-picks-july-26)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://elclarinweb.com/2024/07/24/predicciones-del-juego-miami-marlins-vs-baltimore-orioles-mlb",
+      "article_id": "dc54070b-4069-580d-88b7-527dd38ef913",
+      "classification": "Sports",
+      "country": "VE",
+      "source_id": "El Clar\u00edn",
+      "page_rank": 776323,
+      "domain_url": "elclarinweb.com",
+      "eng_title": "Miami Marlins vs. Baltimore Orioles: A High-Scoring Game Expected",
+      "entities": {
+        "Person": [
+          "Edwar Cabrera"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 24, 2024"
+        ],
+        "Event": [
+          "Triple-A"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "1.85",
+          "4-run",
+          "9.5 runs"
+        ],
+        "Time": [
+          "third",
+          "second inning"
+        ],
+        "Sports": [
+          "MLB",
+          "American League",
+          "Orioles",
+          "Baltimore Orioles",
+          "Marlins",
+          "Miami Marlins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://elclarinweb.com/wp-content/uploads/2024/07/miami-baltimore.jpg",
+      "keywords": [
+        "MLB",
+        "Miami Marlins",
+        "Baltimore Orioles",
+        "Edwar Cabrera",
+        "Over 9.5 runs"
+      ],
+      "language": "es",
+      "pub_date": "2024-07-24T18:00:55Z",
+      "summary": "The Miami Marlins and Baltimore Orioles will face off for the second time in their MLB series on July 24, 2024. The Marlins surprised the Orioles in the first game with a strong offensive start. This second game promises to be equally exciting and action-packed. Analysis of the Game: Miami Marlins: The Marlins achieved a surprising victory in the first game of the series, with a 4-run rally in the second inning and 2 more in the third. Their offense showed efficiency and took advantage of the Orioles' pitcher's weaknesses. Edwar Cabrera, the designated pitcher for this game, has had an inconsistent season, with moments of great performance and others of difficulty. However, if the Marlins' bats continue their good streak, they could offer him solid support. Baltimore Orioles: The Orioles will face this game with a rookie pitcher recently promoted from Triple-A. This could complicate their chances, as inexperience on the mound can be a decisive factor. However, the Orioles have a powerful offensive lineup, co-leaders in the American League. If they can exploit Cabrera's weaknesses, they have the potential to surpass the Marlins in this matchup. Prediction: Given the offensive performance shown by the Marlins in the first game and the uncertainty on the mound for both teams, a game with high scoring is expected. Both teams have the potential to exploit the weaknesses of the opposing pitcher, suggesting a game with many runs. Betting Recommendation: Betting Option: Over 9.5 runs in the game. Odds: 1.85. This odds offers a good value considering the offensive performance of both teams and the inexperience of the Orioles' rookie pitcher. The game between the Miami Marlins and the Baltimore Orioles promises to be an exciting duel with many runs. Betting on a total of over 9.5 runs seems like a solid option based on the Marlins' offensive performance and the Orioles' rookie pitcher's inexperience. Good luck with your bets and enjoy the exciting game!",
+      "title": "Predicciones del juego Miami Marlins vs. Baltimore Orioles",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[EC](https://elclarinweb.com/2024/07/24/predicciones-del-juego-miami-marlins-vs-baltimore-orioles-mlb)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://www.actionnetwork.com/mlb/mlb-nrfi-yrfi-picks-model-predictions-bets-wednesday-july-24",
+      "article_id": "627c2491-ef35-5501-9570-1c012036fc45",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Action Network",
+      "page_rank": 15134,
+      "domain_url": "actionnetwork.com",
+      "eng_title": "MLB NRFI & YRFI Bets for Wednesday",
+      "entities": {
+        "Person": [
+          "author"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 24",
+          "Wednesday"
+        ],
+        "Event": [
+          "YRFI",
+          "moneyline",
+          "NRFI"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [
+          "first inning"
+        ],
+        "Sports": [
+          "A",
+          "MLB",
+          "Mariners",
+          "Astros",
+          "A's",
+          "Angels vs. Mariners",
+          "Guardians",
+          "Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://images.actionnetwork.com/blog/2024/07/Jack-Tigers.jpg",
+      "keywords": [
+        "MLB",
+        "NRFI",
+        "YRFI",
+        "Astros",
+        "A's",
+        "Angels",
+        "Mariners",
+        "Tigers",
+        "Guardians"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T16:32:37Z",
+      "summary": "The article provides three MLB NRFI & YRFI model picks and predictions for Wednesday, July 24. The picks are based on the author's model and include the Astros vs. A's, Angels vs. Mariners, and Tigers vs. Guardians games. The author recommends attacking the Astros vs. A's game by betting on the first inning moneyline, rather than the straight up YRFI. The author also recommends betting on the Mariners NRFI in the Angels vs. Mariners game, citing the Mariners' strong rotation and tough park to score runs in. Finally, the author suggests betting on the Tigers vs. Guardians game, but notes that the juice is heavy and recommends pairing it with a safer pick to limit the risk.",
+      "title": "MLB NRFI & YRFI Bets for Wednesday",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[AN](https://www.actionnetwork.com/mlb/mlb-nrfi-yrfi-picks-model-predictions-bets-wednesday-july-24)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/tigers-vs-guardians-prediction-odds-pick-7-24-2024",
+      "article_id": "c6c4a0c4-c5d6-5342-9cfc-ac2bb7c0b4a8",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 12578,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Tigers vs. Guardians prediction, odds, pick - 7/24/2024",
+      "entities": {
+        "Person": [
+          "Jack Flaherty",
+          "Tanner Bibee"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "batting averages",
+          "slugging percentages",
+          "on-base percentages",
+          "+122"
+        ],
+        "Time": [],
+        "Sports": [
+          "Tigers",
+          "Cleveland Guardians",
+          "MLB",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/05/Tigers-vs.-Guardians-prediction-odds-pick-how-to-watch.jpg",
+      "keywords": [
+        "MLB",
+        "Tigers",
+        "Guardians",
+        "Prediction",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T14:27:13Z",
+      "summary": "The article provides a prediction and pick for the MLB game between the Detroit Tigers and the Cleveland Guardians. The prediction is based on the performance of the teams' starting pitchers, Jack Flaherty and Tanner Bibee, as well as the teams' overall statistics. The article highlights the strengths and weaknesses of both teams, including their batting averages, on-base percentages, and slugging percentages. The prediction is that the Tigers will win the game, with the moneyline odds set at +122.",
+      "title": "Tigers vs. Guardians prediction, odds, pick - 7/24/2024",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/tigers-vs-guardians-prediction-odds-pick-7-24-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://www.actionnetwork.com/mlb/cardinals-vs-pirates-pick-mlb-odds-predictions-july-23",
+      "article_id": "1e0f1e37-91f6-5142-9221-5acf1bc7e7ec",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Action Network",
+      "page_rank": 15134,
+      "domain_url": "actionnetwork.com",
+      "eng_title": "Cardinals vs Pirates Prediction",
+      "entities": {
+        "Person": [
+          "Lance Lynn",
+          "Paul Skenes"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Tuesday",
+          "July 23"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "+120",
+          "66 1/3 innings",
+          "-1.5",
+          "-120",
+          "4.39 ERA",
+          "4.91 xERA"
+        ],
+        "Time": [
+          "ET",
+          "6:40 p.m."
+        ],
+        "Sports": [
+          "Pittsburgh Pirates",
+          "Pirates",
+          "Cardinals",
+          "St. Louis Cardinals"
+        ],
+        "Politics": [],
+        "Title": [
+          "NL Rookie of the Year"
+        ],
+        "Number": [
+          "89"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "MLB.TV"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://images.actionnetwork.com/blog/2024/07/skenes-paul.jpg",
+      "keywords": [
+        "MLB",
+        "Cardinals",
+        "Pirates",
+        "Paul Skenes",
+        "Lance Lynn"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-23T20:04:49Z",
+      "summary": "The St. Louis Cardinals will face the Pittsburgh Pirates on Tuesday, July 23, at 6:40 p.m. ET on MLB.TV. Paul Skenes, the heavy NL Rookie of the Year favorite, will start for the Pirates against Lance Lynn for the Cardinals. Skenes has been dominant, striking out 89 hitters over 66 1/3 innings, while Lynn has been subpar, with a 4.39 ERA and 4.91 xERA. The Pirates have a deeper lineup and a strong bullpen, which could give them an edge against the Cardinals. The recommended bet is to take the Pirates to win by more than one run, from -1.5 (+120) to -1.5 (-120).",
+      "title": "Cardinals vs Pirates Prediction",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[AN](https://www.actionnetwork.com/mlb/cardinals-vs-pirates-pick-mlb-odds-predictions-july-23)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://www.actionnetwork.com/mlb/mlb-best-bets-today-picks-predictions-tuesday-july-23",
+      "article_id": "ce6c151e-2fbc-5ff1-ac04-25318d013b0b",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Action Network",
+      "page_rank": 15134,
+      "domain_url": "actionnetwork.com",
+      "eng_title": "Our Picks & Predictions for Tuesday",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 23",
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "-110",
+          "8 runs",
+          "+100",
+          "+125"
+        ],
+        "Time": [
+          "five innings"
+        ],
+        "Sports": [
+          "Phillies",
+          "Houston Astros",
+          "Philadelphia Phillies",
+          "MLB",
+          "Twins",
+          "Minnesota Twins",
+          "Oakland Athletics"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://images.actionnetwork.com/blog/2024/07/bb0723.jpg",
+      "keywords": [
+        "MLB",
+        "Betting",
+        "Picks",
+        "Predictions"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-23T18:03:03Z",
+      "summary": "The article presents three MLB betting picks for Tuesday, July 23. The first pick is the Minnesota Twins to win against the Philadelphia Phillies, with a moneyline bet of +125. The second pick is the under 8 runs in the Phillies vs Twins game, with an odds of -110. The third pick is the Houston Astros to lead after the first five innings against the Oakland Athletics, with an odds of +100. The article provides analysis and statistics to support each pick.",
+      "title": "Our Picks & Predictions for Tuesday",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[AN](https://www.actionnetwork.com/mlb/mlb-best-bets-today-picks-predictions-tuesday-july-23)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://www.sportsmax.tv/other-sports/item/149854-mlb-skenes-suffers-first-loss-as-cardinals-edge-pirates",
+      "article_id": "7ac88e35-a0ec-504f-8535-e600c1b1bf6e",
+      "classification": "Sports",
+      "country": "TV",
+      "source_id": "SportsMax",
+      "page_rank": 214286,
+      "domain_url": "sportsmax.tv",
+      "eng_title": "MLB: Skenes suffers first loss as Cardinals edge Pirates",
+      "entities": {
+        "Person": [
+          "Julio Rodriguez",
+          "Tyler Phillips",
+          "Shohei Ohtani",
+          "Yordan Alvarez"
+        ],
+        "Organization": [],
+        "Location": [
+          "Houston",
+          "American League West"
+        ],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "6-0",
+          "6-4",
+          "9-6"
+        ],
+        "Time": [],
+        "Sports": [
+          "Philadelphia Phillies",
+          "Seattle Mariners",
+          "Houston Astros",
+          "Boston Red Sox",
+          "Los Angeles Dodgers",
+          "Pittsburgh Pirates"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "30th"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.sportsmax.tv/media/k2/items/cache/36914cf2183cb1c4b1af8fa116730d68_L.jpg",
+      "keywords": [
+        "MLB",
+        "Mariners",
+        "Astros",
+        "Dodgers",
+        "Red Sox"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T06:04:41Z",
+      "summary": "The Seattle Mariners defeated the Houston Astros 6-4, overcoming an injury to Julio Rodriguez and a cycle by Yordan Alvarez. The Mariners avoided a series sweep and moved back into a virtual tie with Houston for first place in the American League West. The Los Angeles Dodgers swept the Boston Red Sox 9-6, with Shohei Ohtani hitting a 30th homer of the season. The Philadelphia Phillies ended the Pittsburgh Pirates' six-game winning streak with a 6-0 victory, with Tyler Phillips pitching six outstanding innings.",
+      "title": "MLB: Skenes suffers first loss as Cardinals edge Pirates",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SM](https://www.sportsmax.tv/other-sports/item/149854-mlb-skenes-suffers-first-loss-as-cardinals-edge-pirates)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/astros-athletics-prediction-odds-pick-7-24-2024",
+      "article_id": "a9dbd05f-3c3b-57ee-8b12-b01dceeefff3",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 12578,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Astros vs. Athletics prediction, odds, pick - 7/24/2024",
+      "entities": {
+        "Person": [
+          "Brown",
+          "JP Sears",
+          "Sears",
+          "Hunter Brown"
+        ],
+        "Organization": [],
+        "Location": [
+          "Oakland"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Wednesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [],
+        "Sports": [
+          "Houston Astros",
+          "Oakland Athletics",
+          "Athletics",
+          "Astros"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/05/Astros-vs.-Athletics-prediction-odds-pick-1.jpg",
+      "keywords": [
+        "Astros",
+        "Athletics",
+        "Hunter Brown",
+        "JP Sears",
+        "Prediction"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T06:00:22Z",
+      "summary": "The Houston Astros are set to face the Oakland Athletics on Wednesday afternoon. The article provides a prediction and pick for the game, highlighting the pitching matchup between Hunter Brown and JP Sears. Brown has been pitching well, but Sears has already shut down the Astros twice this season. The Athletics have won the last four games Sears has started, and Oakland has been good offensively lately. The article concludes that Sears will continue to pitch well, and the Athletics will win the game straight up.",
+      "title": "Astros vs. Athletics prediction, odds, pick - 7/24/2024",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/astros-athletics-prediction-odds-pick-7-24-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://sportschatplace.com/mlb-picks/oakland-athletics-vs-houston-astros-prediction-7-24-24-picks",
+      "article_id": "92170808-acad-5211-8557-0e4214cb5394",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Chat Place",
+      "page_rank": 204729,
+      "domain_url": "sportschatplace.com",
+      "eng_title": "Oakland Athletics vs Houston Astros Prediction 7-24-24 Picks",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Oakland Coliseum"
+        ],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [
+          "plus money"
+        ],
+        "Law": [],
+        "Quantity": [
+          "3 or fewer runs",
+          "7",
+          "6",
+          "4 or more runs",
+          "52-48",
+          "40-62"
+        ],
+        "Time": [],
+        "Sports": [
+          "MLB",
+          "Houston Astros",
+          "Oakland Athletics",
+          "Astros",
+          "Athletics"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "9"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://sportschatplace.com/wp-content/uploads/2024/07/USATSI_23811537-scaled.jpg",
+      "keywords": [
+        "MLB",
+        "Houston Astros",
+        "Oakland Athletics",
+        "Prediction",
+        "Pick"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T05:56:42Z",
+      "summary": "The Houston Astros and Oakland Athletics meet in MLB game 3 action at Oakland Coliseum. The Astros are 52-48 on the year, while the Athletics are 40-62. The article provides a prediction and pick for the game, including a breakdown of the teams' recent performances and pitching matchups. The Athletics have won 7 of their last 9 games when scoring 4 or more runs, while the Astros have won 6 of their last 7 games when scoring 3 or fewer runs. The article concludes that the value is with the Athletics, who continue to run hot offensively, and recommends taking the Athletics with plus money.",
+      "title": "Oakland Athletics vs Houston Astros Prediction 7-24-24 Picks",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SCP](https://sportschatplace.com/mlb-picks/oakland-athletics-vs-houston-astros-prediction-7-24-24-picks)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/cardinals-vs-pirates-prediction-odds-pick-7-24-2024",
+      "article_id": "fbabc260-c9b4-5d85-9f9b-4f648260c277",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 12578,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Cardinals vs. Pirates prediction, odds, pick - 7/24/2024",
+      "entities": {
+        "Person": [
+          "Perez",
+          "Matt Liberatore",
+          "Martin Perez"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "three-game series"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [],
+        "Sports": [
+          "Pittsburgh Pirates",
+          "Pirates",
+          "Cardinals",
+          "St. Louis Cardinals"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/07/Cardinals-vs.-Pirates-prediction-odds-pick.jpg",
+      "keywords": [
+        "Cardinals",
+        "Pirates",
+        "MLB",
+        "Prediction",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T05:32:29Z",
+      "summary": "The St. Louis Cardinals are set to face the Pittsburgh Pirates in the final game of a three-game series. The Cardinals' Matt Liberatore will face off against the Pirates' Martin Perez. The article provides an analysis of the two teams' performances and predicts the outcome of the game, suggesting that the Cardinals will win due to Perez's struggles on the mound and the Cardinals' ability to capitalize on scoring opportunities.",
+      "title": "Cardinals vs. Pirates prediction, odds, pick - 7/24/2024",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/cardinals-vs-pirates-prediction-odds-pick-7-24-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://www.thespread.com/mlb-articles/cardinals-vs-pirates-prediction-will-skenes-shutdown-cards",
+      "article_id": "ce088fbc-86f5-5d4f-b728-bff5403652a3",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "810TheSpread",
+      "page_rank": 337055,
+      "domain_url": "thespread.com",
+      "eng_title": "Cardinals vs. Pirates Prediction: Will Skenes shutdown Cards?",
+      "entities": {
+        "Person": [
+          "Nolan Gorman",
+          "Nick Gonzales"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Tuesday",
+          "July 23, 2024",
+          "Monday"
+        ],
+        "Event": [
+          "moneyline"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [],
+        "Sports": [
+          "MLB",
+          "Pirates",
+          "St. Louis Cardinals",
+          "Pittsburgh Pirates",
+          "Cardinals"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "24",
+          "seven"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.thespread.com/wp-content/uploads/2024/06/Paul-Skenes-Pirates.webp",
+      "keywords": [
+        "MLB",
+        "Cardinals",
+        "Pirates",
+        "Nolan Gorman",
+        "Nick Gonzales"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-23T13:04:29Z",
+      "summary": "The St. Louis Cardinals and Pittsburgh Pirates are set to face off in a MLB matchup on Tuesday, July 23, 2024. The Pirates are favored to win, with 78% of bets on their moneyline. The Cardinals' Nolan Gorman hit a solo homer on Monday, while the Pirates' Nick Gonzales delivered a tie-breaking RBI single. The article suggests taking the under, as the under has been successful in the Cardinals' last seven games against the Pirates, their last five road contests, and their last 24 matchups when listed as an underdog. The under has also been successful in the Pirates' last eight games overall, their last seven home contests, and their last five league matchups.",
+      "title": "Cardinals vs. Pirates Prediction: Will Skenes shutdown Cards?",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[TS](https://www.thespread.com/mlb-articles/cardinals-vs-pirates-prediction-will-skenes-shutdown-cards)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    }
+  ],
+  "timeline": [
+    "July 29, 2024: Pirates win their previous game against the Diamondbacks",
+    "July 30, 2024 14:45: Current time, pre-game analysis",
+    "July 30, 2024 20:10: Scheduled game start time",
+    "July 30, 2024 ~23:30: Expected game end time and result"
+  ],
+  "opposite_request": "Can you predict that neither the Pittsburgh Pirates nor the Houston Astros will win the game?",
+  "confidence": 0.0,
+  "choice": "Houston Astros",
+  "llm_confidence": 7,
+  "model_used": "claude-3-5-sonnet-20240620",
+  "likelihood": "Likely",
+  "probability": 70,
+  "web_search_results": [
+    {
+      "title": "NBA Team Standings & Stats",
+      "source": "Unknown",
+      "key_points": [
+        "NBA 2023-24 Regular Season standings include teams that have clinched playoff berths and those eliminated from contention.",
+        "Tiebreaker criteria for two-way ties prioritize overall winning percentage, head-to-head records, and division performance.",
+        "For multi-way ties, division winners are determined first, followed by winning percentages among tied teams.",
+        "Strength of schedule considers opponents' winning percentages and back-to-back game scenarios.",
+        "If ties cannot be broken by established criteria, playoff positions may be determined by random drawing."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "NHL Hockey Standings",
+      "source": "NHL.com",
+      "key_points": [
+        "NHL.com is the official website of the National Hockey League.",
+        "All NHL logos and team marks are protected and cannot be reproduced without consent.",
+        "NHL team jerseys with player names and numbers are officially licensed.",
+        "The Zamboni ice resurfacing machine is a registered trademark."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "reCAPTCHA",
+      "source": "Unknown",
+      "key_points": [],
+      "published": "Unknown"
+    },
+    {
+      "title": "Unusual Traffic Detection on Google",
+      "source": "Google Cache",
+      "key_points": [
+        "The page is displayed due to unusual traffic detected from the user's network.",
+        "Google checks if the requests are made by a human or a robot.",
+        "Traffic may be caused by malicious software, browser plugins, or automated scripts.",
+        "Users sharing a network may need to consult their administrator if issues persist.",
+        "CAPTCHA may be required if advanced terms or rapid requests are detected."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "2024 MLB Baseball Standings - Full American and National League and Division Standings",
+      "source": "The Athletic",
+      "key_points": [
+        "The standings include both American League and National League teams.",
+        "In the AL East, the Orioles and Yankees are tied with 63 wins, with the Yankees having a slight edge in losses.",
+        "The Guardians lead the AL Central with 64 wins and 42 losses.",
+        "The Astros and Mariners are competing closely in the AL West, with the Astros at 55 wins and 51 losses.",
+        "The Phillies are leading the NL East with 65 wins and 41 losses.",
+        "The Brewers top the NL Central with 61 wins and 45 losses.",
+        "The Dodgers are leading the NL West with 63 wins and 44 losses."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "MLB Probable Pitchers 2024 | Next 7 days (July 29-August 4)",
+      "source": "FantasyPros",
+      "key_points": [
+        "Probable pitchers for MLB teams are listed for the week of July 29 to August 4, 2024.",
+        "The grid includes information on whether pitchers are at home or away, matchup difficulty, and potential for multiple starts.",
+        "Key teams and their scheduled pitchers are highlighted, including WSH, PIT, MIL, TOR, SEA, and others.",
+        "Matchup difficulties are categorized as tough or easy, impacting fantasy decisions.",
+        "The document provides detailed daily pitching matchups for each team throughout the week."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "Pitcher",
+      "source": "Wikipedia",
+      "key_points": [
+        "A pitcher is a key player in baseball, responsible for throwing the ball to the batter.",
+        "Pitchers are classified into various types, including starting pitchers, relief pitchers, and closers.",
+        "The objective of a pitcher is to deliver pitches that prevent the batter from hitting the ball effectively.",
+        "Pitching involves two main positions: the windup and the set position, each with specific procedures.",
+        "Pitchers can throw different types of pitches, including fastballs, sliders, and curveballs, to deceive batters.",
+        "Effective pitching is crucial for a team's success, with pitchers often influencing game outcomes.",
+        "Pitchers are susceptible to injuries due to the physical demands of throwing at high speeds, with many requiring surgery over their careers."
+      ],
+      "published": "October 28, 2003 02:34"
+    },
+    {
+      "title": "Game Theory in Pitcher/Batter Matchups in Baseball",
+      "source": "Networks Course blog for INFO 2040/CS 2850/Econ 2040/SOC 2090",
+      "key_points": [
+        "The orientation of the hitter (left/right) against the pitcher is crucial for predicting outcomes in baseball.",
+        "Pitchers benefit from having the same orientation as hitters, while hitters benefit from opposing orientations.",
+        "The analysis focuses on maximizing pitcher matchups and includes strategies for both pitchers and hitters.",
+        "Managers must decide when to use relief pitchers and pinch hitters based on matchups, complicating strategies with switch hitters.",
+        "Game theory and payoff matrices can be applied to optimize these matchups, with switch hitters being the dominant strategy.",
+        "The manager who makes the second decision in a matchup typically has the advantage, leading to a mixed strategy Nash Equilibrium."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "Starting Pitcher",
+      "source": "Wikipedia",
+      "key_points": [
+        "A starting pitcher is the first pitcher in a baseball game, credited with the first pitch to the opponent's first batter.",
+        "Starting pitchers typically rest for three to five days between games, with most teams having four to six pitchers in their rotation.",
+        "Modern baseball commonly uses a five-man rotation, with the best pitcher known as the ace.",
+        "Pitch count limits are common, with 100 pitches being the average maximum for a starting pitcher.",
+        "A starting pitcher must complete at least five innings to qualify for a win, and a complete game is when they finish without relief.",
+        "Pitch types include fastballs, breaking balls, and off-speed pitches, each with specific characteristics and uses."
+      ],
+      "published": "February 18, 2004 02:05"
+    },
+    {
+      "title": "Nationals Probable Pitchers",
+      "source": "MLB.com",
+      "key_points": [
+        "Upcoming games for the Washington Nationals against the Arizona Diamondbacks and Milwaukee Brewers are scheduled from July 30 to August 4, 2024.",
+        "Pitching matchups include LHP Patrick Corbin (2-10, 5.26 ERA) vs. RHP Zach Nelson (7-6, 4.85 ERA) on July 30.",
+        "On July 31, LHP MacKenzie Gore (6-8, 4.51 ERA) will pitch against RHP Zac Gallen (8-5, 3.70 ERA).",
+        "The Brewers series will feature TBD pitchers for all three games from August 2 to August 4.",
+        "All game times are in Eastern Time and subject to change."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "Unusual Traffic Detection",
+      "source": "Google Cache",
+      "key_points": [
+        "Page displays when unusual traffic is detected from a computer network.",
+        "Checks if requests are from a human or a robot.",
+        "May indicate malicious software or automated requests.",
+        "Sharing a network connection could lead to CAPTCHA prompts.",
+        "CAPTCHA may also appear with advanced search terms or rapid requests."
+      ],
+      "published": "Unknown"
+    },
+    {
+      "title": "Injuries & Moves: Povich recalled to start Game 2 of DH",
+      "source": "MLB Pipeline",
+      "key_points": [
+        "Povich recalled from Triple-A Norfolk to start Game 2 of doubleheader against the Blue Jays on July 29, 2024.",
+        "Povich had a 6.27 ERA in seven previous big league starts before being optioned on July 13.",
+        "Zach Eflin activated after being acquired from the Rays, scheduled to start one game in the doubleheader.",
+        "Mateo placed on the 10-day injured list due to left elbow subluxation, expected to be sidelined for an extended period.",
+        "Coulombe underwent surgery for bone chips in left elbow, expected return in September 2024.",
+        "Bradish and Wells both underwent UCL repair surgeries, with expected returns in the second half of 2025 and 2025 respectively.",
+        "Means had Tommy John surgery on June 3, 2024, with a return expected in late 2025 or early 2026."
+      ],
+      "published": "July 28, 2024 23:32"
+    },
+    {
+      "title": "Injured list",
+      "source": "Wikipedia",
+      "key_points": [
+        "The injured list (IL) in Major League Baseball (MLB) allows teams to remove injured players from the roster to call up healthy players.",
+        "Players can be placed on a 10-day/15-day IL or a 60-day IL, depending on the injury's severity and recovery time.",
+        "Position players must spend a minimum of 10 days on the IL, while pitchers must spend at least 15 days.",
+        "Retroactive placement on the IL can occur up to three days prior to the official placement if the player has not played in a game.",
+        "MLB introduced a 7-day IL for concussion-related injuries in 2011, allowing for quicker management of such cases.",
+        "The term 'disabled list' was used until 2019 when it was changed to 'injured list' to align with terminology in other sports."
+      ],
+      "published": "April 20, 2005 07:41"
+    },
+    {
+      "title": "Impact of Sudden Rule Changes on Player Injuries and Performance: Insights from Australian Football",
+      "source": "Journal of Sports Science and Medicine",
+      "key_points": [
+        "Study examined effects of COVID-19 rule changes on Australian Football performance and injuries.",
+        "Data from 8 matches involving 17 players compared performance metrics between 2019 and 2020 seasons.",
+        "Significant reductions in total distance, high-speed, and very high-speed running in 2020 compared to 2019.",
+        "Injury rates remained similar between 2019 (3.36 per game) and 2020 (3.55 per game).",
+        "Increased severity of injuries in 2020, with 38% resulting in missed games compared to 24% in 2019.",
+        "Overall, rule changes had a minimal impact on running performance but increased injury severity."
+      ],
+      "published": "September 1, 2022"
+    },
+    {
+      "title": "Will injuries to key players affect either team's performance in the game?",
+      "source": "Unknown",
+      "key_points": [
+        "Monthly bills are unavoidable despite efforts to cut spending.",
+        "Switching car insurance can save up to $996 per year with comparison tools.",
+        "A free browser tool can help avoid overpaying on Amazon by checking for better prices.",
+        "High-speed home internet can be obtained for as low as $40/month with T-Mobile, including $200 back for switching.",
+        "Consolidating credit card debt with low-interest loans can simplify payments and reduce interest rates.",
+        "Users can earn up to $225/month by watching videos and completing surveys with InboxDollars.",
+        "Testing apps and games can yield up to $500 in earnings within the first month."
+      ],
+      "published": "Unknown"
+    }
+  ],
+  "summary": "The Houston Astros are hosting the Pittsburgh Pirates in a crucial interleague matchup. Both teams are in playoff contention, with the Astros leading the AL West and the Pirates in the NL wild card race.",
+  "key_people": [
+    "Hunter Brown (Astros starting pitcher)",
+    "Paul Skenes (Pirates starting pitcher)",
+    "Yordan Alvarez (Astros key hitter)",
+    "Bryan Reynolds (Pirates key hitter)"
+  ],
+  "key_facets": [
+    "Starting pitching performance",
+    "Team's recent form",
+    "Home field advantage",
+    "Bullpen strength",
+    "Offensive production"
+  ],
+  "reconciled_information": "While the Pirates have shown recent improvement, the Astros have a stronger overall record and home field advantage. The pitching matchup slightly favors the Astros, with Hunter Brown having more MLB experience than rookie Paul Skenes.",
+  "candidate_models": [
+    "Elo rating system",
+    "Pythagorean expectation",
+    "Player performance projections",
+    "Historical head-to-head analysis"
+  ],
+  "unique_information": "Paul Skenes, the Pirates' starter, is a highly touted rookie who has been performing well, which could potentially upset the Astros' expectations.",
+  "game": "Pittsburgh Pirates vs Houston Astros",
+  "query": "Can you predict the winner for the upcoming game of Pittsburgh Pirates vs Houston Astros?",
+  "home_team": "Houston Astros",
+  "away_team": "Pittsburgh Pirates",
+  "odds_info": "Current odds from fanduel, caesars, bet365:\nHouston Astros: -196, -189, -185\nPittsburgh Pirates: 164, 158, 155\n",
+  "sport": "MLB",
+  "matchup": "Pittsburgh Pirates vs Houston Astros, 2024-07-30T20:10:00-04:00",
+  "event_uuid": "bc18e90d-a715-4089-bc04-306ed57e78ec",
+  "forecast_uuid": "2ba5b7c4-87c9-46a7-9a3b-2f2b7b45ca66"
+}

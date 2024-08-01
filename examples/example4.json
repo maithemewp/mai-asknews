@@ -1,0 +1,3385 @@
+{
+  "forecast": "Based on the analysis of recent performance, team statistics, and current odds, the Cleveland Guardians are favored to win this game against the Detroit Tigers. However, the margin is not overwhelming, and an upset is possible.",
+  "resolution_criteria": "This question resolves when the final score of the Cleveland Guardians vs Detroit Tigers game on July 30, 2024 is officially recorded.",
+  "date": 1722350744,
+  "reasoning": "The Guardians have shown better overall performance in recent games, including a win against the Tigers on the previous day. Their slightly superior team statistics, especially in offensive categories, give them an edge. The starting pitchers for both teams have comparable recent performances, making this aspect neutral. The Guardians' better performance in day games this season also slightly favors them in this afternoon matchup.",
+  "sources": [
+    {
+      "article_url": "https://ftw.usatoday.com/article/guardians-vs-tigers-mlb-player-props-and-odds-tuesday-july-30",
+      "article_id": "af8b994a-d986-5d7a-83a4-084e769674e7",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Guardians vs. Tigers MLB player props and odds - Tuesday, July 30",
+      "entities": {
+        "Person": [
+          "Matt Vierling",
+          "Colt Keith"
+        ],
+        "Organization": [],
+        "Location": [
+          "Comerica Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [
+          "+147",
+          "-175",
+          "moneyline"
+        ],
+        "Law": [],
+        "Quantity": [
+          "hits",
+          "11 homers",
+          "-102",
+          "8.5",
+          "runs",
+          "RBI",
+          "13 home runs",
+          "home runs",
+          "42 RBI",
+          "-118",
+          "41 RBI"
+        ],
+        "Time": [
+          "1:10 PM ET"
+        ],
+        "Sports": [
+          "Cleveland Guardians",
+          "Guardians",
+          "Detroit Tigers",
+          "Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23621659-38.jpg?w=640",
+      "keywords": [
+        "MLB",
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "Player Props",
+        "Matt Vierling",
+        "Colt Keith"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T13:25:13Z",
+      "summary": "The Cleveland Guardians are set to face the Detroit Tigers at Comerica Park on Tuesday at 1:10 PM ET. The Guardians are favored to win with a moneyline of -175, while the Tigers have a moneyline of +147. The over/under for the game is set at 8.5, with odds of -118 to go over and -102 to go under. The article highlights player props for Matt Vierling and Colt Keith, including hits, runs, home runs, and RBI. Vierling has 13 home runs and 42 RBI this season, while Keith has 11 homers and 41 RBI. The article also provides recent game stats for both players.",
+      "title": "Guardians vs. Tigers MLB player props and odds - Tuesday, July 30",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/guardians-vs-tigers-mlb-player-props-and-odds-tuesday-july-30)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/cleveland-guardians-vs-detroit-tigers-live-stream-tv-channel-start-time-odds-july-30",
+      "article_id": "6916838f-3013-504b-aa79-cf0444f6b27b",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Cleveland Guardians vs. Detroit Tigers live stream, TV channel, start time, odds | July 30",
+      "entities": {
+        "Person": [
+          "Gavin Williams",
+          "Matt Vierling"
+        ],
+        "Organization": [
+          "Bally Sports"
+        ],
+        "Location": [
+          "Michigan",
+          "Detroit"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Tuesday",
+          "July 30, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "9.0",
+          "112 home runs",
+          "+147",
+          "8.5",
+          "-175"
+        ],
+        "Time": [],
+        "Sports": [
+          "Tigers",
+          "Detroit Tigers",
+          "Guardians",
+          "MLB",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "17th"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "Fubo"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23621659-39.jpg?w=640",
+      "keywords": [
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "MLB",
+        "Comerica Park",
+        "Gavin Williams"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T13:25:13Z",
+      "summary": "The Cleveland Guardians will face the Detroit Tigers on Tuesday, July 30, 2024, at Comerica Park in Detroit, Michigan. Gavin Williams will start for the Guardians against Matt Vierling and the Tigers. The Guardians' pitching staff has a 9.0 strikeouts per nine innings rate, ranking third in MLB, while the Tigers have hit 112 home runs, ranking 17th in the league. The game will be broadcast on Bally Sports and can be streamed on Fubo. The odds favor the Guardians at -175, with the Tigers at +147, and the over/under set at 8.5.",
+      "title": "Cleveland Guardians vs. Detroit Tigers live stream, TV channel, start time, odds | July 30",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/cleveland-guardians-vs-detroit-tigers-live-stream-tv-channel-start-time-odds-july-30)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/colt-keith-player-props-july-30-tigers-vs-guardians",
+      "article_id": "74e36794-c852-59eb-a6cc-acf14767f85c",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Colt Keith Player Props: July 30, Tigers vs. Guardians",
+      "entities": {
+        "Person": [
+          "Keith",
+          "Williams",
+          "Gavin Williams",
+          "Colt Keith"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "2-for-5",
+          "runs",
+          "RBI",
+          "strikeouts",
+          "home runs",
+          "stolen bases",
+          "batting average",
+          "hits"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cleveland Guardians",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23842929-10.jpg?w=640",
+      "keywords": [
+        "Colt Keith",
+        "Detroit Tigers",
+        "Cleveland Guardians",
+        "Gavin Williams",
+        "Player Props"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T12:39:45Z",
+      "summary": "Colt Keith, a Detroit Tigers player, is set to face off against Gavin Williams and the Cleveland Guardians on Tuesday. Keith has a 2-for-5 record against Williams and is looking to improve his performance. The article provides prop bets and odds for Keith's game, including hits, home runs, RBI, runs, and stolen bases. It also provides statistics on Keith's performance this season, including his batting average, home runs, and strikeouts.",
+      "title": "Colt Keith Player Props: July 30, Tigers vs. Guardians",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/colt-keith-player-props-july-30-tigers-vs-guardians)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/matt-vierling-player-props-july-30-tigers-vs-guardians",
+      "article_id": "7f2387b6-5ec0-5658-9227-65f752dba664",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Matt Vierling Player Props: July 30, Tigers vs. Guardians",
+      "entities": {
+        "Person": [
+          "Williams",
+          "Gavin Williams",
+          "Matt Vierling"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "hits",
+          ".256",
+          "RBI",
+          "runs",
+          "13 home runs",
+          ".294",
+          "double",
+          "18 doubles",
+          "three walks",
+          "stolen bases",
+          "total bases",
+          "home runs",
+          "five triples",
+          "20 walks"
+        ],
+        "Time": [],
+        "Sports": [
+          "Guardians",
+          "Cleveland Guardians",
+          "Detroit Tigers",
+          "Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23842929-9.jpg?w=640",
+      "keywords": [
+        "Matt Vierling",
+        "Detroit Tigers",
+        "Cleveland Guardians",
+        "Gavin Williams",
+        "Player Props"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T12:24:00Z",
+      "summary": "Matt Vierling, a player for the Detroit Tigers, is set to face off against Gavin Williams and the Cleveland Guardians on Tuesday. Vierling has been on a four-game hitting streak and has a .256 batting average with 18 doubles, five triples, 13 home runs, and 20 walks. He has also been successful in his last five games, batting .294 with a double and three walks. The article provides odds and prop bets for Vierling's performance, including hits, home runs, RBI, runs, total bases, and stolen bases. Additionally, it provides statistics on Vierling's past performances against the Guardians and Williams, as well as Williams' recent outing against the Tigers.",
+      "title": "Matt Vierling Player Props: July 30, Tigers vs. Guardians",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/matt-vierling-player-props-july-30-tigers-vs-guardians)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://www.cbssports.com/mlb/news/guardians-vs-tigers-odds-line-score-prediction-start-time-2024-mlb-picks-july-30-bets-by-proven-model/",
+      "article_id": "c5ea89c7-df93-5042-b3b4-0fa5aab6a8af",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "CBS Sports",
+      "page_rank": 719,
+      "domain_url": "cbssports.com",
+      "eng_title": "Guardians vs. Tigers odds, line, score prediction, start time: 2024 MLB picks, July 30 bets by proven model - CBSSports.com",
+      "entities": {
+        "Person": [],
+        "Organization": [
+          "Vegas",
+          "SportsLine Projection Model"
+        ],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [
+          "-175"
+        ],
+        "Law": [],
+        "Quantity": [
+          "8.5",
+          "8.8"
+        ],
+        "Time": [],
+        "Sports": [
+          "American League Central Division",
+          "MLB",
+          "Detroit Tigers",
+          "Guardians",
+          "Tigers",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "10,000"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://sportshub.cbsistatic.com/i/r/2024/07/30/e1dba6ce-56fa-4bd5-944a-8c3830ef5267/thumbnail/1200x675/d0a6b8e4507bc3c2e586085784077069/jose-ramirez-cleveland-guardians-usatsi.jpg",
+      "keywords": [
+        "MLB",
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "SportsLine Projection Model"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T11:04:29Z",
+      "summary": "The Cleveland Guardians are set to face the Detroit Tigers in a key American League Central Division matchup on Tuesday afternoon. The Guardians are favored to win, with a -175 money line, while the total number of runs Vegas thinks will be scored is 8.5. The SportsLine Projection Model simulates every MLB game 10,000 times and has set its sights on Guardians vs. Tigers, locking in its picks and MLB predictions. The model is leaning Over on the run total, projecting 8.8 combined runs, and says one side of the money line has all the value.",
+      "title": "Guardians vs. Tigers odds, line, score prediction, start time: 2024 MLB picks, July 30 bets by proven model - CBSSports.com",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[CBS](https://www.cbssports.com/mlb/news/guardians-vs-tigers-odds-line-score-prediction-start-time-2024-mlb-picks-july-30-bets-by-proven-model/)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://www.dailymail.co.uk/wires/reuters/article-13687305/Jose-Ramirez-Guardians-aim-win-season-series-vs-Tigers.html",
+      "article_id": "93883c04-fc5d-5aa7-b819-5cb24f9f497b",
+      "classification": "Sports",
+      "country": "GB",
+      "source_id": "Daily Mail",
+      "page_rank": 146,
+      "domain_url": "dailymail.co.uk",
+      "eng_title": "Jose Ramirez, Guardians aim to win season series vs. Tigers",
+      "entities": {
+        "Person": [
+          "Stephen Vogt",
+          "Dillon Dingler",
+          "Lane Thomas",
+          "Jack Flaherty",
+          "Gavin Williams"
+        ],
+        "Organization": [],
+        "Location": [
+          "Washington"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Monday",
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "6-6",
+          "8-4",
+          "4.50 ERA",
+          "0-3",
+          "two homers"
+        ],
+        "Time": [],
+        "Sports": [
+          "Guardians",
+          "Cleveland Guardians",
+          "Detroit Tigers",
+          "Tigers"
+        ],
+        "Politics": [],
+        "Title": [
+          "Manager"
+        ],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://i.dailymail.co.uk/i/pix/m_logo_636x382px.png",
+      "keywords": [
+        "Jose Ramirez",
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "Baseball"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T06:57:07Z",
+      "summary": "The Cleveland Guardians and Detroit Tigers will play their final matchup of the year on Tuesday, with the season series tied at 6-6. The Guardians won 8-4 on Monday, led by Jose Ramirez's two homers and an RBI double. Manager Stephen Vogt praised Ramirez's performance, saying 'It's incredible what Jose does every night.' The Tigers' Dillon Dingler made his major league debut and had an RBI double in three at-bats. The Guardians' Gavin Williams will start against the Tigers for the third time this month, and the second time in less than a week. Williams has a 0-3 record with a 4.50 ERA. The Tigers have not listed a starter, and may improvise due to trade rumors surrounding Jack Flaherty. The Guardians also traded for Washington outfielder Lane Thomas, but it's unlikely he'll make his debut on Tuesday.",
+      "title": "Jose Ramirez, Guardians aim to win season series vs. Tigers",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[DM](https://www.dailymail.co.uk/wires/reuters/article-13687305/Jose-Ramirez-Guardians-aim-win-season-series-vs-Tigers.html)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[6]"
+    },
+    {
+      "article_url": "https://www.si.com/mlb/guardians/opinion/three-observations-from-guardians-victory-over-tigers-8-4-01j3vbpspthb",
+      "article_id": "ab986b2e-5ac8-51c1-8d1f-5dbf0a6a8b05",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Illustrated",
+      "page_rank": 3870,
+      "domain_url": "si.com",
+      "eng_title": "Three Observations From Guardians Victory over Tigers, 8-4",
+      "entities": {
+        "Person": [
+          "Tanner Bibee",
+          "Jose Ramirez",
+          "Bo Naylor",
+          "Josh",
+          "Lane Thomas"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "All-Star break"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "four hits",
+          "5-for-10",
+          "three RBI",
+          "three runs",
+          "two home runs",
+          "8-4",
+          "four RBIs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cleveland Guardians",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "three"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://images2.minutemediacdn.com/image/upload/c_crop,w_5040,h_2835,x_0,y_157/c_fill,w_1440,ar_16:9,f_auto,q_auto,g_auto/images/ImagnImages/mmsport/cleveland_baseball_insider/01j40m7tsv52fr3hedjr.jpg",
+      "keywords": [
+        "Guardians",
+        "Tigers",
+        "Tanner Bibee",
+        "Jose Ramirez"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T02:58:24Z",
+      "summary": "The Cleveland Guardians won their latest game against the Detroit Tigers with an 8-4 score. Three observations from the game include the dominant start from pitcher Tanner Bibee, Jose Ramirez's return to form, and the team's revamped offense. Bibee has been successful since the All-Star break, giving up only three runs in three starts. Ramirez has been on a hot streak, going 5-for-10 with two home runs and three RBI in the last three games. The team's offense has also found its groove, with the dynamic duo of Josh and Bo Naylor combining for four hits and four RBIs. With the addition of Lane Thomas, the offense could be revamped and fans will see the team's true capabilities in the coming future.",
+      "title": "Three Observations From Guardians Victory over Tigers, 8-4",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[SI](https://www.si.com/mlb/guardians/opinion/three-observations-from-guardians-victory-over-tigers-8-4-01j3vbpspthb)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[7]"
+    },
+    {
+      "article_url": "https://www.eagletribune.com/ap/sports/agate/cleveland-detroit-runs/article_6cdbfbb2-b24a-5079-a6f8-03c8614d2d1e.html",
+      "article_id": "1a03e674-4344-5e0e-9a22-f0562e43ba25",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "The Eagle-Tribune",
+      "page_rank": 15555,
+      "domain_url": "eagletribune.com",
+      "eng_title": "Cleveland-Detroit Runs",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 30, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "8-4",
+          "2 runs",
+          "3 runs",
+          "1 run"
+        ],
+        "Time": [
+          "seventh",
+          "ninth",
+          "third",
+          "sixth",
+          "first inning"
+        ],
+        "Sports": [
+          "Cleveland Guardians",
+          "Tigers",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://bloximages.chicago2.vip.townnews.com/eagletribune.com/content/tncms/custom/image/ae213140-df8c-11e7-b06d-b798580d75a5.jpg?resize=600%2C333",
+      "keywords": [
+        "Baseball",
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "Runs"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-30T01:31:47Z",
+      "summary": "The Cleveland Guardians defeated the Detroit Tigers 8-4 in a baseball game. The Guardians scored 3 runs in the first inning, 1 run in the third, 3 runs in the sixth, and 1 run in the seventh. The Tigers scored 2 runs in the seventh and 2 runs in the ninth. The game was played on July 30, 2024.",
+      "title": "Cleveland-Detroit Runs",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[ET](https://www.eagletribune.com/ap/sports/agate/cleveland-detroit-runs/article_6cdbfbb2-b24a-5079-a6f8-03c8614d2d1e.html)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[8]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/josh-naylor-player-props-july-29-guardians-vs-tigers",
+      "article_id": "a3e910e4-ffec-5b37-9018-4add171aa13e",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Josh Naylor Player Props: July 29, Guardians vs. Tigers",
+      "entities": {
+        "Person": [
+          "Josh Naylor",
+          "Naylor"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 29, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "RBI",
+          "1-for-3",
+          "hits",
+          "runs",
+          "total bases",
+          "double",
+          "home runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Tigers",
+          "Detroit Tigers",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23710335-6.jpg?w=640",
+      "keywords": [
+        "Josh Naylor",
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "Player Props"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T22:41:48Z",
+      "summary": "The article provides information on Josh Naylor's player props for the Cleveland Guardians' game against the Detroit Tigers on July 29, 2024. Naylor has a 1-for-3 record with a double in his last appearance. The article lists various prop bets for Naylor, including hits, home runs, RBI, runs, and total bases. It also provides statistics on Naylor's performance against the Tigers and his overall season statistics.",
+      "title": "Josh Naylor Player Props: July 29, Guardians vs. Tigers",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/josh-naylor-player-props-july-29-guardians-vs-tigers)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[9]"
+    },
+    {
+      "article_url": "https://www.marionstar.com/story/sports/mlb/cleveland-guardians/2024/07/29/cleveland-guardians-score-today-vs-tigers-as-trade-deadline-heats-up-detroit-jose-ramirez-rumors/74579557007",
+      "article_id": "7b7d09c9-29aa-50f3-9fcf-bc34cdc0e92b",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "The Marion Star",
+      "page_rank": 137032,
+      "domain_url": "marionstar.com",
+      "eng_title": "Guardians vs. Detroit Tigers score, highlights; Jose Ramirez homers twice in Cleveland win",
+      "entities": {
+        "Person": [
+          "Jose Ramirez",
+          "Lane Thomas",
+          "Albert Belle",
+          "Dillon Dingler"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Tuesday",
+          "Monday"
+        ],
+        "Event": [
+          "trade deadline"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "8-4",
+          "RBI"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cleveland Guardians",
+          "MLB",
+          "Guardians",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.marionstar.com/gcdn/authoring/authoring-images/2024/07/07/NABJ/74321802007-usatsi-23697925.jpeg?crop=3253,1830,x0,y0&width=660&height=372&format=pjpg&auto=webp",
+      "keywords": [
+        "Guardians",
+        "Detroit Tigers",
+        "Jose Ramirez",
+        "MLB",
+        "Trade Deadline"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T12:01:35Z",
+      "summary": "The Cleveland Guardians played a two-game series against the Detroit Tigers, winning 8-4 on Monday. The Guardians added outfielder Lane Thomas in a trade and are looking for more bats and starting pitching help. Jose Ramirez homered twice, tying Albert Belle for second on the franchise's all-time home run list. The Guardians also made their MLB debut with Dillon Dingler, who had a hit and an RBI. The team is looking to make moves ahead of the trade deadline on Tuesday.",
+      "title": "Guardians vs. Detroit Tigers score, highlights; Jose Ramirez homers twice in Cleveland win",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[MS](https://www.marionstar.com/story/sports/mlb/cleveland-guardians/2024/07/29/cleveland-guardians-score-today-vs-tigers-as-trade-deadline-heats-up-detroit-jose-ramirez-rumors/74579557007)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[10]"
+    },
+    {
+      "article_url": "https://www.mlive.com/tigers/2024/07/how-to-watch-the-cleveland-guardians-vs-detroit-tigers-mlb-july-29-30-channel-stream-preview.html",
+      "article_id": "26ecf290-fc56-5d86-bd0d-20bf341ed695",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "mlive",
+      "page_rank": 14353,
+      "domain_url": "mlive.com",
+      "eng_title": "How to watch the Cleveland Guardians vs. Detroit Tigers - MLB (July 29-30) | Channel, stream, preview",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Cleveland",
+          "Detroit"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Monday"
+        ],
+        "Event": [
+          "All-Star Break"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "6-5",
+          "4.5 games",
+          "four-game"
+        ],
+        "Time": [],
+        "Sports": [
+          "Minnesota Twins",
+          "Tigers",
+          "Cleveland Guardians",
+          "Philadelphia Phillies",
+          "Twins",
+          "Guardians",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.mlive.com/resizer/v2/KCMFDUNZ6NA5VKTLMJ6XEH6A54.jpg?auth=14770f4b96b6dba58c368552283109851e9f716301bd536f56078abcc945484b&width=1280&quality=90",
+      "keywords": [
+        "MLB",
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "Baseball"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T13:42:56Z",
+      "summary": "The Detroit Tigers will face the Cleveland Guardians in a two-game series in Detroit, starting on Monday night. The Tigers had an impressive stretch after the All-Star Break, but lost two of three games to the Minnesota Twins over the weekend. The Guardians, on the other hand, won two of three games against the Philadelphia Phillies, and come into the series 4.5 games clear of the Twins for first place in the division. The Tigers are 6-5 against the Guardians this year, with the two teams splitting a four-game set in Cleveland last week.",
+      "title": "How to watch the Cleveland Guardians vs. Detroit Tigers - MLB (July 29-30) | Channel, stream, preview",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[ML](https://www.mlive.com/tigers/2024/07/how-to-watch-the-cleveland-guardians-vs-detroit-tigers-mlb-july-29-30-channel-stream-preview.html)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://www.thespread.com/mlb-articles/guardians-vs-tigers-prediction-is-the-total-too-low",
+      "article_id": "9c2826f5-0cd0-5b52-85f3-75678a1afaaa",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "810TheSpread",
+      "page_rank": 337055,
+      "domain_url": "thespread.com",
+      "eng_title": "Guardians vs. Tigers Prediction: Is the total too low?",
+      "entities": {
+        "Person": [
+          "Jack Flaherty"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Mondays"
+        ],
+        "Event": [
+          "deadline"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "under",
+          "7 runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Guardians",
+          "Cleveland Guardians",
+          "Detroit Tigers",
+          "Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.thespread.com/wp-content/uploads/2024/06/jose-ramirez-guardians.jpg",
+      "keywords": [
+        "Guardians",
+        "Tigers",
+        "Baseball",
+        "Prediction",
+        "Total"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T12:13:15Z",
+      "summary": "The article discusses the upcoming baseball game between the Cleveland Guardians and the Detroit Tigers, with a total of 7 runs. The author suggests that the under might be a good bet, citing the Guardians' recent performance in under games. The article also mentions that the Tigers' right-hander Jack Flaherty might be traded before the deadline, and that the Guardians have a strong record when playing as favorites. However, the author notes that the Tigers have struggled when playing as underdogs and on Mondays at home.",
+      "title": "Guardians vs. Tigers Prediction: Is the total too low?",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[TS](https://www.thespread.com/mlb-articles/guardians-vs-tigers-prediction-is-the-total-too-low)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/colt-keith-player-props-july-29-tigers-vs-guardians",
+      "article_id": "917bc8bc-b705-5e92-94f1-ddf5b919781b",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Colt Keith Player Props: July 29, Tigers vs. Guardians",
+      "entities": {
+        "Person": [
+          "Bibee",
+          "Keith",
+          "Tanner Bibee",
+          "Colt Keith"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Monday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "home runs",
+          "runs",
+          "0-for-3",
+          "total bases",
+          "hits",
+          "triple",
+          "2-for-4",
+          "RBI"
+        ],
+        "Time": [
+          "6:40 PM ET"
+        ],
+        "Sports": [
+          "Guardians",
+          "Cleveland Guardians",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23842929-6.jpg?w=640",
+      "keywords": [
+        "Colt Keith",
+        "Detroit Tigers",
+        "Cleveland Guardians",
+        "Tanner Bibee",
+        "Player Props"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T10:07:53Z",
+      "summary": "Colt Keith, a player for the Detroit Tigers, is set to face off against Tanner Bibee and the Cleveland Guardians on Monday at 6:40 PM ET. Keith has struggled in his recent game, going 0-for-3, but will look to improve his performance. The article provides odds, stats, and prop bets for Keith, including hits, home runs, RBI, runs, and total bases. Keith has a history of success against Bibee, going 2-for-4 with a triple. The article also provides a breakdown of Keith's stats against the Guardians, including his performance against Bibee in previous games.",
+      "title": "Colt Keith Player Props: July 29, Tigers vs. Guardians",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/colt-keith-player-props-july-29-tigers-vs-guardians)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/jose-ramirez-player-props-july-29-guardians-vs-tigers",
+      "article_id": "a6a486d9-5730-5942-b412-6d61c43a14d2",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Jos\u00e9 Ram\u00edrez Player Props: July 29, Guardians vs. Tigers",
+      "entities": {
+        "Person": [
+          "Jack Flaherty",
+          "Jos\u00e9 Ram\u00edrez",
+          "Flaherty"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Monday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "hits",
+          "home run",
+          "total bases",
+          "24 home runs",
+          "2-for-12",
+          "runs",
+          "home runs",
+          "82 runs",
+          "RBI"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cleveland Guardians",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23621659-37.jpg?w=640",
+      "keywords": [
+        "Jos\u00e9 Ram\u00edrez",
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "Jack Flaherty",
+        "Prop Bets"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T10:07:53Z",
+      "summary": "Jos\u00e9 Ram\u00edrez, the Cleveland Guardians' star player, is set to face off against Jack Flaherty and the Detroit Tigers on Monday. Ram\u00edrez has been on a hot streak, with 24 home runs and 82 runs batted in this season. He has a team-best 24 home runs and 82 runs batted in. The article provides odds, stats, and prop bets for Ram\u00edrez's performance, including hits, home runs, RBI, runs, and total bases. It also highlights his career statistics against Flaherty, including a 2-for-12 record with a home run.",
+      "title": "Jos\u00e9 Ram\u00edrez Player Props: July 29, Guardians vs. Tigers",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/jose-ramirez-player-props-july-29-guardians-vs-tigers)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://www.bleachernation.com/picks/2024/07/29/best-mlb-prop-bets-today-july-29-2024",
+      "article_id": "c3414660-6e2b-5608-8f4b-9e1a30ecd1e5",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Bleacher Nation",
+      "page_rank": 123754,
+      "domain_url": "bleachernation.com",
+      "eng_title": "Best MLB Prop Bets Today, July 29, 2024",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 29, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "home runs",
+          "hits",
+          "total bases"
+        ],
+        "Time": [],
+        "Sports": [
+          "New York Mets",
+          "Cleveland Guardians",
+          "St. Louis Cardinals",
+          "MLB",
+          "Chicago Cubs",
+          "Texas Rangers",
+          "Detroit Tigers",
+          "Minnesota Twins",
+          "Baltimore Orioles",
+          "Cincinnati Reds",
+          "Toronto Blue Jays",
+          "Seattle Mariners",
+          "Boston Red Sox"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.bleachernation.com/wp-content/uploads/2024/07/httpscdn.dataskrive.comapiassetWlG1v28.jpg",
+      "keywords": [
+        "MLB",
+        "Prop Bets",
+        "Toronto Blue Jays",
+        "Baltimore Orioles"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T09:27:11Z",
+      "summary": "This article provides MLB player props for several games on July 29, 2024. The games featured include Toronto Blue Jays vs. Baltimore Orioles, Cleveland Guardians vs. Detroit Tigers, Chicago Cubs vs. Cincinnati Reds, Seattle Mariners vs. Boston Red Sox, Minnesota Twins vs. New York Mets, and Texas Rangers vs. St. Louis Cardinals. The article lists player props for each game, including hits, home runs, and total bases, along with their respective odds.",
+      "title": "Best MLB Prop Bets Today, July 29, 2024",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[BN](https://www.bleachernation.com/picks/2024/07/29/best-mlb-prop-bets-today-july-29-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/guardians-vs-tigers-mlb-player-props-and-odds-monday-july-29",
+      "article_id": "7039d4d2-f2e9-59d0-baec-5fb94ab6ff04",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "USA TODAY",
+      "page_rank": 147,
+      "domain_url": "usatoday.com",
+      "eng_title": "Guardians vs. Tigers MLB player props and odds - Monday, July 29",
+      "entities": {
+        "Person": [
+          "Matt Vierling",
+          "Colt Keith",
+          "Jos\u00e9 Ram\u00edrez"
+        ],
+        "Organization": [],
+        "Location": [
+          "Comerica Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Monday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "442 PAs",
+          "82 RBI",
+          "42 RBI",
+          "5.4%",
+          "41 RBI",
+          "11 home runs",
+          "7.4%",
+          "-115",
+          "-106",
+          "22.8%",
+          "18.4%",
+          "13 home runs",
+          "24 home runs",
+          "walk rate",
+          ".271/.326/.507"
+        ],
+        "Time": [],
+        "Sports": [
+          "Guardians",
+          "Cleveland Guardians",
+          "Tigers",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "7"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23842929-8.jpg?w=1024&h=576&crop=1",
+      "keywords": [
+        "MLB",
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "Player Props",
+        "Comerica Park"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T09:14:00Z",
+      "summary": "The Cleveland Guardians and Detroit Tigers are set to face off at Comerica Park on Monday, with several player props available. Jos\u00e9 Ram\u00edrez, a key player for the Guardians, has a strong track record, with 24 home runs, 82 RBI, and a .271/.326/.507 triple slash in 442 PAs. Matt Vierling, a player for the Tigers, has 13 home runs and 42 RBI this year, with a strikeout rate of 22.8% and a walk rate of 5.4%. Colt Keith, another player for the Tigers, has 11 home runs and 41 RBI this year, with a strikeout rate of 18.4% and a walk rate of 7.4%. The game's total is 7, with -115 odds on the over and -106 odds on the under.",
+      "title": "Guardians vs. Tigers MLB player props and odds - Monday, July 29",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[USA](https://ftw.usatoday.com/article/guardians-vs-tigers-mlb-player-props-and-odds-monday-july-29)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[6]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/cleveland-guardians-vs-detroit-tigers-live-stream-tv-channel-start-time-odds-july-29",
+      "article_id": "f68c5a76-4065-5355-bdab-47141cd075c9",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Cleveland Guardians vs. Detroit Tigers live stream, TV channel, start time, odds | July 29",
+      "entities": {
+        "Person": [
+          "Tanner Bibee"
+        ],
+        "Organization": [],
+        "Location": [
+          "Comerica Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Monday",
+          "July 29, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "8.7 K/9",
+          "1.1 home runs",
+          "-119"
+        ],
+        "Time": [
+          "6:40 PM ET"
+        ],
+        "Sports": [
+          "Detroit Tigers",
+          "Guardians",
+          "Tigers",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "Fubo",
+          "Bally Sports"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23842929-5.jpg?w=640",
+      "keywords": [
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "MLB",
+        "Comerica Park",
+        "Tanner Bibee"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T07:24:42Z",
+      "summary": "The Cleveland Guardians will face the Detroit Tigers at Comerica Park on Monday, July 29, 2024, with first pitch at 6:40 PM ET. The Guardians, who average 1.1 home runs per game, will be led by starter Tanner Bibee, while the Tigers' pitching staff has a 8.7 K/9 this season. The game can be streamed on Fubo or watched on Bally Sports, with the Guardians favored to win at -119 odds.",
+      "title": "Cleveland Guardians vs. Detroit Tigers live stream, TV channel, start time, odds | July 29",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/cleveland-guardians-vs-detroit-tigers-live-stream-tv-channel-start-time-odds-july-29)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[7]"
+    },
+    {
+      "article_url": "https://www.sportsgamblingpodcast.com/2024/07/28/sgpn-parlay-for-monday-july-29th-mlb-parlay",
+      "article_id": "a8aeb1de-393e-5064-9341-c4dfb72f9f88",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Gambling Podcast",
+      "page_rank": 430887,
+      "domain_url": "sportsgamblingpodcast.com",
+      "eng_title": "SGPN Parlay For Monday (July 29th): MLB Parlay",
+      "entities": {
+        "Person": [
+          "Tanner Bibee"
+        ],
+        "Organization": [
+          "Sports Gambling Podcast Network",
+          "SGPN"
+        ],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Monday",
+          "July 29th"
+        ],
+        "Event": [
+          "Same Game Parlay"
+        ],
+        "Money": [
+          "$1276.00"
+        ],
+        "Law": [],
+        "Quantity": [
+          "46%",
+          "7",
+          "16-5",
+          "13-15"
+        ],
+        "Time": [
+          "second half",
+          "first half"
+        ],
+        "Sports": [
+          "Cleveland Guardians",
+          "Guardians",
+          "Detroit Tigers",
+          "American League Central"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.sportsgamblingpodcast.com/wp-content/uploads/2024/07/dhz240627002_det_vs_laa.jpg",
+      "keywords": [
+        "SGPN",
+        "MLB",
+        "Parlay",
+        "Cleveland Guardians",
+        "Detroit Tigers"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T04:03:17Z",
+      "summary": "The Sports Gambling Podcast Network (SGPN) presents its Same Game Parlay for Monday, July 29th, focusing on an American League Central division matchup between the Cleveland Guardians and the Detroit Tigers. The parlay consists of two parts: the first half is a bet on the total runs scored being under 7, given the anemic offenses and solid starting pitchers. The second half is a bet on the Guardians winning, as they have a 16-5 record when their starter, Tanner Bibee, is on the mound. The overall record for the SGPN Parlay is 13-15, with a profit of $1276.00 and a return on investment of 46%.",
+      "title": "SGPN Parlay For Monday (July 29th): MLB Parlay",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SGP](https://www.sportsgamblingpodcast.com/2024/07/28/sgpn-parlay-for-monday-july-29th-mlb-parlay)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[8]"
+    },
+    {
+      "article_url": "https://www.sportsgamblingpodcast.com/2024/07/28/best-bet-for-monday-july-29th-mlb-predictions",
+      "article_id": "f426f900-13a4-502c-bb3e-4976668c9fd7",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Gambling Podcast",
+      "page_rank": 430887,
+      "domain_url": "sportsgamblingpodcast.com",
+      "eng_title": "Best Bet For Monday (July 29th): MLB Predictions",
+      "entities": {
+        "Person": [
+          "Jack Flaherty",
+          "Tanner Bibee"
+        ],
+        "Organization": [
+          "Sports Gambling Podcast Network"
+        ],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 29th",
+          "Monday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "-105",
+          "4.6 runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Tigers",
+          "Detroit Tigers",
+          "Guardians",
+          "American League",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.sportsgamblingpodcast.com/wp-content/uploads/2024/07/dct24072407_det_at_cle.jpg",
+      "keywords": [
+        "MLB",
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "Best Bet",
+        "Under 7"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-29T03:43:33Z",
+      "summary": "The Sports Gambling Podcast Network provides daily best bets, free picks, and stone-cold locks for various sports. For Monday, July 29th, the best bet is a low-scoring affair between the Cleveland Guardians and the Detroit Tigers, with the Guardians being the best team in the American League. The teams' offenses are not potent, and their recent performance has been anemic, with an average of 4.6 runs per game over their last five games. The starters, Tanner Bibee and Jack Flaherty, have been sharp lately. The recommended bet is Guardians/Tigers Under 7 (-105).",
+      "title": "Best Bet For Monday (July 29th): MLB Predictions",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SGP](https://www.sportsgamblingpodcast.com/2024/07/28/best-bet-for-monday-july-29th-mlb-predictions)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[9]"
+    },
+    {
+      "article_url": "https://headtopics.com/us/guardians-vs-phillies-prediction-picks-odds-for-today-s-56541375",
+      "article_id": "9a4699ff-5e90-553e-b6fb-2f6cd1a799d1",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Head Topics",
+      "page_rank": 15511,
+      "domain_url": "headtopics.com",
+      "eng_title": "Guardians vs Phillies Prediction, Picks & Odds for Today's MLB Game",
+      "entities": {
+        "Person": [
+          "author",
+          "Trea Turner"
+        ],
+        "Organization": [
+          "MLB"
+        ],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "same-game parlay"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "9.5",
+          "Under",
+          "dozen hits",
+          "38-17",
+          "29-27"
+        ],
+        "Time": [],
+        "Sports": [
+          "Phillies",
+          "Philadelphia Phillies",
+          "Cleveland Guardians",
+          "Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "four",
+          "two"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://i.headtopics.com/images/2024/7/28/covers/guardians-vs-phillies-prediction-picks-odds-for-to-guardians-vs-phillies-prediction-picks-odds-for-to-B6284F63081F45967F3D15543BD62965.webp",
+      "keywords": [
+        "MLB",
+        "Guardians",
+        "Phillies",
+        "Prediction",
+        "Picks"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T14:28:00Z",
+      "summary": "The article discusses the upcoming MLB game between the Cleveland Guardians and the Philadelphia Phillies. The author predicts that the Phillies will win the game due to their strong offense, which has been shown in their recent game where four players hit homers and had a dozen hits. The author also mentions that the Phillies are 38-17 at home, while the Guardians are 29-27 on the road. The author suggests that Trea Turner will get a hit again and recommends a same-game parlay. The total is set at 9.5 with two lackluster pitchers on the mound, making the author's prediction for the Under.",
+      "title": "Guardians vs Phillies Prediction, Picks & Odds for Today's MLB Game",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[HT](https://headtopics.com/us/guardians-vs-phillies-prediction-picks-odds-for-today-s-56541375)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[10]"
+    },
+    {
+      "article_url": "https://www.syracuse.com/betting/2024/07/cleveland-guardians-vs-philadelphia-phillies-prediction-mlb-odds-best-bets-for-7282024.html",
+      "article_id": "7b319629-ddbf-509f-987e-5a4d36f17381",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "syracuse.com",
+      "page_rank": 3225,
+      "domain_url": "syracuse.com",
+      "eng_title": "Cleveland Guardians vs. Philadelphia Phillies prediction, MLB odds, best bets for 7/28/2024",
+      "entities": {
+        "Person": [
+          "Dimers",
+          "Kolby Allard",
+          "Joey Cantillo"
+        ],
+        "Organization": [],
+        "Location": [
+          "Citizens Bank Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Sunday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "-155",
+          "+1.5"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cleveland Guardians",
+          "Philadelphia Phillies",
+          "MLB",
+          "Phillies",
+          "Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "10"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.syracuse.com/resizer/v2/KHUCMNR4UZENZCOBFUOVHGM654.jpg?auth=6503c9ebe56887dd0eea5595ffd5f1e1ab7358a17b2da138358ef3053395b8a6&width=1280&quality=90",
+      "keywords": [
+        "MLB",
+        "Cleveland Guardians",
+        "Philadelphia Phillies",
+        "Citizens Bank Park"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T12:45:00Z",
+      "summary": "The Cleveland Guardians will face the Philadelphia Phillies in an MLB matchup at Citizens Bank Park on Sunday. Joey Cantillo will start for the Guardians, while Kolby Allard will start for the Phillies. Dimers' prediction and best bet for the game is to bet on the Guardians +1.5 (-155). According to Dimers' predictive analytics model, the Phillies have a 54% chance of winning, while the Guardians have a 63% chance of covering the run line. The over/under total of 10 runs has a 55% chance of staying under.",
+      "title": "Cleveland Guardians vs. Philadelphia Phillies prediction, MLB odds, best bets for 7/28/2024",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SY](https://www.syracuse.com/betting/2024/07/cleveland-guardians-vs-philadelphia-phillies-prediction-mlb-odds-best-bets-for-7282024.html)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/twins-vs-tigers-mlb-player-props-and-odds-sunday-july-28",
+      "article_id": "ede75187-f27d-5cce-8a33-a764ba65e36e",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Twins vs. Tigers MLB player props and odds - Sunday, July 28",
+      "entities": {
+        "Person": [
+          "Matt Vierling",
+          "Colt Keith"
+        ],
+        "Organization": [],
+        "Location": [
+          "Comerica Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 28",
+          "Sunday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          ".259/.317/.411",
+          "41 RBI",
+          "13 homers",
+          "11 homers",
+          "42 RBI"
+        ],
+        "Time": [
+          "1:40 PM ET"
+        ],
+        "Sports": [
+          "Detroit Tigers",
+          "Tigers",
+          "Twins",
+          "Minnesota Twins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "Fubo"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23842929-1.jpg?w=640",
+      "keywords": [
+        "MLB",
+        "Twins",
+        "Tigers",
+        "Carlos Santana",
+        "Matt Vierling",
+        "Colt Keith"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T09:22:57Z",
+      "summary": "The Minnesota Twins are set to face the Detroit Tigers at Comerica Park on Sunday, July 28, with Carlos Santana, Matt Vierling, and Colt Keith among the players with prop bets available. The Twins are favored to win, with Santana having a strong recent performance against the Tigers. Vierling has also shown promise, with 13 homers and 42 RBI this season. Keith has a slash line of .259/.317/.411 and has 11 homers and 41 RBI. The game is set to start at 1:40 PM ET and can be watched on Fubo!",
+      "title": "Twins vs. Tigers MLB player props and odds - Sunday, July 28",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/twins-vs-tigers-mlb-player-props-and-odds-sunday-july-28)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/phillies-vs-guardians-mlb-player-props-and-odds-sunday-july-28",
+      "article_id": "b3c6a621-d783-5641-ad30-48ddbd9e8309",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Phillies vs. Guardians MLB player props and odds - Sunday, July 28",
+      "entities": {
+        "Person": [
+          "Josh Naylor",
+          "Jos\u00e9 Ram\u00edrez"
+        ],
+        "Organization": [],
+        "Location": [
+          "Citizens Bank Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 28",
+          "Sunday"
+        ],
+        "Event": [],
+        "Money": [
+          "-143"
+        ],
+        "Law": [],
+        "Quantity": [
+          "72 RBI",
+          "82 RBI",
+          "-1.5",
+          "22 home runs",
+          "24 home runs",
+          ".238",
+          ".288",
+          "9.5"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cleveland Guardians",
+          "Phillies",
+          "Philadelphia Phillies"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23621659-34.jpg?w=640",
+      "keywords": [
+        "MLB",
+        "Phillies",
+        "Guardians",
+        "Bryce Harper",
+        "Jos\u00e9 Ram\u00edrez"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T05:31:59Z",
+      "summary": "The Philadelphia Phillies and the Cleveland Guardians are set to face off at Citizens Bank Park on Sunday, July 28. The Phillies are favored to win, with a moneyline of -143 and a run line of -1.5. The total runs expected in the game is 9.5. The article highlights prop bets for several players, including Bryce Harper, Jos\u00e9 Ram\u00edrez, and Josh Naylor. Harper has been hitting well, with a .288 batting average and 24 home runs this season. Ram\u00edrez has also had a strong season, with 24 home runs and 82 RBI. Naylor has 22 home runs and 72 RBI, and has a .238 batting average. The article provides recent game stats for each player, as well as their prop bets for the game.",
+      "title": "Phillies vs. Guardians MLB player props and odds - Sunday, July 28",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/phillies-vs-guardians-mlb-player-props-and-odds-sunday-july-28)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://eu.zanesvilletimesrecorder.com/story/sports/sports-betting/2024/07/28/minnesota-twins-at-detroit-tigers-odds-picks-and-predictions-8/74577148007",
+      "article_id": "88f4afa8-7929-59fc-b466-5754ec717eab",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Zanesville Times Recorder",
+      "page_rank": 130658,
+      "domain_url": "zanesvilletimesrecorder.com",
+      "eng_title": "Minnesota Twins at Detroit Tigers odds, picks and predictions",
+      "entities": {
+        "Person": [],
+        "Organization": [
+          "FanDuel Sportsbook"
+        ],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "away games"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "4.67 ERA",
+          "3-2",
+          "over 8",
+          "3.91 ERA",
+          "+1.5",
+          "4-4"
+        ],
+        "Time": [],
+        "Sports": [
+          "Twins",
+          "Minnesota Twins",
+          "Tigers",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.gannett-cdn.com/sites/usatoday/images/favicon.png",
+      "keywords": [
+        "Minnesota Twins",
+        "Detroit Tigers",
+        "FanDuel Sportsbook",
+        "Odds and Predictions"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-28T05:09:38Z",
+      "summary": "The Minnesota Twins are set to face the Detroit Tigers, with FanDuel Sportsbook providing odds and predictions for the game. The Twins' projected starter has a 4-4 record with a 4.67 ERA in away games this season, and a 3-2 record with a 3.91 ERA against the Tigers in his career. The article provides a breakdown of the best home run props and recommends betting on the Tigers +1.5 and the over 8.",
+      "title": "Minnesota Twins at Detroit Tigers odds, picks and predictions",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[ZTR](https://eu.zanesvilletimesrecorder.com/story/sports/sports-betting/2024/07/28/minnesota-twins-at-detroit-tigers-odds-picks-and-predictions-8/74577148007)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://news.knowledia.com/all/all/articles/guardians-vs-phillies-prediction-odds-pick-7-27-2024-621a48d59020e46f4e96c88e825e4d0d52a15dc5",
+      "article_id": "81d29605-644a-5d44-bcfe-e6e1f638b327",
+      "classification": "Sports",
+      "country": "FR",
+      "source_id": "Knowledia",
+      "page_rank": 197389,
+      "domain_url": "knowledia.com",
+      "eng_title": "Guardians vs. Phillies prediction, odds, pick - 7/27/2024",
+      "entities": {
+        "Person": [
+          "Carlos Carrasco",
+          "Tyler Phillips"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [
+          "second half"
+        ],
+        "Sports": [
+          "Guardians",
+          "MLB",
+          "Philadelphia Phillies",
+          "Cleveland Guardians",
+          "Phillies"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/07/Guardians-vs.-Phillies-prediction-odds-pick.jpg",
+      "keywords": [
+        "MLB",
+        "Guardians",
+        "Phillies",
+        "Prediction",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T21:26:50Z",
+      "summary": "The Cleveland Guardians are set to face the Philadelphia Phillies in a highly anticipated MLB matchup. Despite not playing their best baseball to start the second half, both teams are among the best in the league. Our prediction and pick for the game features Carlos Carrasco and Tyler Phillips as the projected starters. The Guardians are favored to win, but the Phillies have a strong home record. Here's a breakdown of the odds and a prediction for the game.",
+      "title": "Guardians vs. Phillies prediction, odds, pick - 7/27/2024",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[K](https://news.knowledia.com/all/all/articles/guardians-vs-phillies-prediction-odds-pick-7-27-2024-621a48d59020e46f4e96c88e825e4d0d52a15dc5)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/phillies-vs-guardians-mlb-player-props-and-odds-saturday-july-27",
+      "article_id": "6f1665ed-7e0d-56bc-966f-ce2b13728bc2",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Phillies vs. Guardians MLB player props and odds - Saturday, July 27",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Citizens Bank Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Saturday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          ".562 SLG",
+          "82 RBI",
+          ".288",
+          ".384 OBP",
+          "9 runs",
+          "24 home runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Philadelphia Phillies",
+          "Phillies",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23816908-4.jpg?w=640",
+      "keywords": [
+        "MLB",
+        "Phillies",
+        "Guardians",
+        "Bryce Harper",
+        "Jose Ramirez"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T05:14:00Z",
+      "summary": "The Philadelphia Phillies and the Cleveland Guardians are set to face off at Citizens Bank Park on Saturday, with several player prop bets available. Bryce Harper and Jose Ramirez are among the players with prop bets for the taking. Harper is hitting .288 with a .384 OBP and a .562 SLG, while Ramirez has 24 home runs and 82 RBI this season. The Phillies are favored to win, with a total of 9 runs expected in the game.",
+      "title": "Phillies vs. Guardians MLB player props and odds - Saturday, July 27",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/phillies-vs-guardians-mlb-player-props-and-odds-saturday-july-27)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/tigers-vs-twins-mlb-player-props-and-odds-saturday-july-27",
+      "article_id": "b22d0971-2e2e-5a55-a31e-91d8e50de411",
+      "classification": "Sports",
+      "country": "Unknown",
+      "source_id": "For The Win",
+      "page_rank": 478,
+      "domain_url": "ftw.usatoday.com",
+      "eng_title": "Tigers vs. Twins MLB player props and odds - Saturday, July 27",
+      "entities": {
+        "Person": [
+          "Matt Vierling",
+          "Carlos Santana"
+        ],
+        "Organization": [],
+        "Location": [
+          "Comerica Park"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 27",
+          "Saturday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [
+          "6:10 PM ET"
+        ],
+        "Sports": [
+          "Detroit Tigers",
+          "Minnesota Twins"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23802118-3.jpg?w=640",
+      "keywords": [
+        "MLB",
+        "Tigers",
+        "Twins",
+        "Player Props",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T05:14:00Z",
+      "summary": "The Detroit Tigers are hosting the Minnesota Twins at Comerica Park on Saturday, July 27, at 6:10 PM ET. The article provides player prop bets for Matt Vierling, Carlos Santana, and others. It also includes recent game stats for each player and their respective teams.",
+      "title": "Tigers vs. Twins MLB player props and odds - Saturday, July 27",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTW](https://ftw.usatoday.com/article/tigers-vs-twins-mlb-player-props-and-odds-saturday-july-27)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://www.richmond-news.com/baseball/guardians-beat-phillies-3-1-in-matchup-of-teams-with-best-records-9277227",
+      "article_id": "0b131370-d6ab-5cbb-a852-c4b004e9b262",
+      "classification": "Sports",
+      "country": "CA",
+      "source_id": "Richmond News",
+      "page_rank": 111743,
+      "domain_url": "richmond-news.com",
+      "eng_title": "Guardians beat Phillies 3-1 in matchup of teams with best records",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Friday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "8-4",
+          "6-5",
+          "6-0",
+          "9-3",
+          "6-4",
+          "3-1"
+        ],
+        "Time": [],
+        "Sports": [
+          "San Diego Padres",
+          "Minnesota Twins",
+          "Texas Rangers",
+          "Chicago Cubs",
+          "Philadelphia Phillies",
+          "Kansas City Royals",
+          "Toronto Blue Jays",
+          "Atlanta Braves",
+          "Cleveland Guardians",
+          "Detroit Tigers",
+          "New York Mets",
+          "Baltimore Orioles"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.vmcdn.ca/f/files/shared/feeds/cp/2024/07/736cca81cf2133f02c23f7475b33df9bd520a499603022ec70186e688c606764.jpg;w=1200;h=800;mode=crop",
+      "keywords": [
+        "Baseball",
+        "Guardians",
+        "Phillies",
+        "Twins",
+        "Tigers"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-27T05:13:19Z",
+      "summary": "The article reports on various baseball games played on Friday night, including the Cleveland Guardians' 3-1 win over the Philadelphia Phillies, the Minnesota Twins' 9-3 win over the Detroit Tigers, and the San Diego Padres' 6-4 win over the Baltimore Orioles. Other games mentioned include the New York Mets' 8-4 win over the Atlanta Braves, the Toronto Blue Jays' 6-5 win over the Texas Rangers, and the Kansas City Royals' 6-0 win over the Chicago Cubs.",
+      "title": "Guardians beat Phillies 3-1 in matchup of teams with best records",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[RN](https://www.richmond-news.com/baseball/guardians-beat-phillies-3-1-in-matchup-of-teams-with-best-records-9277227)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://www.covers.com/mlb/guardians-vs-phillies-prediction-picks-tonight-friday-7-26-2024",
+      "article_id": "bfa41ab5-dffa-51a5-b820-fda671391c80",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Covers.com",
+      "page_rank": 14922,
+      "domain_url": "covers.com",
+      "eng_title": "Phillies vs Guardians Predictions, Picks, Odds  --  7-26",
+      "entities": {
+        "Person": [
+          "Aaron Lively",
+          "Trea Turner",
+          "Noah Sanchez"
+        ],
+        "Organization": [
+          "MLB"
+        ],
+        "Location": [
+          "Citizens Bank Park"
+        ],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "All-Star break"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "10 runs",
+          "16 runs",
+          "28-26",
+          "37-16",
+          "52",
+          ".338"
+        ],
+        "Time": [],
+        "Sports": [
+          "Guardians",
+          "Phillies",
+          "Cleveland Guardians",
+          "Philadelphia Phillies"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "63"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://img.covers.com/cms/covers/c7e58d55-2ad9-426e-b3ce-00944fe57b99.gif",
+      "keywords": [
+        "Phillies",
+        "Guardians",
+        "MLB",
+        "Citizens Bank Park",
+        "Trea Turner"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T18:22:12Z",
+      "summary": "The Philadelphia Phillies and Cleveland Guardians are set to face off in a three-game series at Citizens Bank Park, with both teams struggling offensively since the All-Star break. The Phillies have scored just 16 runs in their last five games, while the Guardians have managed 10 runs in their last six. With two strong pitchers, Aaron Lively and Noah Sanchez, on the mound, our MLB picks expect a low-scoring game. The Phillies have a home advantage, with a 37-16 record at Citizens Bank Park, while the Guardians are 28-26 on the road. Trea Turner is batting .338 on the season and has a hit in 52 of 63 games overall.",
+      "title": "Phillies vs Guardians Predictions, Picks, Odds  --  7-26",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[C](https://www.covers.com/mlb/guardians-vs-phillies-prediction-picks-tonight-friday-7-26-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://www.wsjm.com/2024/07/26/friday-sports-baez-first-home-run-since-april-14-sends-tigers-over-guardians-2-1",
+      "article_id": "b0c11d9f-6116-5a37-8342-01348421017f",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "News/Talk/Sports 94.9 WSJM",
+      "page_rank": 231386,
+      "domain_url": "wsjm.com",
+      "eng_title": "Friday Sports \u2013 B\u00e1ez first home run since April 14 sends Tigers over Guardians 2-1",
+      "entities": {
+        "Person": [
+          "Hulk Hogan",
+          "Dan Campbell",
+          "Sherrone Moore"
+        ],
+        "Organization": [],
+        "Location": [
+          "Paris",
+          "Zambia",
+          "Michigan"
+        ],
+        "Nationality": [
+          "Canadian",
+          "US"
+        ],
+        "Date": [],
+        "Event": [
+          "Olympics",
+          "NCAAFB",
+          "drone"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [],
+        "Time": [],
+        "Sports": [
+          "Texas Rangers",
+          "Detroit Lions",
+          "US women's soccer team",
+          "Cleveland Guardians",
+          "NFL",
+          "MLB",
+          "Detroit Tigers",
+          "Chicago White Sox"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [
+          "train"
+        ],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://dehayf5mhw1h7.cloudfront.net/wp-content/uploads/sites/321/2024/07/26054938/072624-tigersguardiansbaez.webp",
+      "keywords": [
+        "MLB",
+        "Tigers",
+        "Guardians",
+        "NFL",
+        "Hulk Hogan",
+        "Olympics"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T09:54:57Z",
+      "summary": "The article covers various sports news, including MLB, NFL, NCAAFB, and Olympics. In MLB, the Detroit Tigers defeated the Cleveland Guardians 3-0, and the Texas Rangers beat the Chicago White Sox 2-1. In NFL, Hulk Hogan visited the Detroit Lions' camp and praised coach Dan Campbell. In NCAAFB, Michigan coach Sherrone Moore spoke about the team's national title expectations. In Olympics, the US women's basketball team arrived in Paris via train, and the Canadian women's soccer team coach was removed due to a drone scandal. The US women's soccer team also won their first match against Zambia 3-0.",
+      "title": "Friday Sports \u2013 B\u00e1ez first home run since April 14 sends Tigers over Guardians 2-1",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[NTS](https://www.wsjm.com/2024/07/26/friday-sports-baez-first-home-run-since-april-14-sends-tigers-over-guardians-2-1)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://www.yardbarker.com/mlb/articles/mlb_best_bets_guardians_vs_phillies_pick_odds_predictions_for_fri_726/s1_17354_40658317",
+      "article_id": "9e969ac9-b862-5b28-82dd-c17554c91ca3",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Yardbarker",
+      "page_rank": 10824,
+      "domain_url": "yardbarker.com",
+      "eng_title": "MLB best bets: Guardians vs. Phillies pick, odds, predictions for Fri. 7/26",
+      "entities": {
+        "Person": [
+          "Cristopher Sanchez",
+          "Ben Lively",
+          "Sanchez"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 26"
+        ],
+        "Event": [],
+        "Money": [
+          "moneyline"
+        ],
+        "Law": [],
+        "Quantity": [
+          "xERAs",
+          "xwOBA",
+          ".320"
+        ],
+        "Time": [],
+        "Sports": [
+          "Guardians",
+          "Cleveland Guardians",
+          "MLB",
+          "Philadelphia Phillies",
+          "Phillies"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "seven"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.yardbarker.com/media/0/d/0d49fcd46793c9a59caeef4cc5afc3c79a773fdb/thumb_16x9/ben-lively.jpg",
+      "keywords": [
+        "MLB",
+        "Cleveland Guardians",
+        "Philadelphia Phillies",
+        "Pitching",
+        "Bullpen"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T14:04:28Z",
+      "summary": "The Cleveland Guardians are facing the Philadelphia Phillies in a MLB game on July 26. Ben Lively will be pitching for the Guardians, while Cristopher Sanchez will be pitching for the Phillies. Both pitchers have similar xERAs, and the Guardians have been decent against lefties like Sanchez. The Phillies have struggled against right-handed pitching in the last month, and the Guardians have a strong lineup with seven bats above a.320 xwOBA against lefties. The Phillies' bullpen has been decent, but the Guardians' bullpen has been less reliable. The Guardians are a good bet on the moneyline, especially since they can hit lefties like Sanchez.",
+      "title": "MLB best bets: Guardians vs. Phillies pick, odds, predictions for Fri. 7/26",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[Y](https://www.yardbarker.com/mlb/articles/mlb_best_bets_guardians_vs_phillies_pick_odds_predictions_for_fri_726/s1_17354_40658317)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://www.sportsgamblingpodcast.com/2024/07/25/best-bet-for-friday-july-26th-mlb-predictions",
+      "article_id": "4a232518-3257-51f8-abcc-98f5f6279d9d",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Gambling Podcast",
+      "page_rank": 430887,
+      "domain_url": "sportsgamblingpodcast.com",
+      "eng_title": "Best Bet For Friday (July 26th): MLB Predictions",
+      "entities": {
+        "Person": [
+          "Christopher Sanchez",
+          "Ben Lively"
+        ],
+        "Organization": [
+          "Sports Gambling Podcast",
+          "Sports Gambling Podcast Network"
+        ],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 26th",
+          "Friday"
+        ],
+        "Event": [],
+        "Money": [
+          "$255.52"
+        ],
+        "Law": [],
+        "Quantity": [
+          "77-66",
+          "3 runs",
+          "2 runs",
+          "8 runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Philadelphia Phillies",
+          "MLB",
+          "Phillies",
+          "Guardians",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "5"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.sportsgamblingpodcast.com/wp-content/uploads/2024/07/dct23072314_phi_at_cle.jpg",
+      "keywords": [
+        "MLB",
+        "Predictions",
+        "Cleveland Guardians",
+        "Philadelphia Phillies"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-26T02:34:37Z",
+      "summary": "The Sports Gambling Podcast Network provides MLB predictions for Friday, July 26th. The best bet is the under for the game total between the Cleveland Guardians and Philadelphia Phillies, with a total of 8 runs. The Guardians have averaged 2 runs per game over their past 5 games, while the Phillies have averaged 3 runs. The starting pitchers, Ben Lively and Christopher Sanchez, are solid. This pick is part of the Sports Gambling Podcast's daily best bets, with an overall record of 77-66 (54%) and a profit of $255.52.",
+      "title": "Best Bet For Friday (July 26th): MLB Predictions",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SGP](https://www.sportsgamblingpodcast.com/2024/07/25/best-bet-for-friday-july-26th-mlb-predictions)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://eu.newarkadvocate.com/story/sports/mlb/cleveland-guardians/2024/07/25/cleveland-guardians-score-today-vs-detroit-tigers-at-progressive-field-jose-ramirez-stats/74476462007",
+      "article_id": "389a9cb0-cdaa-5e34-8b67-e073507cb3c7",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Newark Advocate",
+      "page_rank": 54477,
+      "domain_url": "newarkadvocate.com",
+      "eng_title": "Cleveland Guardians vs. Detroit Tigers live score updates and highlights",
+      "entities": {
+        "Person": [
+          "Emmanuel Clase",
+          "Travis Bazzana"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 30",
+          "2025"
+        ],
+        "Event": [
+          "All-Star",
+          "MLB Draft",
+          "All-Star Game"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "five games"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cleveland Guardians",
+          "Detroit Tigers",
+          "Guardians",
+          "American League Central"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "five"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.gannett-cdn.com/authoring/authoring-images/2024/07/25/NABJ/74536547007-usatsi-23817862.jpg?auto=webp&crop=5896,3317,x0,y0&format=pjpg&width=1200",
+      "keywords": [
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "American League Central",
+        "All-Star Game",
+        "MLB Draft"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T15:46:22Z",
+      "summary": "The Cleveland Guardians have won two consecutive games against the Detroit Tigers, increasing their lead in the American League Central to five games. The team has five representatives at the All-Star Game, including Emmanuel Clase, who earned his second All-Star save. The Guardians are entering the trade deadline in first place and could be buyers ahead of July 30. The team has also released their 2025 schedule and selected Travis Bazzana with the first overall pick in the MLB Draft.",
+      "title": "Cleveland Guardians vs. Detroit Tigers live score updates and highlights",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[NA](https://eu.newarkadvocate.com/story/sports/mlb/cleveland-guardians/2024/07/25/cleveland-guardians-score-today-vs-detroit-tigers-at-progressive-field-jose-ramirez-stats/74476462007)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://www.times-gazette.com/story/sports/mlb/cleveland-guardians/2024/07/25/cleveland-guardians-score-today-vs-detroit-tigers-at-progressive-field-jose-ramirez-stats/74476462007",
+      "article_id": "ff9e2bf6-e4ac-50b8-8e50-e800f8d8adf4",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Ashland Times-Gazette",
+      "page_rank": 305969,
+      "domain_url": "times-gazette.com",
+      "eng_title": "Cleveland Guardians vs. Detroit Tigers recap; Guards shut out in loss to Tigers",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "three-game",
+          "3-0"
+        ],
+        "Time": [],
+        "Sports": [
+          "Tigers",
+          "Royals",
+          "Guardians",
+          "American League Central",
+          "Detroit Tigers",
+          "Twins",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.times-gazette.com/gcdn/authoring/authoring-images/2024/07/25/NABJ/74536547007-usatsi-23817862.jpg?crop=5896,3317,x0,y0&width=3200&height=1801&format=pjpg&auto=webp",
+      "keywords": [
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "MLB",
+        "American League Central"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T15:46:22Z",
+      "summary": "The Cleveland Guardians lost to the Detroit Tigers 3-0, with the Tigers' bullpen shutting out the Guardians. The Guardians had a three-game losing streak before winning two consecutive games, but were unable to find rhythm against the Tigers. The Guardians are still in first place in the American League Central, but the Twins and Royals are closing in.",
+      "title": "Cleveland Guardians vs. Detroit Tigers recap; Guards shut out in loss to Tigers",
+      "sentiment": -1,
+      "medoid_distance": null,
+      "markdown_citation": "[ATG](https://www.times-gazette.com/story/sports/mlb/cleveland-guardians/2024/07/25/cleveland-guardians-score-today-vs-detroit-tigers-at-progressive-field-jose-ramirez-stats/74476462007)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://www.leaderpub.com/2024/07/25/tigers-vs-guardians-betting-preview-for-july-25",
+      "article_id": "5c0cfe3d-ce12-56f1-9b6f-b3d0e27ba029",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Leader Publications",
+      "page_rank": 194374,
+      "domain_url": "leaderpub.com",
+      "eng_title": "Tigers vs. Guardians: Betting Preview for July 25",
+      "entities": {
+        "Person": [
+          "Reese Olson"
+        ],
+        "Organization": [],
+        "Location": [
+          "Progressive Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 25, 2024"
+        ],
+        "Event": [],
+        "Money": [
+          "moneyline"
+        ],
+        "Law": [],
+        "Quantity": [
+          ".261",
+          "over/under",
+          "514 runs",
+          "8 runs",
+          "+150",
+          "-110",
+          ".233",
+          "442 runs",
+          "-185"
+        ],
+        "Time": [
+          "1:10 PM ET"
+        ],
+        "Sports": [
+          "Tigers",
+          "Guardians",
+          "Detroit Tigers",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.leaderpub.com/wp-content/uploads/sites/11/2024/07/tigers-vs-guardians-betting-preview-for-july-25.jpg",
+      "keywords": [
+        "Tigers",
+        "Guardians",
+        "Betting",
+        "Progressive Field",
+        "Reese Olson"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T13:24:57Z",
+      "summary": "The Cleveland Guardians will host the Detroit Tigers at Progressive Field on July 25, 2024, with the first pitch scheduled for 1:10 PM ET. The Guardians are favored to win with a moneyline of -185, while the Tigers have a moneyline of +150. The over/under for the game is set at 8 runs, with the over priced at -110 and the under priced at -110. Reese Olson will start for the Tigers, who have a team batting average of .233 and have scored 442 runs this season. The Guardians, on the other hand, have a team batting average of .261 and have scored 514 runs this season.",
+      "title": "Tigers vs. Guardians: Betting Preview for July 25",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[LP](https://www.leaderpub.com/2024/07/25/tigers-vs-guardians-betting-preview-for-july-25)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/guardians-vs-tigers-mlb-player-props-and-odds-thursday-july-25",
+      "article_id": "05d96539-3732-57b5-824e-d6e6f77bfb96",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "USA TODAY",
+      "page_rank": 147,
+      "domain_url": "usatoday.com",
+      "eng_title": "Guardians vs. Tigers MLB player props and odds - Thursday, July 25",
+      "entities": {
+        "Person": [
+          "Reese Olson",
+          "Gavin Williams",
+          "Riley Greene",
+          "Matt Vierling"
+        ],
+        "Organization": [],
+        "Location": [
+          "Progressive Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "Thursday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "13 homers",
+          "17 homers",
+          ".254/.291/.451",
+          "42 RBI",
+          "51 RBI",
+          ".267/.360/.490"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cleveland Guardians",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23779932-9.jpg?w=1024&h=576&crop=1",
+      "keywords": [
+        "MLB",
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "Riley Greene",
+        "Matt Vierling"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T09:14:00Z",
+      "summary": "The Cleveland Guardians and Detroit Tigers are set to face off at Progressive Field on Thursday, with Riley Greene and Matt Vierling being key players with prop bets available. Greene has a slash line of .267/.360/.490, with 17 homers and 51 RBI, while Vierling has a slash line of .254/.291/.451, with 13 homers and 42 RBI. The article provides statistics and recent game performances for both players, as well as the starting pitchers for the game, Gavin Williams and Reese Olson.",
+      "title": "Guardians vs. Tigers MLB player props and odds - Thursday, July 25",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[USA](https://ftw.usatoday.com/article/guardians-vs-tigers-mlb-player-props-and-odds-thursday-july-25)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://eu.jacksonville.com/story/sports/sports-betting/2024/07/25/detroit-tigers-at-cleveland-guardians-odds-picks-and-predictions-13/74538201007",
+      "article_id": "dd9bb7a0-6ba4-5438-aec9-bc206b12d2e1",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "The Florida Times-Union",
+      "page_rank": 4639,
+      "domain_url": "jacksonville.com",
+      "eng_title": "Detroit Tigers at Cleveland Guardians odds, picks and predictions",
+      "entities": {
+        "Person": [
+          "Gavin Williams"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Thursday"
+        ],
+        "Event": [],
+        "Money": [
+          "Over",
+          "moneyline",
+          "run line",
+          "over/under",
+          "Under"
+        ],
+        "Law": [],
+        "Quantity": [
+          "5-1",
+          "1-run",
+          "6 games",
+          "4-game"
+        ],
+        "Time": [],
+        "Sports": [
+          "Cleveland Guardians",
+          "Tigers",
+          "Detroit Tigers",
+          "Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "3rd",
+          "9",
+          "7"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://staticassets.gannettdigital.com/gci-static-assets/assets/global/checkout/meta-generic.png",
+      "keywords": [
+        "Detroit Tigers",
+        "Cleveland Guardians",
+        "MLB",
+        "Odds",
+        "Predictions"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-25T05:20:48Z",
+      "summary": "The Detroit Tigers and Cleveland Guardians wrap up a 4-game series on Thursday. The Guardians aim for a 3rd straight win, while the Tigers look to bounce back from consecutive 1-run losses. The Under has cashed in 7 of the past 9 games for the Guardians, while the Tigers have hit the Over at a 5-1 pace in the past 6 games. The Guardians' Gavin Williams is set to start against the Tigers, who have not named a starting pitcher. The article provides odds and predictions for the best bets, including the moneyline, run line, and over/under.",
+      "title": "Detroit Tigers at Cleveland Guardians odds, picks and predictions",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[FTU](https://eu.jacksonville.com/story/sports/sports-betting/2024/07/25/detroit-tigers-at-cleveland-guardians-odds-picks-and-predictions-13/74538201007)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://pickdawgz.com/mlb-picks/2024-07-25/detroit-tigers-vs-cleveland-guardians-prediction-mlb-picks",
+      "article_id": "f5b0a297-13b7-57ab-b4a8-cbf617e1a2f1",
+      "classification": "Sports",
+      "country": "unknown",
+      "source_id": "pickdawgz.com",
+      "page_rank": 395620,
+      "domain_url": "pickdawgz.com",
+      "eng_title": "Detroit Tigers vs Cleveland Guardians Prediction MLB Picks 7/25/24",
+      "entities": {
+        "Person": [
+          "Gavin Williams"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [
+          "four-game series"
+        ],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "total runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Tigers",
+          "Detroit Tigers",
+          "AL Central",
+          "Cleveland Guardians",
+          "Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "10",
+          "11"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.gannett-cdn.com/usatsimg/image/thumb/650-650nw/21442981.jpg",
+      "keywords": [
+        "MLB",
+        "Detroit Tigers",
+        "Cleveland Guardians",
+        "Gavin Williams"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T22:53:00Z",
+      "summary": "The Detroit Tigers and Cleveland Guardians meet in the final game of a four-game series. The article provides a prediction and betting analysis, examining the teams' recent form, player performance, and betting trends. The Tigers have won two of their last three games, while the Guardians have won one of their last three. The article suggests taking the Guardians, with Gavin Williams starting for them, and notes that the 'Inning 1 UNDER 0.5 runs' market has hit in each of the Guardians' last three day games. The article also provides player prop facts and notes that the Tigers have gone OVER the total runs line in 10 of their last 11 road games against AL Central opponents.",
+      "title": "Detroit Tigers vs Cleveland Guardians Prediction MLB Picks 7/25/24",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[PI](https://pickdawgz.com/mlb-picks/2024-07-25/detroit-tigers-vs-cleveland-guardians-prediction-mlb-picks)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://detroitsportsnation.com/tigers-vs-guardians-july-24-2024-how-to-watch-betting-odds-predictions-and-more/jeff/tigers/detroit-tigers-notes/07/24/2024/458405",
+      "article_id": "6d9e2dd8-2d66-5f6b-a3b2-c0c1e2f3862d",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Detroit Sports Nation",
+      "page_rank": 291183,
+      "domain_url": "detroitsportsnation.com",
+      "eng_title": "Tigers vs Guardians, July 24, 2024: How to Watch, Betting Odds, Predictions, and More",
+      "entities": {
+        "Person": [
+          "Jack Flaherty",
+          "Tanner Bibee",
+          "Riley Greene",
+          "Jose Ramirez"
+        ],
+        "Organization": [
+          "Bally Sports DirecTV",
+          "MLB Extra Innings"
+        ],
+        "Location": [
+          "Progressive Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 24, 2024"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "-145",
+          "4.19 ERA",
+          "+122",
+          "3.13 ERA",
+          "7-5"
+        ],
+        "Time": [],
+        "Sports": [
+          "Dodgers",
+          "Guardians",
+          "Tigers",
+          "Detroit Tigers",
+          "Cleveland Guardians",
+          "Blue Jays"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "fuboTV",
+          "ESPN+"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://detroitsportsnation.com/wp-content/uploads/placid-social-images/565fde56c471738e3d83f87a90f956d1.png",
+      "keywords": [
+        "Tigers",
+        "Guardians",
+        "MLB",
+        "Progressive Field",
+        "Jack Flaherty"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T16:59:14Z",
+      "summary": "The Detroit Tigers and Cleveland Guardians are set to face off in game 3 at Progressive Field on July 24, 2024. The Tigers are looking to stay competitive after recent performances against the Dodgers and Blue Jays, while the Guardians are seeking consistency after struggling with offense. Jack Flaherty will start for the Tigers, bringing a 7-5 record and 3.13 ERA, while Tanner Bibee will start for the Guardians, with a 4.19 ERA in home games. The Tigers have a chance to upset the Guardians, given their recent struggles and Flaherty's solid form. The game will feature notable players like Riley Greene and Jose Ramirez, and will be broadcast on MLB Extra Innings, Bally Sports DirecTV, and streamed on fuboTV and ESPN+. The Tigers are +122 to win, with the Guardians at -145.",
+      "title": "Tigers vs Guardians, July 24, 2024: How to Watch, Betting Odds, Predictions, and More",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[DSN](https://detroitsportsnation.com/tigers-vs-guardians-july-24-2024-how-to-watch-betting-odds-predictions-and-more/jeff/tigers/detroit-tigers-notes/07/24/2024/458405)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://clutchpoints.com/tigers-vs-guardians-prediction-odds-pick-7-24-2024",
+      "article_id": "c6c4a0c4-c5d6-5342-9cfc-ac2bb7c0b4a8",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "ClutchPoints",
+      "page_rank": 12578,
+      "domain_url": "clutchpoints.com",
+      "eng_title": "Tigers vs. Guardians prediction, odds, pick - 7/24/2024",
+      "entities": {
+        "Person": [
+          "Jack Flaherty",
+          "Tanner Bibee"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "batting averages",
+          "slugging percentages",
+          "on-base percentages",
+          "+122"
+        ],
+        "Time": [],
+        "Sports": [
+          "Tigers",
+          "Cleveland Guardians",
+          "MLB",
+          "Detroit Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://wp.clutchpoints.com/wp-content/uploads/2024/05/Tigers-vs.-Guardians-prediction-odds-pick-how-to-watch.jpg",
+      "keywords": [
+        "MLB",
+        "Tigers",
+        "Guardians",
+        "Prediction",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T14:27:13Z",
+      "summary": "The article provides a prediction and pick for the MLB game between the Detroit Tigers and the Cleveland Guardians. The prediction is based on the performance of the teams' starting pitchers, Jack Flaherty and Tanner Bibee, as well as the teams' overall statistics. The article highlights the strengths and weaknesses of both teams, including their batting averages, on-base percentages, and slugging percentages. The prediction is that the Tigers will win the game, with the moneyline odds set at +122.",
+      "title": "Tigers vs. Guardians prediction, odds, pick - 7/24/2024",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[CP](https://clutchpoints.com/tigers-vs-guardians-prediction-odds-pick-7-24-2024)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    },
+    {
+      "article_url": "https://www.yardbarker.com/mlb/articles/mlb_best_bets_odds_picks_and_predictions_for_wed_724/s1_17354_40647848",
+      "article_id": "7dc8e7c7-ca63-526e-8d93-455b05b8a448",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Yardbarker",
+      "page_rank": 10824,
+      "domain_url": "yardbarker.com",
+      "eng_title": "MLB best bets: Odds, picks and predictions for Wed. 7/24",
+      "entities": {
+        "Person": [
+          "Zach Eflin",
+          "Jack Flaherty",
+          "Yariel Rodr\u00edguez"
+        ],
+        "Organization": [],
+        "Location": [
+          "Cleveland"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 24",
+          "Wednesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "8.5",
+          "7.5"
+        ],
+        "Time": [],
+        "Sports": [
+          "Rays",
+          "Blue Jays",
+          "Guardians",
+          "MLB",
+          "Tigers"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [
+          "Yardbarker"
+        ],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.yardbarker.com/media/c/4/c4bfa16485dcd9d6c5f9ed758d3441f25ee1dbbd/thumb_16x9/MLBBestBetsJuly24.jpg",
+      "keywords": [
+        "MLB",
+        "Betting",
+        "Tigers",
+        "Guardians",
+        "Rays",
+        "Blue Jays"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T10:24:16Z",
+      "summary": "Yardbarker's MLB betting experts have selected two best bets for Wednesday, July 24, including under 7.5 for Tigers vs. Guardians and under 8.5 for Rays vs. Blue Jays. In the first game, Jack Flaherty is expected to perform well against Cleveland, while in the second game, Yariel Rodr\u00edguez and Zach Eflin are expected to dominate against the Blue Jays and Rays, respectively. Both games are expected to have low-scoring outcomes.",
+      "title": "MLB best bets: Odds, picks and predictions for Wed. 7/24",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[Y](https://www.yardbarker.com/mlb/articles/mlb_best_bets_odds_picks_and_predictions_for_wed_724/s1_17354_40647848)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[1]"
+    },
+    {
+      "article_url": "https://www.mlb.com/guardians/news/jose-ramirez-steven-kwan-jhonkensy-noel-hit-homers-vs-tigers",
+      "article_id": "daaefd47-bf6c-565d-82ff-44984a08822f",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "MLB",
+      "page_rank": 778,
+      "domain_url": "mlb.com",
+      "eng_title": "Quartet of Guardians steps up when needed the most",
+      "entities": {
+        "Person": [
+          "Mart\u00ednez",
+          "Steven Kwan",
+          "Jhonkensy Noel",
+          "Jos\u00e9 Ram\u00edrez"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "5-4"
+        ],
+        "Time": [
+          "fifth"
+        ],
+        "Sports": [
+          "Detroit Tigers",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "11",
+          "seven"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://img.mlbstatic.com/mlb-photos/image/upload/ar_121:168,c_fill,g_face/w_121/v1/people/680757/action/vertical/current",
+      "keywords": [
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "Steven Kwan",
+        "Jhonkensy Noel",
+        "Jos\u00e9 Ram\u00edrez"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T02:53:00Z",
+      "summary": "The Cleveland Guardians won their second game in a row, defeating the Detroit Tigers 5-4, and avoided their first four-game losing streak of the year. The win was significant as it came after a slump where the team had lost eight of their last 11 games and scored two or fewer runs in seven of those losses. The Guardians' offense, which had been lacking, stepped up with key hits from Steven Kwan, Jhonkensy Noel, and Jos\u00e9 Ram\u00edrez. Kwan, who had been struggling, got back to form with a solo homer and a walk and single, while Noel and Mart\u00ednez added power and energy to the team. Ram\u00edrez, who had been in a season-long slump without a home run, delivered the go-ahead solo homer in the fifth. The win was crucial for the team, which needs to pull itself out of a rut and get back on track for the second half of the season.",
+      "title": "Quartet of Guardians steps up when needed the most",
+      "sentiment": 1,
+      "medoid_distance": null,
+      "markdown_citation": "[MLB](https://www.mlb.com/guardians/news/jose-ramirez-steven-kwan-jhonkensy-noel-hit-homers-vs-tigers)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[2]"
+    },
+    {
+      "article_url": "https://www.sportsgamblingpodcast.com/2024/07/23/best-bet-for-wednesday-july-24th-mlb-predictions",
+      "article_id": "7f093d51-2a37-548c-9b89-64f9eeed5a83",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "Sports Gambling Podcast",
+      "page_rank": 430887,
+      "domain_url": "sportsgamblingpodcast.com",
+      "eng_title": "Best Bet For Wednesday (July 24th): MLB Predictions",
+      "entities": {
+        "Person": [],
+        "Organization": [
+          "Sports Gambling Podcast Network"
+        ],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "July 24th",
+          "Wednesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "+102",
+          "7.5"
+        ],
+        "Time": [
+          "6:40 PM EST"
+        ],
+        "Sports": [
+          "Tigers",
+          "Guardians",
+          "Detroit Tigers",
+          "MLB",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "10",
+          "9"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://www.sportsgamblingpodcast.com/wp-content/uploads/2024/07/dct24072234_det_at_cle.jpg",
+      "keywords": [
+        "MLB",
+        "Predictions",
+        "Best Bets",
+        "Detroit Tigers",
+        "Cleveland Guardians"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T01:20:56Z",
+      "summary": "The Sports Gambling Podcast Network provides MLB predictions and best bets for Wednesday, July 24th. The recommended bet is the over for the Detroit Tigers and Cleveland Guardians game, with a starting time of 6:40 PM EST. The over 7.5 total has been a trend for the starters' past few appearances, and the teams have combined for 10 and 9 runs in the series so far. The best bet is Tigers/Guardians Over 7.5 (+102).",
+      "title": "Best Bet For Wednesday (July 24th): MLB Predictions",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[SGP](https://www.sportsgamblingpodcast.com/2024/07/23/best-bet-for-wednesday-july-24th-mlb-predictions)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[3]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/guardians-vs-tigers-mlb-player-props-and-odds-wednesday-july-24",
+      "article_id": "37d5ee2b-da10-52d4-b427-7b39e34f3572",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "USA TODAY",
+      "page_rank": 147,
+      "domain_url": "usatoday.com",
+      "eng_title": "Guardians vs. Tigers MLB player props and odds - Wednesday, July 24",
+      "entities": {
+        "Person": [],
+        "Organization": [],
+        "Location": [
+          "Progressive Field"
+        ],
+        "Nationality": [],
+        "Date": [
+          "July 24",
+          "Wednesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          ".444",
+          ".254",
+          ".274",
+          "-150",
+          "+127",
+          ".518 SLG",
+          ".325 OBP",
+          ".268",
+          "+148",
+          "7.5 runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Tigers",
+          "Guardians",
+          "Detroit Tigers",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23810012.jpg?w=1024&h=576&crop=1",
+      "keywords": [
+        "MLB",
+        "Guardians",
+        "Tigers",
+        "Player Props",
+        "Odds"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-24T01:14:00Z",
+      "summary": "The Cleveland Guardians are set to host the Detroit Tigers at Progressive Field on Wednesday, July 24, with the Guardians favored at -150 and the Tigers at +127. Player props are available for Jose Ramirez, Riley Greene, and Matt Vierling, among others. Ramirez has been batting .274 with a .325 OBP and a .518 SLG, while Greene has a .268/.360/.493 slash line. Vierling has slashed .254/.292/.444. The game has a total of 7.5 runs, with the Guardians favored on the run line at +148.",
+      "title": "Guardians vs. Tigers MLB player props and odds - Wednesday, July 24",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[USA](https://ftw.usatoday.com/article/guardians-vs-tigers-mlb-player-props-and-odds-wednesday-july-24)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[4]"
+    },
+    {
+      "article_url": "https://ftw.usatoday.com/article/josh-naylor-player-props-july-23-guardians-vs-tigers",
+      "article_id": "1dd978e8-5d97-5a7d-9dad-ac713f2f5120",
+      "classification": "Sports",
+      "country": "US",
+      "source_id": "USA TODAY",
+      "page_rank": 147,
+      "domain_url": "usatoday.com",
+      "eng_title": "Josh Naylor Player Props: July 23, Guardians vs. Tigers",
+      "entities": {
+        "Person": [
+          "Josh Naylor",
+          "Tyler Holton"
+        ],
+        "Organization": [],
+        "Location": [],
+        "Nationality": [],
+        "Date": [
+          "Tuesday"
+        ],
+        "Event": [],
+        "Money": [],
+        "Law": [],
+        "Quantity": [
+          "hits",
+          "total bases",
+          "three or more runs",
+          "home runs",
+          "RBI",
+          "runs"
+        ],
+        "Time": [],
+        "Sports": [
+          "Detroit Tigers",
+          "Cleveland Guardians"
+        ],
+        "Politics": [],
+        "Title": [],
+        "Number": [
+          "nine",
+          "43"
+        ],
+        "Arms": [],
+        "Product": [],
+        "Media": [],
+        "Transportation": [],
+        "Religion": [],
+        "Technology": [],
+        "Space": [],
+        "Medicine": [],
+        "Language": [],
+        "Science": []
+      },
+      "image_url": "https://ftw.usatoday.com/wp-content/uploads/sites/90/2024/07/23710335-5.jpg?w=1024&h=576&crop=1",
+      "keywords": [
+        "Josh Naylor",
+        "Cleveland Guardians",
+        "Detroit Tigers",
+        "Player Props"
+      ],
+      "language": "en",
+      "pub_date": "2024-07-23T18:24:00Z",
+      "summary": "Josh Naylor, a Cleveland Guardians player, is set to face off against Tyler Holton and the Detroit Tigers on Tuesday. Naylor has a hit in 59.6% of his games this year and has gone deep in 21.3% of his games. He has also scored at least one run 43 times this year and has driven in three or more runs in nine contests. Naylor's prop bets and odds for the game are listed, including hits, home runs, RBI, runs, and total bases.",
+      "title": "Josh Naylor Player Props: July 23, Guardians vs. Tigers",
+      "sentiment": 0,
+      "medoid_distance": null,
+      "markdown_citation": "[USA](https://ftw.usatoday.com/article/josh-naylor-player-props-july-23-guardians-vs-tigers)",
+      "provocative": "low",
+      "reporting_voice": "Unknown",
+      "as_string_key": "[5]"
+    }
+  ],
+  "timeline": [
+    "July 29, 2024: Guardians win against Tigers 8-4",
+    "July 30, 2024 14:43: Current time",
+    "July 30, 2024 18:10: Scheduled start time for Guardians vs Tigers game",
+    "July 30, 2024 (late evening): Expected game conclusion and final score recorded"
+  ],
+  "opposite_request": "Can you predict the loser for the upcoming game of Cleveland Guardians vs Detroit Tigers?",
+  "confidence": 0.0,
+  "choice": "Cleveland Guardians",
+  "llm_confidence": 6,
+  "model_used": "claude-3-5-sonnet-20240620",
+  "likelihood": "Somewhat Likely",
+  "probability": 60,
+  "web_search_results": [],
+  "summary": "The Cleveland Guardians are set to face the Detroit Tigers at Comerica Park on July 30, 2024. Both teams have had mixed performances recently, with the Guardians showing slightly better form.",
+  "key_people": [
+    "Gavin Williams (Guardians starting pitcher)",
+    "Jack Flaherty (Tigers starting pitcher)",
+    "Jose Ramirez (Guardians player)",
+    "Matt Vierling (Tigers player)"
+  ],
+  "key_facets": [
+    "Recent team performance",
+    "Starting pitchers' stats",
+    "Key players' current form",
+    "Head-to-head record",
+    "Home/away performance",
+    "Bullpen strength"
+  ],
+  "reconciled_information": "While both teams have shown inconsistent performance recently, the Guardians have a slight edge in overall team statistics and recent form. The starting pitchers for both teams have similar recent performances, making this aspect relatively neutral.",
+  "candidate_models": [
+    "Historical head-to-head performance analysis",
+    "Pitcher performance prediction models",
+    "Team offensive and defensive metrics comparison",
+    "Home/away performance statistical analysis"
+  ],
+  "unique_information": "The Guardians have performed better in day games this season, which could be a factor in this afternoon matchup.",
+  "game": "Cleveland Guardians vs Detroit Tigers",
+  "query": "Can you predict the winner for the upcoming game of Cleveland Guardians vs Detroit Tigers?",
+  "home_team": "Detroit Tigers",
+  "away_team": "Cleveland Guardians",
+  "odds_info": "Current odds from fanduel, caesars, bet365:\nDetroit Tigers: 130, 135, 135\nCleveland Guardians: -154, -161, -160\n",
+  "sport": "MLB",
+  "matchup": "Cleveland Guardians vs Detroit Tigers, 2024-07-30T13:10:00-04:00",
+  "event_uuid": "87296422-0ab3-4a02-bb2f-230981c97259",
+  "forecast_uuid": "06d2f6ff-5267-4160-9518-7d0df8e9d55b"
+}
