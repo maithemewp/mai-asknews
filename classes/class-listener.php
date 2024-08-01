@@ -130,7 +130,6 @@ class Mai_AskNews_Listener {
 				if ( $year_id ) {
 					// Set the post season.
 					$season_ids = wp_set_object_terms( $post_id, $year_id, 'season', $append = false );
-					ray( $season_ids );
 				}
 			}
 		}
