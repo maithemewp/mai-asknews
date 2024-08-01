@@ -41,10 +41,10 @@ class Mai_AskNews_Endpoints {
 	 */
 	function register_endpoint() {
 		/**
-		 * /maiasknews/v1/sports/
+		 * /maiasknews/v1/matchups/
 		 */
 		$routes = [
-			'sports' => 'handle_sports_request',
+			'matchups' => 'handle_matchups_request',
 		];
 
 		// Loop through routes and register them.
@@ -58,13 +58,13 @@ class Mai_AskNews_Endpoints {
 	}
 
 	/**
-	 * Handle the hurricane request.
+	 * Handle the matchups request.
 	 *
 	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
-	function handle_sports_request( $request ) {
+	function handle_matchups_request( $request ) {
 		$listener = new Mai_AskNews_Listener( $request->get_body() );
 	}
 

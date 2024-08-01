@@ -95,7 +95,7 @@ class Mai_AskNews_CLI {
 			$i++;
 
 			// Set data.
-			$url      = home_url( '/wp-json/maiasknews/v1/sports/' );
+			$url      = home_url( '/wp-json/maiasknews/v1/matchups/' );
 			$name     = defined( 'MAI_ASKNEWS_AUTH_UN' ) ? MAI_ASKNEWS_AUTH_UN : '';
 			$password = defined( 'MAI_ASKNEWS_AUTH_PW' ) ? MAI_ASKNEWS_AUTH_PW : '';
 
