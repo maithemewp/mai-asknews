@@ -97,12 +97,31 @@ class Mai_AskNews_Listener {
 		// 	]
 		// );
 
+		// Set team vars.
+		$home_team = $away_team = '';
+
+		// Set home team.
+		if ( isset( $this->body['home_team_name'] ) ) {
+			$home_team = $this->body['home_team_name'];
+		} elseif ( isset( $this->body['home_team'] ) ) {
+			$home_team = explode( ' ', $this->body['home_team'] );
+			$home_team = end( $home_team );
+		}
+
+		// Set away team.
+		if ( isset( $this->body['away_team_name'] ) ) {
+			$away_team = $this->body['away_team_name'];
+		} elseif ( isset( $this->body['away_team'] ) ) {
+			$away_team = explode( ' ', $this->body['away_team'] );
+			$away_team = end( $away_team );
+		}
+
 		// Get categories. This will create them if they don't exist.
 		$category_id  = $this->get_term( $this->body['sport'], 'category' );
 		$category_ids = [
 			$category_id,
-			$this->get_term( $this->body['home_team'], 'category', $category_id ),
-			$this->get_term( $this->body['away_team'], 'category', $category_id ),
+			$home_team ? $this->get_term( $home_team, 'category', $category_id ) : '',
+			$away_team ? $this->get_term( $away_team, 'category', $category_id ) : '',
 		];
 
 		// Remove empty categories.
