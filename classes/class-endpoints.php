@@ -52,7 +52,9 @@ class Mai_AskNews_Endpoints {
 			register_rest_route( 'maiasknews/v1', $path, [
 				'methods'             => 'POST', // I think the testing CLI needs PUT. The API does check for auth cookies and nonces when you make POST or PUT requests, but not GET requests.
 				'callback'            => [ $this, $callback ],
-				'permission_callback' => current_user_can( 'edit_posts' ),
+				'permission_callback' => function () {
+					return current_user_can( 'edit_posts' );
+				}
 			] );
 		}
 	}
