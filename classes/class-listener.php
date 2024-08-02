@@ -98,7 +98,7 @@ class Mai_AskNews_Listener {
 		// );
 
 		// Set team vars.
-		$home_team = $away_team = '';
+		$home_team = $away_team = null;
 
 		// Set home team.
 		if ( isset( $this->body['home_team_name'] ) ) {
@@ -133,24 +133,30 @@ class Mai_AskNews_Listener {
 			wp_set_object_terms( $post_id, $category_ids, 'category', $append = false );
 		}
 
-		// TODO: Check for season in JSON, if we can get it added.
+		// Start season va.
+		$season_id = null;
 
-		// If we have a datetime.
-		if ( $datetime ) {
+		// Check season.
+		if ( isset( $this->body['season'] ) ) {
+			// Get or create the season term.
+			$season_id = $this->get_term( $this->body['season'], 'season' );
+		}
+		// No seasons, use datetime.
+		elseif ( $datetime ) {
 			// Get year from event date.
 			$year = wp_date( 'Y', strtotime( $datetime ) );
 
 			// If we have a year.
 			if ( $year ) {
 				// Get or create the year term.
-				$year_id = $this->get_term( $year, 'season' );
-
-				// If we have a year term.
-				if ( $year_id ) {
-					// Set the post season.
-					$season_ids = wp_set_object_terms( $post_id, $year_id, 'season', $append = false );
-				}
+				$season_id = $this->get_term( $year, 'season' );
 			}
+		}
+
+		// If we have a season term.
+		if ( $season_id ) {
+			// Set the post season.
+			wp_set_object_terms( $post_id, $season_id, 'season', $append = false );
 		}
 
 		// Check for other posts about this event.
