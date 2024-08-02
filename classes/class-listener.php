@@ -13,6 +13,7 @@ use Alley\WP\Block_Converter\Block_Converter;
 
 class Mai_AskNews_Listener {
 	protected $body;
+	protected $return;
 
 	/**
 	 * Construct the class.
@@ -30,6 +31,12 @@ class Mai_AskNews_Listener {
 	 * @return void
 	 */
 	function run() {
+		// If user cannot edit posts.
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			$this->return = $this->get_error( 'User cannot edit posts.' );
+			return;
+		}
+
 		// Prevent post_modified update.
 		add_filter( 'wp_insert_post_data', [ $this, 'prevent_post_modified_update' ], 10, 4 );
 
@@ -37,7 +44,7 @@ class Mai_AskNews_Listener {
 		$update = false;
 
 		// Get title and event date.
-		list( $title, $datetime ) = explode( ',', $this->body['matchup'] );
+		list( $title, $datetime ) = explode( ',', $this->body['matchup'], 2 );
 
 		// Set default post args.
 		$post_args = [
@@ -80,13 +87,16 @@ class Mai_AskNews_Listener {
 		// Insert or update the post.
 		$post_id = wp_insert_post( $post_args );
 
-		// Bail if we don't have a post ID or there was an error.
-		if ( ! $post_id || is_wp_error( $post_id ) ) {
-			if ( is_wp_error( $post_id ) ) {
-				return $this->send_json_error( $post_id->get_error_message(), $post_id->get_error_code() );
-			}
+		// Bail if there was an error.
+		if ( is_wp_error( $post_id ) ) {
+			$this->return = $post_id;
+			return;
+		}
 
-			return $this->send_json_error( 'Failed during wp_insert_post()' );
+		// If no post ID, send error.
+		if ( ! $post_id ) {
+			$this->return = $this->get_error( 'Failed during wp_insert_post()' );
+			return;
 		}
 
 		// // Set post content. This runs after so we can attach images to the post ID.
@@ -194,8 +204,9 @@ class Mai_AskNews_Listener {
 		// Remove post_modified update filter.
 		remove_filter( 'wp_insert_post_data', [ $this, 'prevent_post_modified_update' ], 10, 4 );
 
-		$text = $update ? ' updated successfully' : ' imported successfully';
-		return $this->send_json_success( get_permalink( $post_id ) . $text );
+		$text         = $update ? ' updated successfully' : ' imported successfully';
+		$this->return = $this->get_success( get_permalink( $post_id ) . $text );
+		return;
 	}
 
 	/**
@@ -243,10 +254,13 @@ class Mai_AskNews_Listener {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @return JSON|void
+	 * @param string $message The error message.
+	 * @param int    $code    The error code.
+	 *
+	 * @return
 	 */
-	function send_json_error( $message, $code = null ) {
-		return wp_send_json_error( $message, $code );
+	function get_error( $message, $code = null ) {
+		return new WP_Error( 'mai-asknews error', $message, [ 'status' => $code ] );
 	}
 
 	/**
@@ -254,10 +268,30 @@ class Mai_AskNews_Listener {
 	 *
 	 * @since 0.1.0
 	 *
+	 * @param string $message The success message.
+	 *
 	 * @return JSON|void
 	 */
-	function send_json_success( $message, $code = null ) {
-		return wp_send_json_success( $message, $code );
+	function get_success( $message ) {
+		return $message;
+	}
+
+	/**
+	 * Get the response.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return WP_REST_Response
+	 */
+	function get_response() {
+		if ( is_wp_error( $this->return ) ) {
+			$response = $this->return;
+		} else {
+			$response = new WP_REST_Response( $this->return );
+			$response->set_status( 200 );
+		}
+
+		return rest_ensure_response( $response );
 	}
 
 	/**

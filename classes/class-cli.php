@@ -147,10 +147,11 @@ class Mai_AskNews_CLI {
 			else {
 				// Decode the response body.
 				$code = wp_remote_retrieve_response_code( $response );
-				$body = json_decode( wp_remote_retrieve_body( $response ), true );
+				$body = wp_remote_retrieve_body( $response );
+				$body = json_decode( $body, true );
 
-				// Log the response.
-				WP_CLI::log( $code . ' : ' . $body['data'] );
+				// If success.
+				WP_CLI::log( $code . ' : ' . $body );
 			}
 		}
 
