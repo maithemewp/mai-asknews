@@ -11,15 +11,17 @@ use Alley\WP\Block_Converter\Block_Converter;
 // 	dump( $meta );
 // });
 
-class Mai_AskNews_Listener {
+class Mai_AskNews_Insights_Listener {
 	protected $body;
+	protected $run;
 	protected $return;
 
 	/**
 	 * Construct the class.
 	 */
-	function __construct( $body ) {
+	function __construct( $body, $run = true ) {
 		$this->body = is_string( $body ) ? json_decode( $body, true ) : $body;
+		$this->run  = $run;
 		$this->run();
 	}
 
@@ -31,8 +33,8 @@ class Mai_AskNews_Listener {
 	 * @return void
 	 */
 	function run() {
-		// If user cannot edit posts.
-		if ( ! current_user_can( 'edit_posts' ) ) {
+		// If not running.
+		if ( ! $this->run ) {
 			$this->return = $this->get_error( 'User cannot edit posts.' );
 			return;
 		}
@@ -40,30 +42,101 @@ class Mai_AskNews_Listener {
 		// Prevent post_modified update.
 		add_filter( 'wp_insert_post_data', [ $this, 'prevent_post_modified_update' ], 10, 4 );
 
-		// Start update as false.
+		// Set the update flag.
 		$update = false;
 
 		// Get title and event date.
-		list( $title, $datetime ) = explode( ',', $this->body['matchup'], 2 );
+		list( $matchup_title, $matchup_datetime ) = explode( ',', $this->body['matchup'], 2 );
+		$matchup_title = $this->body['game'];
+
+		/****************************************************
+		 * Step 1 - Get the matchup post ID.
+		 *
+		 * Check for an existing matchup.
+		 * If no matchup, create one.
+		 * Set matchup ID.
+		 ****************************************************/
+
+		// Check for an existing matchup.
+		$matchup_ids = get_posts(
+			[
+				'post_type'    => 'matchup',
+				'post_status'  => 'any',
+				'meta_key'     => 'event_uuid',
+				'meta_value'   => $this->body['event_uuid'],
+				'meta_compare' => '=',
+				'fields'       => 'ids',
+				'numberposts'  => 1,
+			]
+		);
+
+		// If no matchup, create one.
+		if ( ! $matchup_ids ) {
+			$matchup_args = [
+				'post_type'   => 'matchup',
+				'post_status' => 'publish',
+				'post_title'  => $matchup_title,
+				'meta_input'  => [
+					'event_uuid' => $this->body['event_uuid'],              // The id of this specific event.
+					'event_date' => $this->get_date( $matchup_datetime ),   // The event date, formatted for WP.
+				],
+			];
+
+			// Insert the matchup post.
+			$matchup_id = wp_insert_post( $matchup_args );
+
+			// If no post ID, send error.
+			if ( ! $matchup_id ) {
+				$this->return = $this->get_error( 'Failed during wp_insert_post()' );
+				return;
+			}
+
+			// Bail if there was an error.
+			if ( is_wp_error( $matchup_id ) ) {
+				$this->return = $matchup_id;
+				return;
+			}
+		}
+		// Existing matchup, get post ID.
+		else {
+			$matchup_id = $matchup_ids[0];
+		}
+
+		/****************************************************
+		 * Step 2 - Create or update the insight post.
+		 *
+		 * Builds the new insight post args.
+		 * Check for existing insight to update.
+		 * Creates or updates the insight.
+		 * Set the matchup post ID as post meta.
+		 * Set the team and season taxonomy terms.
+		 ****************************************************/
+
+		// Get existing insights.
+		$insights     = (array) get_post_meta( $matchup_id, 'event_forecasts', true );
+		$insights     = array_filter( $insights );
+		$insights     = array_unique( $insights );
+		$update_count = count( $insights );
+		$update_count = max( 1, $update_count );
 
 		// Set default post args.
-		$post_args = [
-			'post_type'    => 'post',
+		$insight_args = [
+			'post_type'    => 'insight',
 			'post_status'  => 'draft',
-			'post_title'   => $title,
+			'post_title'   => sprintf( '%s (%s #%s)', $matchup_title, __( 'Update', 'mai-asknews' ), $update_count ),
 			'post_excerpt' => $this->body['summary'],
 			'meta_input'   => [
-				'asknews_body'  => $this->body,   // The full body for reference.
-				'forecast_uuid' => $this->body['forecast_uuid'],     // The id of this specific forecast.
-				'event_uuid'    => $this->body['event_uuid'],        // The id of the event, if this is a post to update.
-				'event_date'    => $this->get_date( $datetime ),     // The event date, formatted for WP.
+				'asknews_body'  => $this->body,                    // The full body for reference.
+				'forecast_uuid' => $this->body['forecast_uuid'],   // The id of this specific forecast.
+				'event_uuid'    => $this->body['event_uuid'],      // The id of the event, if this is a post to update.
+				'matchup_id'    => $matchup_id,                    // The id of the related matchup.
 			],
 		];
 
-		// Check for an existing post.
-		$forecast_ids = get_posts(
+		// Check for an existing insights. This is mostly for reprocessing posts via CLI.
+		$insight_ids = get_posts(
 			[
-				'post_type'    => 'post',
+				'post_type'    => 'insight',
 				'post_status'  => 'any',
 				'meta_key'     => 'forecast_uuid',
 				'meta_value'   => $this->body['forecast_uuid'],
@@ -74,38 +147,44 @@ class Mai_AskNews_Listener {
 		);
 
 		// If we have an existing post, update it.
-		if ( $forecast_ids ) {
-			$update                   = true;
-			$post_args['ID']          = $forecast_ids[0];
-			$post_args['post_status'] = get_post_status( $forecast_ids[0] );
+		if ( $insight_ids ) {
+			$update                      = true;
+			$insight_args['ID']          = $insight_ids[0];
+			$insight_args['post_status'] = get_post_status( $insight_ids[0] );
 		}
 		// New post, set slug.
 		else {
-			$post_args['post_name'] = sanitize_title( $title ) . ' ' . wp_date( 'Y-m-d', strtotime( $datetime ) );
+			$insight_args['post_name'] = sanitize_title( $matchup_title ) . ' ' . wp_date( 'Y-m-d', strtotime( $matchup_datetime ) );
 		}
 
 		// Insert or update the post.
-		$post_id = wp_insert_post( $post_args );
+		$insight_id = wp_insert_post( $insight_args );
 
 		// Bail if there was an error.
-		if ( is_wp_error( $post_id ) ) {
-			$this->return = $post_id;
+		if ( is_wp_error( $insight_id ) ) {
+			$this->return = $insight_id;
 			return;
 		}
 
 		// If no post ID, send error.
-		if ( ! $post_id ) {
-			$this->return = $this->get_error( 'Failed during wp_insert_post()' );
+		if ( ! $insight_id ) {
+			$this->return = $this->get_error( 'Failed during insight wp_insert_post()' );
 			return;
 		}
 
 		// // Set post content. This runs after so we can attach images to the post ID.
 		// $updated_id = wp_update_post(
 		// 	[
-		// 		'ID'           => $post_id,
+		// 		'ID'           => $insight_id,
 		// 		'post_content' => $this->handle_content( $content ),
 		// 	]
 		// );
+
+		/****************************************************
+		 * Step 3 - Set the insight custom taxonomy terms.
+		 *
+		 * Set the team and season taxonomy terms.
+		 ****************************************************/
 
 		// Set team vars.
 		$home_team = $away_team = null;
@@ -126,21 +205,21 @@ class Mai_AskNews_Listener {
 			$away_team = end( $away_team );
 		}
 
-		// Get categories. This will create them if they don't exist.
-		$category_id  = $this->get_term( $this->body['sport'], 'category' );
-		$category_ids = [
-			$category_id,
-			$home_team ? $this->get_term( $home_team, 'category', $category_id ) : '',
-			$away_team ? $this->get_term( $away_team, 'category', $category_id ) : '',
+		// Get teams. This will create them if they don't exist.
+		$team_id  = $this->get_term( $this->body['sport'], 'team' );
+		$team_ids = [
+			$team_id,
+			$home_team ? $this->get_term( $home_team, 'team', $team_id ) : '',
+			$away_team ? $this->get_term( $away_team, 'team', $team_id ) : '',
 		];
 
 		// Remove empty categories.
-		$category_ids = array_filter( $category_ids );
+		$team_ids = array_filter( $team_ids );
 
 		// If we have categories.
-		if ( $category_ids ) {
+		if ( $team_ids ) {
 			// Set the post categories.
-			wp_set_object_terms( $post_id, $category_ids, 'category', $append = false );
+			wp_set_object_terms( $insight_id, $team_ids, 'team', $append = false );
 		}
 
 		// Start season va.
@@ -152,9 +231,9 @@ class Mai_AskNews_Listener {
 			$season_id = $this->get_term( $this->body['season'], 'season' );
 		}
 		// No seasons, use datetime.
-		elseif ( $datetime ) {
+		elseif ( $matchup_datetime ) {
 			// Get year from event date.
-			$year = wp_date( 'Y', strtotime( $datetime ) );
+			$year = wp_date( 'Y', strtotime( $matchup_datetime ) );
 
 			// If we have a year.
 			if ( $year ) {
@@ -166,46 +245,30 @@ class Mai_AskNews_Listener {
 		// If we have a season term.
 		if ( $season_id ) {
 			// Set the post season.
-			wp_set_object_terms( $post_id, $season_id, 'season', $append = false );
+			wp_set_object_terms( $insight_id, $season_id, 'season', $append = false );
 		}
 
-		// Check for other posts about this event.
-		$related_ids = get_posts(
-			[
-				'post_type'    => 'post',
-				'post_status'  => 'any',
-				'meta_key'     => 'event_uuid',
-				'meta_value'   => $this->body['event_uuid'],
-				'meta_compare' => '=',
-				'fields'       => 'ids',
-				'numberposts'  => 100,
-			]
-		);
+		/****************************************************
+		 * Step 4 - Set the matchup/event post meta.
+		 *
+		 * Gets the existing matchup insights,
+		 * adds the new insight,
+		 * updates post meta with the new array.
+		 ****************************************************/
 
-		// If we have existing posts, update the related.
-		if ( $related_ids ) {
-			$related_ids[] = $post_id;
+		// Add the new insight to the matchup's existing insights.
+		$insights[] = $insight_id;
+		$insights   = array_filter( $insights );
+		$insights   = array_unique( $insights );
 
-			// Update the related posts.
-			foreach( $related_ids as $related_id ) {
-				// Remove the current post from the forecast ids array.
-				$to_update = array_diff( $related_ids, [ $related_id ] );
-
-				// Skip if no other posts.
-				if ( ! $to_update ) {
-					continue;
-				}
-
-				// Update post meta.
-				update_post_meta( $related_id, 'event_forecasts', $to_update );
-			}
-		}
+		// Update matchups.
+		update_post_meta( $matchup_id, 'event_forecasts', $insights );
 
 		// Remove post_modified update filter.
 		remove_filter( 'wp_insert_post_data', [ $this, 'prevent_post_modified_update' ], 10, 4 );
 
 		$text         = $update ? ' updated successfully' : ' imported successfully';
-		$this->return = $this->get_success( get_permalink( $post_id ) . $text );
+		$this->return = $this->get_success( get_permalink( $insight_id ) . $text );
 		return;
 	}
 

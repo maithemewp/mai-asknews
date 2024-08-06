@@ -65,7 +65,7 @@ class Mai_AskNews_Endpoints {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	function handle_matchups_request( $request ) {
-		$listener = new Mai_AskNews_Listener( $request->get_body() );
+		$listener = new Mai_AskNews_Insights_Listener( $request->get_body(), current_user_can( 'edit_posts' ) );
 		$response = $listener->get_response();
 
 		return $response;
