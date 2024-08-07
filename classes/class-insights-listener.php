@@ -112,18 +112,11 @@ class Mai_AskNews_Insights_Listener {
 		 * Set the team and season taxonomy terms.
 		 ****************************************************/
 
-		// Get existing insights.
-		$insights     = (array) get_post_meta( $matchup_id, 'event_forecasts', true );
-		$insights     = array_filter( $insights );
-		$insights     = array_unique( $insights );
-		$update_count = count( $insights );
-		$update_count = max( 1, $update_count );
-
 		// Set default post args.
 		$insight_args = [
 			'post_type'    => 'insight',
 			'post_status'  => 'draft',
-			'post_title'   => sprintf( '%s (%s #%s)', $matchup_title, __( 'Update', 'mai-asknews' ), $update_count ),
+			'post_title'   => $matchup_title, // Updated later with update number.
 			'post_excerpt' => $this->body['summary'],
 			'meta_input'   => [
 				'asknews_body'  => $this->body,                    // The full body for reference.
@@ -145,6 +138,13 @@ class Mai_AskNews_Insights_Listener {
 				'numberposts'  => 1,
 			]
 		);
+
+		// Set post date.
+		if ( isset( $this->body['date'] ) && $this->body['date'] ) {
+			$post_date                     = $this->get_date( $this->body['date'] );
+			$insight_args['post_date']     = $post_date;
+			$insight_args['post_date_gmt'] = get_gmt_from_date( $post_date );
+		}
 
 		// If we have an existing post, update it.
 		if ( $insight_ids ) {
@@ -171,6 +171,36 @@ class Mai_AskNews_Insights_Listener {
 			$this->return = $this->get_error( 'Failed during insight wp_insert_post()' );
 			return;
 		}
+
+		// Gets all insights, sorted by date.
+		$insights = get_posts(
+			[
+				'post_type'    => 'insight',
+				'post_status'  => 'any',
+				'meta_key'     => 'event_uuid',
+				'meta_value'   => $this->body['event_uuid'],
+				'meta_compare' => '=',
+				'fields'       => 'ids',
+			]
+		);
+
+		// Update matchup with these insights.
+		update_post_meta( $matchup_id, 'event_forecasts', $insights );
+
+		// Get index of current insight in this list.
+		$current_index = array_search( $insight_id, $insights );
+
+		// Updated title.
+		$updated_title = sprintf( '%s (%s #%s)', $matchup_title, __( 'Update', 'mai-asknews' ), $current_index + 1 );
+
+		// Update post title with index.
+		wp_update_post(
+			[
+				'ID'         => $insight_id,
+				'post_title' => $updated_title,
+				'post_name'  => sanitize_title_with_dashes( $updated_title ),
+			]
+		);
 
 		// // Set post content. This runs after so we can attach images to the post ID.
 		// $updated_id = wp_update_post(
@@ -256,13 +286,13 @@ class Mai_AskNews_Insights_Listener {
 		 * updates post meta with the new array.
 		 ****************************************************/
 
-		// Add the new insight to the matchup's existing insights.
-		$insights[] = $insight_id;
-		$insights   = array_filter( $insights );
-		$insights   = array_unique( $insights );
+		// // Add the new insight to the matchup's existing insights.
+		// $insights[] = $insight_id;
+		// $insights   = array_filter( $insights );
+		// $insights   = array_unique( $insights );
 
-		// Update matchups.
-		update_post_meta( $matchup_id, 'event_forecasts', $insights );
+		// // Update matchups.
+		// update_post_meta( $matchup_id, 'event_forecasts', $insights );
 
 		// Remove post_modified update filter.
 		remove_filter( 'wp_insert_post_data', [ $this, 'prevent_post_modified_update' ], 10, 4 );
@@ -304,12 +334,23 @@ class Mai_AskNews_Insights_Listener {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param string $date_time Any date string that works with `strtotime()`.
+	 * @param string $value Any date string.
 	 *
 	 * @return string
 	 */
-	function get_date( $date_time ) {
-		return wp_date( 'Y-m-d H:i:s', strtotime( $date_time ) );
+	function get_date( $value ) {
+		// Check if the value is already in 'Y-m-d H:i:s' format.
+		if ( is_string( $value ) && false !== strtotime( $value ) && $value === date( 'Y-m-d H:i:s', strtotime( $value ) ) ) {
+			return $value;
+		}
+
+		// If it's not numeric, likely not a timestamp.
+		if ( ! is_numeric( $value ) ) {
+			$value = strtotime( $value );
+		}
+
+		// Format the date.
+		return wp_date( 'Y-m-d H:i:s', $value );
 	}
 
 	/**

@@ -52,8 +52,9 @@ class Mai_AskNews_Display {
 		add_action( 'genesis_entry_content', [ $this, 'do_content' ], 12 );
 		add_action( 'genesis_entry_content', [ $this, 'do_people' ], 12 );
 		add_action( 'genesis_entry_content', [ $this, 'do_timeline' ], 12 );
-		add_action( 'genesis_entry_content', [ $this, 'do_sources' ], 12 );
+		add_action( 'genesis_entry_content', [ $this, 'do_related' ], 12 );
 		add_action( 'genesis_entry_content', [ $this, 'do_web' ], 12 );
+		add_action( 'genesis_entry_content', [ $this, 'do_sources' ], 12 );
 	}
 
 	/**
@@ -109,12 +110,21 @@ class Mai_AskNews_Display {
 		echo '<ul>';
 
 		foreach ( $people as $person ) {
+			// Early versions were a string of the person's name.
 			if ( is_string( $person ) ) {
 				printf( '<li>%s</li>', $person );
 			}
-			// TODO: When they send arrays/dicts.
+			// We should be getting dict/array now.
 			else {
-				// ray( $person );
+				$info = [
+					isset( $person['name'] ) ? sprintf( '<strong>%s</strong>', $person['name'] ) : '',
+					// isset( $person['role'] ) ? sprintf( '<em>%s</em>', $person['role'] ) : '',
+					isset( $person['role'] ) ? $person['role'] : '',
+				];
+
+				echo '<li>';
+					echo implode( ' - ', $info );
+				echo '</li>';
 			}
 		}
 
@@ -140,6 +150,163 @@ class Mai_AskNews_Display {
 
 		foreach ( $timeline as $event ) {
 			printf( '<li>%s</li>', $event );
+		}
+
+		echo '</ul>';
+	}
+
+	/**
+	 * Display the related insights.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function do_related() {
+		$matchup_ids = get_posts(
+			[
+				'post_type'    => 'matchup',
+				'post_status'  => 'publish',
+				'meta_key'     => 'event_uuid',
+				'meta_value'   => $this->get_data( 'event_uuid' ),
+				'meta_compare' => '=',
+				'fields'       => 'ids',
+				'numberposts'  => 1,
+			]
+		);
+
+		if ( ! $matchup_ids ) {
+			return;
+		}
+
+		// Get insights about this event.
+		$matchup_id  = $matchup_ids[0];
+		$insight_ids = get_post_meta( $matchup_id, 'event_forecasts', true );
+		$insight_ids = array_map( 'intval', $insight_ids );
+
+		// Remove the current post ID.
+		// $insight_ids = array_diff( $insight_ids, [ get_the_ID() ] );
+
+		// Bail if no insights.
+		if ( ! $insight_ids ) {
+			return;
+		}
+
+		// Bail if only 1 insight, and it's the current post.
+		if ( 1 === count( $insight_ids ) && get_the_ID() === $insight_ids[0] ) {
+			return;
+		}
+
+		printf( '<h2>%s</h2>', __( 'Latest Updates', 'mai-asknews' ) );
+		?>
+		<style>
+		.pm-related {
+			--entry-title-font-size: var(--font-size-xl);
+			--link-color: var(--color-heading);
+		}
+		</style>
+		<?php
+
+		echo '<ul class="pm-related">';
+			foreach ( $insight_ids as $insight_id ) {
+				$current = get_the_ID() === $insight_id;
+				$insight = get_post( $insight_id );
+
+				if ( ! $insight ) {
+					continue;
+				}
+
+				$permalink = get_permalink( $insight_id );
+				$title     = get_the_title( $insight_id );
+
+				echo '<li class="pm-related__item">';
+					echo '<p class="is-style-heading">';
+					if ( ! $current ) {
+						printf( '<a href="%s">', $permalink );
+					} else {
+						echo __( 'Current: ', 'mai-asknews' );
+					}
+						echo $title;
+					if ( ! $current ) {
+						echo '</a>';
+					}
+					echo '</p>';
+				echo '</li>';
+			}
+		echo '</ul>';
+	}
+
+	/**
+	 * Display the web search results.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function do_web() {
+		$web = $this->get_data( 'web_search_results' );
+
+		if ( ! $web ) {
+			return;
+		}
+
+		?>
+		<style>
+			.pm-results {
+				--heading-margin-bottom: var(--spacing-xs);
+				--entry-title-font-size: var(--font-size-lg);
+				display: grid;
+				gap: var(--spacing-xxl);
+				list-style-type: none;
+				margin: 0 0 var(--spacing-xxl);
+			}
+
+			.pm-result {
+				margin: 0;
+			}
+
+			.pm-result__source {
+				margin-bottom: var(--spacing-xxxs);
+				font-size: var(--font-size-sm);
+				opacity: 0.6;
+			}
+		</style>
+		<?php
+
+		printf( '<h2 class="has-xs-margin-bottom">%s</h2>', __( 'Around the Web', 'mai-asknews' ) );
+		echo '<ul class="pm-results">';
+
+		foreach ( $web as $item ) {
+			$url        = $this->get_key( 'url', $item );
+			$name       = $this->get_key( 'source', $item );
+			$name       = 'unknown' === strtolower( $name ) ? '' : $name;
+			$parsed_url = wp_parse_url( $url );
+			$host       = $name ?: $parsed_url['host'];
+			$host       = str_replace( 'www.', '', $host );
+			$host       = $host ? 'mlb.com' === strtolower( $host ) ? 'MLB.com' : $host : '';
+			$host       = $host ? sprintf( '<a href="%s" target="_blank">%s</a>', $url, $host ) : '';
+			$title      = $this->get_key( 'title', $item );
+			$date       = $this->get_key( 'published', $item );
+			$date       = $date ? date_i18n( get_option( 'date_format' ), strtotime( $date ) ) : '';
+			$meta       = sprintf( '%s %s %s', $date, __( 'via', 'mai-asknews' ), $host );
+			$meta       = trim( $meta );
+			$points     = $this->get_key( 'key_points', $item );
+
+			echo '<li class="pm-result">';
+				echo '<h3 class="entry-title">';
+					echo $title;
+				echo '</h3>';
+				echo '<div class="pm-result__source">';
+					echo $meta;
+				echo '</div>';
+				echo '<ul>';
+				foreach ( $points as $point ) {
+					echo '<li>';
+						echo $point;
+					echo '</li>';
+				}
+				echo '</ul>';
+			echo '</li>';
 		}
 
 		echo '</ul>';
@@ -174,17 +341,32 @@ class Mai_AskNews_Display {
 				margin: 0;
 			}
 
-			.pm-source__name {
-				margin-bottom: var(--spacing-xs);
-				font-size: var(--font-size-xs);
-				text-transform: uppercase;
-				opacity: 0.6;
+			.pm-source__image {
+				position: relative;
+				float: right;
+				width: clamp(80px, 33.3333%, 200px);
+				margin: 0 0 var(--spacing-sm) var(--spacing-sm);
+				aspect-ratio: 16/9;
+				background: var(--color-alt);
+				overflow: hidden;
 			}
 
-			.pm-source__image {
-				float: right;
-				max-width: max(80px, 25%);
-				margin: 0 0 var(--spacing-sm) var(--spacing-sm);
+			.pm-source__image-bg {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				z-index: 1;
+				filter: blur(6px) brightness(150%);
+			}
+
+			.pm-source__image-img {
+				position: relative;
+				object-fit: contain;
+				width: 100%;
+				height: 100%;
+				z-index: 2;
 			}
 
 			.pm-source__meta {
@@ -195,37 +377,28 @@ class Mai_AskNews_Display {
 				opacity: 0.6;
 			}
 
-			@media only screen and (min-width: 800px) {
-				.pm-source {
-					display: grid;
-					gap: var(--spacing-lg);
-					grid-template-columns: 100px 1fr;
-					margin: 0;
-				}
-
-				.pm-source__name {
-					margin-top: var(--spacing-xxs);
-				}
-			}
-
-			.pm-results {
-				margin-bottom: var(--spacing-xxl);
+			.pm-source__summary {
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
 			}
 		</style>
 		<?php
 
-		printf( '<p id="sources" class="has-lg-margin-top has-xs-margin-bottom"><strong>%s</strong></p>', __( 'Sources', 'mai-asknews' ) );
+		printf( '<h2 id="sources" class="has-xs-margin-bottom">%s</h2>', __( 'Sources', 'mai-asknews' ) );
 		echo '<ul class="pm-sources">';
 
 			foreach ( $sources as $source ) {
 				$url        = $this->get_key( 'article_url', $source );
 				$host       = $this->get_key( 'domain_url', $source );
+				$name       = $this->get_key( 'source_id', $source );
 				$parsed_url = wp_parse_url( $url );
 				$base_url   = $parsed_url['scheme'] . '://' . $parsed_url['host'];
-				$host       = $parsed_url['host'];
+				$host       = $name ?: $parsed_url['host'];
 				$host       = str_replace( 'www.', '', $host );
-				$host       = $host ? sprintf( '<a href="%s" target="_blank">%s</a>', $host, $host ) : '';
-				$name       = $this->get_key( 'source_id', $source );
+				$host       = $host ? 'mlb.com' === strtolower( $host ) ? 'MLB.com' : $host : '';
+				$host       = $host ? sprintf( '<a href="%s" target="_blank">%s</a>', $url, $host ) : '';
 				$date       = $this->get_key( 'pub_date', $source );
 				$date       = $date ? date_i18n( get_option( 'date_format' ), strtotime( $date ) ) : '';
 				$title      = $this->get_key( 'eng_title', $source );
@@ -235,57 +408,45 @@ class Mai_AskNews_Display {
 				$meta       = trim( $meta );
 
 				echo '<li class="pm-source">';
-				echo '<div class="pm-source__name">';
-					echo $name;
-				echo '</div>';
-				echo '<div class="pm-source__content">';
-						echo '<div class="pm-source__image">';
-							if ( $image_url ) {
-								printf( '<a href="%s" title="%s" target="_blank"><img src="%s" alt="%s" /></a>', $url, $title, $image_url, $title );
-							}
-						echo '</div>';
-						echo '<h3 class="pm-source__title entry-title">';
-							printf( '<a class="entry-title-link" href="%s" target="_blank">%s</a>', $url, $title );
-						echo '</h3>';
-						echo '<p class="pm-source__meta">';
-							echo $meta;
-						echo '</p>';
-						echo '<p class="pm-source__summary">';
-							echo $summary;
-						echo '</p>';
+					echo '<figure class="pm-source__image">';
+						if ( $image_url ) {
+							printf( '<img class="pm-source__image-bg" src="%s" alt="%s" />', $image_url, $title );
+							printf( '<img class="pm-source__image-img" src="%s" alt="%s" />', $image_url, $title );
+						}
+					echo '</figure>';
+					echo '<h3 class="pm-source__title entry-title">';
+						echo $title;
+					echo '</h3>';
+					echo '<p class="pm-source__meta">';
+						echo $meta;
+					echo '</p>';
+					// echo '<label class="pm-source__more">';
+					// 	echo '<input type="checkbox" id="toggle">';
+					// 	echo '<span class="pm-source__more-text">';
+					// 		echo __( 'More', 'mai-asknews' );
+					// 	echo '</span>';
+					// echo '</label>';
+					echo '<p class="pm-source__summary">';
+						echo $summary;
+					echo '</p>';
 				echo '</li>';
 			}
 
 		echo '</ul>';
-
-		// printf( '<pre>%s</pre>', print_r( $source, true ) );
 	}
 
-	function do_web() {
-		$web = $this->get_data( 'web_search_results' );
-
-		if ( ! $web ) {
-			return;
-		}
-
-		printf( '<p class="has-lg-margin-top has-xs-margin-bottom"><strong>%s</strong></p>', __( 'Around the Web (Coming Soon)', 'mai-asknews' ) );
-		echo '<ul class="pm-results">';
-
-		foreach ( $web as $item ) {
-			$url    = $this->get_key( 'url', $item );
-			$name   = $this->get_key( 'source', $item );
-			$title  = $this->get_key( 'title', $item );
-			$date   = $this->get_key( 'published', $item );
-			$points = $this->get_key( 'points', $item );
-
-			printf( '<li><a class="entry-title-link" href="%s" target="_blank">%s</a></li>', $url, $title );
-		}
-
-		echo '</ul>';
-	}
-
-	function get_key( $key, $source ) {
-		return isset( $source[ $key ] ) ? $source[ $key ] : '';
+	/**
+	 * Get the source data by key.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string $key    The data key.
+	 * @param array  $array  The data array.
+	 *
+	 * @return mixed
+	 */
+	function get_key( $key, $array ) {
+		return isset( $array[ $key ] ) ? $array[ $key ] : '';
 	}
 
 	/**

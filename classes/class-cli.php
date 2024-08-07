@@ -39,8 +39,7 @@ class Mai_AskNews_CLI {
 	/**
 	 * Updates posts from stored AskNews data.
 	 *
-	 * Usage: wp maiasknews migrate_posts --post_type=post --posts_per_page=10 --offset=0
-	 * Usage: wp maiasknews migrate_posts --post_type=post --cat=6 --posts_per_page=10 --offset=0
+	 * Usage: wp maiasknews update_insights --posts_per_page=10 --offset=0
 	 *
 	 * @since 0.1.0
 	 *
@@ -54,66 +53,7 @@ class Mai_AskNews_CLI {
 		$assoc_args = wp_parse_args(
 			$assoc_args,
 			[
-				'post_type'              => 'post',
-				'post_status'            => 'any',
-				'posts_per_page'         => 10,
-				'offset'                 => 0,
-				'no_found_rows'          => true,
-				'update_post_meta_cache' => false,
-				'update_post_term_cache' => false,
-			]
-		);
-
-		// Get posts.
-		$query = new WP_Query( $assoc_args );
-
-		// If we have posts.
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) : $query->the_post();
-				$asknews_body = get_post_meta( get_the_ID(), 'asknews_body', true );
-
-				if ( ! $asknews_body ) {
-					WP_CLI::log( 'No AskNews data found for post ID: ' . get_the_ID() . ' ' . get_permalink() );
-					continue;
-				}
-
-				$listener = new Mai_AskNews_Insights_Listener( $asknews_body );
-				$response = $listener->get_response();
-
-				if ( is_wp_error( $response ) ) {
-					WP_CLI::log( 'Error: ' . $response->get_error_message() );
-				} else {
-					WP_CLI::log( 'Success: ' . $response->get_data() );
-				}
-
-			endwhile;
-		} else {
-			WP_CLI::log( 'No posts found.' );
-		}
-
-		wp_reset_postdata();
-
-		WP_CLI::success( 'Done.' );
-	}
-
-	/**
-	 * Migrates posts to matchups/insights from stored AskNews data.
-	 *
-	 * Usage: wp maiasknews migrate_posts --post_type=post --posts_per_page=10
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param array $args       Standard command args.
-	 * @param array $assoc_args Keyed args like --posts_per_page and --offset.
-	 *
-	 * @return void
-	 */
-	function migrate_posts( $args, $assoc_args ) {
-		// Parse args.
-		$assoc_args = wp_parse_args(
-			$assoc_args,
-			[
-				'post_type'              => 'post',
+				'post_type'              => 'insight',
 				'post_status'            => 'any',
 				'posts_per_page'         => 10,
 				'offset'                 => 0,
