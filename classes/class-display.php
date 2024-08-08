@@ -271,6 +271,21 @@ class Mai_AskNews_Display {
 			return;
 		}
 
+		// Remove reCAPTCHA and Unusual Traffic Detection.
+		foreach ( $web as $index => $item ) {
+			$title = $this->get_key( 'title', $item );
+
+			if ( in_array( $title, [ 'reCAPTCHA', 'Unusual Traffic Detection' ] ) ) {
+				unset( $web[ $index ] );
+			}
+		}
+
+		if ( ! $web ) {
+			return;
+		}
+
+		// Reindex.
+		$web = array_values( $web );
 		?>
 		<style>
 			.pm-results {
