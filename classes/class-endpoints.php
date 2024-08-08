@@ -10,6 +10,7 @@ defined( 'ABSPATH' ) || die;
  */
 class Mai_AskNews_Endpoints {
 	// protected $token;
+	protected $user;
 	protected $request;
 	protected $body;
 
@@ -65,7 +66,7 @@ class Mai_AskNews_Endpoints {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	function handle_matchups_request( $request ) {
-		$listener = new Mai_AskNews_Insights_Listener( $request->get_body(), current_user_can( 'edit_posts' ) );
+		$listener = new Mai_AskNews_Insights_Listener( $request->get_body(), $this->user );
 		$response = $listener->get_response();
 
 		return $response;
@@ -107,10 +108,10 @@ class Mai_AskNews_Endpoints {
 		}
 
 		// Authenticate the user
-		$user = wp_authenticate_application_password( $password, $username, $password );
+		$this->user = wp_authenticate_application_password( $password, $username, $password );
 
 		// If the authentication failed.
-		if ( is_wp_error( $user ) ) {
+		if ( is_wp_error( $this->user ) ) {
 			return new WP_Error( 'rest_forbidden', 'Invalid application password.', [ 'status' => 403 ] );
 		}
 

@@ -5,23 +5,22 @@ defined( 'ABSPATH' ) || die;
 
 use Alley\WP\Block_Converter\Block_Converter;
 
-// add_action( 'genesis_before_loop', function() {
-// 	// $meta = get_post_meta( get_the_ID() );
-// 	$meta = get_post_meta( get_the_ID(), 'asknews_body', true );
-// 	dump( $meta );
-// });
-
+/**
+ * The insights listener class.
+ *
+ * @since 0.1.0
+ */
 class Mai_AskNews_Insights_Listener {
 	protected $body;
-	protected $run;
+	protected $user;
 	protected $return;
 
 	/**
 	 * Construct the class.
 	 */
-	function __construct( $body, $run = true ) {
+	function __construct( $body, $user = null ) {
 		$this->body = is_string( $body ) ? json_decode( $body, true ) : $body;
-		$this->run  = $run;
+		$this->user  = $user ?: wp_get_current_user();
 		$this->run();
 	}
 
@@ -33,8 +32,8 @@ class Mai_AskNews_Insights_Listener {
 	 * @return void
 	 */
 	function run() {
-		// If not running.
-		if ( ! $this->run ) {
+		// If no capabilities.
+		if ( ! user_can( $this->user, 'edit_posts' ) ) {
 			$this->return = $this->get_error( 'User cannot edit posts.' );
 			return;
 		}
@@ -116,6 +115,7 @@ class Mai_AskNews_Insights_Listener {
 		$insight_args = [
 			'post_type'    => 'insight',
 			'post_status'  => 'draft',
+			'post_author'  => $this->user->ID,
 			'post_title'   => $matchup_title, // Updated later with update number.
 			'post_excerpt' => $this->body['summary'],
 			'meta_input'   => [

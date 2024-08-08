@@ -23,6 +23,15 @@ add_action( 'cli_init', function() {
  * @since 0.1.0
  */
 class Mai_AskNews_CLI {
+	protected $user;
+
+	/**
+	 * Construct the class.
+	 */
+	function __construct() {
+		$this->user = get_user_by( 'login', defined( 'MAI_ASKNEWS_AUTH_UN' ) ? MAI_ASKNEWS_AUTH_UN : null );
+	}
+
 	/**
 	 * Gets environment.
 	 *
@@ -76,7 +85,7 @@ class Mai_AskNews_CLI {
 					continue;
 				}
 
-				$listener = new Mai_AskNews_Insights_Listener( $asknews_body );
+				$listener = new Mai_AskNews_Insights_Listener( $asknews_body, $this->user );
 				$response = $listener->get_response();
 
 				if ( is_wp_error( $response ) ) {
