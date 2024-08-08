@@ -200,7 +200,7 @@ final class Mai_AskNews_Plugin {
 	public function classes() {
 		$endpoints = new Mai_AskNews_Endpoints;
 		$display   = new Mai_AskNews_Display;
-		// $rewrites  = new Mai_AskNews_Rewrites;
+		$rewrites  = new Mai_AskNews_Rewrites;
 	}
 
 	/**
@@ -244,11 +244,9 @@ final class Mai_AskNews_Plugin {
 			'show_in_nav_menus'  => true,
 			'show_in_rest'       => true,
 			'show_ui'            => true,
-			'rewrite'            => [ 'slug' => 'schedule', 'with_front' => false ],
-			// 'rewrite'            => [ 'slug' => '', 'with_front' => false ],
-			// 'rewrite'            => false,
 			'supports'           => [ 'title', 'editor', 'author', 'thumbnail', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
 			'taxonomies'         => [ 'team', 'season' ],
+			'rewrite'            => [ 'slug' => 'schedule', 'with_front' => false ],
 		] );
 
 		// Insights.
@@ -280,11 +278,9 @@ final class Mai_AskNews_Plugin {
 			'show_in_nav_menus'  => true,
 			'show_in_rest'       => true,
 			'show_ui'            => true,
-			// 'rewrite'            => [ 'slug' => '/%league%/%season%', 'with_front' => false],
-			'rewrite'            => [ 'slug' => 'insights', 'with_front' => false],
-			// 'rewrite'            => [ 'slug' => '', 'with_front' => false],
 			'supports'           => [ 'title', 'editor', 'author', 'thumbnail', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
 			'taxonomies'         => [ 'team', 'season' ],
+			'rewrite'            => false, // Handled in Mai_AskNews_Rewrites.
 		] );
 
 		/***********************
@@ -313,14 +309,14 @@ final class Mai_AskNews_Plugin {
 				'search_items'               => __( 'Search Teams', 'promatchups' ),
 				'not_found'                  => __( 'Not Found', 'promatchups' ),
 			],
-			'meta_box_cb'       => false, // Hides metabox.
+			'meta_box_cb'       => false,   // Hides metabox.
 			'public'            => true,
 			'show_admin_column' => true,
 			'show_in_nav_menus' => true,
 			'show_in_rest'      => true,
 			'show_tagcloud'     => false,
 			'show_ui'           => true,
-			'rewrite'           => [ 'slug' => 'teams', 'with_front' => false ],
+			'rewrite'           => false, // Handled in Mai_AskNews_Rewrites.
 		] );
 
 		// Seasons.
@@ -345,13 +341,14 @@ final class Mai_AskNews_Plugin {
 				'search_items'               => __( 'Search Items', 'promatchups' ),
 				'not_found'                  => __( 'Not Found', 'promatchups' ),
 			],
-			'meta_box_cb'       => false, // Hides metabox.
-			'public'            => false,
+			'meta_box_cb'       => false,   // Hides metabox.
+			'public'            => true,
 			'show_admin_column' => true,
 			'show_in_nav_menus' => false,
 			'show_in_rest'      => true,
 			'show_tagcloud'     => false,
 			'show_ui'           => true,
+			'rewrite'           => false,   // Handled in Mai_AskNews_Rewrites.
 		] );
 	}
 

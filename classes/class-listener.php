@@ -6,11 +6,11 @@ defined( 'ABSPATH' ) || die;
 use Alley\WP\Block_Converter\Block_Converter;
 
 /**
- * The insights listener class.
+ * The listener class.
  *
  * @since 0.1.0
  */
-class Mai_AskNews_Insights_Listener {
+class Mai_AskNews_Listener {
 	protected $body;
 	protected $user;
 	protected $return;
@@ -48,13 +48,13 @@ class Mai_AskNews_Insights_Listener {
 		list( $matchup_title, $matchup_datetime ) = explode( ',', $this->body['matchup'], 2 );
 		$matchup_title = $this->body['game'];
 
-		/****************************************************
+		/***************************************************************
 		 * Step 1 - Get the matchup post ID.
 		 *
 		 * Check for an existing matchup.
 		 * If no matchup, create one.
 		 * Set matchup ID.
-		 ****************************************************/
+		 ***************************************************************/
 
 		// Check for an existing matchup.
 		$matchup_ids = get_posts(
@@ -101,7 +101,7 @@ class Mai_AskNews_Insights_Listener {
 			$matchup_id = $matchup_ids[0];
 		}
 
-		/****************************************************
+		/***************************************************************
 		 * Step 2 - Create or update the insight post.
 		 *
 		 * Builds the new insight post args.
@@ -109,7 +109,7 @@ class Mai_AskNews_Insights_Listener {
 		 * Creates or updates the insight.
 		 * Set the matchup post ID as post meta.
 		 * Set the team and season taxonomy terms.
-		 ****************************************************/
+		 ***************************************************************/
 
 		// Set default post args.
 		$insight_args = [
@@ -210,11 +210,11 @@ class Mai_AskNews_Insights_Listener {
 		// 	]
 		// );
 
-		/****************************************************
-		 * Step 3 - Set the insight custom taxonomy terms.
+		/***************************************************************
+		 * Step 3 - Set the matchup and insight custom taxonomy terms.
 		 *
 		 * Set the team and season taxonomy terms.
-		 ****************************************************/
+		 ***************************************************************/
 
 		// Set team vars.
 		$home_team = $away_team = null;
@@ -249,6 +249,7 @@ class Mai_AskNews_Insights_Listener {
 		// If we have categories.
 		if ( $team_ids ) {
 			// Set the post categories.
+			wp_set_object_terms( $matchup_id, $team_ids, 'team', $append = false );
 			wp_set_object_terms( $insight_id, $team_ids, 'team', $append = false );
 		}
 
@@ -275,16 +276,17 @@ class Mai_AskNews_Insights_Listener {
 		// If we have a season term.
 		if ( $season_id ) {
 			// Set the post season.
+			wp_set_object_terms( $matchup_id, $season_id, 'season', $append = false );
 			wp_set_object_terms( $insight_id, $season_id, 'season', $append = false );
 		}
 
-		/****************************************************
+		/***************************************************************
 		 * Step 4 - Set the matchup/event post meta.
 		 *
 		 * Gets the existing matchup insights,
 		 * adds the new insight,
 		 * updates post meta with the new array.
-		 ****************************************************/
+		 ***************************************************************/
 
 		// // Add the new insight to the matchup's existing insights.
 		// $insights[] = $insight_id;
