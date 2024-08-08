@@ -49,12 +49,12 @@ class Mai_AskNews_Display {
 	 * @return void
 	 */
 	function hooks() {
-		add_action( 'genesis_entry_content', [ $this, 'do_content' ], 12 );
-		add_action( 'genesis_entry_content', [ $this, 'do_people' ], 12 );
-		add_action( 'genesis_entry_content', [ $this, 'do_timeline' ], 12 );
-		add_action( 'genesis_entry_content', [ $this, 'do_related' ], 12 );
-		add_action( 'genesis_entry_content', [ $this, 'do_web' ], 12 );
-		add_action( 'genesis_entry_content', [ $this, 'do_sources' ], 12 );
+		add_action( 'mai_after_entry_content_inner', [ $this, 'do_content' ], 10, 2 );
+		add_action( 'mai_after_entry_content_inner', [ $this, 'do_people' ], 10, 2 );
+		add_action( 'mai_after_entry_content_inner', [ $this, 'do_timeline' ], 10, 2 );
+		add_action( 'mai_after_entry_content_inner', [ $this, 'do_related' ], 10, 2 );
+		add_action( 'mai_after_entry_content_inner', [ $this, 'do_web' ], 10, 2 );
+		add_action( 'mai_after_entry_content_inner', [ $this, 'do_sources' ], 10, 2 );
 	}
 
 	/**
@@ -64,7 +64,11 @@ class Mai_AskNews_Display {
 	 *
 	 * @return void
 	 */
-	function do_content() {
+	function do_content( $entry, $args ) {
+		if ( ! $this->is_single( $args ) ) {
+			return;
+		}
+
 		$keys = [
 			'forecast',
 			'reasoning',
@@ -99,7 +103,11 @@ class Mai_AskNews_Display {
 	 *
 	 * @return void
 	 */
-	function do_people() {
+	function do_people( $entry, $args ) {
+		if ( ! $this->is_single( $args ) ) {
+			return;
+		}
+
 		$people = $this->get_data( 'key_people' );
 
 		if ( ! $people ) {
@@ -118,7 +126,6 @@ class Mai_AskNews_Display {
 			else {
 				$info = [
 					isset( $person['name'] ) ? sprintf( '<strong>%s</strong>', $person['name'] ) : '',
-					// isset( $person['role'] ) ? sprintf( '<em>%s</em>', $person['role'] ) : '',
 					isset( $person['role'] ) ? $person['role'] : '',
 				];
 
@@ -138,7 +145,11 @@ class Mai_AskNews_Display {
 	 *
 	 * @return void
 	 */
-	function do_timeline() {
+	function do_timeline( $entry, $args ) {
+		if ( ! $this->is_single( $args ) ) {
+			return;
+		}
+
 		$timeline = $this->get_data( 'timeline' );
 
 		if ( ! $timeline ) {
@@ -162,7 +173,11 @@ class Mai_AskNews_Display {
 	 *
 	 * @return void
 	 */
-	function do_related() {
+	function do_related( $entry, $args ) {
+		if ( ! $this->is_single( $args ) ) {
+			return;
+		}
+
 		$matchup_ids = get_posts(
 			[
 				'post_type'    => 'matchup',
@@ -183,9 +198,6 @@ class Mai_AskNews_Display {
 		$matchup_id  = $matchup_ids[0];
 		$insight_ids = get_post_meta( $matchup_id, 'event_forecasts', true );
 		$insight_ids = array_map( 'intval', $insight_ids );
-
-		// Remove the current post ID.
-		// $insight_ids = array_diff( $insight_ids, [ get_the_ID() ] );
 
 		// Bail if no insights.
 		if ( ! $insight_ids ) {
@@ -216,6 +228,11 @@ class Mai_AskNews_Display {
 					continue;
 				}
 
+				// Check if post is published or user has permission to view.
+				if ( 'publish' !== $insight->post_status && ! current_user_can( 'edit_post', $insight_id ) ) {
+					continue;
+				}
+
 				$permalink = get_permalink( $insight_id );
 				$title     = get_the_title( $insight_id );
 
@@ -243,7 +260,11 @@ class Mai_AskNews_Display {
 	 *
 	 * @return void
 	 */
-	function do_web() {
+	function do_web( $entry, $args ) {
+		if ( ! $this->is_single( $args ) ) {
+			return;
+		}
+
 		$web = $this->get_data( 'web_search_results' );
 
 		if ( ! $web ) {
@@ -319,7 +340,11 @@ class Mai_AskNews_Display {
 	 *
 	 * @return void
 	 */
-	function do_sources() {
+	function do_sources( $entry, $args ) {
+		if ( ! $this->is_single( $args ) ) {
+			return;
+		}
+
 		$sources = $this->get_data( 'sources' );
 
 		if ( ! $sources ) {
@@ -460,5 +485,18 @@ class Mai_AskNews_Display {
 	 */
 	function get_data( $key ) {
 		return isset( $this->data[ $key ] ) ? $this->data[ $key ] : '';
+	}
+
+	/**
+	 * Check if the hook context is singular.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param array $args The element args.
+	 *
+	 * @return bool
+	 */
+	function is_single( $args ) {
+		return isset( $args['context'] ) && 'single' === $args['context'];
 	}
 }
