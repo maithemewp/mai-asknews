@@ -26,7 +26,7 @@ class Mai_AskNews_Display {
 	 * @return void
 	 */
 	function run() {
-		if ( ! is_singular( 'insight' ) ) {
+		if ( ! is_singular( 'matchup' ) ) {
 			return;
 		}
 
@@ -178,36 +178,50 @@ class Mai_AskNews_Display {
 			return;
 		}
 
-		$matchup_ids = get_posts(
+		// $matchup_ids = get_posts(
+		// 	[
+		// 		'post_type'    => 'matchup',
+		// 		'post_status'  => 'publish',
+		// 		'meta_key'     => 'event_uuid',
+		// 		'meta_value'   => $this->get_data( 'event_uuid' ),
+		// 		'meta_compare' => '=',
+		// 		'fields'       => 'ids',
+		// 		'numberposts'  => 1,
+		// 	]
+		// );
+
+		// if ( ! $matchup_ids ) {
+		// 	return;
+		// }
+
+		// // Get insights about this event.
+		// $matchup_id  = $matchup_ids[0];
+		// $insight_ids = get_post_meta( $matchup_id, 'event_forecasts', true );
+		// $insight_ids = array_map( 'intval', $insight_ids );
+
+		// Get current post parent.
+		$insight_ids = get_posts(
 			[
 				'post_type'    => 'matchup',
 				'post_status'  => 'publish',
-				'meta_key'     => 'event_uuid',
-				'meta_value'   => $this->get_data( 'event_uuid' ),
-				'meta_compare' => '=',
+				'post_parent'  => wp_get_post_parent_id( get_the_ID() ),
+				'post__not_in' => [ get_the_ID() ],
 				'fields'       => 'ids',
-				'numberposts'  => 1,
+				'numberposts'  => -1,
+				'orderby'      => 'date',
+				'order'        => 'DESC',
 			]
 		);
-
-		if ( ! $matchup_ids ) {
-			return;
-		}
-
-		// Get insights about this event.
-		$matchup_id  = $matchup_ids[0];
-		$insight_ids = get_post_meta( $matchup_id, 'event_forecasts', true );
-		$insight_ids = array_map( 'intval', $insight_ids );
 
 		// Bail if no insights.
 		if ( ! $insight_ids ) {
 			return;
 		}
 
-		// Bail if only 1 insight, and it's the current post.
-		if ( 1 === count( $insight_ids ) && get_the_ID() === $insight_ids[0] ) {
-			return;
-		}
+		// // Bail if only 1 insight, and it's the current post.
+		// if ( 1 === count( $insight_ids ) && get_the_ID() === $insight_ids[0] ) {
+		// 	return;
+		// }
 
 		printf( '<h2>%s</h2>', __( 'Latest Updates', 'mai-asknews' ) );
 		?>

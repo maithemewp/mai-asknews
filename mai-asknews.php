@@ -199,8 +199,9 @@ final class Mai_AskNews_Plugin {
 	 */
 	public function classes() {
 		$endpoints = new Mai_AskNews_Endpoints;
-		$display   = new Mai_AskNews_Display;
 		$rewrites  = new Mai_AskNews_Rewrites;
+		$archives  = new Mai_AskNews_Archives;
+		$singular  = new Mai_AskNews_Singular;
 	}
 
 	/**
@@ -218,7 +219,7 @@ final class Mai_AskNews_Plugin {
 		// Schedule/Matchups.
 		register_post_type( 'matchup', [
 			'exclude_from_search' => false,
-			'has_archive'         => true,
+			'has_archive'         => false,
 			'hierarchical'        => false,
 			'labels'              => [
 				'name'               => _x( 'Matchups', 'Matchup general name', 'promatchups' ),
@@ -246,13 +247,13 @@ final class Mai_AskNews_Plugin {
 			'show_ui'            => true,
 			'supports'           => [ 'title', 'editor', 'author', 'thumbnail', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
 			'taxonomies'         => [ 'team', 'season' ],
-			'rewrite'            => [ 'slug' => 'schedule', 'with_front' => false ],
+			'rewrite'            => false, // Handled in Mai_AskNews_Rewrites.
 		] );
 
 		// Insights.
 		register_post_type( 'insight', [
 			'exclude_from_search' => false,
-			'has_archive'         => true,
+			'has_archive'         => false,
 			'hierarchical'        => false,
 			'labels'              => [
 				'name'               => _x( 'Insights', 'Insight general name', 'promatchups' ),
@@ -272,14 +273,14 @@ final class Mai_AskNews_Plugin {
 			],
 			'menu_icon'          => 'dashicons-analytics',
 			'menu_position'      => 6,
-			'public'             => true,
+			'public'             => false,
 			'publicly_queryable' => true,
 			'show_in_menu'       => true,
-			'show_in_nav_menus'  => true,
+			'show_in_nav_menus'  => false,
 			'show_in_rest'       => true,
 			'show_ui'            => true,
 			'supports'           => [ 'title', 'editor', 'author', 'thumbnail', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
-			'taxonomies'         => [ 'team', 'season' ],
+			'taxonomies'         => [ 'team', 'league', 'season' ],
 			'rewrite'            => false, // Handled in Mai_AskNews_Rewrites.
 		] );
 
@@ -287,7 +288,7 @@ final class Mai_AskNews_Plugin {
 		 *  Custom Taxonomies  *
 		 ***********************/
 
-		// Teams.
+		// Teams (OLD).
 		register_taxonomy( 'team', [ 'matchup', 'insight' ], [
 			'hierarchical' => true,
 			'labels'       => [
@@ -307,6 +308,38 @@ final class Mai_AskNews_Plugin {
 				'choose_from_most_used'      => __( 'Choose from the most used', 'promatchups' ),
 				'popular_items'              => __( 'Popular Teams', 'promatchups' ),
 				'search_items'               => __( 'Search Teams', 'promatchups' ),
+				'not_found'                  => __( 'Not Found', 'promatchups' ),
+			],
+			'meta_box_cb'       => false,   // Hides metabox.
+			'public'            => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => true,
+			'show_in_rest'      => true,
+			'show_tagcloud'     => false,
+			'show_ui'           => true,
+			'rewrite'           => false, // Handled in Mai_AskNews_Rewrites.
+		] );
+
+		// League (NEW).
+		register_taxonomy( 'league', [ 'matchup', 'insight' ], [
+			'hierarchical' => true,
+			'labels'       => [
+				'name'                       => _x( 'Leagues', 'League General Name', 'promatchups' ),
+				'singular_name'              => _x( 'League', 'League Singular Name', 'promatchups' ),
+				'menu_name'                  => __( 'Leagues', 'promatchups' ),
+				'all_items'                  => __( 'All Leagues', 'promatchups' ),
+				'parent_item'                => __( 'Parent League', 'promatchups' ),
+				'parent_item_colon'          => __( 'Parent League:', 'promatchups' ),
+				'new_item_name'              => __( 'New League Name', 'promatchups' ),
+				'add_new_item'               => __( 'Add New League', 'promatchups' ),
+				'edit_item'                  => __( 'Edit League', 'promatchups' ),
+				'update_item'                => __( 'Update League', 'promatchups' ),
+				'view_item'                  => __( 'View League', 'promatchups' ),
+				'separate_items_with_commas' => __( 'Separate items with commas', 'promatchups' ),
+				'add_or_remove_items'        => __( 'Add or remove items', 'promatchups' ),
+				'choose_from_most_used'      => __( 'Choose from the most used', 'promatchups' ),
+				'popular_items'              => __( 'Popular Leagues', 'promatchups' ),
+				'search_items'               => __( 'Search Leagues', 'promatchups' ),
 				'not_found'                  => __( 'Not Found', 'promatchups' ),
 			],
 			'meta_box_cb'       => false,   // Hides metabox.
@@ -378,227 +411,3 @@ function mai_asknews_plugin() {
 
 // Get Mai_AskNews_Plugin Running.
 mai_asknews_plugin();
-
-
-// function add_custom_rewrite_rules() {
-//     // Add rewrite rules for the custom structure
-//     add_rewrite_rule(
-//         '^([^/]+)/([^/]+)/([^/]+)/?$',
-//         // 'index.php?post_type=insight&team=$matches[1]&season=$matches[2]&name=$matches[3]',
-//         'index.php?post_type=insight&team=$matches[1]&name=$matches[2]',
-//         'bottom'
-//     );
-// }
-// add_action('init', 'add_custom_rewrite_rules');
-
-// // Customize the permalink structure for 'matchup' posts
-// add_filter('post_type_link', 'matchup_post_type_link', 10, 2);
-// function matchup_post_type_link($post_link, $post) {
-// 	if ($post->post_type === 'matchup') {
-// 		// Get the terms of the 'team' taxonomy
-// 		$teams = wp_get_post_terms($post->ID, 'team');
-// 		if ($teams && !is_wp_error($teams)) {
-// 			$league = $teams[0]->slug;
-// 			$team = isset($teams[1]) ? $teams[1]->slug : '';
-// 			$post_link = str_replace('%team%', "$league/$team", $post_link);
-// 		}
-
-// 		// Get the terms of the 'season' taxonomy
-// 		$seasons = wp_get_post_terms($post->ID, 'season');
-// 		if ($seasons && !is_wp_error($seasons)) {
-// 			$season = $seasons[0]->slug;
-// 			$post_link = str_replace('%season%', $season, $post_link);
-// 		}
-
-// 		$post_link = home_url(user_trailingslashit("$league/$team/$season/$post->post_name"));
-// 	}
-// 	return $post_link;
-// }
-
-// // Handle URL routing for 'matchup' posts
-// function matchup_parse_request($query) {
-// 	if (!empty($query->request)) {
-// 		$matched = preg_match('#^([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$#', $query->request, $matches);
-// 		if ($matched && count($matches) === 5) {
-// 			$league = $matches[1];
-// 			$team = $matches[2];
-// 			$season = $matches[3];
-// 			$post_slug = $matches[4];
-
-// 			// Fetch the post based on the slug
-// 			$query->query_vars['post_type'] = 'matchup';
-// 			$query->query_vars['name'] = $post_slug;
-// 			add_filter('posts_where', function($where) use ($league, $team, $season) {
-// 				global $wpdb;
-// 				$where .= $wpdb->prepare(" AND $wpdb->terms.slug = %s", $league);
-// 				if ($team) {
-// 					$where .= $wpdb->prepare(" AND $wpdb->terms.slug = %s", $team);
-// 				}
-// 				$where .= $wpdb->prepare(" AND $wpdb->terms.slug = %s", $season);
-// 				return $where;
-// 			});
-// 		}
-// 	}
-// }
-// add_action('parse_request', 'matchup_parse_request');
-
-// // Filter to replace %project_category% with the actual term
-// // add_filter('post_type_link', 'custom_post_type_link', 1, 2);
-// function custom_post_type_link($post_link, $post) {
-// 	if ( ! $post || 'insight' !== $post->post_type ) {
-// 		return $post_link;
-// 	}
-
-// 	// Get the terms from the team taxonomy.
-// 	$terms = get_the_terms( $post->ID, 'team' );
-
-// 	// If no terms, return the link.
-// 	if ( ! $terms ) {
-// 		return $post_link;
-// 	}
-
-// 	// Get the first term.
-// 	$term = reset( $terms );
-
-// 	// Check if the term has a parent and keep updating until top-level term is found
-// 	while ( 0 !== $term->parent ) {
-// 		$term = get_term( $term->parent, 'team' );
-// 	}
-
-// 	// Replace the placeholder with the actual term slug.
-// 	$post_link = str_replace( '%team%', $term->slug, $post_link );
-
-// 	return $post_link;
-// }
-
-// add_action( 'init', 'rewrite_tag_permalink_init' );
-// /**
-//  * Add our rewrite rule and rewrite tag
-//  */
-// function rewrite_tag_permalink_init(){
-// 	// rewrite rule looks for league
-// 	add_rewrite_rule( '^([^/]+)/(.*)/?', 'index.php?league=$matches[1]&season=$matches[2]', 'bottom' );
-
-// 	// rewrite tag puts league value into the query vars
-// 	add_rewrite_tag( '%league%', '(.*)' );
-// 	add_rewrite_tag( '%team%', '(.*)' );
-// 	add_rewrite_tag( '%season%', '(.*)' );
-// }
-
-
-// Register custom permalink structure and rewrite tags
-// add_action('init', 'custom_matchup_permalinks');
-function custom_matchup_permalinks() {
-	// Add permastruct for 'insight' posts
-	add_permastruct( 'insight', '%league%/%season%/%postname%', array(
-		'ep_mask'    => EP_PERMALINK,
-		'with_front' => false,
-	));
-
-	// Add rewrite tags for custom placeholders
-	add_rewrite_tag( '%league%', '([^/]+)', 'league=' );
-	add_rewrite_tag( '%season%', '([^/]+)', 'season=' );
-	add_rewrite_tag( '%postname%', '([^/]+)', 'name=' );
-}
-
-
-// Customize the permalink structure for 'insight' posts
-// add_filter( 'post_type_link', 'custom_insight_post_link', 10, 2 );
-function custom_insight_post_link( $post_link, $post ) {
-	if ( 'insight' !== $post->post_type ) {
-		return $post_link;
-	}
-
-	$league = get_league( $post->ID );
-	$season = get_season( $post->ID );
-
-	if ( $league ) {
-		$post_link = str_replace( '%league%', $league->slug, $post_link );
-	} else {
-		$post_link = str_replace( '%league%/', '', $post_link );
-	}
-
-	if ( $season ) {
-		$post_link = str_replace( '%season%', $season->slug, $post_link );
-	} else {
-		$post_link = str_replace( '%season%/', '', $post_link );
-	}
-
-	// Post name.
-	$post_link = str_replace( '%postname%', $post->post_name, $post_link );
-
-	return $post_link;
-}
-
-function get_league( $post_id ) {
-	$league = null;
-	$terms  = get_the_terms( $post_id, 'team' );
-
-	// Bail if no terms.
-	if ( ! $terms || is_wp_error( $terms ) ) {
-		return $league;
-	}
-
-	// Find the first term that has no parent.
-	foreach ( $terms as $term ) {
-		if ( 0 === $term->parent ) {
-			$league = $term;
-			break;
-		}
-	}
-
-	// If no league.
-	if ( ! $league ) {
-		foreach ( $terms as $term ) {
-			$current_term = $term;
-
-			while ( $current_term ) {
-				if ( 0 === $current_term->parent ) {
-					$league = $current_term;
-					break;
-				}
-
-				$current_term = get_term( $current_term->parent, 'team' );
-			}
-
-			if ( $league ) {
-				break;
-			}
-		}
-	}
-
-	return $league;
-}
-
-function get_team( $post_id ) {
-	$team  = null;
-	$terms = get_the_terms( $post_id, 'team' );
-
-	// Bail if no terms.
-	if ( ! $terms || is_wp_error( $terms ) ) {
-		return $team;
-	}
-
-	// Find the first term that has a parent.
-	foreach ( $terms as $term ) {
-		if ( 0 !== $term->parent ) {
-			$team = $term;
-		}
-	}
-
-	return $team;
-}
-
-function get_season( $post_id ) {
-	$season = null;
-	$terms  = get_the_terms( $post_id, 'season' );
-
-	// Bail if no terms.
-	if ( ! $terms || is_wp_error( $terms ) ) {
-		return $season;
-	}
-
-	$season = reset( $terms );
-
-	return $season;
-}

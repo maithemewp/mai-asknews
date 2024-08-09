@@ -49,44 +49,19 @@ class Mai_AskNews_Listener {
 		$matchup_title = $this->body['game'];
 
 		/***************************************************************
-		 * Next Step - Get the matchup post ID.
+		 * Step 1 - Get the matchup post ID.
 		 *
-		 * Set team vars.
-		 * Set matchup title and data.
 		 * Check for an existing matchup.
 		 * If no matchup, create one.
 		 * Set matchup ID.
 		 ***************************************************************/
-
-		// Set team vars.
-		$home_team = $away_team = null;
-
-		// Set home team.
-		if ( isset( $this->body['home_team_name'] ) ) {
-			$home_team = $this->body['home_team_name'];
-		} elseif ( isset( $this->body['home_team'] ) ) {
-			$home_team = explode( ' ', $this->body['home_team'] );
-			$home_team = end( $home_team );
-		}
-
-		// Set away team.
-		if ( isset( $this->body['away_team_name'] ) ) {
-			$away_team = $this->body['away_team_name'];
-		} elseif ( isset( $this->body['away_team'] ) ) {
-			$away_team = explode( ' ', $this->body['away_team'] );
-			$away_team = end( $away_team );
-		}
-
-		// If home and away, override matchup title.
-		if ( $home_team && $away_team ) {
-			$matchup_title = sprintf( '%s vs %s', $home_team, $away_team );
-		}
 
 		// Check for an existing matchup.
 		$matchup_ids = get_posts(
 			[
 				'post_type'    => 'matchup',
 				'post_status'  => 'any',
+				'post_parent'  => 0,
 				'meta_key'     => 'event_uuid',
 				'meta_value'   => $this->body['event_uuid'],
 				'meta_compare' => '=',
@@ -104,6 +79,7 @@ class Mai_AskNews_Listener {
 			$matchup_args = [
 				'post_type'   => 'matchup',
 				'post_status' => 'publish',
+				'post_parent' => 0,
 				'post_author' => $this->user->ID,
 				'post_title'  => $matchup_title,
 				'post_name'   => sanitize_title( $matchup_title ) . ' ' . wp_date( 'Y-m-d', strtotime( $matchup_datetime ) ),
@@ -130,7 +106,7 @@ class Mai_AskNews_Listener {
 		}
 
 		/***************************************************************
-		 * Next Step - Create or update the matchup insights.
+		 * Step 2 - Create or update the matchup insights.
 		 *
 		 * Builds the new insight post args.
 		 * Check for existing insight to update.
@@ -142,15 +118,16 @@ class Mai_AskNews_Listener {
 
 		// Set default post args.
 		$insight_args = [
-			'post_type'    => 'insight',
+			'post_type'    => 'matchup',
 			'post_status'  => 'draft',
 			'post_author'  => $this->user->ID,
-			'post_title'   => __( 'Insight', 'mai-asknews' ) . ' ' . $this->body['forecast_uuid'], // Updated later.
+			'post_parent'  => $matchup_id,
+			'post_title'   => __( 'Insight', 'mai-asknews' ) . ' ' . $this->body['forecast_uuid'], // Updated later with update number.
 			'post_excerpt' => $this->body['summary'],
 			'meta_input'   => [
 				'asknews_body'  => $this->body,                    // The full body for reference.
 				'forecast_uuid' => $this->body['forecast_uuid'],   // The id of this specific forecast.
-				'event_uuid'    => $this->body['event_uuid'],      // The id of the event, if this is a post to update.
+				// 'event_uuid'    => $this->body['event_uuid'],      // The id of the event, if this is a post to update.
 			],
 		];
 
@@ -165,8 +142,9 @@ class Mai_AskNews_Listener {
 		// This is mostly for reprocessing existing insights via CLI.
 		$insight_ids = get_posts(
 			[
-				'post_type'    => 'insight',
+				'post_type'    => 'matchup',
 				'post_status'  => 'any',
+				'post_parent'  => $matchup_id,
 				'meta_key'     => 'forecast_uuid',
 				'meta_value'   => $this->body['forecast_uuid'],
 				'meta_compare' => '=',
@@ -197,21 +175,118 @@ class Mai_AskNews_Listener {
 			return;
 		}
 
-		/***************************************************************
-		 * Next Step - Rmove the existing terms from the insight.
-		 *
-		 * These can be removed later, once these are cleaned up.
-		 ***************************************************************/
+		// if ( '018907d3-5ec6-4dea-ab30-4f05e378ea8f' === $this->body['forecast_uuid'] ) {
+		// 	ray( $this->body );
+		// }
 
-		// Delete terms from the insight.
-		wp_delete_object_term_relationships( $matchup_id, [ 'team' ] );
-		wp_delete_object_term_relationships( $insight_id, [ 'team' ] );
+		// Gets all insights, sorted by date.
+		$children_ids = get_posts(
+			[
+				'post_type'    => 'matchup',
+				'post_status'  => 'any',
+				'post_parent'  => $matchup_id,
+				// 'meta_key'     => 'event_uuid',
+				// 'meta_value'   => $this->body['event_uuid'],
+				// 'meta_compare' => '=',
+				'fields'       => 'ids',
+				'numberposts'  => -1,
+			]
+		);
+
+		// Update matchup with these insights.
+		// update_post_meta( $matchup_id, 'event_forecasts', $insights );
+
+		// Get index of current insight in this list.
+		// $current_index = array_search( $insight_id, $children_ids );
+
+		// ray( $insight_id, $insights, $current_index );
+
+		// if ( ! $current_index && 'Arizona Diamondbacks vs Cleveland Guardians' === $matchup_title ) {
+		// 	ray( $this->body );
+		// }
+
+		// ray( $matchup_id . ', ' . $insight_id . ', ' . $current_index . ', ' . $this->body['forecast_uuid'] . ', ' . $matchup_title );
+
+		// Updated title.
+		// $updated_title = sprintf( '%s #%s', __( 'Update', 'mai-asknews' ), $current_index + 1 );
+
+		// Update all insights titles with the update number.
+		if ( $children_ids ) {
+			foreach ( $children_ids as $index => $child_id ) {
+				// Build title with index.
+				$updated_title = sprintf( '%s #%s', __( 'Update', 'mai-asknews' ), $index + 1 );
+
+				// Update post title.
+				wp_update_post(
+					[
+						'ID'         => $child_id,
+						'post_title' => $updated_title,
+					]
+				);
+			}
+		}
+
+		// // Gets all insights, sorted by date.
+		// $children_ids = get_posts(
+		// 	[
+		// 		'post_type'    => 'matchup',
+		// 		'post_status'  => 'any',
+		// 		'post_parent'  => 5750,
+		// 		// 'meta_key'     => 'event_uuid',
+		// 		// 'meta_value'   => $this->body['event_uuid'],
+		// 		// 'meta_compare' => '=',
+		// 		'fields'       => 'ids',
+		// 		'numberposts'  => -1,
+		// 	]
+		// );
+
+		// ray( $children_ids );
+
+		// if ( in_array( 5972, $children_ids ) ) {
+		// 	ray( $this->body );
+		// }
+
+		// Update post title with index.
+		wp_update_post(
+			[
+				'ID'         => $insight_id,
+				'post_title' => $updated_title,
+				// 'post_name'  => sanitize_title_with_dashes( $updated_title ),
+			]
+		);
+
+		// // Set post content. This runs after so we can attach images to the post ID.
+		// $updated_id = wp_update_post(
+		// 	[
+		// 		'ID'           => $insight_id,
+		// 		'post_content' => $this->handle_content( $content ),
+		// 	]
+		// );
 
 		/***************************************************************
-		 * Next Step - Set the matchup and insight custom taxonomy terms.
+		 * Step 3 - Set the matchup and insight custom taxonomy terms.
 		 *
 		 * Set the league and season taxonomy terms.
 		 ***************************************************************/
+
+		// Set team vars.
+		$home_team = $away_team = null;
+
+		// Set home team.
+		if ( isset( $this->body['home_team_name'] ) ) {
+			$home_team = $this->body['home_team_name'];
+		} elseif ( isset( $this->body['home_team'] ) ) {
+			$home_team = explode( ' ', $this->body['home_team'] );
+			$home_team = end( $home_team );
+		}
+
+		// Set away team.
+		if ( isset( $this->body['away_team_name'] ) ) {
+			$away_team = $this->body['away_team_name'];
+		} elseif ( isset( $this->body['away_team'] ) ) {
+			$away_team = explode( ' ', $this->body['away_team'] );
+			$away_team = end( $away_team );
+		}
 
 		// Get teams. This will create them if they don't exist.
 		$league_id  = $this->get_term( $this->body['sport'], 'league' );
@@ -226,7 +301,7 @@ class Mai_AskNews_Listener {
 
 		// If we have categories.
 		if ( $league_ids ) {
-			// Set the league and teams.
+			// Set the post categories.
 			wp_set_object_terms( $matchup_id, $league_ids, 'league', $append = false );
 			wp_set_object_terms( $insight_id, $league_ids, 'league', $append = false );
 		}
@@ -257,64 +332,6 @@ class Mai_AskNews_Listener {
 			wp_set_object_terms( $matchup_id, $season_id, 'season', $append = false );
 			wp_set_object_terms( $insight_id, $season_id, 'season', $append = false );
 		}
-
-		/***************************************************************
-		 * Next Step - Replace the insight titles.
-		 ***************************************************************/
-
-		// Gets all insights, sorted by date.
-		$insights = get_posts(
-			[
-				'post_type'    => 'insight',
-				'post_status'  => 'any',
-				'meta_key'     => 'event_uuid',
-				'meta_value'   => $this->body['event_uuid'],
-				'meta_compare' => '=',
-				'fields'       => 'ids',
-				'numberposts'  => -1,
-				'orderby'      => 'date',
-				'order'        => 'ASC',
-			]
-		);
-
-		// Update matchup with these insights.
-		// update_post_meta( $matchup_id, 'event_forecasts', $insights );
-
-		// Get index of current insight in this list.
-		// $current_index = array_search( $insight_id, $insights );
-
-		// Update all insights titles with the update number.
-		if ( $insights ) {
-			foreach ( $insights as $index => $child_id ) {
-				// Build title with index.
-				$updated_title = sprintf( '%s (%s #%s)', $matchup_title, __( 'Update', 'mai-asknews' ), $index + 1 );
-
-				// Update post title.
-				wp_update_post(
-					[
-						'ID'         => $child_id,
-						'post_title' => $updated_title,
-						'post_name'  => $this->body['forecast_uuid'],
-					]
-				);
-			}
-		}
-
-		/***************************************************************
-		 * Next Step TBD
-		 ***************************************************************/
-
-		// // Set post content. This runs after so we can attach images to the post ID.
-		// $updated_id = wp_update_post(
-		// 	[
-		// 		'ID'           => $insight_id,
-		// 		'post_content' => $this->handle_content( $content ),
-		// 	]
-		// );
-
-		/***************************************************************
-		 * Next Step - End.
-		 ***************************************************************/
 
 		// Remove post_modified update filter.
 		remove_filter( 'wp_insert_post_data', [ $this, 'prevent_post_modified_update' ], 10, 4 );

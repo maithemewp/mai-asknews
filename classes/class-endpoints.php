@@ -9,7 +9,6 @@ defined( 'ABSPATH' ) || die;
  * @since 0.1.0
  */
 class Mai_AskNews_Endpoints {
-	// protected $token;
 	protected $user;
 	protected $request;
 	protected $body;
@@ -18,7 +17,6 @@ class Mai_AskNews_Endpoints {
 	 * Construct the class.
 	 */
 	function __construct() {
-		// $this->token = defined( 'MAI_UNITED_ROBOTS_TOKEN' ) ? MAI_UNITED_ROBOTS_TOKEN : false;
 		$this->hooks();
 	}
 
