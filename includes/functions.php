@@ -127,10 +127,242 @@ function maiasknews_get_key( $key, $array ) {
 /**
  * Get formatted confidence.
  *
+ * @since 0.1.0
+ *
  * @param float|mixed $confidence
  *
  * @return string
  */
 function maiasknews_format_confidence( $confidence ) {
 	return $confidence ? round( (float) $confidence * 100 ) . '%' : '';
+}
+
+/**
+ * Swap breadcrumbs.
+ *
+ * @since 0.1.0
+ *
+ * @return void
+ */
+add_action( 'after_setup_theme', function() {
+	remove_action( 'genesis_before_content_sidebar_wrap', 'mai_do_breadcrumbs', 12 );
+	add_action( 'genesis_before_content_sidebar_wrap', 'maiasknews_maybe_do_breadcrumbs', 12 );
+});
+
+/**
+ * Maybe swap breadcrumbs.
+ *
+ * @since 0.1.0
+ *
+ * @return void
+ */
+function maiasknews_maybe_do_breadcrumbs() {
+	$is_tax      = is_tax( 'league' ) || is_tax( 'season' );
+	$is_singular = is_singular( 'matchup' );
+
+	if ( $is_tax || $is_singular ) {
+		maiasknews_do_breadcrumbs();
+	} else {
+		mai_do_breadcrumbs();
+	}
+}
+
+/**
+ * Displays breadcrumbs if not hidden.
+ *
+ * @since 0.1.0
+ *
+ * @return void
+ */
+function maiasknews_do_breadcrumbs() {
+	if ( mai_is_element_hidden( 'breadcrumbs' ) ) {
+		return;
+	}
+
+	$is_league   = is_tax( 'league' );
+	$is_season   = is_tax( 'season' );
+	$is_singular = is_singular( 'matchup' );
+
+	if ( ! ( $is_league || $is_season || $is_singular ) ) {
+		return;
+	}
+
+	// Archive.
+	// <div class="breadcrumb" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+	// 	<span class="breadcrumb-link-wrap" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+	// 		<a class="breadcrumb-link" href="https://promatchups.local/" itemprop="item">
+	// 			<span class="breadcrumb-link-text-wrap" itemprop="name">Home</span>
+	// 		</a>
+	// 		<meta itemprop="position" content="1">
+	// 	</span>
+	// 	<span aria-label="breadcrumb separator">/</span>
+	// 	Archives for MLB
+	// </div>
+
+	// Singular.
+	// <div class="breadcrumb" itemprop="breadcrumb" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+	// 	<span class="breadcrumb-link-wrap" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+	// 		<a class="breadcrumb-link" href="https://promatchups.local/" itemprop="item">
+	// 			<span class="breadcrumb-link-text-wrap" itemprop="name">Home</span>
+	// 		</a>
+	// 		<meta itemprop="position" content="1">
+	// 	</span>
+	// 	<span aria-label="breadcrumb separator">/</span>
+	// 	Matchups
+	// 	<span aria-label="breadcrumb separator">/</span>
+	// 	Orioles vs Nationals
+	// </div>
+
+	// Get the global query.
+	global $wp_query;
+
+	// Set vars.
+	$separator  = '/';
+	$breadcumbs = [
+		[
+			'url'  => home_url(),
+			'text' => __( 'Home', 'mai-asknews' ),
+		],
+	];
+
+	// If league/team.
+	if ( $is_league ) {
+		// Get taxonomy.
+		$taxonomy = isset( $wp_query->query_vars['taxonomy'] ) ? $wp_query->query_vars['taxonomy'] : '';
+
+		// If not league or season, bail.
+		if ( ! in_array( $taxonomy, [ 'league', 'season' ] ) ) {
+			return;
+		}
+
+		// Get term.
+		$slug = isset( $wp_query->query_vars['term'] ) ? $wp_query->query_vars['term'] : '';
+		$term = $slug ? get_term_by( 'slug', $slug, $taxonomy ) : '';
+
+		// Get parent term.
+		$parent      = $term && $term->parent ? get_term( $term->parent, $taxonomy ) : '';
+		$grandparent = $parent && $parent->parent ? get_term( $parent->parent, $taxonomy ) : '';
+
+		// Maybe add grandparent.
+		if ( $grandparent ) {
+			$breadcumbs[] = [
+				'url'  => get_term_link( $grandparent ),
+				'text' => $grandparent->name,
+			];
+		}
+
+		// Maybe add parent.
+		if ( $parent ) {
+			$breadcumbs[] = [
+				'url'  => get_term_link( $parent ),
+				'text' => $parent->name,
+			];
+		}
+
+		// Add term.
+		$breadcumbs[] = [
+			'url'  => get_term_link( $term ),
+			'text' => $term->name,
+		];
+	}
+	// If season.
+	elseif ( $is_season ) {
+		// Get the terms.
+		$league = isset( $wp_query->query_vars['league'] ) ? $wp_query->query_vars['league'] : '';
+		$league = $league ? get_term_by( 'slug', $league, 'league' ) : '';
+		$season = isset( $wp_query->query_vars['term'] ) ? $wp_query->query_vars['term'] : '';
+		$season = $season ? get_term_by( 'slug', $season, 'season' ) : '';
+
+		// Maybe add league.
+		if ( $league ) {
+			$breadcumbs[] = [
+				'url'  => get_term_link( $league ),
+				'text' => $league->name,
+			];
+		}
+
+		// Maybe add season.
+		if ( $season ) {
+			$breadcumbs[] = [
+				'url'  => get_term_link( $season ),
+				'text' => $season->name,
+			];
+		}
+	}
+	// If singular.
+	elseif ( $is_singular ) {
+		// Get the terms.
+		$league      = isset( $wp_query->query_vars['league'] ) ? $wp_query->query_vars['league'] : '';
+		$league      = $league ? get_term_by( 'slug', $league, 'league' ) : '';
+		$parent      = $league && $league->parent ? get_term( $league->parent, 'league' ) : '';
+		$grandparent = $parent && $parent->parent ? get_term( $parent->parent, 'league' ) : '';
+		$season      = isset( $wp_query->query_vars['season'] ) ? $wp_query->query_vars['season'] : '';
+		$season      = $season ? get_term_by( 'slug', $season, 'season' ) : '';
+
+		// Maybe add grandparent.
+		if ( $grandparent ) {
+			$breadcumbs[] = [
+				'url'  => get_term_link( $grandparent ),
+				'text' => $grandparent->name,
+			];
+		}
+
+		// Maybe add parent.
+		if ( $parent ) {
+			$breadcumbs[] = [
+				'url'  => get_term_link( $parent ),
+				'text' => $parent->name,
+			];
+		}
+
+		// Maybe add league.
+		if ( $league ) {
+			$breadcumbs[] = [
+				'url'  => get_term_link( $league ),
+				'text' => $league->name,
+			];
+		}
+
+		// Maybe add season.
+		if ( $season && $league ) {
+			$breadcumbs[] = [
+				'url'  => trailingslashit( get_term_link( $league ) ) . $season->slug . '/',
+				'text' => $season->name,
+			];
+		}
+
+		// Add matchup.
+		$breadcumbs[] = [
+			'url'  => get_permalink(),
+			'text' => get_the_title(),
+		];
+	}
+
+	// Bail if no breadcrumbs.
+	if ( ! $breadcumbs ) {
+		return;
+	}
+
+	// Output breadcrumbs.
+	echo '<div class="breadcrumb">';
+		foreach ( $breadcumbs as $i => $crumb ) {
+			$last = $i === count( $breadcumbs ) - 1;
+
+			echo '<span class="breadcrumb__item">';
+				if ( $crumb['url'] && ! $last ) {
+					printf( '<a class="breadcrumb__link" href="%s">', esc_url( $crumb['url'] ) );
+				}
+
+				echo esc_html( $crumb['text'] );
+
+				if ( $crumb['url'] && ! $last ) {
+					echo '</a>';
+				}
+			echo '</span>';
+
+			if ( ! $last ) {
+				echo '<span class="breadcrumb__separator"> ' . esc_html( $separator ) . ' </span>';
+			}
+		}
+	echo '</div>';
 }
