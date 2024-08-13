@@ -74,22 +74,29 @@ class Mai_AskNews_Rewrites {
 		// League. /mlb/
 		$new_rules["($leagues)/?$"] = 'index.php?taxonomy=league&term=$matches[1]';
 
+		// League with pagination. /mlb/page/2/
+		$new_rules["($leagues)/page/?([0-9]{1,})/?$"] = 'index.php?taxonomy=league&term=$matches[1]&paged=$matches[2]';
+
 		// Team. /mlb/yankees/
 		$new_rules["($leagues)/($teams)/?$"] = 'index.php?taxonomy=league&term=$matches[2]&league=$matches[1]';
+
+		// Team with pagination. /mlb/yankees/page/2/
+		$new_rules["($leagues)/($teams)/page/?([0-9]{1,})/?$"] = 'index.php?taxonomy=league&term=$matches[2]&league=$matches[1]&paged=$matches[3]';
 
 		// League season. /mlb/2024/
 		$new_rules["($leagues)/($seasons)/?$"] = 'index.php?taxonomy=season&term=$matches[2]&league=$matches[1]';
 
+		// League season with pagination. /mlb/2024/page/2/
+		$new_rules["($leagues)/($seasons)/page/?([0-9]{1,})/?$"] = 'index.php?taxonomy=season&term=$matches[2]&league=$matches[1]&paged=$matches[3]';
+
 		// Team season. /mlb/yankees/2024/
-		// $new_rules["($leagues)/($teams)/($seasons)/?$"] = 'index.php?taxonomy=season&term=$matches[3]&league=$matches[2]&league=$matches[1]';
-		// $new_rules["($leagues)/($teams)/($seasons)/?$"] = 'index.php?taxonomy=season&term=$matches[3]&league=$matches[1]';
 		$new_rules["($leagues)/($teams)/($seasons)/?$"] = 'index.php?taxonomy=season&term=$matches[3]&league=$matches[2]';
+
+		// Team season with pagination. /mlb/yankees/2024/page/2/
+		$new_rules["($leagues)/($teams)/($seasons)/page/?([0-9]{1,})/?$"] = 'index.php?taxonomy=season&term=$matches[3]&league=$matches[2]&paged=$matches[4]';
 
 		// Single matchup. /mlb/2024/yankees-vs-red-sox-2024-8-10/
 		$new_rules["($leagues)/($seasons)/([^/]+)/?$"] = 'index.php?post_type=matchup&league=$matches[1]&season=$matches[2]&name=$matches[3]';
-
-		// Single insight. /mlb/2024/yankees-vs-red-sox-2024-8-10/update-1/
-		// $new_rules["($leagues)/($seasons)/([^/]+)/([^/]+)/?$"] = 'index.php?post_type=matchup&league=$matches[1]&season=$matches[2]&name=$matches[3]';
 
 		// Merge new rules with existing rules
 		$the_rules = array_merge( $new_rules, $the_rules );

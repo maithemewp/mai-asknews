@@ -132,11 +132,22 @@ class Mai_AskNews_Archives {
 			return $content;
 		}
 
-		// Set day and times.
-		$day      = date( 'M j', strtotime( $date ) );
-		$time_utc = new DateTime( $date, new DateTimeZone( 'UTC' ) );
-		$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i A' ) . ' ET';
-		$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i A' ) . ' PT';
+		// Get day.
+		$day = date_i18n( 'M j', strtotime( $date ) ); // Get the day in 'M j' format.
+
+		// Create a DateTime object with the given date and time in EST.
+		$time_est = new DateTime( $date, new DateTimeZone( 'America/New_York' ) );
+
+		// Convert to UTC.
+		$time_utc = clone $time_est;
+		$time_utc->setTimezone( new DateTimeZone( 'UTC' ) );
+
+		// Convert to Pacific Time (PT).
+		$time_pst = clone $time_est;
+		$time_pst = $time_pst->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i A' ) . ' PT';
+
+		// Format the EST time (already in EST).
+		$time_est = $time_est->format( 'g:i A' ) . ' ET';
 
 		// Build the markup.
 		$html  = '';
@@ -195,6 +206,11 @@ class Mai_AskNews_Archives {
 	 */
 	function do_past_games() {
 		if ( ! function_exists( 'mai_do_post_grid' ) ) {
+			return;
+		}
+
+		// Bail if paged.
+		if ( get_query_var( 'paged' ) ) {
 			return;
 		}
 
