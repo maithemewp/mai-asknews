@@ -116,7 +116,7 @@
 	padding: var(--spacing-lg);
 	background: var(--color-header);
 	color: var(--color-white);
-	border: var(--border);
+	border-bottom: 6px solid var(--color-primary);
 }
 
 .pm-prediction__item strong {
