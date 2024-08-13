@@ -59,22 +59,50 @@ class Mai_AskNews_Listener {
 		 ***************************************************************/
 
 		// Set team vars.
-		$home_team = $away_team = null;
+		$teams     = $this->body['sport'] ? $this->get_teams( $this->body['sport'] ) : [];
+		$home_team = null;
+		$away_team = null;
 
-		// Set home team.
-		if ( isset( $this->body['home_team_name'] ) ) {
-			$home_team = $this->body['home_team_name'];
-		} elseif ( isset( $this->body['home_team'] ) ) {
-			$home_team = explode( ' ', $this->body['home_team'] );
-			$home_team = end( $home_team );
+		// Check if we have a home team in the array.
+		if ( $teams && isset( $this->body['home_team'] ) ) {
+			$sports_teams = $this->get_teams( $this->body['sport'] );
+
+			// If any of the sports teams keys are in the home_team string.
+			foreach ( $sports_teams as $team => $city ) {
+				if ( str_contains( $this->body['home_team'], $team ) ) {
+					$home_team = $team;
+					break;
+				}
+			}
+		} else {
+			// Set home team.
+			if ( isset( $this->body['home_team_name'] ) ) {
+				$home_team = $this->body['home_team_name'];
+			} elseif ( isset( $this->body['home_team'] ) ) {
+				$home_team = explode( ' ', $this->body['home_team'] );
+				$home_team = end( $home_team );
+			}
 		}
 
-		// Set away team.
-		if ( isset( $this->body['away_team_name'] ) ) {
-			$away_team = $this->body['away_team_name'];
-		} elseif ( isset( $this->body['away_team'] ) ) {
-			$away_team = explode( ' ', $this->body['away_team'] );
-			$away_team = end( $away_team );
+		// Check if we have an away team in the array.
+		if ( $teams && isset( $this->body['away_team'] ) ) {
+			$sports_teams = $this->get_teams( $this->body['sport'] );
+
+			// If any of the sports teams keys are in the away_team string.
+			foreach ( $sports_teams as $team => $city ) {
+				if ( str_contains( $this->body['away_team'], $team ) ) {
+					$away_team = $team;
+					break;
+				}
+			}
+		} else {
+			// Set away team.
+			if ( isset( $this->body['away_team_name'] ) ) {
+				$away_team = $this->body['away_team_name'];
+			} elseif ( isset( $this->body['away_team'] ) ) {
+				$away_team = explode( ' ', $this->body['away_team'] );
+				$away_team = end( $away_team );
+			}
 		}
 
 		// If home and away, override matchup title.
@@ -97,7 +125,32 @@ class Mai_AskNews_Listener {
 
 		// Existing matchup, get post ID.
 		if ( $matchup_ids ) {
-			$matchup_id = $matchup_ids[0];
+			// If title needs updating.
+			if ( $matchup_title !== get_the_title( $matchup_ids[0] ) ) {
+				// Update the title.
+				$matchup_id = wp_insert_post(
+					[
+						'ID'         => $matchup_ids[0],
+						'post_title' => $matchup_title,
+					]
+				);
+
+				// If no post ID, send error.
+				if ( ! $matchup_id ) {
+					$this->return = $this->get_error( 'Failed during update via wp_insert_post()' );
+					return;
+				}
+
+				// Bail if there was an error.
+				if ( is_wp_error( $matchup_id ) ) {
+					$this->return = $matchup_id;
+					return;
+				}
+			}
+			// Set the ID.
+			else {
+				$matchup_id = $matchup_ids[0];
+			}
 		}
 		// If no matchup, create one.
 		else {
@@ -118,7 +171,7 @@ class Mai_AskNews_Listener {
 
 			// If no post ID, send error.
 			if ( ! $matchup_id ) {
-				$this->return = $this->get_error( 'Failed during wp_insert_post()' );
+				$this->return = $this->get_error( 'Failed during creation via wp_insert_post()' );
 				return;
 			}
 
@@ -592,5 +645,158 @@ class Mai_AskNews_Listener {
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Get teams.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string $sport The sport.
+	 *
+	 * @return array
+	 */
+	function get_teams( $sport ) {
+		static $cache = [];
+
+		if ( isset( $cache[ $sport ] ) ) {
+			return $cache[ $sport ];
+		}
+
+		$cache = [
+			'MLB' => [
+				'Angels'       => 'Los Angeles',
+				'Astros'       => 'Houston',
+				'Athletics'    => 'Oakland',
+				'Blue Jays'    => 'Toronto',
+				'Braves'       => 'Atlanta',
+				'Brewers'      => 'Milwaukee',
+				'Cardinals'    => 'St. Louis',
+				'Cubs'         => 'Chicago',
+				'Diamondbacks' => 'Arizona',
+				'Dodgers'      => 'Los Angeles',
+				'Giants'       => 'San Francisco',
+				'Guardians'    => 'Cleveland',
+				'Mariners'     => 'Seattle',
+				'Marlins'      => 'Miami',
+				'Mets'         => 'New York',
+				'Nationals'    => 'Washington',
+				'Orioles'      => 'Baltimore',
+				'Padres'       => 'San Diego',
+				'Phillies'     => 'Philadelphia',
+				'Pirates'      => 'Pittsburgh',
+				'Rangers'      => 'Texas',
+				'Rays'         => 'Tampa Bay',
+				'Reds'         => 'Cincinnati',
+				'Red Sox'      => 'Boston',
+				'Rockies'      => 'Colorado',
+				'Royals'       => 'Kansas City',
+				'Tigers'       => 'Detroit',
+				'Twins'        => 'Minnesota',
+				'White Sox'    => 'Chicago',
+				'Yankees'      => 'New York',
+			],
+			'NFL' => [
+				'49ers'      => 'San Francisco',
+				'Bears'      => 'Chicago',
+				'Bengals'    => 'Cincinnati',
+				'Bills'      => 'Buffalo',
+				'Broncos'    => 'Denver',
+				'Browns'     => 'Cleveland',
+				'Buccaneers' => 'Tampa Bay',
+				'Cardinals'  => 'Arizona',
+				'Chargers'   => 'Los Angeles',
+				'Chiefs'     => 'Kansas City',
+				'Colts'      => 'Indianapolis',
+				'Commanders' => 'Washington',
+				'Cowboys'    => 'Dallas',
+				'Dolphins'   => 'Miami',
+				'Eagles'     => 'Philadelphia',
+				'Falcons'    => 'Atlanta',
+				'Giants'     => 'New York',
+				'Jaguars'    => 'Jacksonville',
+				'Jets'       => 'New York',
+				'Lions'      => 'Detroit',
+				'Packers'    => 'Green Bay',
+				'Panthers'   => 'Carolina',
+				'Patriots'   => 'New England',
+				'Raiders'    => 'Las Vegas',
+				'Rams'       => 'Los Angeles',
+				'Ravens'     => 'Baltimore',
+				'Saints'     => 'New Orleans',
+				'Seahawks'   => 'Seattle',
+				'Steelers'   => 'Pittsburgh',
+				'Texans'     => 'Houston',
+				'Titans'     => 'Tennessee',
+				'Vikings'    => 'Minnesota',
+			],
+			'NBA' => [
+				'76ers'         => 'Philadelphia',
+				'Bucks'         => 'Milwaukee',
+				'Bulls'         => 'Chicago',
+				'Cavaliers'     => 'Cleveland',
+				'Celtics'       => 'Boston',
+				'Clippers'      => 'Los Angeles',
+				'Grizzlies'     => 'Memphis',
+				'Hawks'         => 'Atlanta',
+				'Heat'          => 'Miami',
+				'Hornets'       => 'Charlotte',
+				'Jazz'          => 'Utah',
+				'Kings'         => 'Sacramento',
+				'Knicks'        => 'New York',
+				'Lakers'        => 'Los Angeles',
+				'Magic'         => 'Orlando',
+				'Mavericks'     => 'Dallas',
+				'Nets'          => 'Brooklyn',
+				'Nuggets'       => 'Denver',
+				'Pacers'        => 'Indiana',
+				'Pelicans'      => 'New Orleans',
+				'Pistons'       => 'Detroit',
+				'Raptors'       => 'Toronto',
+				'Rockets'       => 'Houston',
+				'Spurs'         => 'San Antonio',
+				'Suns'          => 'Phoenix',
+				'Thunder'       => 'Oklahoma City',
+				'Timberwolves'  => 'Minnesota',
+				'Trail Blazers' => 'Portland',
+				'Warriors'      => 'Golden State',
+				'Wizards'       => 'Washington',
+			],
+			'NHL' => [
+				'Blackhawks'     => 'Chicago',
+				'Blue Jackets'   => 'Columbus',
+				'Blues'          => 'St. Louis',
+				'Bruins'         => 'Boston',
+				'Canadiens'      => 'Montreal',
+				'Canucks'        => 'Vancouver',
+				'Capitals'       => 'Washington',
+				'Coyotes'        => 'Arizona',
+				'Devils'         => 'New Jersey',
+				'Ducks'          => 'Anaheim',
+				'Flames'         => 'Calgary',
+				'Flyers'         => 'Philadelphia',
+				'Golden Knights' => 'Vegas',
+				'Hurricanes'     => 'Carolina',
+				'Islanders'      => 'New York',
+				'Jets'           => 'Winnipeg',
+				'Kings'          => 'Los Angeles',
+				'Kraken'         => 'Seattle',
+				'Lightning'      => 'Tampa Bay',
+				'Maple Leafs'    => 'Toronto',
+				'Oilers'         => 'Edmonton',
+				'Panthers'       => 'Florida',
+				'Penguins'       => 'Pittsburgh',
+				'Predators'      => 'Nashville',
+				'Rangers'        => 'New York',
+				'Red Wings'      => 'Detroit',
+				'Sabres'         => 'Buffalo',
+				'Senators'       => 'Ottawa',
+				'Sharks'         => 'San Jose',
+				'Stars'          => 'Dallas',
+				'Wild'           => 'Minnesota',
+			],
+		];
+
+		return isset( $cache[ $sport ] ) ? $cache[ $sport ] : [];
 	}
 }

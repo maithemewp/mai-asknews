@@ -287,7 +287,7 @@ class Mai_AskNews_Display {
 
 		// Remove reCAPTCHA and Unusual Traffic Detection.
 		foreach ( $web as $index => $item ) {
-			$title = $this->get_key( 'title', $item );
+			$title = maiasknews_get_key( 'title', $item );
 
 			if ( in_array( $title, [ 'reCAPTCHA', 'Unusual Traffic Detection' ] ) ) {
 				unset( $web[ $index ] );
@@ -327,20 +327,20 @@ class Mai_AskNews_Display {
 		echo '<ul class="pm-results">';
 
 		foreach ( $web as $item ) {
-			$url        = $this->get_key( 'url', $item );
-			$name       = $this->get_key( 'source', $item );
+			$url        = maiasknews_get_key( 'url', $item );
+			$name       = maiasknews_get_key( 'source', $item );
 			$name       = 'unknown' === strtolower( $name ) ? '' : $name;
 			$parsed_url = wp_parse_url( $url );
 			$host       = $name ?: $parsed_url['host'];
 			$host       = str_replace( 'www.', '', $host );
 			$host       = $host ? 'mlb.com' === strtolower( $host ) ? 'MLB.com' : $host : '';
 			$host       = $host ? sprintf( '<a href="%s" target="_blank">%s</a>', $url, $host ) : '';
-			$title      = $this->get_key( 'title', $item );
-			$date       = $this->get_key( 'published', $item );
+			$title      = maiasknews_get_key( 'title', $item );
+			$date       = maiasknews_get_key( 'published', $item );
 			$date       = $date ? date_i18n( get_option( 'date_format' ), strtotime( $date ) ) : '';
 			$meta       = sprintf( '%s %s %s', $date, __( 'via', 'mai-asknews' ), $host );
 			$meta       = trim( $meta );
-			$points     = $this->get_key( 'key_points', $item );
+			$points     = maiasknews_get_key( 'key_points', $item );
 
 			echo '<li class="pm-result">';
 				echo '<h3 class="entry-title">';
@@ -444,20 +444,20 @@ class Mai_AskNews_Display {
 		echo '<ul class="pm-sources">';
 
 			foreach ( $sources as $source ) {
-				$url        = $this->get_key( 'article_url', $source );
-				$host       = $this->get_key( 'domain_url', $source );
-				$name       = $this->get_key( 'source_id', $source );
+				$url        = maiasknews_get_key( 'article_url', $source );
+				$host       = maiasknews_get_key( 'domain_url', $source );
+				$name       = maiasknews_get_key( 'source_id', $source );
 				$parsed_url = wp_parse_url( $url );
 				$base_url   = $parsed_url['scheme'] . '://' . $parsed_url['host'];
 				$host       = $name ?: $parsed_url['host'];
 				$host       = str_replace( 'www.', '', $host );
 				$host       = $host ? 'mlb.com' === strtolower( $host ) ? 'MLB.com' : $host : '';
 				$host       = $host ? sprintf( '<a href="%s" target="_blank">%s</a>', $url, $host ) : '';
-				$date       = $this->get_key( 'pub_date', $source );
+				$date       = maiasknews_get_key( 'pub_date', $source );
 				$date       = $date ? date_i18n( get_option( 'date_format' ), strtotime( $date ) ) : '';
-				$title      = $this->get_key( 'eng_title', $source );
-				$image_url  = $this->get_key( 'image_url', $source );
-				$summary    = $this->get_key( 'summary', $source );
+				$title      = maiasknews_get_key( 'eng_title', $source );
+				$image_url  = maiasknews_get_key( 'image_url', $source );
+				$summary    = maiasknews_get_key( 'summary', $source );
 				$meta       = sprintf( '%s %s %s', $date, __( 'via', 'mai-asknews' ), $host );
 				$meta       = trim( $meta );
 

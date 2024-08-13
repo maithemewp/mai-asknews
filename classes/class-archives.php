@@ -24,122 +24,215 @@ class Mai_AskNews_Archives {
 	 * @return void
 	 */
 	function hooks() {
-		$league = is_tax( 'league' );
-		$season = is_tax( 'season' );
+		$league  = is_tax( 'league' );
+		$season  = is_tax( 'season' );
 
 		if ( ! ( $league || $season ) ) {
 			return;
 		}
 
-		if ( $league ) {
-			$this->run_league();
-		}
-
-		if ( $season ) {
-			$this->run_season();
-		}
+		// Add hooks.
+		add_action( 'wp_enqueue_scripts',              [ $this, 'enqueue' ] );
+		add_action( 'genesis_before_loop',             [ $this, 'do_teams' ], 20 );
+		add_action( 'genesis_before_loop',             [ $this, 'do_upcoming_heading' ], 20 );
+		add_filter( 'genesis_markup_entry-wrap_open',  [ $this, 'get_datetime' ], 10, 2 );
+		add_filter( 'genesis_markup_entry-wrap_close', [ $this, 'get_predictions' ], 10, 2 );
+		add_action( 'genesis_after_loop',              [ $this, 'do_past_games' ] );
+		add_filter( 'genesis_noposts_text',            [ $this, 'get_noposts_text' ] );
 	}
 
-	function run_league() {
-		add_action( 'genesis_before_loop',   [ $this, 'do_upcoming' ], 20 );
-		add_action( 'genesis_entry_content', [ $this, 'do_matchup_date' ] );
-		add_action( 'genesis_after_loop',    [ $this, 'do_past_games' ] );
+	/**
+	 * Enqueue CSS in the header.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function enqueue() {
+		wp_enqueue_style( 'mai-asknews', MAI_ASKNEWS_URL . 'assets/css/mai-asknews.css', [], MAI_ASKNEWS_VERSION );
 	}
 
-	function run_season() {
+	/**
+	 * Do the teams.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function do_teams() {
+		$term_id = get_queried_object_id();
 
-	}
-
-	function do_upcoming() {
-		// Bail if we don't have any posts.
-		if ( ! have_posts() ) {
+		// Bail if not a top level term.
+		if ( ! $term_id || 0 !== wp_get_term_taxonomy_parent_id( $term_id, 'league' ) ) {
 			return;
 		}
 
+		// Get child terms.
+		$teams = get_terms(
+			[
+				'taxonomy'   => 'league',
+				'hide_empty' => false,
+				'parent'     => $term_id,
+			]
+		);
+
+		if ( ! $teams ) {
+			return;
+		}
+
+		printf( '<h2>%s</h2>', __( 'All Teams', 'mai-asknews' ) );
+		echo '<ul class="pm-teams">';
+			foreach ( $teams as $term ) {
+				printf( '<li><a href="%s">%s</a></li>', get_term_link( $term ), $term->name );
+			}
+		echo '</ul>';
+	}
+
+	/**
+	 * Do the upcoming games.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function do_upcoming_heading() {
 		echo '<h2>Upcoming Games</h2>';
 	}
 
-	function do_matchup_date() {
+	/**
+	 * Get the datetime markup.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string $content The default content.
+	 * @param array  $args    The markup args.
+	 *
+	 * @return string
+	 */
+	function get_datetime( $content, $args ) {
+		// Bail if not the opening markup.
+		if ( ! ( isset( $args['open'] ) && $args['open'] ) ) {
+			return $content;
+		}
+
+		// Get classes and context.
+		$class   = isset( $args['params']['args']['class'] ) ? $args['params']['args']['class'] : '';
+		$context = isset( $args['params']['args']['context'] ) ? $args['params']['args']['context'] : '';
+
+		// Bail if not an archive or MPG with custom class..
+		if ( ! ( 'archive' === $context || ( 'block' === $context && str_contains( $class, 'pm-matchups' ) ) ) ) {
+			return $content;
+		}
+
+		// Get day and times.
 		$date = get_post_meta( get_the_ID(), 'event_date', true );
 
+		// Bail if no date.
 		if ( ! $date ) {
+			return $content;
+		}
+
+		// Set day and times.
+		$day      = date( 'M j', strtotime( $date ) );
+		$time_utc = new DateTime( $date, new DateTimeZone( 'UTC' ) );
+		$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i A' ) . ' ET';
+		$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i A' ) . ' PT';
+
+		// Build the markup.
+		$html  = '';
+		$html .= '<div class="pm-matchup__date">';
+			$html .= sprintf( '<span class="pm-matchup__day">%s</span>', $day );
+			$html .= sprintf( '<span class="pm-matchup__time">%s</span>', $time_est );
+			$html .= sprintf( '<span class="pm-matchup__time">%s</span>', $time_pst );
+		$html .= '</div>';
+
+		return $html . $content;
+	}
+
+	/**
+	 * Get the predictions markup.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string $content The default content.
+	 * @param array  $args    The markup args.
+	 *
+	 * @return string
+	 */
+	function get_predictions( $content, $args ) {
+		// Bail if not the closing markup.
+		if ( ! ( isset( $args['close'] ) && $args['close'] ) ) {
+			return $content;
+		}
+
+		// Get classes and context.
+		$class   = isset( $args['params']['args']['class'] ) ? $args['params']['args']['class'] : '';
+		$context = isset( $args['params']['args']['context'] ) ? $args['params']['args']['context'] : '';
+
+		// Bail if not an archive or MPG with custom class..
+		if ( ! ( 'archive' === $context || ( 'block' === $context && str_contains( $class, 'pm-matchups' ) ) ) ) {
+			return $content;
+		}
+
+		// Get the data.
+		$body = maiasknews_get_insight_body( get_the_ID() );
+		$list = maiasknews_get_prediction_list( $body );
+
+		// Bail if no list.
+		if ( ! $list ) {
+			return $content;
+		}
+
+		return $list . $content;
+	}
+
+	/**
+	 * Do the past games.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function do_past_games() {
+		if ( ! function_exists( 'mai_do_post_grid' ) ) {
 			return;
 		}
 
-		$date = date( 'F j, Y @ g:i a', strtotime( $date ) );
-
-		echo '<p>' . $date . '</p>';
-	}
-
-	function do_past_games() {
-		global $wp_query;
-
-		// $object = get_queried_object();
-		// $league = get_query_var( 'league' );
-		// $season = get_query_var( 'season' );
-
-		// Set initial args.
 		$args = [
 			'post_type'      => 'matchup',
-			'posts_per_page' => 200,
+			'posts_per_page' => 100,
+			'columns'        => 1,
 			'orderby'        => 'meta_value',
 			'order'          => 'DESC',
 			'meta_key'       => 'event_date',
-			'meta_query'     => [
+			'show'           => [ 'title', 'excerpt' ],
+			'query_by'       => 'tax_meta',
+			'class'          => 'pm-matchups',
+			'boxed'          => false,
+			'meta_keys'      => [
 				[
-					'key'     => 'event_date',
-					'value'   => date( 'Y-m-d', strtotime( '-1 day' ) ),
-					'compare' => '<=',
-					'type'    => 'DATE',
-				],
+					'meta_key'     => 'event_date',
+					'meta_value'   => date( 'Y-m-d', strtotime( '-1 day' ) ),
+					'meta_compare' => '<=',
+					'meta_type'    => 'DATE',
+				]
 			],
 		];
 
-		// Build tax query.
-		$tax_query = [];
-		$existing  = $wp_query->tax_query;
+		printf( '<h2 class="has-xxl-margin-top">%s</h2>', __( 'Recent Games', 'mai-asknews' ) );
+		mai_do_post_grid( $args );
+	}
 
-		// If existing tax query.
-		if ( $existing->queries ) {
-			// Loop through each taxonomy query
-			foreach ( $existing->queries as $query ) {
-				$taxonomy = $query['taxonomy'];
-				$terms    = $query['terms'];
-				$field    = $query['field'];
-				$operator = $query['operator'];
-
-				$tax_query[] = [
-					'taxonomy' => $taxonomy,
-					'field'    => $field,
-					'terms'    => $terms,
-					'operator' => $operator,
-				];
-			}
-		}
-
-		if ( $tax_query ) {
-			$tax_query['relation'] = 'AND';
-			$args['tax_query']     = $tax_query;
-		}
-
-		// Get past games.
-		$query = new WP_Query( $args );
-
-		// If we have posts.
-		if ( $query->have_posts() ) {
-			echo '<h2 class="has-xxl-margin-top">Past Games</h2>';
-			echo '<ul class="pm-pastgames">';
-				while ( $query->have_posts() ) : $query->the_post();
-					$date = get_post_meta( get_the_ID(), 'event_date', true );
-					$date = $date ? date( 'F j, Y @ g:i a', strtotime( $date ) ) : '';
-
-					echo '<li class="pm-pastgame has-md-margin-bottom">';
-						printf( '<h3 class="has-xxs-margin-bottom has-md-font-size"><a class="entry-title-link" href="%s" title="%s">%s</a></h3>', get_permalink(), esc_attr( get_the_title() ), esc_html( get_the_title() ) );
-						printf( '<p class="has-sm-font-size">%s</p>', $date );
-					echo '</li>';
-				endwhile;
-			echo '</duliv>';
-		}
-		wp_reset_postdata();
+	/**
+	 * Change the no posts text.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string $content The default no posts text.
+	 *
+	 * @return string
+	 */
+	function get_noposts_text() {
+		return '<p>' . __( 'Sorry, we don\'t have any upcoming game insights at this time. Check back soon!', 'mai-asknews' ) . '</p>';
 	}
 }

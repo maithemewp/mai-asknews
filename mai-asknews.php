@@ -201,6 +201,8 @@ final class Mai_AskNews_Plugin {
 		$endpoints = new Mai_AskNews_Endpoints;
 		$rewrites  = new Mai_AskNews_Rewrites;
 		$archives  = new Mai_AskNews_Archives;
+		// $leagues   = new Mai_AskNews_Archives_Leagues;
+		// $seasons   = new Mai_AskNews_Archives_Seasons;
 		$singular  = new Mai_AskNews_Singular;
 	}
 
@@ -320,7 +322,7 @@ final class Mai_AskNews_Plugin {
 			'rewrite'           => false, // Handled in Mai_AskNews_Rewrites.
 		] );
 
-		// League (NEW).
+		// Leagues/Teams.
 		register_taxonomy( 'league', [ 'matchup', 'insight' ], [
 			'hierarchical' => true,
 			'labels'       => [
