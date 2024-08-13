@@ -77,17 +77,14 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-
+		// Get the date and times.
 		$day      = date( 'l, F j, Y ', strtotime( $event_date ) );
 		$time_utc = new DateTime( $event_date, new DateTimeZone( 'UTC' ) );
 		$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i A' ) . ' ET';
 		$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i A' ) . ' PT';
 
-		// Format the date like Saturday, July 17, 2021 @ 7:05 pm.
-		// $event_date = date_i18n( 'l, F j, Y @g:i a', strtotime( $event_date ) );
-
 		// Display the date.
-		printf( '<p><strong>%s:</strong> %s @ %s / %s</p>', __( 'Game Time', 'mai-asknews' ), $day, $time_est, $time_pst );
+		printf( '<p class="pm-datetime"><strong>%s:</strong> %s @ %s / %s</p>', __( 'Game Time', 'mai-asknews' ), $day, $time_est, $time_pst );
 	}
 
 	/**

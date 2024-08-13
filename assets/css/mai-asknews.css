@@ -79,6 +79,11 @@
 
 /* Singular */
 
+.entry-title-single {
+	margin-bottom: var(--spacing-xs);
+	text-align: center;
+}
+
 .entry-wrap-single > h2 {
 	position: relative;
 	display: grid;
@@ -110,12 +115,14 @@
 	content: "";
 }
 
+.pm-datetime {
+	text-align: center;
+}
+
 .pm-prediction {
-	--heading-color: var(--color-white);
 	margin-bottom: var(--spacing-xl);
 	padding: var(--spacing-lg);
-	background: var(--color-header);
-	color: var(--color-white);
+	background: var(--color-alt);
 	border-bottom: 6px solid var(--color-primary);
 }
 
