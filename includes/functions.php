@@ -4,6 +4,23 @@
 defined( 'ABSPATH' ) || die;
 
 /**
+ * Enqueue the plugin styles.
+ *
+ * @since 0.1.0
+ *
+ * @return void
+ */
+function maiasknews_enqueue_styles() {
+	$version   = MAI_ASKNEWS_VERSION;
+	$file      = '/assets/css/mai-asknews.css';
+	$file_path = MAI_ASKNEWS_DIR . $file;
+	$file_url  = MAI_ASKNEWS_URL . $file;
+	$version  .= '.' . date( 'njYHi', filemtime( $file_path ) );
+
+	wp_enqueue_style( 'mai-asknews', $file_url, [], $version );
+}
+
+/**
  * Get the insight body.
  *
  * @since 0.1.0

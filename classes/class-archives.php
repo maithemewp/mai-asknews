@@ -49,7 +49,7 @@ class Mai_AskNews_Archives {
 	 * @return void
 	 */
 	function enqueue() {
-		wp_enqueue_style( 'mai-asknews', MAI_ASKNEWS_URL . 'assets/css/mai-asknews.css', [], MAI_ASKNEWS_VERSION );
+		maiasknews_enqueue_styles();
 	}
 
 	/**
