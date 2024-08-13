@@ -1,4 +1,36 @@
+/* General */
+
+:root {
+	--font-scale: 1.125;
+	--background-lines: repeating-linear-gradient(
+		120deg,
+		transparent,
+		transparent 12px,
+		var(--color-border) 12px,
+		var(--color-border) 24px
+	);
+}
+
 /* Archives & Singular */
+
+.archive-title,
+.entry-title-single {
+	display: grid;
+	gap: .4em;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	margin-bottom: var(--spacing-xs);
+	text-align: center;
+}
+
+.archive-title::before,
+.archive-title::after,
+.entry-title-single::before,
+.entry-title-single::after {
+	height: 1.1cap;
+	background: var(--background-lines);
+	content: "";
+}
 
 .pm-prediction__list {
 	--list-style-type: none;
@@ -79,11 +111,6 @@
 
 /* Singular */
 
-.entry-title-single {
-	margin-bottom: var(--spacing-xs);
-	text-align: center;
-}
-
 .entry-wrap-single > h2 {
 	position: relative;
 	display: grid;
@@ -105,13 +132,7 @@
 
 .entry-wrap-single > h2::after {
 	height: 1.1cap;
-	background: repeating-linear-gradient(
-		120deg,
-		transparent,
-		transparent 12px,
-		var(--color-border) 12px,
-		var(--color-border) 24px
-	);
+	background: var(--background-lines);
 	content: "";
 }
 

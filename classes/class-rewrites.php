@@ -65,11 +65,11 @@ class Mai_AskNews_Rewrites {
 
 		// Build teams array.
 		foreach( $league_structure as $league => $team_names ) {
-			$teams += $team_names;
+			$teams = array_merge( $teams, $team_names );
 		}
 
 		// Build teams regex.
-		$teams = implode( '|', array_filter( $teams ) );
+		$teams = implode( '|', array_unique( array_filter( $teams ) ) );
 
 		// League. /mlb/
 		$new_rules["($leagues)/?$"] = 'index.php?taxonomy=league&term=$matches[1]';
