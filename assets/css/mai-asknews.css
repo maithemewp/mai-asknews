@@ -53,11 +53,62 @@
 
 .tax-league .entry-archive,
 .tax-season .entry-archive,
+.tax-matchup_tag .entry-archive,
 .pm-matchups .entry-grid {
 	--heading-margin-bottom: var(--spacing-sm);
 	display: grid;
 	gap: 2vw;
 	grid-template-columns: auto 1fr;
+}
+
+.tax-league .entry-archive .entry-wrap,
+.tax-season .entry-archive .entry-wrap,
+.tax-matchup_tag .entry-archive .entry-wrap,
+.pm-matchups .entry-grid .entry-wrap {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: .5em 1em;
+	align-items: center;
+
+	.entry-title {
+		display: flex;
+		align-items: center;
+		margin: 0;
+		order: 1;
+		flex: 1 0 auto;
+	}
+
+	.entry-title::after {
+		display: block;
+		width: auto;
+		height: 1px;
+		margin-left: 1em;
+		background: var(--color-border);
+		flex-grow: 1;
+		content: '';
+	}
+
+	.entry-excerpt {
+		margin: 0;
+		order: 3;
+		flex-basis: 100%;
+	}
+
+	.entry-more {
+		margin: 0;
+		padding: 0;
+		order: 2;
+		flex-basis: auto;
+	}
+
+	.entry-more-link {
+		white-space: nowrap;
+	}
+
+	.pm-prediction__list {
+		order: 3;
+	}
 }
 
 .pm-teams {
@@ -111,7 +162,11 @@
 
 /* Singular */
 
-.entry-wrap-single > h2 {
+.entry-excerpt-single {
+	--entry-excerpt-margin-bottom: var(--spacing-md);
+}
+
+.entry-content-single > h2 {
 	position: relative;
 	display: grid;
 	gap: .4em;
@@ -120,7 +175,7 @@
 	margin-bottom: var(--spacing-lg);
 }
 
-.entry-wrap-single > h2::before {
+.entry-content-single > h2::before {
 	display: block;
 	width: 48px;
 	height: 6px;
@@ -130,13 +185,14 @@
 	content: "";
 }
 
-.entry-wrap-single > h2::after {
+.entry-content-single > h2::after {
 	height: 1.1cap;
 	background: var(--background-lines);
 	content: "";
 }
 
 .pm-datetime {
+	margin-bottom: var(--spacing-xl);
 	text-align: center;
 }
 
@@ -145,6 +201,10 @@
 	padding: var(--spacing-lg);
 	background: var(--color-alt);
 	border-bottom: 6px solid var(--color-primary);
+
+	.pm-prediction__list {
+		--list-margin: 0 0 var(--spacing-md);
+	}
 }
 
 .pm-prediction__item strong {
@@ -168,7 +228,7 @@
 	margin: 0;
 }
 
-.pm-result__source {
+.pm-result__meta {
 	--link-color: var(--color-body);
 	margin-bottom: var(--spacing-xxxs);
 	font-size: var(--font-size-sm);
@@ -229,6 +289,23 @@
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
+}
+
+.pm-entities {
+	list-style-type: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: .25em;
+	margin: 0;
+}
+
+.pm-entity {
+	margin: 0;
+	padding: var(--spacing-xxxs) var(--spacing-xs);
+	font-size: var(--font-size-xs);
+	background: var(--color-alt);
+	color: var(--color-body);
+	text-decoration: none;
 }
 
 .pm-insight {

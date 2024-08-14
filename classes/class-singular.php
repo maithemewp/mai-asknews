@@ -46,10 +46,10 @@ class Mai_AskNews_Singular {
 		);
 
 		// Add hooks.
-		add_action( 'wp_enqueue_scripts',           [ $this, 'enqueue' ] );
-		add_action( 'genesis_before_entry_content', [ $this, 'do_event_info' ] );
-		add_action( 'genesis_after_entry_content',  [ $this, 'do_content' ] );
-		add_action( 'genesis_after_entry_content',  [ $this, 'do_insights' ] );
+		add_action( 'wp_enqueue_scripts',            [ $this, 'enqueue' ] );
+		add_action( 'genesis_before_entry_content',  [ $this, 'do_event_info' ] );
+		add_action( 'mai_after_entry_content_inner', [ $this, 'do_content' ] );
+		add_action( 'mai_after_entry_content_inner', [ $this, 'do_insights' ] );
 	}
 
 	/**
@@ -78,10 +78,10 @@ class Mai_AskNews_Singular {
 		}
 
 		// Get the date and times.
-		$day      = date( 'l, F j, Y ', strtotime( $event_date ) );
-		$time_utc = new DateTime( $event_date, new DateTimeZone( 'UTC' ) );
-		$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i A' ) . ' ET';
-		$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i A' ) . ' PT';
+		$day      = date( 'l, F j, Y ', $event_date );
+		$time_utc = new DateTime( "@$event_date", new DateTimeZone( 'UTC' ) );
+		$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
+		$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
 
 		// Display the date.
 		printf( '<p class="pm-datetime"><strong>%s:</strong> %s @ %s / %s</p>', __( 'Game Time', 'mai-asknews' ), $day, $time_est, $time_pst );
@@ -157,7 +157,26 @@ class Mai_AskNews_Singular {
 	 * @return void
 	 */
 	function do_insight( $body ) {
-		$this->do_prediction( $body );
+		$has_access = current_user_can( 'edit_posts' );
+
+		if ( $has_access ) {
+			$this->do_prediction( $body );
+		}
+
+		// TODO: Get odds.
+		// "odds": {
+		// 	"Houston Astros": {
+		// 	"fanduel": -196,
+		// 	"caesars": -189,
+		// 	"bet365": -185
+		// },
+		// "Pittsburgh Pirates": {
+		// 	"fanduel": 164,
+		// 	"caesars": 158,
+		// 	"bet365": 155
+		// 	}
+		// },
+
 		$this->do_main( $body );
 		$this->do_people( $body );
 		$this->do_timeline( $body );
@@ -172,18 +191,45 @@ class Mai_AskNews_Singular {
 	 *
 	 * @return void
 	 */
-	function do_prediction( $body ) {
+	function do_prediction( $data ) {
 		// Get the list.
-		$list = maiasknews_get_prediction_list( $body );
+		$list = maiasknews_get_prediction_list( $data );
 
 		// Bail if no list.
 		if ( ! $list ) {
 			return;
 		}
 
-		echo '<div class="pm-prediction">';
+		echo '<div id="prediction" class="pm-prediction">';
 			printf( '<h2>%s</h2>', __( 'Our Prediction', 'mai-asknews' ) );
 			echo $list;
+
+			$keys = [
+				'forecast'               => __( 'Forecast', 'mai-asknews' ),
+				'reasoning'              => __( 'Reasoning', 'mai-asknews' ),
+				// 'reconciled_information' => __( 'Reconciled Information', 'mai-asknews' ),
+				// 'unique_information'     => __( 'Synopsis', 'mai-asknews' ),
+			];
+
+			foreach ( $keys as $key => $value ) {
+				$content = maiasknews_get_key( $key, $data );
+
+				if ( ! $content ) {
+					continue;
+				}
+
+				$classes = '';
+
+				if ( 'forecast' !== $key ) {
+					$classes = 'has-lg-margin-top';
+				}
+
+				$classes .= ' has-xs-margin-bottom';
+
+				printf( '<p><strong>%s:</strong> %s</p>', $value, $content );
+				// printf( '<p>%s</p>', $content );
+			}
+
 		echo '</div>';
 	}
 
@@ -196,13 +242,13 @@ class Mai_AskNews_Singular {
 	 */
 	function do_main( $data ) {
 		$keys = [
-			'forecast',
-			'reasoning',
-			'reconciled_information',
-			'unique_information',
+			// 'forecast'               => __( 'Forecast', 'mai-asknews' ),
+			// 'reasoning'              => __( 'Reasoning', 'mai-asknews' ),
+			// 'reconciled_information' => __( 'Reconciled Information', 'mai-asknews' ),
+			'unique_information'     => __( 'Synopsis', 'mai-asknews' ),
 		];
 
-		foreach ( $keys as $index => $key ) {
+		foreach ( $keys as $key => $value ) {
 			$content = maiasknews_get_key( $key, $data );
 
 			if ( ! $content ) {
@@ -211,14 +257,14 @@ class Mai_AskNews_Singular {
 
 			$classes = '';
 
-			if ( 0 !== $index ) {
+			if ( 'forecast' !== $key ) {
 				$classes = 'has-lg-margin-top';
 			}
 
 			$classes .= ' has-xs-margin-bottom';
 
-			// printf( '<p class="%s"><strong>%s</strong></p>', $classes, ucfirst( $key ) );
-			printf( '<p><strong>%s:</strong> %s</p>', $key, $content );
+			// printf( '<p><strong>%s:</strong> %s</p>', $value, $content );
+			printf( '<p>%s</p>', $content );
 		}
 	}
 
@@ -236,20 +282,30 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-		printf( '<p class="has-lg-margin-top has-xs-margin-bottom"><strong>%s</strong></p>', __( 'Key Players', 'mai-asknews' ) );
-		echo '<ul>';
+		// Start markup.
+		printf( '<p id="people" class="is-style-heading"><strong>%s</strong></p>', __( 'Key People', 'mai-asknews' ) );
+		echo '<ul class="pm-people">';
 
 		foreach ( $people as $person ) {
 			// Early versions were a string of the person's name.
 			if ( is_string( $person ) ) {
-				printf( '<li>%s</li>', $person );
+				printf( '<li class="pm-person">%s</li>', $person );
 			}
 			// We should be getting dict/array now.
 			else {
+				// Get the term/name.
+				$name = isset( $person['name'] ) ? $person['name'] : '';
+				$term = $name ? get_term_by( 'name', $name, 'matchup_tag' ) : '';
+				$name = $term ? sprintf( '<strong><a class="pm-person__link" href="%s">%s</a></strong>', get_term_link( $term ), $term->name ) : $name;
+
+				// Build the info.
 				$info = [
-					isset( $person['name'] ) ? sprintf( '<strong>%s</strong>', $person['name'] ) : '',
+					$name,
 					isset( $person['role'] ) ? $person['role'] : '',
 				];
+
+				// Remove empty items.
+				$info = array_filter( $info );
 
 				echo '<li>';
 					echo implode( ' - ', $info );
@@ -274,7 +330,7 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-		printf( '<p class="has-lg-margin-top has-xs-margin-bottom"><strong>%s</strong></p>', __( 'Timeline', 'mai-asknews' ) );
+		printf( '<p id="timeline" class="is-style-heading"><strong>%s</strong></p>', __( 'Timeline', 'mai-asknews' ) );
 		echo '<ul>';
 
 		foreach ( $timeline as $event ) {
@@ -302,7 +358,7 @@ class Mai_AskNews_Singular {
 		foreach ( $web as $index => $item ) {
 			$title = maiasknews_get_key( 'title', $item );
 
-			if ( in_array( $title, [ 'reCAPTCHA', 'Unusual Traffic Detection' ] ) ) {
+			if ( in_array( $title, [ '404', 'reCAPTCHA', 'Unusual Traffic Detection' ] ) ) {
 				unset( $web[ $index ] );
 			}
 		}
@@ -314,9 +370,10 @@ class Mai_AskNews_Singular {
 		// Reindex.
 		$web = array_values( $web );
 
-		printf( '<h2 class="has-xxl-margin-top">%s</h2>', __( 'Around the Web', 'mai-asknews' ) );
+		printf( '<h2 id="web">%s</h2>', __( 'Around the Web', 'mai-asknews' ) );
 		echo '<ul class="pm-results">';
 
+		// Loop through web results.
 		foreach ( $web as $item ) {
 			$url        = maiasknews_get_key( 'url', $item );
 			$name       = maiasknews_get_key( 'source', $item );
@@ -325,19 +382,19 @@ class Mai_AskNews_Singular {
 			$host       = $name ?: $parsed_url['host'];
 			$host       = str_replace( 'www.', '', $host );
 			$host       = $host ? 'mlb.com' === strtolower( $host ) ? 'MLB.com' : $host : '';
-			$host       = $host ? sprintf( '<a href="%s" target="_blank">%s</a>', $url, $host ) : '';
+			$host       = $host ? sprintf( '<a class="entry-title-link" href="%s" target="_blank">%s</a>', $url, $host ) : '';
 			$title      = maiasknews_get_key( 'title', $item );
 			$date       = maiasknews_get_key( 'published', $item );
-			$date       = $date ? date_i18n( get_option( 'date_format' ), strtotime( $date ) ) : '';
-			$meta       = sprintf( '%s %s %s', $date, __( 'via', 'mai-asknews' ), $host );
-			$meta       = trim( $meta );
+			$date       = $date ? wp_date( get_option( 'date_format' ), strtotime( $date ) ) : '';
+			$meta       = [ trim( $date ), trim( $title ) ];
+			$meta       = implode( ' &ndash; ', array_filter( $meta ) );
 			$points     = maiasknews_get_key( 'key_points', $item );
 
 			echo '<li class="pm-result">';
-				echo '<h3 class="entry-title">';
-					echo $title;
+				echo '<h3 class="entry-title pm-result__title">';
+					echo $host;
 				echo '</h3>';
-				echo '<div class="pm-result__source">';
+				echo '<div class="pm-result__meta">';
 					echo $meta;
 				echo '</div>';
 				echo '<ul>';
@@ -367,9 +424,9 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-		printf( '<h2 id="sources" class="has-xxl-margin-top">%s</h2>', __( 'Sources', 'mai-asknews' ) );
+		printf( '<h2 id="sources">%s</h2>', __( 'Additional News Sources', 'mai-asknews' ) );
 		echo '<ul class="pm-sources">';
-
+			// Loop through sources.
 			foreach ( $sources as $source ) {
 				$url        = maiasknews_get_key( 'article_url', $source );
 				$host       = maiasknews_get_key( 'domain_url', $source );
@@ -379,37 +436,49 @@ class Mai_AskNews_Singular {
 				$host       = $name ?: $parsed_url['host'];
 				$host       = str_replace( 'www.', '', $host );
 				$host       = $host ? 'mlb.com' === strtolower( $host ) ? 'MLB.com' : $host : '';
-				$host       = $host ? sprintf( '<a href="%s" target="_blank">%s</a>', $url, $host ) : '';
+				$host       = $host ? sprintf( '<a class="entry-title-link" href="%s" target="_blank">%s</a>', $url, $host ) : '';
 				$date       = maiasknews_get_key( 'pub_date', $source );
-				$date       = $date ? date_i18n( get_option( 'date_format' ), strtotime( $date ) ) : '';
+				$date       = $date ? wp_date( get_option( 'date_format' ), strtotime( $date ) ) : '';
 				$title      = maiasknews_get_key( 'eng_title', $source );
 				$image_url  = maiasknews_get_key( 'image_url', $source );
 				$summary    = maiasknews_get_key( 'summary', $source );
-				$meta       = sprintf( '%s %s %s', $date, __( 'via', 'mai-asknews' ), $host );
-				$meta       = trim( $meta );
+				$meta       = [ trim( $date ), trim( $title ) ];
+				$meta       = implode( ' &ndash; ', array_filter( $meta ) );
+				$entities   = maiasknews_get_key( 'entities', $source );
+				$persons    = maiasknews_get_key( 'Person', (array) $entities );
 
 				echo '<li class="pm-source">';
+					// Image.
 					echo '<figure class="pm-source__image">';
 						if ( $image_url ) {
 							printf( '<img class="pm-source__image-bg" src="%s" alt="%s" />', $image_url, $title );
 							printf( '<img class="pm-source__image-img" src="%s" alt="%s" />', $image_url, $title );
 						}
 					echo '</figure>';
+
+					// Title.
 					echo '<h3 class="pm-source__title entry-title">';
-						echo $title;
+						echo $host;
 					echo '</h3>';
+
+					// Meta.
 					echo '<p class="pm-source__meta">';
 						echo $meta;
 					echo '</p>';
-					// echo '<label class="pm-source__more">';
-					// 	echo '<input type="checkbox" id="toggle">';
-					// 	echo '<span class="pm-source__more-text">';
-					// 		echo __( 'More', 'mai-asknews' );
-					// 	echo '</span>';
-					// echo '</label>';
+
+					// Summary.
 					echo '<p class="pm-source__summary">';
 						echo $summary;
 					echo '</p>';
+
+					// People/Entities.
+					if ( $persons ) {
+						echo '<ul class="pm-entities">';
+						foreach ( $persons as $person ) {
+							printf( '<li class="pm-entity">%s</li>', $person );
+						}
+						echo '</ul>';
+					}
 				echo '</li>';
 			}
 

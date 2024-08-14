@@ -44,9 +44,14 @@ class Mai_AskNews_Listener {
 		// Set the update flag.
 		$update = false;
 
-		// Get title and event date.
+		// Set matchup title and datetime.
 		list( $matchup_title, $matchup_datetime ) = explode( ',', $this->body['matchup'], 2 );
-		$matchup_title = $this->body['game'];
+
+		// Set vars.
+		$matchup_title     = trim( $matchup_title );
+		$matchup_datetime  = trim( $matchup_datetime );
+		$matchup_date      = $this->get_date( $matchup_datetime );
+		$matchup_timestamp = $this->get_date_timestamp( $matchup_datetime );
 
 		/***************************************************************
 		 * Next Step - Get the matchup post ID.
@@ -58,14 +63,16 @@ class Mai_AskNews_Listener {
 		 * Set matchup ID.
 		 ***************************************************************/
 
+		// Sources have entities, save as tags (or custom taxonomy?), display as badges.
+
 		// Set team vars.
-		$teams     = $this->body['sport'] ? $this->get_teams( $this->body['sport'] ) : [];
+		$teams     = $this->body['sport'] ? maiasknews_get_teams( $this->body['sport'] ) : [];
 		$home_team = null;
 		$away_team = null;
 
 		// Check if we have a home team in the array.
 		if ( $teams && isset( $this->body['home_team'] ) ) {
-			$sports_teams = $this->get_teams( $this->body['sport'] );
+			$sports_teams = maiasknews_get_teams( $this->body['sport'] );
 
 			// If any of the sports teams keys are in the home_team string.
 			foreach ( $sports_teams as $team => $city ) {
@@ -86,7 +93,7 @@ class Mai_AskNews_Listener {
 
 		// Check if we have an away team in the array.
 		if ( $teams && isset( $this->body['away_team'] ) ) {
-			$sports_teams = $this->get_teams( $this->body['sport'] );
+			$sports_teams = maiasknews_get_teams( $this->body['sport'] );
 
 			// If any of the sports teams keys are in the away_team string.
 			foreach ( $sports_teams as $team => $city ) {
@@ -125,15 +132,27 @@ class Mai_AskNews_Listener {
 
 		// Existing matchup, get post ID.
 		if ( $matchup_ids ) {
-			// If title needs updating.
-			if ( $matchup_title !== get_the_title( $matchup_ids[0] ) ) {
-				// Update the title.
-				$matchup_id = wp_insert_post(
-					[
-						'ID'         => $matchup_ids[0],
-						'post_title' => $matchup_title,
-					]
-				);
+			$needs_title   = $matchup_title !== get_the_title( $matchup_ids[0] );
+			$needs_summary = ! get_the_excerpt( $matchup_ids[0] ) && isset( $this->body['summary'] ) && $this->body['summary'];
+
+			// If title or summary needs updating.
+			if ( $needs_title || $needs_summary ) {
+				$update_args = [
+					'ID' => $matchup_ids[0]
+				];
+
+				// If title needs updating.
+				if ( $needs_title ) {
+					$update_args['post_title'] = $matchup_title;
+				}
+
+				// If summary needs updating.
+				if ( $needs_summary ) {
+					$update_args['post_excerpt'] = $this->body['summary'];
+				}
+
+				// Update the matchup.
+				$matchup_id = wp_insert_post( $update_args );
 
 				// If no post ID, send error.
 				if ( ! $matchup_id ) {
@@ -155,14 +174,15 @@ class Mai_AskNews_Listener {
 		// If no matchup, create one.
 		else {
 			$matchup_args = [
-				'post_type'   => 'matchup',
-				'post_status' => 'publish',
-				'post_author' => $this->user->ID,
-				'post_title'  => $matchup_title,
-				'post_name'   => sanitize_title( $matchup_title ) . ' ' . wp_date( 'Y-m-d', strtotime( $matchup_datetime ) ),
-				'meta_input'  => [
-					'event_uuid' => $this->body['event_uuid'],              // The id of this specific event.
-					'event_date' => $this->get_date( $matchup_datetime ),   // The event date, formatted for WP.
+				'post_type'    => 'matchup',
+				'post_status'  => 'publish',
+				'post_author'  => $this->user->ID,
+				'post_title'   => $matchup_title,
+				'post_name'    => sanitize_title( $matchup_title ) . ' ' . wp_date( 'Y-m-d', $matchup_timestamp ),
+				'post_excerpt' => $this->body['summary'],
+				'meta_input'   => [
+					'event_uuid' => $this->body['event_uuid'],   // The id of this specific event.
+					'event_date' => $matchup_timestamp,          // The event date timestamp.
 				],
 			];
 
@@ -196,7 +216,7 @@ class Mai_AskNews_Listener {
 		// Set default post args.
 		$insight_args = [
 			'post_type'    => 'insight',
-			'post_status'  => 'draft',
+			'post_status'  => 'publish',
 			'post_author'  => $this->user->ID,
 			'post_title'   => __( 'Insight', 'mai-asknews' ) . ' ' . $this->body['forecast_uuid'], // Updated later.
 			'post_excerpt' => $this->body['summary'],
@@ -209,9 +229,8 @@ class Mai_AskNews_Listener {
 
 		// Set post date.
 		if ( isset( $this->body['date'] ) && $this->body['date'] ) {
-			$post_date                     = $this->get_date( $this->body['date'] );
-			$insight_args['post_date']     = $post_date;
-			$insight_args['post_date_gmt'] = get_gmt_from_date( $post_date );
+			$insight_args['post_date']     = $matchup_date;
+			$insight_args['post_date_gmt'] = get_gmt_from_date( $matchup_date );
 		}
 
 		// Check for an existing insights.
@@ -251,14 +270,44 @@ class Mai_AskNews_Listener {
 		}
 
 		/***************************************************************
-		 * Next Step - Rmove the existing terms from the insight.
 		 *
-		 * These can be removed later, once these are cleaned up.
 		 ***************************************************************/
 
-		// Delete terms from the insight.
-		wp_delete_object_term_relationships( $matchup_id, [ 'team' ] );
-		wp_delete_object_term_relationships( $insight_id, [ 'team' ] );
+		// Get people.
+		$name_ids = [];
+		$people   = $this->body['key_people'];
+
+		// If we have people.
+		if ( $people ) {
+			// Loop through people.
+			foreach ( $people as $person ) {
+				// Early versions were a string of the person's name.
+				if ( is_string( $person ) ) {
+					$name = $person;
+				}
+				// We should be getting dict/array now.
+				else {
+					$name = isset( $person['name'] ) ? $person['name'] : '';
+				}
+
+				// Skip if no name.
+				if ( ! $name ) {
+					continue;
+				}
+
+				// Get or create the tag.
+				$name_ids[] = $this->get_term( $name, 'matchup_tag' );
+			}
+		}
+
+		// Remove empties.
+		$name_ids = array_filter( $name_ids );
+
+		// If names.
+		if ( $name_ids ) {
+			// Set the tags.
+			wp_set_object_terms( $matchup_id, $name_ids, 'matchup_tag', $append = true );
+		}
 
 		/***************************************************************
 		 * Next Step - Set the matchup and insight custom taxonomy terms.
@@ -292,10 +341,10 @@ class Mai_AskNews_Listener {
 			// Get or create the season term.
 			$season_id = $this->get_term( $this->body['season'], 'season' );
 		}
-		// No seasons, use datetime.
-		elseif ( $matchup_datetime ) {
+		// No seasons, use timestamp.
+		elseif ( $matchup_timestamp ) {
 			// Get year from event date.
-			$year = wp_date( 'Y', strtotime( $matchup_datetime ) );
+			$year = wp_date( 'Y', $matchup_timestamp );
 
 			// If we have a year.
 			if ( $year ) {
@@ -414,18 +463,24 @@ class Mai_AskNews_Listener {
 	 * @return string
 	 */
 	function get_date( $value ) {
-		// Check if the value is already in 'Y-m-d H:i:s' format.
-		if ( is_string( $value ) && false !== strtotime( $value ) && $value === date( 'Y-m-d H:i:s', strtotime( $value ) ) ) {
-			return $value;
-		}
+		return wp_date( 'Y-m-d H:i:s', $this->get_date_timestamp( $value ) );
+	}
 
-		// If it's not numeric, likely not a timestamp.
+	/**
+	 * Gets a timestamp from a date string.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string $value Any date string.
+	 *
+	 * @return string
+	 */
+	function get_date_timestamp( $value ) {
 		if ( ! is_numeric( $value ) ) {
 			$value = strtotime( $value );
 		}
 
-		// Format the date.
-		return wp_date( 'Y-m-d H:i:s', $value );
+		return $value;
 	}
 
 	/**
@@ -645,158 +700,5 @@ class Mai_AskNews_Listener {
 		}
 
 		return $data;
-	}
-
-	/**
-	 * Get teams.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param string $sport The sport.
-	 *
-	 * @return array
-	 */
-	function get_teams( $sport ) {
-		static $cache = [];
-
-		if ( isset( $cache[ $sport ] ) ) {
-			return $cache[ $sport ];
-		}
-
-		$cache = [
-			'MLB' => [
-				'Angels'       => 'Los Angeles',
-				'Astros'       => 'Houston',
-				'Athletics'    => 'Oakland',
-				'Blue Jays'    => 'Toronto',
-				'Braves'       => 'Atlanta',
-				'Brewers'      => 'Milwaukee',
-				'Cardinals'    => 'St. Louis',
-				'Cubs'         => 'Chicago',
-				'Diamondbacks' => 'Arizona',
-				'Dodgers'      => 'Los Angeles',
-				'Giants'       => 'San Francisco',
-				'Guardians'    => 'Cleveland',
-				'Mariners'     => 'Seattle',
-				'Marlins'      => 'Miami',
-				'Mets'         => 'New York',
-				'Nationals'    => 'Washington',
-				'Orioles'      => 'Baltimore',
-				'Padres'       => 'San Diego',
-				'Phillies'     => 'Philadelphia',
-				'Pirates'      => 'Pittsburgh',
-				'Rangers'      => 'Texas',
-				'Rays'         => 'Tampa Bay',
-				'Reds'         => 'Cincinnati',
-				'Red Sox'      => 'Boston',
-				'Rockies'      => 'Colorado',
-				'Royals'       => 'Kansas City',
-				'Tigers'       => 'Detroit',
-				'Twins'        => 'Minnesota',
-				'White Sox'    => 'Chicago',
-				'Yankees'      => 'New York',
-			],
-			'NFL' => [
-				'49ers'      => 'San Francisco',
-				'Bears'      => 'Chicago',
-				'Bengals'    => 'Cincinnati',
-				'Bills'      => 'Buffalo',
-				'Broncos'    => 'Denver',
-				'Browns'     => 'Cleveland',
-				'Buccaneers' => 'Tampa Bay',
-				'Cardinals'  => 'Arizona',
-				'Chargers'   => 'Los Angeles',
-				'Chiefs'     => 'Kansas City',
-				'Colts'      => 'Indianapolis',
-				'Commanders' => 'Washington',
-				'Cowboys'    => 'Dallas',
-				'Dolphins'   => 'Miami',
-				'Eagles'     => 'Philadelphia',
-				'Falcons'    => 'Atlanta',
-				'Giants'     => 'New York',
-				'Jaguars'    => 'Jacksonville',
-				'Jets'       => 'New York',
-				'Lions'      => 'Detroit',
-				'Packers'    => 'Green Bay',
-				'Panthers'   => 'Carolina',
-				'Patriots'   => 'New England',
-				'Raiders'    => 'Las Vegas',
-				'Rams'       => 'Los Angeles',
-				'Ravens'     => 'Baltimore',
-				'Saints'     => 'New Orleans',
-				'Seahawks'   => 'Seattle',
-				'Steelers'   => 'Pittsburgh',
-				'Texans'     => 'Houston',
-				'Titans'     => 'Tennessee',
-				'Vikings'    => 'Minnesota',
-			],
-			'NBA' => [
-				'76ers'         => 'Philadelphia',
-				'Bucks'         => 'Milwaukee',
-				'Bulls'         => 'Chicago',
-				'Cavaliers'     => 'Cleveland',
-				'Celtics'       => 'Boston',
-				'Clippers'      => 'Los Angeles',
-				'Grizzlies'     => 'Memphis',
-				'Hawks'         => 'Atlanta',
-				'Heat'          => 'Miami',
-				'Hornets'       => 'Charlotte',
-				'Jazz'          => 'Utah',
-				'Kings'         => 'Sacramento',
-				'Knicks'        => 'New York',
-				'Lakers'        => 'Los Angeles',
-				'Magic'         => 'Orlando',
-				'Mavericks'     => 'Dallas',
-				'Nets'          => 'Brooklyn',
-				'Nuggets'       => 'Denver',
-				'Pacers'        => 'Indiana',
-				'Pelicans'      => 'New Orleans',
-				'Pistons'       => 'Detroit',
-				'Raptors'       => 'Toronto',
-				'Rockets'       => 'Houston',
-				'Spurs'         => 'San Antonio',
-				'Suns'          => 'Phoenix',
-				'Thunder'       => 'Oklahoma City',
-				'Timberwolves'  => 'Minnesota',
-				'Trail Blazers' => 'Portland',
-				'Warriors'      => 'Golden State',
-				'Wizards'       => 'Washington',
-			],
-			'NHL' => [
-				'Blackhawks'     => 'Chicago',
-				'Blue Jackets'   => 'Columbus',
-				'Blues'          => 'St. Louis',
-				'Bruins'         => 'Boston',
-				'Canadiens'      => 'Montreal',
-				'Canucks'        => 'Vancouver',
-				'Capitals'       => 'Washington',
-				'Coyotes'        => 'Arizona',
-				'Devils'         => 'New Jersey',
-				'Ducks'          => 'Anaheim',
-				'Flames'         => 'Calgary',
-				'Flyers'         => 'Philadelphia',
-				'Golden Knights' => 'Vegas',
-				'Hurricanes'     => 'Carolina',
-				'Islanders'      => 'New York',
-				'Jets'           => 'Winnipeg',
-				'Kings'          => 'Los Angeles',
-				'Kraken'         => 'Seattle',
-				'Lightning'      => 'Tampa Bay',
-				'Maple Leafs'    => 'Toronto',
-				'Oilers'         => 'Edmonton',
-				'Panthers'       => 'Florida',
-				'Penguins'       => 'Pittsburgh',
-				'Predators'      => 'Nashville',
-				'Rangers'        => 'New York',
-				'Red Wings'      => 'Detroit',
-				'Sabres'         => 'Buffalo',
-				'Senators'       => 'Ottawa',
-				'Sharks'         => 'San Jose',
-				'Stars'          => 'Dallas',
-				'Wild'           => 'Minnesota',
-			],
-		];
-
-		return isset( $cache[ $sport ] ) ? $cache[ $sport ] : [];
 	}
 }

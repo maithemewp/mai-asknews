@@ -26,8 +26,9 @@ class Mai_AskNews_Archives {
 	function hooks() {
 		$league  = is_tax( 'league' );
 		$season  = is_tax( 'season' );
+		$tag     = is_tax( 'matchup_tag' );
 
-		if ( ! ( $league || $season ) ) {
+		if ( ! ( $league || $season || $tag ) ) {
 			return;
 		}
 
@@ -125,18 +126,18 @@ class Mai_AskNews_Archives {
 		}
 
 		// Get day and times.
-		$date = get_post_meta( get_the_ID(), 'event_date', true );
+		$event_date = get_post_meta( get_the_ID(), 'event_date', true );
 
 		// Bail if no date.
-		if ( ! $date ) {
+		if ( ! $event_date ) {
 			return $content;
 		}
 
 		// Get day.
-		$day = date_i18n( 'M j', strtotime( $date ) ); // Get the day in 'M j' format.
+		$day = wp_date( 'M j', $event_date ); // Get the day in 'M j' format.
 
 		// Create a DateTime object with the given date and time in EST.
-		$time_est = new DateTime( $date, new DateTimeZone( 'America/New_York' ) );
+		$time_est = new DateTime( "@$event_date", new DateTimeZone( 'America/New_York' ) );
 
 		// Convert to UTC.
 		$time_utc = clone $time_est;
@@ -185,6 +186,11 @@ class Mai_AskNews_Archives {
 			return $content;
 		}
 
+		// Bail if not an admin.
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return $content;
+		}
+
 		// Get the data.
 		$body = maiasknews_get_insight_body( get_the_ID() );
 		$list = maiasknews_get_prediction_list( $body );
@@ -214,29 +220,90 @@ class Mai_AskNews_Archives {
 			return;
 		}
 
-		$args = [
-			'post_type'      => 'matchup',
-			'posts_per_page' => 100,
-			'columns'        => 1,
-			'orderby'        => 'meta_value',
-			'order'          => 'DESC',
-			'meta_key'       => 'event_date',
-			'show'           => [ 'title', 'excerpt' ],
-			'query_by'       => 'tax_meta',
-			'class'          => 'pm-matchups',
-			'boxed'          => false,
-			'meta_keys'      => [
-				[
-					'meta_key'     => 'event_date',
-					'meta_value'   => date( 'Y-m-d', strtotime( '-1 day' ) ),
-					'meta_compare' => '<=',
-					'meta_type'    => 'DATE',
-				]
+		// Heading.
+		printf( '<h2 class="has-xxl-margin-top">%s</h2>', __( 'Past Games', 'mai-asknews' ) );
+
+		// Filter MPG query.
+		add_filter( 'mai_post_grid_query_args', [ $this, 'mpg_query_args' ], 10, 2 );
+
+		// Add the posts.
+		mai_do_post_grid(
+			$args = [
+				'post_type'       => 'matchup',
+				'posts_per_page'  => 100,
+				'columns'         => 1,
+				'show'            => [ 'title', 'excerpt', 'more_link' ],
+				// 'more_link_style' => 'button-secondary',
+				'more_link_style' => 'button_link',
+				// 'more_link_style' => 'link',
+				'more_link_text'  => __( 'View Matchup', 'mai-asknews' ),
+				'boxed'           => false,
+				'class'           => 'pm-matchups',
+			]
+		);
+
+		// Remove the filter.
+		remove_filter( 'mai_post_grid_query_args', [ $this, 'mpg_query_args' ], 10, 2 );
+	}
+
+	/**
+	 * Add the tax query to the MPG query.
+	 *
+	 * @param array $query_args WP_Query args.
+	 * @param array $args       Mai Post Grid args.
+	 *
+	 * @return array
+	 */
+	function mpg_query_args( $query_args, $args ) {
+		// Get the current query.
+		global $wp_query;
+
+		// If we have a tax query.
+		if ( ! $wp_query->tax_query->queries ) {
+			return $query_args;
+		}
+
+		// Adjust the query.
+		$query_args['tax_query']  = $wp_query->tax_query->queries;
+		$query_args['meta_query'] = [
+			[
+				'key'     => 'event_date',
+				'value'   => strtotime( 'yesterday' ),
+				'compare' => '<=',
+				'type'    => 'NUMERIC',
 			],
 		];
 
-		printf( '<h2 class="has-xxl-margin-top">%s</h2>', __( 'Recent Games', 'mai-asknews' ) );
-		mai_do_post_grid( $args );
+		// Sort by event date.
+		$query_args['orderby']  = 'meta_value_num';
+		$query_args['order']    = 'DESC';
+		$query_args['meta_key'] = 'event_date';
+
+		return $query_args;
+	}
+
+	/**
+	 * Get term IDs by slugs.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string[] $slugs    Array of the term slugs.
+	 * @param string   $taxonomy The taxonomy.
+	 *
+	 * @return int[]
+	 */
+	function get_term_ids_by_slug( $slugs, $taxonomy ) {
+		$term_ids = [];
+
+		foreach ( $slugs as $slug ) {
+			$term = get_term_by( 'slug', $slug, $taxonomy );
+
+			if ( $term ) {
+				$term_ids[] = $term->term_id;
+			}
+		}
+
+		return $term_ids;
 	}
 
 	/**

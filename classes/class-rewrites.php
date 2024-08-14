@@ -130,109 +130,53 @@ class Mai_AskNews_Rewrites {
 	 * @return void
 	 */
 	function modify_queries( $query ) {
-		if ( is_admin() || ! $query->is_main_query() ) {
+		if ( ! $query->is_main_query() ) {
 			return;
 		}
 
-		// Bail if not a taxonomy archive.
-		if ( ! $query->is_tax ) {
+		// Get conditions.
+		$is_admin_archive = is_admin() && 'matchup' === $query->get( 'post_type' );
+		$is_front_archive = ! is_admin() && ( is_tax( 'league' ) || is_tax( 'season' ) );
+
+		// Bail if not an archive.
+		if ( ! ( $is_admin_archive || $is_front_archive ) ) {
 			return;
 		}
 
-		// Get taxonomy.
-		$taxonomy = isset( $query->query_vars['taxonomy'] ) ? $query->query_vars['taxonomy'] : '';
+		// If a taxonomy archive, check taxonomy.
+		if ( $is_front_archive && is_tax() ) {
+			// Get taxonomy.
+			$taxonomy = isset( $query->query_vars['taxonomy'] ) ? $query->query_vars['taxonomy'] : '';
 
-		// If not league or season, bail.
-		if ( ! in_array( $taxonomy, [ 'league', 'season' ] ) ) {
-			return;
-		}
+			// If not league or season, bail.
+			if ( ! in_array( $taxonomy, [ 'league', 'season' ] ) ) {
+				return;
+			}
 
-		// Get term.
-		$slug = isset( $query->query_vars['term'] ) ? $query->query_vars['term'] : '';
-		$term = $slug ? get_term_by( 'slug', $slug, $taxonomy ) : '';
+			// Get term.
+			$slug = isset( $query->query_vars['term'] ) ? $query->query_vars['term'] : '';
+			$term = $slug ? get_term_by( 'slug', $slug, $taxonomy ) : '';
 
-		// Bail if no term.
-		if ( ! $term || is_wp_error( $term ) ) {
-			return;
+			// Bail if no term.
+			if ( ! $term || is_wp_error( $term ) ) {
+				return;
+			}
+
+			// Remove events from yesterday and older, today and future only.
+			$query->set( 'meta_query', [
+				[
+					'key'     => 'event_date',
+					'value'   => strtotime( 'today' ),
+					'compare' => '>=',
+					'type'    => 'NUMERIC',
+				],
+			] );
 		}
 
 		// Order by event date.
-		$query->set( 'orderby', 'meta_value' );
-		$query->set( 'order', 'ASC' );
+		$query->set( 'orderby', 'meta_value_num' );
+		$query->set( 'order', $is_admin_archive ? 'DESC' : 'ASC' );
 		$query->set( 'meta_key', 'event_date' );
-
-		// Remove events from yesterday and older, today and future only.
-		$query->set( 'meta_query', [
-			[
-				'key'     => 'event_date',
-				'value'   => date( 'Y-m-d' ),
-				'compare' => '>=',
-				'type'    => 'DATETIME',
-			],
-		] );
-
-		// Bail if not a top level term.
-		if ( 0 !== $term->parent ) {
-			return;
-		}
-
-		// Sort by event date.
-		// $query->set( 'orderby', 'meta_value' );
-		// $query->set( 'order', 'ASC' );
-		// $query->set( 'meta_key', 'event_date' );
-
-		// // Set post type.
-		// $query->set( 'post_type', 'matchup' );
-
-		// // Get terms.
-		// $slug   = isset( $query->query_vars['term'] ) ? $query->query_vars['term'] : '';
-		// $league = isset( $query->query_vars['league'] ) ? $query->query_vars['league'] : '';
-		// $season = isset( $query->query_vars['season'] ) ? $query->query_vars['season'] : '';
-
-		// // Bail if no slug.
-		// if ( ! $slug ) {
-		// 	return;
-		// }
-
-		// // Start tax query.
-		// $tax_query = [];
-
-		// $tax_query[] = [
-		// 	'taxonomy' => $taxonomy,
-		// 	'field'    => 'slug',
-		// 	'terms'    => $slug,
-		// ];
-
-		// if ( 'league' === $taxonomy && $season ) {
-		// 	$tax_query[] = [
-		// 		'taxonomy' => 'season',
-		// 		'field'    => 'slug',
-		// 		'terms'    => $season,
-		// 	];
-		// }
-
-		// if ( 'season' === $taxonomy && $league ) {
-		// 	$tax_query[] = [
-		// 		'taxonomy' => 'league',
-		// 		'field'    => 'slug',
-		// 		'terms'    => $league,
-		// 	];
-		// }
-
-		// // Set tax query.
-		// $query->set( 'tax_query', $tax_query );
-
-		// // Get the term object.
-		// $term = get_term_by( 'slug', $slug, $taxonomy );
-
-		// // Bail if no term.
-		// if ( ! $term ) {
-		// 	return;
-		// }
-
-		// // Set queried object.
-		// $query->queried_object    = $term;
-		// $query->queried_object_id = $term->term_id;
 	}
 
 	/**

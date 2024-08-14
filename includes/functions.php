@@ -82,15 +82,24 @@ function maiasknews_get_prediction_list( $body ) {
 	$probability    = maiasknews_get_key( 'probability', $body );
 	$probability    = $probability ? $probability . '%' : '';
 	$likelihood     = maiasknews_get_key( 'likelihood', $body );
-	$confidence     = maiasknews_get_key( 'confidence', $body );
-	$confidence     = $confidence ? maiasknews_format_confidence( $confidence ) : '';
+
+	// TODO:
+	// crystal ball next to prediction
+	// dice next to probability
+	// thumbs up/down next to likelihood?
+
+	// TODO:
+	// Move likelihood after probability... `65%, Likely`
+
+	// $confidence     = maiasknews_get_key( 'confidence', $body );
+	// $confidence     = $confidence ? maiasknews_format_confidence( $confidence ) : '';
 	// $llm_confidence = maiasknews_get_key( 'llm_confidence', $body );
 
 	// Get list body.
 	$table = [
 		__( 'Prediction', 'mai-asknews' )     => $choice,
 		__( 'Probability', 'mai-asknews' )    => $probability,
-		__( 'Confidence', 'mai-asknews' )     => $confidence,
+		// __( 'Confidence', 'mai-asknews' )     => $confidence,
 		// __( 'LLM Confidence', 'mai-asknews' ) => $llm_confidence,
 		__( 'Likelihood', 'mai-asknews' )     => $likelihood,
 	];
@@ -365,4 +374,662 @@ function maiasknews_do_breadcrumbs() {
 			}
 		}
 	echo '</div>';
+}
+
+// function maiasknews_get_team( $sport, $team, $key = '' ) {
+// 	$teams = maiasknews_get_teams( $sport );
+
+// 	if ( isset( $array[ $sport ][ $team ] ) ) {
+// 		if ( $key ) {
+// 			return isset( $array[ $sport ][ $team ][ $key ] ) ? $array[ $sport ][ $team ][ $key ] : null;
+// 		}
+
+// 		return $array[ $sport ][ $team ];
+// 	}
+
+// 	if ( $key ) {
+// 		$array[ $sport ][ $team ][ $key ] = null;
+
+// 		return $teams[ $team ][ $key ];
+// 	}
+
+// 	$array[ $sport ][ $team ] = null;
+
+// 	return $array[ $sport ][ $team ];
+// }
+
+function maiasknews_get_teams( $sport ) {
+	static $cache = [];
+
+	if ( isset( $cache[ $sport ] ) ) {
+		return $cache[ $sport ];
+	}
+
+	$cache = [
+		'MLB' => [
+			'Angels' => [
+				'city'  => 'Los Angeles',
+				'code'  => 'LAA',
+				'color' => '#BA0021'
+			],
+			'Astros' => [
+				'city'  => 'Houston',
+				'code'  => 'HOU',
+				'color' => '#EB6E1F'
+			],
+			'Athletics' => [
+				'city'  => 'Oakland',
+				'code'  => 'OAK',
+				'color' => '#003831'
+			],
+			'Blue Jays' => [
+				'city'  => 'Toronto',
+				'code'  => 'TOR',
+				'color' => '#134A8E'
+			],
+			'Braves' => [
+				'city'  => 'Atlanta',
+				'code'  => 'ATL',
+				'color' => '#CE1141'
+			],
+			'Brewers' => [
+				'city'  => 'Milwaukee',
+				'code'  => 'MIL',
+				'color' => '#FFC52F'
+			],
+			'Cardinals' => [
+				'city'  => 'St. Louis',
+				'code'  => 'STL',
+				'color' => '#C41E3A'
+			],
+			'Cubs' => [
+				'city'  => 'Chicago',
+				'code'  => 'CHC',
+				'color' => '#0E3386'
+			],
+			'Diamondbacks' => [
+				'city'  => 'Arizona',
+				'code'  => 'ARI',
+				'color' => '#A71930'
+			],
+			'Dodgers' => [
+				'city'  => 'Los Angeles',
+				'code'  => 'LAD',
+				'color' => '#005A9C'
+			],
+			'Giants' => [
+				'city'  => 'San Francisco',
+				'code'  => 'SF',
+				'color' => '#FD5A1E'
+			],
+			'Guardians' => [
+				'city'  => 'Cleveland',
+				'code'  => 'CLE',
+				'color' => '#E31937'
+			],
+			'Mariners' => [
+				'city'  => 'Seattle',
+				'code'  => 'SEA',
+				'color' => '#0C2C56'
+			],
+			'Marlins' => [
+				'city'  => 'Miami',
+				'code'  => 'MIA',
+				'color' => '#00A3E0'
+			],
+			'Mets' => [
+				'city'  => 'New York',
+				'code'  => 'NYM',
+				'color' => '#002D72'
+			],
+			'Nationals' => [
+				'city'  => 'Washington',
+				'code'  => 'WSH',
+				'color' => '#AB0003'
+			],
+			'Orioles' => [
+				'city'  => 'Baltimore',
+				'code'  => 'BAL',
+				'color' => '#DF4601'
+			],
+			'Padres' => [
+				'city'  => 'San Diego',
+				'code'  => 'SD',
+				'color' => '#2F241D'
+			],
+			'Phillies' => [
+				'city'  => 'Philadelphia',
+				'code'  => 'PHI',
+				'color' => '#E81828'
+			],
+			'Pirates' => [
+				'city'  => 'Pittsburgh',
+				'code'  => 'PIT',
+				'color' => '#FDB827'
+			],
+			'Rangers' => [
+				'city'  => 'Texas',
+				'code'  => 'TEX',
+				'color' => '#003278'
+			],
+			'Rays' => [
+				'city'  => 'Tampa Bay',
+				'code'  => 'TB',
+				'color' => '#092C5C'
+			],
+			'Reds' => [
+				'city'  => 'Cincinnati',
+				'code'  => 'CIN',
+				'color' => '#C6011F'
+			],
+			'Red Sox' => [
+				'city'  => 'Boston',
+				'code'  => 'BOS',
+				'color' => '#BD3039'
+			],
+			'Rockies' => [
+				'city'  => 'Colorado',
+				'code'  => 'COL',
+				'color' => '#33006F'
+			],
+			'Royals' => [
+				'city'  => 'Kansas City',
+				'code'  => 'KC',
+				'color' => '#004687'
+			],
+			'Tigers' => [
+				'city'  => 'Detroit',
+				'code'  => 'DET',
+				'color' => '#0C2340'
+			],
+			'Twins' => [
+				'city'  => 'Minnesota',
+				'code'  => 'MIN',
+				'color' => '#002B5C'
+			],
+			'White Sox' => [
+				'city'  => 'Chicago',
+				'code'  => 'CWS',
+				'color' => '#27251F'
+			],
+			'Yankees' => [
+				'city'  => 'New York',
+				'code'  => 'NYY',
+				'color' => '#003087'
+			],
+		],
+		'NFL' => [
+			'49ers' => [
+				'city'  => 'San Francisco',
+				'code'  => 'SF',
+				'color' => '#AA0000'
+			],
+			'Bears' => [
+				'city'  => 'Chicago',
+				'code'  => 'CHI',
+				'color' => '#0B162A'
+			],
+			'Bengals' => [
+				'city'  => 'Cincinnati',
+				'code'  => 'CIN',
+				'color' => '#FB4F14'
+			],
+			'Bills' => [
+				'city'  => 'Buffalo',
+				'code'  => 'BUF',
+				'color' => '#00338D'
+			],
+			'Broncos' => [
+				'city'  => 'Denver',
+				'code'  => 'DEN',
+				'color' => '#FB4F14'
+			],
+			'Browns' => [
+				'city'  => 'Cleveland',
+				'code'  => 'CLE',
+				'color' => '#311D00'
+			],
+			'Buccaneers' => [
+				'city'  => 'Tampa Bay',
+				'code'  => 'TB',
+				'color' => '#D50A0A'
+			],
+			'Cardinals' => [
+				'city'  => 'Arizona',
+				'code'  => 'ARI',
+				'color' => '#97233F'
+			],
+			'Chargers' => [
+				'city'  => 'Los Angeles',
+				'code'  => 'LAC',
+				'color' => '#0080C6'
+			],
+			'Chiefs' => [
+				'city'  => 'Kansas City',
+				'code'  => 'KC',
+				'color' => '#E31837'
+			],
+			'Colts' => [
+				'city'  => 'Indianapolis',
+				'code'  => 'IND',
+				'color' => '#002C5F'
+			],
+			'Commanders' => [
+				'city'  => 'Washington',
+				'code'  => 'WAS',
+				'color' => '#773141'
+			],
+			'Cowboys' => [
+				'city'  => 'Dallas',
+				'code'  => 'DAL',
+				'color' => '#041E42'
+			],
+			'Dolphins' => [
+				'city'  => 'Miami',
+				'code'  => 'MIA',
+				'color' => '#008E97'
+			],
+			'Eagles' => [
+				'city'  => 'Philadelphia',
+				'code'  => 'PHI',
+				'color' => '#004C54'
+			],
+			'Falcons' => [
+				'city'  => 'Atlanta',
+				'code'  => 'ATL',
+				'color' => '#A71930'
+			],
+			'Giants' => [
+				'city'  => 'New York',
+				'code'  => 'NYG',
+				'color' => '#0B2265'
+			],
+			'Jaguars' => [
+				'city'  => 'Jacksonville',
+				'code'  => 'JAX',
+				'color' => '#006778'
+			],
+			'Jets' => [
+				'city'  => 'New York',
+				'code'  => 'NYJ',
+				'color' => '#125740'
+			],
+			'Lions' => [
+				'city'  => 'Detroit',
+				'code'  => 'DET',
+				'color' => '#0076B6'
+			],
+			'Packers' => [
+				'city'  => 'Green Bay',
+				'code'  => 'GB',
+				'color' => '#203731'
+			],
+			'Panthers' => [
+				'city'  => 'Carolina',
+				'code'  => 'CAR',
+				'color' => '#0085CA'
+			],
+			'Patriots' => [
+				'city'  => 'New England',
+				'code'  => 'NE',
+				'color' => '#002244'
+			],
+			'Raiders' => [
+				'city'  => 'Las Vegas',
+				'code'  => 'LV',
+				'color' => '#A5ACAF'
+			],
+			'Rams' => [
+				'city'  => 'Los Angeles',
+				'code'  => 'LAR',
+				'color' => '#003594'
+			],
+			'Ravens' => [
+				'city'  => 'Baltimore',
+				'code'  => 'BAL',
+				'color' => '#241773'
+			],
+			'Saints' => [
+				'city'  => 'New Orleans',
+				'code'  => 'NO',
+				'color' => '#D3BC8D'
+			],
+			'Seahawks' => [
+				'city'  => 'Seattle',
+				'code'  => 'SEA',
+				'color' => '#002244'
+			],
+			'Steelers' => [
+				'city'  => 'Pittsburgh',
+				'code'  => 'PIT',
+				'color' => '#FFB612'
+			],
+			'Texans' => [
+				'city'  => 'Houston',
+				'code'  => 'HOU',
+				'color' => '#03202F'
+			],
+			'Titans' => [
+				'city'  => 'Tennessee',
+				'code'  => 'TEN',
+				'color' => '#4B92DB'
+			],
+			'Vikings' => [
+				'city'  => 'Minnesota',
+				'code'  => 'MIN',
+				'color' => '#4F2683'
+			],
+		],
+		'NBA' => [
+			'76ers' => [
+				'city'  => 'Philadelphia',
+				'code'  => 'PHI',
+				'color' => '#006BB6'
+			],
+			'Bucks' => [
+				'city'  => 'Milwaukee',
+				'code'  => 'MIL',
+				'color' => '#00471B'
+			],
+			'Bulls' => [
+				'city'  => 'Chicago',
+				'code'  => 'CHI',
+				'color' => '#CE1141'
+			],
+			'Cavaliers' => [
+				'city'  => 'Cleveland',
+				'code'  => 'CLE',
+				'color' => '#6F263D'
+			],
+			'Celtics' => [
+				'city'  => 'Boston',
+				'code'  => 'BOS',
+				'color' => '#007A33'
+			],
+			'Clippers' => [
+				'city'  => 'Los Angeles',
+				'code'  => 'LAC',
+				'color' => '#C8102E'
+			],
+			'Grizzlies' => [
+				'city'  => 'Memphis',
+				'code'  => 'MEM',
+				'color' => '#5D76A9'
+			],
+			'Hawks' => [
+				'city'  => 'Atlanta',
+				'code'  => 'ATL',
+				'color' => '#E03A3E'
+			],
+			'Heat' => [
+				'city'  => 'Miami',
+				'code'  => 'MIA',
+				'color' => '#98002E'
+			],
+			'Hornets' => [
+				'city'  => 'Charlotte',
+				'code'  => 'CHA',
+				'color' => '#1D1160'
+			],
+			'Jazz' => [
+				'city'  => 'Utah',
+				'code'  => 'UTA',
+				'color' => '#002B5C'
+			],
+			'Kings' => [
+				'city'  => 'Sacramento',
+				'code'  => 'SAC',
+				'color' => '#5A2D81'
+			],
+			'Knicks' => [
+				'city'  => 'New York',
+				'code'  => 'NYK',
+				'color' => '#006BB6'
+			],
+			'Lakers' => [
+				'city'  => 'Los Angeles',
+				'code'  => 'LAL',
+				'color' => '#552583'
+			],
+			'Magic' => [
+				'city'  => 'Orlando',
+				'code'  => 'ORL',
+				'color' => '#0077C0'
+			],
+			'Mavericks' => [
+				'city'  => 'Dallas',
+				'code'  => 'DAL',
+				'color' => '#00538C'
+			],
+			'Nets' => [
+				'city'  => 'Brooklyn',
+				'code'  => 'BKN',
+				'color' => '#000000'
+			],
+			'Nuggets' => [
+				'city'  => 'Denver',
+				'code'  => 'DEN',
+				'color' => '#0E2240'
+			],
+			'Pacers' => [
+				'city'  => 'Indiana',
+				'code'  => 'IND',
+				'color' => '#002D62'
+			],
+			'Pelicans' => [
+				'city'  => 'New Orleans',
+				'code'  => 'NOP',
+				'color' => '#0C2340'
+			],
+			'Pistons' => [
+				'city'  => 'Detroit',
+				'code'  => 'DET',
+				'color' => '#C8102E'
+			],
+			'Raptors' => [
+				'city'  => 'Toronto',
+				'code'  => 'TOR',
+				'color' => '#CE1141'
+			],
+			'Rockets' => [
+				'city'  => 'Houston',
+				'code'  => 'HOU',
+				'color' => '#CE1141'
+			],
+			'Spurs' => [
+				'city'  => 'San Antonio',
+				'code'  => 'SAS',
+				'color' => '#C4CED4'
+			],
+			'Suns' => [
+				'city'  => 'Phoenix',
+				'code'  => 'PHX',
+				'color' => '#1D1160'
+			],
+			'Thunder' => [
+				'city'  => 'Oklahoma City',
+				'code'  => 'OKC',
+				'color' => '#007AC1'
+			],
+			'Timberwolves' => [
+				'city'  => 'Minnesota',
+				'code'  => 'MIN',
+				'color' => '#0C2340'
+			],
+			'Trail Blazers' => [
+				'city'  => 'Portland',
+				'code'  => 'POR',
+				'color' => '#E03A3E'
+			],
+			'Warriors' => [
+				'city'  => 'Golden State',
+				'code'  => 'GSW',
+				'color' => '#1D428A'
+			],
+			'Wizards' => [
+				'city'  => 'Washington',
+				'code'  => 'WAS',
+				'color' => '#002B5C'
+			],
+		],
+		'NHL' => [
+			'Blackhawks' => [
+				'city'  => 'Chicago',
+				'code'  => 'CHI',
+				'color' => '#CF0A2C'
+			],
+			'Blue Jackets' => [
+				'city'  => 'Columbus',
+				'code'  => 'CBJ',
+				'color' => '#002654'
+			],
+			'Blues' => [
+				'city'  => 'St. Louis',
+				'code'  => 'STL',
+				'color' => '#002F87'
+			],
+			'Bruins' => [
+				'city'  => 'Boston',
+				'code'  => 'BOS',
+				'color' => '#FFB81C'
+			],
+			'Canadiens' => [
+				'city'  => 'Montreal',
+				'code'  => 'MTL',
+				'color' => '#AF1E2D'
+			],
+			'Canucks' => [
+				'city'  => 'Vancouver',
+				'code'  => 'VAN',
+				'color' => '#00205B'
+			],
+			'Capitals' => [
+				'city'  => 'Washington',
+				'code'  => 'WSH',
+				'color' => '#C8102E'
+			],
+			'Coyotes' => [
+				'city'  => 'Arizona',
+				'code'  => 'ARI',
+				'color' => '#8C2633'
+			],
+			'Devils' => [
+				'city'  => 'New Jersey',
+				'code'  => 'NJD',
+				'color' => '#CE1126'
+			],
+			'Ducks' => [
+				'city'  => 'Anaheim',
+				'code'  => 'ANA',
+				'color' => '#F47A38'
+			],
+			'Flames' => [
+				'city'  => 'Calgary',
+				'code'  => 'CGY',
+				'color' => '#C8102E'
+			],
+			'Flyers' => [
+				'city'  => 'Philadelphia',
+				'code'  => 'PHI',
+				'color' => '#F74902'
+			],
+			'Golden Knights' => [
+				'city'  => 'Vegas',
+				'code'  => 'VGK',
+				'color' => '#B4975A'
+			],
+			'Hurricanes' => [
+				'city'  => 'Carolina',
+				'code'  => 'CAR',
+				'color' => '#CC0000'
+			],
+			'Islanders' => [
+				'city'  => 'New York',
+				'code'  => 'NYI',
+				'color' => '#00539B'
+			],
+			'Jets' => [
+				'city'  => 'Winnipeg',
+				'code'  => 'WPG',
+				'color' => '#041E42'
+			],
+			'Kings' => [
+				'city'  => 'Los Angeles',
+				'code'  => 'LAK',
+				'color' => '#111111'
+			],
+			'Kraken' => [
+				'city'  => 'Seattle',
+				'code'  => 'SEA',
+				'color' => '#355464'
+			],
+			'Lightning' => [
+				'city'  => 'Tampa Bay',
+				'code'  => 'TBL',
+				'color' => '#002868'
+			],
+			'Maple Leafs' => [
+				'city'  => 'Toronto',
+				'code'  => 'TOR',
+				'color' => '#003E7E'
+			],
+			'Oilers' => [
+				'city'  => 'Edmonton',
+				'code'  => 'EDM',
+				'color' => '#FF4C00'
+			],
+			'Panthers' => [
+				'city'  => 'Florida',
+				'code'  => 'FLA',
+				'color' => '#C8102E'
+			],
+			'Penguins' => [
+				'city'  => 'Pittsburgh',
+				'code'  => 'PIT',
+				'color' => '#FFB81C'
+			],
+			'Predators' => [
+				'city'  => 'Nashville',
+				'code'  => 'NSH',
+				'color' => '#FFB81C'
+			],
+			'Rangers' => [
+				'city'  => 'New York',
+				'code'  => 'NYR',
+				'color' => '#0038A8'
+			],
+			'Red Wings' => [
+				'city'  => 'Detroit',
+				'code'  => 'DET',
+				'color' => '#CE1126'
+			],
+			'Sabres' => [
+				'city'  => 'Buffalo',
+				'code'  => 'BUF',
+				'color' => '#002654'
+			],
+			'Senators' => [
+				'city'  => 'Ottawa',
+				'code'  => 'OTT',
+				'color' => '#C52032'
+			],
+			'Sharks' => [
+				'city'  => 'San Jose',
+				'code'  => 'SJS',
+				'color' => '#006D75'
+			],
+			'Stars' => [
+				'city'  => 'Dallas',
+				'code'  => 'DAL',
+				'color' => '#006847'
+			],
+			'Wild' => [
+				'city'  => 'Minnesota',
+				'code'  => 'MIN',
+				'color' => '#154734'
+			],
+		],
+	];
+
+	return isset( $cache[ $sport ] ) ? $cache[ $sport ] : [];
 }

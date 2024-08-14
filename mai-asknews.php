@@ -245,7 +245,7 @@ final class Mai_AskNews_Plugin {
 			'show_in_nav_menus'  => true,
 			'show_in_rest'       => true,
 			'show_ui'            => true,
-			'supports'           => [ 'title', 'editor', 'author', 'thumbnail', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
+			'supports'           => [ 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
 			'taxonomies'         => [ 'team', 'season' ],
 			'rewrite'            => false, // Handled in Mai_AskNews_Rewrites.
 		] );
@@ -288,39 +288,7 @@ final class Mai_AskNews_Plugin {
 		 *  Custom Taxonomies  *
 		 ***********************/
 
-		// Teams (OLD).
-		register_taxonomy( 'team', [ 'matchup', 'insight' ], [
-			'hierarchical' => true,
-			'labels'       => [
-				'name'                       => _x( 'Teams', 'Team General Name', 'promatchups' ),
-				'singular_name'              => _x( 'Team', 'Team Singular Name', 'promatchups' ),
-				'menu_name'                  => __( 'Teams', 'promatchups' ),
-				'all_items'                  => __( 'All Teams', 'promatchups' ),
-				'parent_item'                => __( 'Parent Team', 'promatchups' ),
-				'parent_item_colon'          => __( 'Parent Team:', 'promatchups' ),
-				'new_item_name'              => __( 'New Team Name', 'promatchups' ),
-				'add_new_item'               => __( 'Add New Team', 'promatchups' ),
-				'edit_item'                  => __( 'Edit Team', 'promatchups' ),
-				'update_item'                => __( 'Update Team', 'promatchups' ),
-				'view_item'                  => __( 'View Team', 'promatchups' ),
-				'separate_items_with_commas' => __( 'Separate items with commas', 'promatchups' ),
-				'add_or_remove_items'        => __( 'Add or remove items', 'promatchups' ),
-				'choose_from_most_used'      => __( 'Choose from the most used', 'promatchups' ),
-				'popular_items'              => __( 'Popular Teams', 'promatchups' ),
-				'search_items'               => __( 'Search Teams', 'promatchups' ),
-				'not_found'                  => __( 'Not Found', 'promatchups' ),
-			],
-			'meta_box_cb'       => false,   // Hides metabox.
-			'public'            => true,
-			'show_admin_column' => true,
-			'show_in_nav_menus' => true,
-			'show_in_rest'      => true,
-			'show_tagcloud'     => false,
-			'show_ui'           => true,
-			'rewrite'           => false, // Handled in Mai_AskNews_Rewrites.
-		] );
-
-		// Leagues/Teams.
+		// Leagues/Matchups.
 		register_taxonomy( 'league', [ 'matchup', 'insight' ], [
 			'hierarchical' => true,
 			'labels'       => [
@@ -382,6 +350,41 @@ final class Mai_AskNews_Plugin {
 			'show_tagcloud'     => false,
 			'show_ui'           => true,
 			'rewrite'           => false,   // Handled in Mai_AskNews_Rewrites.
+		] );
+
+		// Matchup Tags.
+		register_taxonomy( 'matchup_tag', 'matchup', [
+			'hierarchical' => false,
+			'labels'       => [
+				'name'                       => _x( 'Matchup Tags', 'Matchup Tag General Name', 'promatchups' ),
+				'singular_name'              => _x( 'Matchup Tag', 'Matchup Tag Singular Name', 'promatchups' ),
+				'menu_name'                  => __( 'Tags', 'promatchups' ),
+				'all_items'                  => __( 'All Matchup Tags', 'promatchups' ),
+				'parent_item'                => __( 'Parent Matchup Tag', 'promatchups' ),
+				'parent_item_colon'          => __( 'Parent Matchup Tag:', 'promatchups' ),
+				'new_item_name'              => __( 'New Matchup Tag Name', 'promatchups' ),
+				'add_new_item'               => __( 'Add New Matchup Tag', 'promatchups' ),
+				'edit_item'                  => __( 'Edit Matchup Tag', 'promatchups' ),
+				'update_item'                => __( 'Update Matchup Tag', 'promatchups' ),
+				'view_item'                  => __( 'View Matchup Tag', 'promatchups' ),
+				'separate_items_with_commas' => __( 'Separate items with commas', 'promatchups' ),
+				'add_or_remove_items'        => __( 'Add or remove items', 'promatchups' ),
+				'choose_from_most_used'      => __( 'Choose from the most used', 'promatchups' ),
+				'popular_items'              => __( 'Popular Matchup Tags', 'promatchups' ),
+				'search_items'               => __( 'Search Matchup Tags', 'promatchups' ),
+				'not_found'                  => __( 'Not Found', 'promatchups' ),
+			],
+			'meta_box_cb'       => false,   // Hides metabox.
+			'public'            => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => false,
+			'show_in_rest'      => true,
+			'show_tagcloud'     => true,
+			'show_ui'           => true,
+			'rewrite'           => [
+				'slug'       => 'tags',
+				'with_front' => false,
+			],
 		] );
 	}
 

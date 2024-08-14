@@ -337,7 +337,7 @@ class Mai_AskNews_Display {
 			$host       = $host ? sprintf( '<a href="%s" target="_blank">%s</a>', $url, $host ) : '';
 			$title      = maiasknews_get_key( 'title', $item );
 			$date       = maiasknews_get_key( 'published', $item );
-			$date       = $date ? date_i18n( get_option( 'date_format' ), strtotime( $date ) ) : '';
+			$date       = $date ? wp_date( get_option( 'date_format' ), strtotime( $date ) ) : '';
 			$meta       = sprintf( '%s %s %s', $date, __( 'via', 'mai-asknews' ), $host );
 			$meta       = trim( $meta );
 			$points     = maiasknews_get_key( 'key_points', $item );
@@ -454,7 +454,7 @@ class Mai_AskNews_Display {
 				$host       = $host ? 'mlb.com' === strtolower( $host ) ? 'MLB.com' : $host : '';
 				$host       = $host ? sprintf( '<a href="%s" target="_blank">%s</a>', $url, $host ) : '';
 				$date       = maiasknews_get_key( 'pub_date', $source );
-				$date       = $date ? date_i18n( get_option( 'date_format' ), strtotime( $date ) ) : '';
+				$date       = $date ? wp_date( get_option( 'date_format' ), strtotime( $date ) ) : '';
 				$title      = maiasknews_get_key( 'eng_title', $source );
 				$image_url  = maiasknews_get_key( 'image_url', $source );
 				$summary    = maiasknews_get_key( 'summary', $source );
