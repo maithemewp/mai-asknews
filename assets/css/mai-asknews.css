@@ -11,6 +11,10 @@
 	);
 }
 
+.breadcrumb {
+	text-align: center;
+}
+
 .has-standard-content {
 	--content-max-width: 70ch;
 }
