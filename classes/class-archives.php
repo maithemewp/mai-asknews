@@ -61,30 +61,40 @@ class Mai_AskNews_Archives {
 	 * @return void
 	 */
 	function do_teams() {
-		$term_id = get_queried_object_id();
+		$object = get_queried_object();
 
 		// Bail if not a top level term.
-		if ( ! $term_id || 0 !== wp_get_term_taxonomy_parent_id( $term_id, 'league' ) ) {
+		if ( ! $object || 0 !== wp_get_term_taxonomy_parent_id( $object->term_id, 'league' ) ) {
 			return;
 		}
 
 		// Get child terms.
-		$teams = get_terms(
+		$terms = get_terms(
 			[
 				'taxonomy'   => 'league',
 				'hide_empty' => false,
-				'parent'     => $term_id,
+				'parent'     => $object->term_id,
 			]
 		);
 
-		if ( ! $teams ) {
+		if ( ! $terms ) {
 			return;
 		}
 
+		$teams = maiasknews_get_teams( $object->name );
+
 		printf( '<h2>%s</h2>', __( 'All Teams', 'mai-asknews' ) );
 		echo '<ul class="pm-teams">';
-			foreach ( $teams as $term ) {
-				printf( '<li><a href="%s">%s</a></li>', get_term_link( $term ), $term->name );
+			foreach ( $terms as $term ) {
+				$color = '';
+				$code  = '';
+
+				if ( $teams && isset( $teams[ $term->name ] ) ) {
+					$color = $teams[ $term->name ]['color'];
+					$code  = $teams[ $term->name ]['code'];
+				}
+
+				printf( '<li class="pm-team" style="--team-color:%s;"><a class="pm-team__link" href="%s" data-code="%s">%s</a></li>', $color, get_term_link( $term ), $code, $term->name );
 			}
 		echo '</ul>';
 	}

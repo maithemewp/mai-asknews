@@ -2,6 +2,7 @@
 
 :root {
 	--font-scale: 1.125;
+	--shadow: 0;
 	--background-lines: repeating-linear-gradient(
 		120deg,
 		transparent,
@@ -122,8 +123,39 @@
 }
 
 .pm-teams {
+	--list-style-type: none;
+	--list-margin: 0 0 var(--spacing-xxl);
 	columns: 4 10rem;
+	column-gap: var(--spacing-sm);
 	margin-bottom: var(--spacing-xxl);
+}
+
+.pm-team__link {
+	--link-color: var(--color-body);
+	--link-color-hover: var(--color-body);
+	--link-text-decoration: none;
+	--link-text-decoration-hover: none;
+	--link-filter-hover: brightness(.9);
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-xs);
+	margin: 0 0 var(--spacing-sm);
+	padding: 0;
+	font-size: var(--font-size-xs);
+	font-weight: var(--body-font-weight-bold);
+	background: var(--color-alt);
+	border-radius: 100vw 3px 3px 100vw;
+}
+
+.pm-team__link[data-code]::before {
+	display: grid;
+	place-items: center;
+	width: 40px;
+	height: 40px;
+	background-color: var(--team-color);
+	color: white;
+	border-radius: 100vw;
+	content: attr(data-code);
 }
 
 .pm-matchup__date {
@@ -177,7 +209,7 @@
 	--list-margin: 0 0 var(--spacing-lg);
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
+	justify-content: space-evenly;
 	position: sticky;
 	top: var(--body-top);
 	margin-inline: calc(var(--side-spacing) * -1);
@@ -186,7 +218,7 @@
 }
 
 .pm-jump {
-	flex: 1 0 20%;
+	flex-grow: 1;
 }
 
 .pm-jump__link {

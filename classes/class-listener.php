@@ -218,6 +218,7 @@ class Mai_AskNews_Listener {
 			'post_status'  => 'publish',
 			'post_author'  => $this->user->ID,
 			'post_title'   => __( 'Insight', 'mai-asknews' ) . ' ' . $this->body['forecast_uuid'], // Updated later.
+			'post_name'    => $this->body['forecast_uuid'],
 			'post_excerpt' => $this->body['summary'],
 			'meta_input'   => [
 				'asknews_body'  => $this->body,                    // The full body for reference.
@@ -250,7 +251,9 @@ class Mai_AskNews_Listener {
 		if ( $insight_ids ) {
 			$update                      = true;
 			$insight_args['ID']          = $insight_ids[0];
+			$insight_args['post_name']   = $this->body['forecast_uuid'];
 			$insight_args['post_status'] = 'publish';
+
 		}
 
 		// Insert or update the post.
@@ -394,7 +397,6 @@ class Mai_AskNews_Listener {
 					[
 						'ID'         => $id,
 						'post_title' => $updated_title,
-						'post_name'  => $this->body['forecast_uuid'],
 					]
 				);
 			}

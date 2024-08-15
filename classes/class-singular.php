@@ -55,12 +55,26 @@ class Mai_AskNews_Singular {
 			$this->insights = [];
 		}
 
+		foreach ( $this->insights as $insight_id ) {
+			$event_uuid_2  = get_post_meta( $insight_id, 'event_uuid', true );
+			$forecast_uuid = get_post_meta( $insight_id, 'forecast_uuid', true );
+			$post_name     = get_post_field( 'post_name', $insight_id );
+
+			// ray( $event_uuid . ' - ' . $event_uuid_2 . ' - ' . $post_name );
+
+			// if ( $forecast_uuid !== $post_name ) {
+			// 	// $other = get_page_by_path( $forecast_uuid, OBJECT, 'insight' );
+			// 	// ray( $forecast_uuid, $other->post_name, $slug );
+			// }
+
+		}
+
 		// Add hooks.
 		add_action( 'wp_enqueue_scripts',                 [ $this, 'enqueue' ] );
 		add_filter( 'genesis_markup_entry-title_content', [ $this, 'add_insight_count' ], 10, 2 );
 		add_action( 'genesis_before_entry_content',       [ $this, 'do_event_info' ] );
 		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_content' ] );
-		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_insights' ] );
+		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_updates' ] );
 	}
 
 	/**
@@ -121,10 +135,15 @@ class Mai_AskNews_Singular {
 			if ( current_user_can( 'edit_posts' ) ) {
 				printf( '<li class="pm-jump"><a class="pm-jump__link" href="#prediction">%s</a></li>', __( 'Prediction', 'mai-asknews' ) );
 			}
+
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#people">%s</a></li>', __( 'People', 'mai-asknews' ) );
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#timeline">%s</a></li>', __( 'Timeline', 'mai-asknews' ) );
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#web">%s</a></li>', __( 'Web', 'mai-asknews' ) );
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#sources">%s</a></li>', __( 'Sources', 'mai-asknews' ) );
+
+			if ( $this->insights ) {
+				printf( '<li class="pm-jump"><a class="pm-jump__link" href="#updates">%s</a></li>', __( 'Updates', 'mai-asknews' ) );
+			}
 		echo '</ul>';
 	}
 
@@ -163,7 +182,7 @@ class Mai_AskNews_Singular {
 	 *
 	 * @return void
 	 */
-	function do_insights() {
+	function do_updates() {
 		// Get all but the first insight.
 		$insight_ids = array_slice( $this->insights, 1 );
 
@@ -173,7 +192,7 @@ class Mai_AskNews_Singular {
 		}
 
 		// Heading.
-		printf( '<h2 id="insights">%s</h2>', __( 'Previous Updates', 'mai-asknews' ) );
+		printf( '<h2 id="updates">%s</h2>', __( 'Previous Updates', 'mai-asknews' ) );
 
 		// Loop through insights.
 		foreach ( $insight_ids as $index => $insight_id ) {
@@ -250,8 +269,13 @@ class Mai_AskNews_Singular {
 				// printf( '<p>%s</p>', $content );
 			}
 
-			printf( '<p class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
-			echo maiasknews_get_odds_table( $data );
+			// Get odds table.
+			$odds = maiasknews_get_odds_table( $data );
+
+			if ( $odds ) {
+				printf( '<p class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
+				echo $odds;
+			}
 		echo '</div>';
 	}
 
