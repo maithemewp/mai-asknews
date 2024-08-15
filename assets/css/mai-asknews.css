@@ -279,6 +279,11 @@
 	width: 50%;
 }
 
+.pm-odds th:not(:first-child),
+.pm-odds td:not(:first-child) {
+	text-align: center;
+}
+
 .pm-toggle_label {
 	display: flex;
 	gap: var(--spacing-xs);
