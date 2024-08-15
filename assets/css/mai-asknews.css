@@ -46,6 +46,7 @@
 	--list-margin: 0;
 	display: table;
 	align-self: start; /* when a flex-item via .entry-wrap */
+	font-size: var(--font-size-sm);
 }
 
 .pm-prediction__item {
