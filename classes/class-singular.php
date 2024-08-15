@@ -118,7 +118,9 @@ class Mai_AskNews_Singular {
 
 		// Display the nav.
 		echo '<ul class="pm-jumps">';
-			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#prediction">%s</a></li>', __( 'Prediction', 'mai-asknews' ) );
+			if ( current_user_can( 'edit_posts' ) ) {
+				printf( '<li class="pm-jump"><a class="pm-jump__link" href="#prediction">%s</a></li>', __( 'Prediction', 'mai-asknews' ) );
+			}
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#people">%s</a></li>', __( 'People', 'mai-asknews' ) );
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#timeline">%s</a></li>', __( 'Timeline', 'mai-asknews' ) );
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#web">%s</a></li>', __( 'Web', 'mai-asknews' ) );
