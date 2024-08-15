@@ -52,9 +52,10 @@ class Mai_AskNews_Listener {
 		$matchup_datetime  = trim( $matchup_datetime );
 		$matchup_date      = $this->get_date( $matchup_datetime );
 		$matchup_timestamp = $this->get_date_timestamp( $matchup_datetime );
+		$insight_timestamp = $this->get_date_timestamp( $this->body['date'] );
 
 		/***************************************************************
-		 * Next Step - Get the matchup post ID.
+		 * Get the matchup post ID.
 		 *
 		 * Set team vars.
 		 * Set matchup title and data.
@@ -62,8 +63,6 @@ class Mai_AskNews_Listener {
 		 * If no matchup, create one.
 		 * Set matchup ID.
 		 ***************************************************************/
-
-		// Sources have entities, save as tags (or custom taxonomy?), display as badges.
 
 		// Set team vars.
 		$teams     = $this->body['sport'] ? maiasknews_get_teams( $this->body['sport'] ) : [];
@@ -152,11 +151,11 @@ class Mai_AskNews_Listener {
 				}
 
 				// Update the matchup.
-				$matchup_id = wp_insert_post( $update_args );
+				$matchup_id = wp_update_post( $update_args );
 
 				// If no post ID, send error.
 				if ( ! $matchup_id ) {
-					$this->return = $this->get_error( 'Failed during update via wp_insert_post()' );
+					$this->return = $this->get_error( 'Failed during wp_update_post()' );
 					return;
 				}
 
@@ -181,8 +180,8 @@ class Mai_AskNews_Listener {
 				'post_name'    => sanitize_title( $matchup_title ) . ' ' . wp_date( 'Y-m-d', $matchup_timestamp ),
 				'post_excerpt' => $this->body['summary'],
 				'meta_input'   => [
-					'event_uuid' => $this->body['event_uuid'],   // The id of this specific event.
-					'event_date' => $matchup_timestamp,          // The event date timestamp.
+					'event_uuid' => $this->body['event_uuid'], // The id of this specific event.
+					'event_date' => $matchup_timestamp,        // The event date timestamp.
 				],
 			];
 
@@ -191,7 +190,7 @@ class Mai_AskNews_Listener {
 
 			// If no post ID, send error.
 			if ( ! $matchup_id ) {
-				$this->return = $this->get_error( 'Failed during creation via wp_insert_post()' );
+				$this->return = $this->get_error( 'Failed during wp_insert_post()' );
 				return;
 			}
 
@@ -203,7 +202,7 @@ class Mai_AskNews_Listener {
 		}
 
 		/***************************************************************
-		 * Next Step - Create or update the matchup insights.
+		 * Create or update the matchup insights.
 		 *
 		 * Builds the new insight post args.
 		 * Check for existing insight to update.
@@ -228,9 +227,8 @@ class Mai_AskNews_Listener {
 		];
 
 		// Set post date.
-		if ( isset( $this->body['date'] ) && $this->body['date'] ) {
-			$insight_args['post_date']     = $matchup_date;
-			$insight_args['post_date_gmt'] = get_gmt_from_date( $matchup_date );
+		if ( $insight_timestamp ) {
+			$insight_args['post_date_gmt'] = $this->get_date( $insight_timestamp );
 		}
 
 		// Check for an existing insights.
@@ -243,15 +241,16 @@ class Mai_AskNews_Listener {
 				'meta_value'   => $this->body['forecast_uuid'],
 				'meta_compare' => '=',
 				'fields'       => 'ids',
-				'numberposts'  => 1,
+				'numberposts'  => -1,
 			]
 		);
 
 		// If we have an existing post, update it.
+		// This is only to fix/alter existing insights.
 		if ( $insight_ids ) {
 			$update                      = true;
 			$insight_args['ID']          = $insight_ids[0];
-			$insight_args['post_status'] = get_post_status( $insight_ids[0] );
+			$insight_args['post_status'] = 'publish';
 		}
 
 		// Insert or update the post.
@@ -270,7 +269,7 @@ class Mai_AskNews_Listener {
 		}
 
 		/***************************************************************
-		 *
+		 * Update Matchup Tags.
 		 ***************************************************************/
 
 		// Get people.
@@ -310,8 +309,6 @@ class Mai_AskNews_Listener {
 		}
 
 		/***************************************************************
-		 * Next Step - Set the matchup and insight custom taxonomy terms.
-		 *
 		 * Set the league and season taxonomy terms.
 		 ***************************************************************/
 
@@ -361,7 +358,8 @@ class Mai_AskNews_Listener {
 		}
 
 		/***************************************************************
-		 * Next Step - Replace the insight titles.
+		 * Update the matchup insights.
+		 * Replace the insight titles.
 		 ***************************************************************/
 
 		// Gets all insights, sorted by date.
@@ -387,19 +385,22 @@ class Mai_AskNews_Listener {
 
 		// Update all insights titles with the update number.
 		if ( $insights ) {
-			foreach ( $insights as $index => $child_id ) {
+			foreach ( $insights as $index => $id ) {
 				// Build title with index.
 				$updated_title = sprintf( '%s (%s #%s)', $matchup_title, __( 'Update', 'mai-asknews' ), $index + 1 );
 
 				// Update post title.
 				wp_update_post(
 					[
-						'ID'         => $child_id,
+						'ID'         => $id,
 						'post_title' => $updated_title,
 						'post_name'  => $this->body['forecast_uuid'],
 					]
 				);
 			}
+
+			// Update the insights, sorted in reverse order, in the matchup post meta.
+			update_post_meta( $matchup_id, 'insight_ids', array_reverse( $insights ) );
 		}
 
 		/***************************************************************
@@ -415,7 +416,7 @@ class Mai_AskNews_Listener {
 		// );
 
 		/***************************************************************
-		 * Next Step - End.
+		 * End.
 		 ***************************************************************/
 
 		// Remove post_modified update filter.

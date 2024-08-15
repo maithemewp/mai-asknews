@@ -88,9 +88,6 @@ function maiasknews_get_prediction_list( $body ) {
 	// dice next to probability
 	// thumbs up/down next to likelihood?
 
-	// TODO:
-	// Move likelihood after probability... `65%, Likely`
-
 	// $confidence     = maiasknews_get_key( 'confidence', $body );
 	// $confidence     = $confidence ? maiasknews_format_confidence( $confidence ) : '';
 	// $llm_confidence = maiasknews_get_key( 'llm_confidence', $body );
@@ -98,10 +95,10 @@ function maiasknews_get_prediction_list( $body ) {
 	// Get list body.
 	$table = [
 		__( 'Prediction', 'mai-asknews' )     => $choice,
-		__( 'Probability', 'mai-asknews' )    => $probability,
+		__( 'Probability', 'mai-asknews' )    => sprintf( '%s, %s', $probability, $likelihood ),
 		// __( 'Confidence', 'mai-asknews' )     => $confidence,
 		// __( 'LLM Confidence', 'mai-asknews' ) => $llm_confidence,
-		__( 'Likelihood', 'mai-asknews' )     => $likelihood,
+		// __( 'Likelihood', 'mai-asknews' )     => $likelihood,
 	];
 
 	// Bail if no data.
@@ -115,6 +112,94 @@ function maiasknews_get_prediction_list( $body ) {
 		$html .= sprintf( '<li class="pm-prediction__item"><strong>%s:</strong> %s</li>', $label, $value );
 	}
 	$html .= '</ul>';
+
+	return $html;
+}
+
+/**
+ * Get the odds table
+ *
+ * @since 0.1.0
+ *
+ * @param array $body The insight body.
+ *
+ * @return string
+ */
+function maiasknews_get_odds_table( $body ) {
+	// Get the odds data.
+	$html      = '';
+	$odds_data = maiasknews_get_key( 'odds_info', $body );
+	$odds_data = $odds_data && is_array( $odds_data ) ? $odds_data : [];
+
+	// If we have odds data.
+	if ( ! $odds_data ) {
+		return $html;
+	}
+
+	// Start the table data.
+	$sites = [];
+
+	// Loop through odds data.
+	foreach ( $odds_data as $team => $odds ) {
+		// Merge the sites.
+		$sites = array_merge( $sites, array_keys( $odds ) );
+	}
+
+	// Remove duplicates.
+	$sites = array_unique( $sites );
+
+	// Bail if no sites.
+	if ( ! $sites ) {
+		return $html;
+	}
+
+	// Get home and away teams.
+	list( $home_team, $away_team ) = array_keys( $odds_data );
+
+	// Top sites.
+	$top_sites = [
+		'betmgm (colorado)',
+		'fanduel',
+		'bovada',
+		'pointsbet',
+		'hard rock bet',
+	];
+
+	// Start the odds.
+	$html .= '<div class="pm-odds">';
+		// Add a checkbox to expand/collapse the odds.
+		$toggle = '<div class="pm-toggle">';
+			$toggle .= '<label for="pm-toggle-input" class="pm-toggle_label">';
+				$toggle .= __( 'Show All', 'mai-asknews' );
+				$toggle .= '<input id="pm-toggle-input" class="pm-toggle__input" type="checkbox" />';
+				$toggle .= '<span class="pm-toggle__slider"></span>';
+			$toggle .= '</label>';
+		$toggle .= '</div>';
+
+		// Build the table
+		$html .= '<table>';
+			$html .= '<thead>';
+				$html .= '<tr>';
+					$html .= sprintf( '<th>%s</th>', $toggle );
+					$html .= sprintf( '<th>%s</th>', $home_team );
+					$html .= sprintf( '<th>%s</th>', $away_team );
+				$html .= '</tr>';
+			$html .= '</thead>';
+			$html .= '<tbody>';
+
+			foreach ( $sites as $maker ) {
+				$class = in_array( strtolower( $maker ), $top_sites ) ? 'is-top' : 'is-not-top';
+
+				$html .= sprintf( '<tr class="%s">', $class );
+					$html .= sprintf( '<td>%s</td>', $maker );
+					$html .= sprintf( '<td>%s</td>', isset( $odds_data[ $home_team ][ $maker ] ) ? $odds_data[ $home_team ][ $maker ] : 'N/A' );
+					$html .= sprintf( '<td>%s</td>', isset( $odds_data[ $away_team ][ $maker ] ) ? $odds_data[ $away_team ][ $maker ] : 'N/A' );
+				$html .= '</tr>';
+			}
+
+			$html .= '</tbody>';
+		$html .= '</table>';
+	$html .= '</div>';
 
 	return $html;
 }

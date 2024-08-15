@@ -31,25 +31,36 @@ class Mai_AskNews_Singular {
 		}
 
 		// Get insights.
-		$post_status    = current_user_can( 'edit_posts' ) ? [ 'publish', 'pending', 'draft' ] : 'publish';
-		$event_uuid     = get_post_meta( get_the_ID(), 'event_uuid', true );
-		$this->insights = get_posts(
-			[
-				'post_type'    => 'insight',
-				'post_status'  => $post_status,
-				'meta_key'     => 'event_uuid',
-				'meta_value'   => $event_uuid,
-				'meta_compare' => '=',
-				'fields'       => 'ids',
-				'numberposts'  => -1,
-			]
-		);
+		$post_status = current_user_can( 'edit_posts' ) ? [ 'publish', 'pending', 'draft' ] : 'publish';
+		$event_uuid  = get_post_meta( get_the_ID(), 'event_uuid', true );
+
+		// If event uuid.
+		if ( $event_uuid ) {
+			$this->insights = get_posts(
+				[
+					'post_type'    => 'insight',
+					'post_status'  => $post_status,
+					'orderby'      => 'date',
+					'order'        => 'DESC',
+					'meta_key'     => 'event_uuid',
+					'meta_value'   => $event_uuid,
+					'meta_compare' => '=',
+					'fields'       => 'ids',
+					'numberposts'  => -1,
+				]
+			);
+		}
+		// No event uuid, no insights.
+		else {
+			$this->insights = [];
+		}
 
 		// Add hooks.
-		add_action( 'wp_enqueue_scripts',            [ $this, 'enqueue' ] );
-		add_action( 'genesis_before_entry_content',  [ $this, 'do_event_info' ] );
-		add_action( 'mai_after_entry_content_inner', [ $this, 'do_content' ] );
-		add_action( 'mai_after_entry_content_inner', [ $this, 'do_insights' ] );
+		add_action( 'wp_enqueue_scripts',                 [ $this, 'enqueue' ] );
+		add_filter( 'genesis_markup_entry-title_content', [ $this, 'add_insight_count' ], 10, 2 );
+		add_action( 'genesis_before_entry_content',       [ $this, 'do_event_info' ] );
+		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_content' ] );
+		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_insights' ] );
 	}
 
 	/**
@@ -61,6 +72,25 @@ class Mai_AskNews_Singular {
 	 */
 	function enqueue() {
 		maiasknews_enqueue_styles();
+	}
+
+	/**
+	 * Adds the insight count to the entry title.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return string
+	 */
+	function add_insight_count( $content, $args ) {
+		if ( ! isset( $args['params']['args']['context'] ) || 'single' !== $args['params']['args']['context'] ) {
+			return $content;
+		}
+
+		// Get count.
+		$count = max( 1, count( $this->insights ) );
+		$count = sprintf( ' (%s #%s)', __( 'Update', 'mai-asknews' ), $count );
+
+		return $content . $count;
 	}
 
 	/**
@@ -85,6 +115,15 @@ class Mai_AskNews_Singular {
 
 		// Display the date.
 		printf( '<p class="pm-datetime"><strong>%s:</strong> %s @ %s / %s</p>', __( 'Game Time', 'mai-asknews' ), $day, $time_est, $time_pst );
+
+		// Display the nav.
+		echo '<ul class="pm-jumps">';
+			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#prediction">%s</a></li>', __( 'Prediction', 'mai-asknews' ) );
+			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#people">%s</a></li>', __( 'People', 'mai-asknews' ) );
+			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#timeline">%s</a></li>', __( 'Timeline', 'mai-asknews' ) );
+			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#web">%s</a></li>', __( 'Web', 'mai-asknews' ) );
+			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#sources">%s</a></li>', __( 'Sources', 'mai-asknews' ) );
+		echo '</ul>';
 	}
 
 	/**
@@ -163,20 +202,6 @@ class Mai_AskNews_Singular {
 			$this->do_prediction( $body );
 		}
 
-		// TODO: Get odds.
-		// "odds": {
-		// 	"Houston Astros": {
-		// 	"fanduel": -196,
-		// 	"caesars": -189,
-		// 	"bet365": -185
-		// },
-		// "Pittsburgh Pirates": {
-		// 	"fanduel": 164,
-		// 	"caesars": 158,
-		// 	"bet365": 155
-		// 	}
-		// },
-
 		$this->do_main( $body );
 		$this->do_people( $body );
 		$this->do_timeline( $body );
@@ -192,17 +217,10 @@ class Mai_AskNews_Singular {
 	 * @return void
 	 */
 	function do_prediction( $data ) {
-		// Get the list.
-		$list = maiasknews_get_prediction_list( $data );
-
-		// Bail if no list.
-		if ( ! $list ) {
-			return;
-		}
-
+		// Display the prediction.
 		echo '<div id="prediction" class="pm-prediction">';
 			printf( '<h2>%s</h2>', __( 'Our Prediction', 'mai-asknews' ) );
-			echo $list;
+			echo maiasknews_get_prediction_list( $data );
 
 			$keys = [
 				'forecast'               => __( 'Forecast', 'mai-asknews' ),
@@ -230,6 +248,8 @@ class Mai_AskNews_Singular {
 				// printf( '<p>%s</p>', $content );
 			}
 
+			printf( '<p class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
+			echo maiasknews_get_odds_table( $data );
 		echo '</div>';
 	}
 
@@ -283,7 +303,7 @@ class Mai_AskNews_Singular {
 		}
 
 		// Start markup.
-		printf( '<p id="people" class="is-style-heading"><strong>%s</strong></p>', __( 'Key People', 'mai-asknews' ) );
+		printf( '<h2 id="people" class="is-style-heading">%s</h2>', __( 'Key People', 'mai-asknews' ) );
 		echo '<ul class="pm-people">';
 
 		foreach ( $people as $person ) {
@@ -308,7 +328,7 @@ class Mai_AskNews_Singular {
 				$info = array_filter( $info );
 
 				echo '<li>';
-					echo implode( ' - ', $info );
+					echo implode( ': ', $info );
 				echo '</li>';
 			}
 		}
@@ -330,7 +350,7 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-		printf( '<p id="timeline" class="is-style-heading"><strong>%s</strong></p>', __( 'Timeline', 'mai-asknews' ) );
+		printf( '<h2 id="timeline" class="is-style-heading">%s</h2>', __( 'Timeline', 'mai-asknews' ) );
 		echo '<ul>';
 
 		foreach ( $timeline as $event ) {

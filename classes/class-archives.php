@@ -133,6 +133,11 @@ class Mai_AskNews_Archives {
 			return $content;
 		}
 
+		// Force timestamp.
+		if ( ! is_numeric( $event_date ) ) {
+			$event_date = strtotime( $event_date );
+		}
+
 		// Get day.
 		$day = wp_date( 'M j', $event_date ); // Get the day in 'M j' format.
 
@@ -200,6 +205,8 @@ class Mai_AskNews_Archives {
 			return $content;
 		}
 
+		// TODO: Write "admin only" and color like the singular box.
+
 		return $list . $content;
 	}
 
@@ -228,14 +235,12 @@ class Mai_AskNews_Archives {
 
 		// Add the posts.
 		mai_do_post_grid(
-			$args = [
+			[
 				'post_type'       => 'matchup',
 				'posts_per_page'  => 100,
 				'columns'         => 1,
 				'show'            => [ 'title', 'excerpt', 'more_link' ],
-				// 'more_link_style' => 'button-secondary',
 				'more_link_style' => 'button_link',
-				// 'more_link_style' => 'link',
 				'more_link_text'  => __( 'View Matchup', 'mai-asknews' ),
 				'boxed'           => false,
 				'class'           => 'pm-matchups',
