@@ -141,9 +141,6 @@
 .pm-teams {
 	--list-style-type: none;
 	--list-margin: 0 0 var(--spacing-xxl);
-	display: grid;
-	gap: var(--spacing-xs) var(--spacing-md);
-	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 	margin-bottom: var(--spacing-xxl);
 }
 
@@ -156,12 +153,10 @@
 	display: flex;
 	align-items: center;
 	gap: var(--spacing-xs);
-	margin: 0;
+
 	padding: 0;
 	font-size: var(--font-size-xs);
 	font-weight: var(--body-font-weight-bold);
-	background: var(--color-alt);
-	border-radius: 100vw 3px 3px 100vw;
 }
 
 .pm-team__link[data-code]::before {
@@ -174,6 +169,39 @@
 	color: white;
 	border-radius: 100vw;
 	content: attr(data-code);
+}
+
+.pm-team__name {
+	display: none;
+}
+
+@media only screen and (max-width: 599px) {
+	.pm-teams {
+		display: grid;
+		gap: var(--spacing-xxs);
+		grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
+	}
+
+	.pm-team__link {
+		margin: 0;
+	}
+}
+
+@media only screen and (min-width: 600px) {
+	.pm-teams {
+		columns: 4 120px;
+		column-gap: var(--spacing-sm);
+	}
+
+	.pm-team__link {
+		margin: 0 0 var(--spacing-sm);
+		background: var(--color-alt);
+		border-radius: 100vw 3px 3px 100vw;
+	}
+
+	.pm-team__name {
+		display: block;
+	}
 }
 
 .pm-matchup__date {

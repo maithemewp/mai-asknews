@@ -34,14 +34,14 @@ class Mai_AskNews_Archives {
 		}
 
 		// Add hooks.
-		add_action( 'wp_enqueue_scripts',               [ $this, 'enqueue' ] );
+		add_action( 'wp_enqueue_scripts',                        [ $this, 'enqueue' ] );
 		add_filter( 'genesis_attr_taxonomy-archive-description', [ $this, 'add_archive_title_atts' ], 10, 3 );
-		add_action( 'genesis_before_loop',              [ $this, 'do_teams' ], 20 );
-		add_action( 'genesis_before_loop',              [ $this, 'do_upcoming_heading' ], 20 );
-		add_filter( 'genesis_markup_entry-wrap_open',   [ $this, 'get_datetime' ], 10, 2 );
-		add_filter( 'genesis_markup_entry-wrap_close',  [ $this, 'get_predictions' ], 10, 2 );
-		add_action( 'genesis_after_loop',               [ $this, 'do_past_games' ] );
-		add_filter( 'genesis_noposts_text',             [ $this, 'get_noposts_text' ] );
+		add_action( 'genesis_before_loop',                       [ $this, 'do_teams' ], 20 );
+		add_action( 'genesis_before_loop',                       [ $this, 'do_upcoming_heading' ], 20 );
+		add_filter( 'genesis_markup_entry-wrap_open',            [ $this, 'get_datetime' ], 10, 2 );
+		add_filter( 'genesis_markup_entry-wrap_close',           [ $this, 'get_predictions' ], 10, 2 );
+		add_action( 'genesis_after_loop',                        [ $this, 'do_past_games' ] );
+		add_filter( 'genesis_noposts_text',                      [ $this, 'get_noposts_text' ] );
 	}
 
 	/**
@@ -101,9 +101,35 @@ class Mai_AskNews_Archives {
 	function do_teams() {
 		$object = get_queried_object();
 
-		// Bail if not a top level term.
-		if ( ! $object || 0 !== wp_get_term_taxonomy_parent_id( $object->term_id, 'league' ) ) {
+		// Bail if not a league or season.
+		if ( ! $object || ! in_array( $object->taxonomy, [ 'team', 'season' ] ) ) {
 			return;
+		}
+
+		// Bail if we're on a league archive.
+		if ( 'league' === $object->taxonomy ) {
+			// Bail if it's not a top level league.
+			if ( 0 !== wp_get_term_taxonomy_parent_id( $object->term_id, 'league' ) ) {
+				return;
+			}
+		}
+		// Season archive.
+		else {
+			// Get the league.
+			$league = get_query_var( 'league' );
+
+			// Bail if no league.
+			if ( ! $league ) {
+				return;
+			}
+
+			// Get the league object.
+			$object = get_term_by( 'slug', $league, 'league' );
+
+			// Bail if no league object.
+			if ( ! $object ) {
+				return;
+			}
 		}
 
 		// Get child terms.
@@ -132,7 +158,7 @@ class Mai_AskNews_Archives {
 					$code  = $teams[ $term->name ]['code'];
 				}
 
-				printf( '<li class="pm-team" style="--team-color:%s;"><a class="pm-team__link" href="%s" data-code="%s">%s</a></li>', $color, get_term_link( $term ), $code, $term->name );
+				printf( '<li class="pm-team" style="--team-color:%s;"><a class="pm-team__link" href="%s" data-code="%s"><span class="pm-team__name">%s</span></a></li>', $color, get_term_link( $term ), $code, $term->name );
 			}
 		echo '</ul>';
 	}
