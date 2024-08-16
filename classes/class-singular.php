@@ -269,13 +269,6 @@ class Mai_AskNews_Singular {
 				// printf( '<p>%s</p>', $content );
 			}
 
-			// Get odds table.
-			$odds = maiasknews_get_odds_table( $data );
-
-			if ( $odds ) {
-				printf( '<p class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
-				echo $odds;
-			}
 		echo '</div>';
 	}
 
@@ -287,6 +280,14 @@ class Mai_AskNews_Singular {
 	 * @return void
 	 */
 	function do_main( $data ) {
+		// Get odds table.
+		$odds = maiasknews_get_odds_table( $data );
+
+		if ( $odds ) {
+			printf( '<p class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
+			echo $odds;
+		}
+
 		$keys = [
 			// 'forecast'               => __( 'Forecast', 'mai-asknews' ),
 			// 'reasoning'              => __( 'Reasoning', 'mai-asknews' ),
