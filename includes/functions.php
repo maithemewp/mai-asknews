@@ -242,6 +242,49 @@ function maiasknews_format_confidence( $confidence ) {
 	return $confidence ? round( (float) $confidence * 100 ) . '%' : '';
 }
 
+add_filter( 'get_post_metadata', 'pm_fallback_thumbnail_id', 10, 4 );
+/**
+ * Set fallback image(s) for featured images.
+ *
+ * @param mixed  $value     The value to return, either a single metadata value or an array of values depending on the value of $single. Default null.
+ * @param int    $object_id ID of the object metadata is for.
+ * @param string $meta_key  Metadata key.
+ * @param bool   $single    Whether to return only the first value of the specified $meta_key.
+ * @param string $meta_type Type of object metadata is for. Accepts 'post', 'comment', 'term', 'user', or any other object type with an associated meta table.
+ *
+ * @return mixed
+ */
+function pm_fallback_thumbnail_id( $value, $post_id, $meta_key, $single ) {
+	// Bail if in admin.
+	if ( is_admin() ) {
+		return $value;
+	}
+
+	// Bail if not the key we want.
+	if ( '_thumbnail_id' !== $meta_key ) {
+		return $value;
+	}
+
+	// Remove filter to avoid loopbacks.
+	remove_filter( 'get_post_metadata', 'pm_fallback_thumbnail_id', 10, 4 );
+
+	// Check for an existing featured image.
+	$image_id = get_post_thumbnail_id( $post_id );
+
+	// Add back our filter.
+	add_filter( 'get_post_metadata', 'pm_fallback_thumbnail_id', 10, 4 );
+
+	// Bail if we already have a featured image.
+	if ( $image_id ) {
+		return $image_id;
+	}
+
+	// Set fallback image.
+	$image_id = 2624;
+
+	return $image_id;
+}
+
 /**
  * Swap breadcrumbs.
  *
