@@ -136,7 +136,7 @@
 	--link-color-hover: var(--color-body);
 	--link-text-decoration: none;
 	--link-text-decoration-hover: none;
-	--link-filter-hover: brightness(.9);
+	--link-filter-hover: brightness(.95);
 	display: flex;
 	align-items: center;
 	gap: var(--spacing-xs);
