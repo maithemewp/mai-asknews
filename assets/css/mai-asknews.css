@@ -125,8 +125,9 @@
 .pm-teams {
 	--list-style-type: none;
 	--list-margin: 0 0 var(--spacing-xxl);
-	columns: 4 10rem;
-	column-gap: var(--spacing-sm);
+	display: grid;
+	gap: var(--spacing-xs) var(--spacing-md);
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 	margin-bottom: var(--spacing-xxl);
 }
 
@@ -139,7 +140,7 @@
 	display: flex;
 	align-items: center;
 	gap: var(--spacing-xs);
-	margin: 0 0 var(--spacing-sm);
+	margin: 0;
 	padding: 0;
 	font-size: var(--font-size-xs);
 	font-weight: var(--body-font-weight-bold);
@@ -150,8 +151,9 @@
 .pm-team__link[data-code]::before {
 	display: grid;
 	place-items: center;
-	width: 40px;
-	height: 40px;
+	width: 32px;
+	height: 32px;
+	font-size: 10px;
 	background-color: var(--team-color);
 	color: white;
 	border-radius: 100vw;
