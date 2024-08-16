@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die;
  */
 function maiasknews_enqueue_styles() {
 	$version   = MAI_ASKNEWS_VERSION;
-	$file      = '/assets/css/mai-asknews.css';
+	$file      = 'assets/css/mai-asknews.css';
 	$file_path = MAI_ASKNEWS_DIR . $file;
 	$file_url  = MAI_ASKNEWS_URL . $file;
 	$version  .= '.' . date( 'njYHi', filemtime( $file_path ) );
@@ -492,6 +492,12 @@ function maiasknews_get_teams( $sport ) {
 
 	$cache = [
 		'MLB' => [
+			// 'Angels' => [
+			// 	'city'   => 'Los Angeles',
+			// 	'code'   => 'LAA',
+			// 	'accent' => '#BA0021',
+			// 	'base'   => '#013263',
+			// ],
 			'Angels' => [
 				'city'  => 'Los Angeles',
 				'code'  => 'LAA',
@@ -500,7 +506,7 @@ function maiasknews_get_teams( $sport ) {
 			'Astros' => [
 				'city'  => 'Houston',
 				'code'  => 'HOU',
-				'color' => '#EB6E1F'
+				'color' => '#002D62'
 			],
 			'Athletics' => [
 				'city'  => 'Oakland',
@@ -515,7 +521,7 @@ function maiasknews_get_teams( $sport ) {
 			'Braves' => [
 				'city'  => 'Atlanta',
 				'code'  => 'ATL',
-				'color' => '#CE1141'
+				'color' => '#002855'
 			],
 			'Brewers' => [
 				'city'  => 'Milwaukee',
@@ -530,7 +536,7 @@ function maiasknews_get_teams( $sport ) {
 			'Cubs' => [
 				'city'  => 'Chicago',
 				'code'  => 'CHC',
-				'color' => '#0E3386'
+				'color' => '#022F6D'
 			],
 			'Diamondbacks' => [
 				'city'  => 'Arizona',
@@ -540,7 +546,7 @@ function maiasknews_get_teams( $sport ) {
 			'Dodgers' => [
 				'city'  => 'Los Angeles',
 				'code'  => 'LAD',
-				'color' => '#005A9C'
+				'color' => '#022F6D'
 			],
 			'Giants' => [
 				'city'  => 'San Francisco',
@@ -550,7 +556,7 @@ function maiasknews_get_teams( $sport ) {
 			'Guardians' => [
 				'city'  => 'Cleveland',
 				'code'  => 'CLE',
-				'color' => '#E31937'
+				'color' => '#0F223E'
 			],
 			'Mariners' => [
 				'city'  => 'Seattle',
@@ -575,7 +581,7 @@ function maiasknews_get_teams( $sport ) {
 			'Orioles' => [
 				'city'  => 'Baltimore',
 				'code'  => 'BAL',
-				'color' => '#DF4601'
+				'color' => '#FC4D03'
 			],
 			'Padres' => [
 				'city'  => 'San Diego',
@@ -605,17 +611,17 @@ function maiasknews_get_teams( $sport ) {
 			'Reds' => [
 				'city'  => 'Cincinnati',
 				'code'  => 'CIN',
-				'color' => '#C6011F'
+				'color' => '#D50032'
 			],
 			'Red Sox' => [
 				'city'  => 'Boston',
 				'code'  => 'BOS',
-				'color' => '#BD3039'
+				'color' => '#C8112E'
 			],
 			'Rockies' => [
 				'city'  => 'Colorado',
 				'code'  => 'COL',
-				'color' => '#33006F'
+				'color' => '#333366'
 			],
 			'Royals' => [
 				'city'  => 'Kansas City',
@@ -635,7 +641,7 @@ function maiasknews_get_teams( $sport ) {
 			'White Sox' => [
 				'city'  => 'Chicago',
 				'code'  => 'CWS',
-				'color' => '#27251F'
+				'color' => '#28241F'
 			],
 			'Yankees' => [
 				'city'  => 'New York',

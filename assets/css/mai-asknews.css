@@ -61,6 +61,22 @@
 
 /* Archives */
 
+.taxonomy-archive-description[data-code]::before {
+	display: grid;
+	place-items: center;
+	width: 64px;
+	height: 64px;
+	margin: 0 auto var(--spacing-sm);
+	font-size: var(--font-size-lg);
+	font-weight: var(--body-font-weight-bold);
+	background-color: var(--team-color);
+	color: white;
+	border: 2px solid white;
+	outline: 3px solid var(--team-color);
+	border-radius: 100vw;
+	content: attr(data-code);
+}
+
 .tax-league .entry-archive,
 .tax-season .entry-archive,
 .tax-matchup_tag .entry-archive,

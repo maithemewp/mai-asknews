@@ -24,22 +24,24 @@ class Mai_AskNews_Archives {
 	 * @return void
 	 */
 	function hooks() {
-		$league  = is_tax( 'league' );
-		$season  = is_tax( 'season' );
-		$tag     = is_tax( 'matchup_tag' );
+		$matchups = is_post_type_archive( 'matchup' );
+		$league   = is_tax( 'league' );
+		$season   = is_tax( 'season' );
+		$tag      = is_tax( 'matchup_tag' );
 
-		if ( ! ( $league || $season || $tag ) ) {
+		if ( ! ( $matchups || $league || $season || $tag ) ) {
 			return;
 		}
 
 		// Add hooks.
-		add_action( 'wp_enqueue_scripts',              [ $this, 'enqueue' ] );
-		add_action( 'genesis_before_loop',             [ $this, 'do_teams' ], 20 );
-		add_action( 'genesis_before_loop',             [ $this, 'do_upcoming_heading' ], 20 );
-		add_filter( 'genesis_markup_entry-wrap_open',  [ $this, 'get_datetime' ], 10, 2 );
-		add_filter( 'genesis_markup_entry-wrap_close', [ $this, 'get_predictions' ], 10, 2 );
-		add_action( 'genesis_after_loop',              [ $this, 'do_past_games' ] );
-		add_filter( 'genesis_noposts_text',            [ $this, 'get_noposts_text' ] );
+		add_action( 'wp_enqueue_scripts',               [ $this, 'enqueue' ] );
+		add_filter( 'genesis_attr_taxonomy-archive-description', [ $this, 'add_archive_title_atts' ], 10, 3 );
+		add_action( 'genesis_before_loop',              [ $this, 'do_teams' ], 20 );
+		add_action( 'genesis_before_loop',              [ $this, 'do_upcoming_heading' ], 20 );
+		add_filter( 'genesis_markup_entry-wrap_open',   [ $this, 'get_datetime' ], 10, 2 );
+		add_filter( 'genesis_markup_entry-wrap_close',  [ $this, 'get_predictions' ], 10, 2 );
+		add_action( 'genesis_after_loop',               [ $this, 'do_past_games' ] );
+		add_filter( 'genesis_noposts_text',             [ $this, 'get_noposts_text' ] );
 	}
 
 	/**
@@ -51,6 +53,42 @@ class Mai_AskNews_Archives {
 	 */
 	function enqueue() {
 		maiasknews_enqueue_styles();
+	}
+
+	/**
+	 * Adds custom class to single entry titles in Mai Theme v2.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param array  $attributes Existing attributes for entry title.
+	 * @param string $context    Context where the filter is run.
+	 * @param array  $args       Additional arguments passed to the filter.
+	 *
+	 * @return array
+	 */
+	function add_archive_title_atts( $attributes, $context, $args ) {
+		$object = get_queried_object();
+
+		// Bail if not a league or a top level term.
+		if ( ! $object || 'league' !== $object->taxonomy || 0 === wp_get_term_taxonomy_parent_id( $object->term_id, 'league' ) ) {
+			return $attributes;
+		}
+
+		// Get the team data.
+		$parent = get_term( $object->parent, 'league' );
+		$teams  = maiasknews_get_teams( $parent->name );
+		$team   = isset( $teams[ $object->name ] ) ? $teams[ $object->name ] : null;
+
+		// Bail if no team.
+		if ( ! $team ) {
+			return $attributes;
+		}
+
+		$attributes['style']     = isset( $attributes['style'] ) ? $attributes['style'] : '';
+		$attributes['style']    .= '--team-color:' . $team['color'] . ';';
+ 		$attributes['data-code'] = $teams[ $object->name ]['code'];
+
+		return $attributes;
 	}
 
 	/**

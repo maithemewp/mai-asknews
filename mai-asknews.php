@@ -219,7 +219,7 @@ final class Mai_AskNews_Plugin {
 		// Schedule/Matchups.
 		register_post_type( 'matchup', [
 			'exclude_from_search' => false,
-			'has_archive'         => false,
+			'has_archive'         => true, // So customizer works.
 			'hierarchical'        => false,
 			'labels'              => [
 				'name'               => _x( 'Matchups', 'Matchup general name', 'promatchups' ),
@@ -247,7 +247,11 @@ final class Mai_AskNews_Plugin {
 			'show_ui'            => true,
 			'supports'           => [ 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
 			'taxonomies'         => [ 'team', 'season' ],
-			'rewrite'            => false, // Handled in Mai_AskNews_Rewrites.
+			// 'rewrite'            => false, // Handled in Mai_AskNews_Rewrites.
+			'rewrite'            => [
+				'slug'       => 'matchups',
+				'with_front' => false,
+			],
 		] );
 
 		// Insights.
