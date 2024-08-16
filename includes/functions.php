@@ -286,6 +286,27 @@ function pm_fallback_thumbnail_id( $value, $post_id, $meta_key, $single ) {
 }
 
 /**
+ * Register CCAs.
+ *
+ * @since 0.1.0
+ *
+ * @param array $ccas The current CCAs.
+ *
+ * @return array
+ */
+add_filter( 'mai_template-parts_config', function( $ccas ) {
+	$ccas['matchup-promo-1'] = [
+		'hook' => 'pm_before_prediction',
+	];
+
+	$ccas['matchup-promo-2'] = [
+		'hook' => 'pm_before_prediction',
+	];
+
+	return $ccas;
+});
+
+/**
  * Swap breadcrumbs.
  *
  * @since 0.1.0

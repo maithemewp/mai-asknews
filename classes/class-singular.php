@@ -197,6 +197,9 @@ class Mai_AskNews_Singular {
 	function do_insight( $body ) {
 		$has_access = maiasknews_has_access();
 
+		// Do action before prediction.
+		do_action( 'pm_before_prediction', $body );
+
 		if ( $has_access ) {
 			$this->do_prediction( $body );
 		}
