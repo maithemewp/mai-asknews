@@ -1,7 +1,6 @@
 # WP Block Converter
 
-[![Coding Standards](https://github.com/alleyinteractive/wp-block-converter/actions/workflows/coding-standards.yml/badge.svg)](https://github.com/alleyinteractive/wp-block-converter/actions/workflows/coding-standards.yml)
-[![Testing Suite](https://github.com/alleyinteractive/wp-block-converter/actions/workflows/unit-test.yml/badge.svg)](https://github.com/alleyinteractive/wp-block-converter/actions/workflows/unit-test.yml)
+[![Testing Suite](https://github.com/alleyinteractive/wp-block-converter/actions/workflows/all-pr-tests.yml/badge.svg)](https://github.com/alleyinteractive/wp-block-converter/actions/workflows/all-pr-tests.yml)
 
 Convert HTML into Gutenberg Blocks with PHP
 
@@ -13,9 +12,9 @@ You can install the package via Composer:
 composer require alleyinteractive/wp-block-converter
 ```
 
-This project is built to be used in a WordPress environment, so it is
-recommended to use this package in a WordPress plugin or theme. Using it in
-isolation is not supported at this time.
+This project is built to be used in a WordPress environment, so it is recommended to use this
+package in a WordPress plugin or theme. Using it in isolation is not supported at this time. This
+package does not use any NPM library such as `@wordpress/blocks` to convert HTML to blocks.
 
 ## Usage
 
@@ -26,7 +25,7 @@ use Alley\WP\Block_Converter\Block_Converter;
 
 $converter = new Block_Converter( '<p>Some HTML</p>' );
 
-$blocks = $converter->convert();
+$blocks = $converter->convert(); // Returns a string of converted blocks.
 ```
 
 ### Filtering the Blocks
@@ -59,6 +58,24 @@ add_filter( 'wp_block_converter_document_html', function( string $blocks, \DOMNo
 	// ...
 	return $blocks;
 }, 10, 2 );
+```
+
+### Attachment Parents
+
+When converting HTML to blocks, you may need to attach the images that were
+sideloaded to a post parent. After the HTML is converted to blocks, you can get
+the attachment IDs that were created or simply attach them to a post.
+
+```php
+$converter = new Block_Converter( '<p>Some HTML <img src="https://example.org/" /></p>' );
+$blocks = $converter->convert();
+
+// Get the attachment IDs that were created.
+$attachment_ids = $converter->get_created_attachment_ids();
+
+// Attach the images to a post.
+$parent_id = 123;
+$converter->assign_parent_to_attachments( $parent_id );
 ```
 
 ### Extending the Converter with Macros

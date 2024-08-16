@@ -71,14 +71,16 @@ function create_or_get_attachment_from_url( string $src, array $args = [], strin
 	update_post_meta( $attachment_id, $meta_key, $src );
 
 	$postarr = [
-		'post_content' => $args['description'] ?? null,
-		'post_excerpt' => $args['caption'] ?? null,
-		'post_title'   => $args['title'] ?? null,
-		'meta_input'   => array_merge(
-			(array) ( $args['meta'] ?? [] ),
-			[
-				'_wp_attachment_image_alt' => $args['alt'] ?? null,
-			],
+		'post_content' => $args['description'] ?? '',
+		'post_excerpt' => $args['caption'] ?? '',
+		'post_title'   => $args['title'] ?? '',
+		'meta_input'   => array_filter(
+			array_merge(
+				(array) ( $args['meta'] ?? [] ),
+				[
+					'_wp_attachment_image_alt' => $args['alt'] ?? null,
+				],
+			),
 		),
 	];
 
