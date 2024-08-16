@@ -71,7 +71,7 @@ class Mai_AskNews_Singular {
 
 		// Add hooks.
 		add_action( 'wp_enqueue_scripts',                 [ $this, 'enqueue' ] );
-		add_filter( 'genesis_markup_entry-title_content', [ $this, 'add_insight_count' ], 10, 2 );
+		// add_filter( 'genesis_markup_entry-title_content', [ $this, 'add_insight_count' ], 10, 2 );
 		add_action( 'genesis_before_entry_content',       [ $this, 'do_event_info' ] );
 		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_content' ] );
 		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_updates' ] );
@@ -128,7 +128,13 @@ class Mai_AskNews_Singular {
 		$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
 
 		// Display the date.
-		printf( '<p class="pm-datetime"><strong>%s:</strong> %s @ %s / %s</p>', __( 'Game Time', 'mai-asknews' ), $day, $time_est, $time_pst );
+		printf( '<p class="pm-datetime">%s @ %s / %s</p>', $day, $time_est, $time_pst );
+
+		// Get count.
+		$count = max( 1, count( $this->insights ) );
+
+		// Display the update.
+		printf( '<p class="pm-update">%s #%s</p>', __( 'Update', 'mai-asknews' ), $count );
 	}
 
 	/**

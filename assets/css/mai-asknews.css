@@ -289,8 +289,15 @@
 }
 
 .pm-datetime {
-	margin-bottom: var(--spacing-xl);
+	margin-bottom: 0;
 	text-align: center;
+}
+
+.pm-update {
+	margin-bottom: var(--spacing-lg);
+	font-size: .75rem;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 .pm-prediction {
