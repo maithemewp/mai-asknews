@@ -4,6 +4,17 @@
 defined( 'ABSPATH' ) || die;
 
 /**
+ * If the user has access to view restricted content.
+ *
+ * @since 0.1.0
+ *
+ * @return bool
+ */
+function maiasknews_has_access() {
+	return current_user_can( 'read' );
+}
+
+/**
  * Enqueue the plugin styles.
  *
  * @since 0.1.0

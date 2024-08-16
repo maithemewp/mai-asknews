@@ -240,7 +240,7 @@ class Mai_AskNews_Archives {
 		}
 
 		// Bail if not an admin.
-		if ( ! current_user_can( 'edit_posts' ) ) {
+		if ( ! maiasknews_has_access() ) {
 			return $content;
 		}
 

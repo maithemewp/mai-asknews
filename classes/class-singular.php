@@ -31,7 +31,7 @@ class Mai_AskNews_Singular {
 		}
 
 		// Get insights.
-		$post_status = current_user_can( 'edit_posts' ) ? [ 'publish', 'pending', 'draft' ] : 'publish';
+		$post_status = maiasknews_has_access() ? [ 'publish', 'pending', 'draft' ] : 'publish';
 		$event_uuid  = get_post_meta( get_the_ID(), 'event_uuid', true );
 
 		// If event uuid.
@@ -132,7 +132,7 @@ class Mai_AskNews_Singular {
 
 		// Display the nav.
 		echo '<ul class="pm-jumps">';
-			if ( current_user_can( 'edit_posts' ) ) {
+			if ( maiasknews_has_access() ) {
 				printf( '<li class="pm-jump"><a class="pm-jump__link" href="#prediction">%s</a></li>', __( 'Prediction', 'mai-asknews' ) );
 			}
 
@@ -217,7 +217,7 @@ class Mai_AskNews_Singular {
 	 * @return void
 	 */
 	function do_insight( $body ) {
-		$has_access = current_user_can( 'edit_posts' );
+		$has_access = maiasknews_has_access();
 
 		if ( $has_access ) {
 			$this->do_prediction( $body );
