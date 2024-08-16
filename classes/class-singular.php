@@ -55,26 +55,11 @@ class Mai_AskNews_Singular {
 			$this->insights = [];
 		}
 
-		foreach ( $this->insights as $insight_id ) {
-			$event_uuid_2  = get_post_meta( $insight_id, 'event_uuid', true );
-			$forecast_uuid = get_post_meta( $insight_id, 'forecast_uuid', true );
-			$post_name     = get_post_field( 'post_name', $insight_id );
-
-			// ray( $event_uuid . ' - ' . $event_uuid_2 . ' - ' . $post_name );
-
-			// if ( $forecast_uuid !== $post_name ) {
-			// 	// $other = get_page_by_path( $forecast_uuid, OBJECT, 'insight' );
-			// 	// ray( $forecast_uuid, $other->post_name, $slug );
-			// }
-
-		}
-
 		// Add hooks.
-		add_action( 'wp_enqueue_scripts',                 [ $this, 'enqueue' ] );
-		// add_filter( 'genesis_markup_entry-title_content', [ $this, 'add_insight_count' ], 10, 2 );
-		add_action( 'genesis_before_entry_content',       [ $this, 'do_event_info' ] );
-		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_content' ] );
-		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_updates' ] );
+		add_action( 'wp_enqueue_scripts',            [ $this, 'enqueue' ] );
+		add_action( 'genesis_before_entry_content',  [ $this, 'do_event_info' ] );
+		add_action( 'mai_after_entry_content_inner', [ $this, 'do_content' ] );
+		add_action( 'mai_after_entry_content_inner', [ $this, 'do_updates' ] );
 	}
 
 	/**
@@ -89,25 +74,6 @@ class Mai_AskNews_Singular {
 	}
 
 	/**
-	 * Adds the insight count to the entry title.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @return string
-	 */
-	function add_insight_count( $content, $args ) {
-		if ( ! isset( $args['params']['args']['context'] ) || 'single' !== $args['params']['args']['context'] ) {
-			return $content;
-		}
-
-		// Get count.
-		$count = max( 1, count( $this->insights ) );
-		$count = sprintf( ' (%s #%s)', __( 'Update', 'mai-asknews' ), $count );
-
-		return $content . $count;
-	}
-
-	/**
 	 * Do the event info.
 	 *
 	 * @since 0.1.0
@@ -117,8 +83,14 @@ class Mai_AskNews_Singular {
 	function do_event_info() {
 		$event_date = get_post_meta( get_the_ID(), 'event_date', true );
 
+		// Bail if no date.
 		if ( ! $event_date ) {
 			return;
+		}
+
+		// Force timestamp.
+		if ( ! is_numeric( $event_date ) ) {
+			$event_date = strtotime( $event_date );
 		}
 
 		// Get the date and times.

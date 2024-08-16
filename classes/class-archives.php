@@ -186,22 +186,11 @@ class Mai_AskNews_Archives {
 			$event_date = strtotime( $event_date );
 		}
 
-		// Get day.
-		$day = wp_date( 'M j', $event_date ); // Get the day in 'M j' format.
-
-		// Create a DateTime object with the given date and time in EST.
-		$time_est = new DateTime( "@$event_date", new DateTimeZone( 'America/New_York' ) );
-
-		// Convert to UTC.
-		$time_utc = clone $time_est;
-		$time_utc->setTimezone( new DateTimeZone( 'UTC' ) );
-
-		// Convert to Pacific Time (PT).
-		$time_pst = clone $time_est;
-		$time_pst = $time_pst->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i A' ) . ' PT';
-
-		// Format the EST time (already in EST).
-		$time_est = $time_est->format( 'g:i A' ) . ' ET';
+		// Get the date and times.
+		$day      = date( 'M j ', $event_date );
+		$time_utc = new DateTime( "@$event_date", new DateTimeZone( 'UTC' ) );
+		$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
+		$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
 
 		// Build the markup.
 		$html  = '';
