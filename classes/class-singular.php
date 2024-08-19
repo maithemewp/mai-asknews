@@ -9,10 +9,45 @@ defined( 'ABSPATH' ) || die;
  * @since 0.1.0
  */
 class Mai_AskNews_Singular {
+	/**
+	 * The matchup ID.
+	 *
+	 * @var int
+	 */
+	protected $matchup_id;
+
+	/**
+	 * The matchup insights.
+	 *
+	 * @var array
+	 */
 	protected $insights;
 
 	/**
+	 * The current user.
+	 *
+	 * @var WP_User|false
+	 */
+	protected $user;
+
+	/**
+	 * The current vote team ID.
+	 *
+	 * @var int
+	 */
+	protected $vote_id;
+
+	/**
+	 * The current vote name.
+	 *
+	 * @var string
+	 */
+	protected $vote_name;
+
+	/**
 	 * Construct the class.
+	 *
+	 * @since 0.1.0
 	 */
 	function __construct() {
 		add_action( 'template_redirect', [ $this, 'run' ] );
@@ -30,9 +65,38 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
+		// Set initial data.
+		$this->matchup_id = get_the_ID();
+		$this->user       = wp_get_current_user();
+		$this->vote_id    = null;
+		$this->vote_name  = '';
+
+		// If user is logged in.
+		if ( $this->user ) {
+			// Check if the user has already voted.
+			$comments = get_comments(
+				[
+					'comment_type' => 'pm_vote',
+					'post_id'      => $this->matchup_id,
+					'user_id'      => $this->user->ID,
+				]
+			);
+
+			// If user has voted.
+			if ( $comments ) {
+				$existing        = reset( $comments );
+				$this->vote_id   = $existing ? $existing->comment_karma : $this->vote_id;
+				$term            = $this->vote_id ? get_term( $this->vote_id, 'league' ) : null;
+				$this->vote_name = $term ? $term->name : '';
+			}
+
+			// Add vote listener.
+			$this->vote_listener();
+		}
+
 		// Get insights.
 		$post_status = maiasknews_has_access() ? [ 'publish', 'pending', 'draft' ] : 'publish';
-		$event_uuid  = get_post_meta( get_the_ID(), 'event_uuid', true );
+		$event_uuid  = get_post_meta( $this->matchup_id, 'event_uuid', true );
 
 		// If event uuid.
 		if ( $event_uuid ) {
@@ -63,6 +127,55 @@ class Mai_AskNews_Singular {
 	}
 
 	/**
+	 * Add vote listener.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function vote_listener() {
+		// Bail if not a POST request.
+		if ( 'POST' !== $_SERVER['REQUEST_METHOD'] ) {
+			return;
+		}
+
+		// Get team.
+		$team = isset( $_POST['team'] ) ? sanitize_text_field( $_POST['team'] ) : '';
+
+		// Bail if no team.
+		if ( ! $team ) {
+			return;
+		}
+
+		// If already voted.
+		if ( $this->vote_name ) {
+			// Display message.
+			add_action( 'genesis_before_loop', function() {
+				printf( '<p class="pm-notice error">%s %s.</p>', __( 'Your vote has not been saved. You have already voted for', 'mai-asknews' ), $this->vote_name );
+			});
+			return;
+		}
+
+		// Build comment data.
+		$term    = get_term_by( 'name', $team, 'league' );
+		$term_id = $term ? $term->term_id : null;
+		$args    = [
+			'comment_type'         => 'pm_vote',
+			'comment_post_ID'      => $this->matchup_id,
+			'comment_approved'     => 1,
+			'comment_content'      => $team,
+			'comment_karma'        => $term_id,
+			'user_id'              => $this->user->ID,
+			'comment_author'       => $this->user->user_login,
+			'comment_author_email' => $this->user->user_email,
+			'comment_author_url'   => $this->user->user_url,
+		];
+
+		// Insert the comment.
+		$comment_id = wp_insert_comment( $args );
+	}
+
+	/**
 	 * Enqueue CSS in the header.
 	 *
 	 * @since 0.1.0
@@ -81,7 +194,7 @@ class Mai_AskNews_Singular {
 	 * @return void
 	 */
 	function do_event_info() {
-		$event_date = get_post_meta( get_the_ID(), 'event_date', true );
+		$event_date = get_post_meta( $this->matchup_id, 'event_date', true );
 
 		// Bail if no date.
 		if ( ! $event_date ) {
@@ -200,6 +313,8 @@ class Mai_AskNews_Singular {
 		// Do action before prediction.
 		do_action( 'pm_before_prediction', $body );
 
+		$this->do_votes( $body );
+
 		if ( $has_access ) {
 			$this->do_prediction( $body );
 		}
@@ -209,6 +324,53 @@ class Mai_AskNews_Singular {
 		$this->do_timeline( $body );
 		$this->do_web( $body );
 		$this->do_sources( $body );
+	}
+
+	/**
+	 * Display the vote box.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function do_votes( $data ) {
+		static $first = true;
+
+		if ( ! $first ) {
+			return;
+		}
+
+		$has_access = maiasknews_has_access();
+		$home       = $data['home_team_name'];
+		$away       = $data['away_team_name'];
+		$home       = ! $home && isset( $data['home_team'] ) ? end( explode( ' ', $data['home_team'] ) ) : $home;
+		$away       = ! $away && isset( $data['away_team'] ) ? end( explode( ' ', $data['away_team'] ) ) : $away;
+
+		// Bail if no teams.
+		if ( ! ( $home && $away ) ) {
+			return;
+		}
+
+		echo '<div id="vote" class="pm-vote">';
+			$text = $this->vote_id ? __( 'Change Your Vote', 'mai-asknews' ) : __( 'Cast Your Vote!', 'mai-asknews' );
+			printf( '<h2>%s</h2>', $text );
+
+			if ( $has_access ) {
+				if ( $this->vote_name ) {
+					printf( '<p>%s %s. %s.</p>', __( 'You have already voted for', 'mai-asknews' ), $this->vote_name, __( 'Change your vote below.', 'mai-asknews' ) );
+				} else {
+					printf( '<p>%s</p>', __( 'Compete with others and beat the ProMatchups Robot.<br>Who do you think will win?', 'mai-asknews' ) );
+				}
+				echo '<form class="pm-vote__form" method="post" action="">';
+					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $home === $this->vote_name ? ' selected' : '', $home, $home );
+					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $away === $this->vote_name ? ' selected' : '', $away, $away );
+				echo '</form>';
+			} else {
+				printf( '<p>%s</p>', __( 'You must be logged in to vote.', 'mai-asknews' ) );
+			}
+		echo '</div>';
+
+		$first = false;
 	}
 
 	/**

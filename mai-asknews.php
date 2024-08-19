@@ -202,6 +202,7 @@ final class Mai_AskNews_Plugin {
 		$rewrites  = new Mai_AskNews_Rewrites;
 		$archives  = new Mai_AskNews_Archives;
 		$singular  = new Mai_AskNews_Singular;
+		// $votes     = new Mai_AskNews_Votes;
 	}
 
 	/**
