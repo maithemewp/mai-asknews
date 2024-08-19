@@ -56,26 +56,6 @@
 
 /* Archives & Singular */
 
-.archive-title,
-.entry-title-singleee {
-	display: grid;
-	gap: .4em;
-	grid-template-columns: 1fr auto 1fr;
-	align-items: center;
-	margin-inline: calc(var(--side-spacing) * -1);
-	margin-bottom: var(--spacing-xs);
-	text-align: center;
-}
-
-.archive-title::before,
-.archive-title::after,
-.entry-title-singleee::before,
-.entry-title-singleee::after {
-	height: 1.1cap;
-	background: var(--background-lines);
-	content: "";
-}
-
 .pm-team__link {
 	--link-color: var(--color-body);
 	--link-color-hover: var(--color-body);
@@ -121,6 +101,23 @@
 
 /* Archives */
 
+.archive-title {
+	display: grid;
+	gap: .4em;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	margin-inline: calc(var(--side-spacing) * -1);
+	margin-bottom: var(--spacing-xs);
+	text-align: center;
+}
+
+.archive-title::before,
+.archive-title::after {
+	height: 1.1cap;
+	background: var(--background-lines);
+	content: "";
+}
+
 .taxonomy-archive-description[data-code]::before {
 	display: grid;
 	place-items: center;
@@ -140,7 +137,9 @@
 .tax-league .entry-archive,
 .tax-season .entry-archive,
 .tax-matchup_tag .entry-archive,
-.pm-matchups .entry-grid {
+.pm-matchups .entry-grid,
+.author .entry-archive,
+.search-results .entry-archive {
 	--heading-margin-bottom: var(--spacing-sm);
 	display: grid;
 	gap: 2vw;
@@ -150,7 +149,9 @@
 .tax-league .entry-archive .entry-wrap,
 .tax-season .entry-archive .entry-wrap,
 .tax-matchup_tag .entry-archive .entry-wrap,
-.pm-matchups .entry-grid .entry-wrap {
+.pm-matchups .entry-grid .entry-wrap,
+.author .entry-archive .entry-wrap,
+.search-results .entry-archive .entry-wrap {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;

@@ -13,7 +13,52 @@ class Mai_AskNews_Archives {
 	 * Construct the class.
 	 */
 	function __construct() {
-		add_action( 'template_redirect', [ $this, 'hooks' ] );
+		add_filter( 'mai_archive_args_name', [ $this, 'handle_archive_name' ] );
+		add_action( 'pre_get_posts',         [ $this, 'handle_archive_queries' ] );
+		add_action( 'template_redirect',     [ $this, 'hooks' ] );
+	}
+
+	/**
+	 * Force search results to use Matchup customizer args.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string $name
+	 *
+	 * @return string
+	 */
+	function handle_archive_name( $name ) {
+		if ( is_author() || is_search() ) {
+			$name = 'matchup';
+		}
+
+		return $name;
+	}
+
+	/**
+	 * Handle archive queries.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param object $query The main query.
+	 *
+	 * @return void
+	 */
+	function handle_archive_queries( $query ) {
+		// Bail if in the Dashboard.
+		if ( is_admin() ) {
+			return;
+		}
+
+		// Bail if not the main query.
+		if ( ! $query->is_main_query() ) {
+			return;
+		}
+
+		// If author or search results.
+		if ( is_author() || is_search() ) {
+			$query->set( 'post_type', 'matchup' );
+		}
 	}
 
 	/**
@@ -28,8 +73,10 @@ class Mai_AskNews_Archives {
 		$league   = is_tax( 'league' );
 		$season   = is_tax( 'season' );
 		$tag      = is_tax( 'matchup_tag' );
+		$author   = is_author();
+		$search   = is_search();
 
-		if ( ! ( $matchups || $league || $season || $tag ) ) {
+		if ( ! ( $matchups || $league || $season || $tag || $author || $search ) ) {
 			return;
 		}
 
@@ -328,12 +375,21 @@ class Mai_AskNews_Archives {
 		global $wp_query;
 
 		// If we have a tax query.
-		if ( ! $wp_query->tax_query->queries ) {
-			return $query_args;
+		if ( is_tax() && $wp_query->tax_query->queries ) {
+			// Adjust the query.
+			$query_args['tax_query']  = $wp_query->tax_query->queries;
 		}
 
-		// Adjust the query.
-		$query_args['tax_query']  = $wp_query->tax_query->queries;
+		// If author.
+		if ( is_author() ) {
+			$query_args['author'] = get_queried_object_id();
+		}
+
+		// If search.
+		if ( is_search() ) {
+			$query_args['s'] = get_search_query();
+		}
+
 		$query_args['meta_query'] = [
 			[
 				'key'     => 'event_date',
