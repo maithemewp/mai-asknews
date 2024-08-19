@@ -120,10 +120,11 @@ class Mai_AskNews_Singular {
 		}
 
 		// Add hooks.
-		add_action( 'wp_enqueue_scripts',            [ $this, 'enqueue' ] );
-		add_action( 'genesis_before_entry_content',  [ $this, 'do_event_info' ] );
-		add_action( 'mai_after_entry_content_inner', [ $this, 'do_content' ] );
-		add_action( 'mai_after_entry_content_inner', [ $this, 'do_updates' ] );
+		add_action( 'wp_enqueue_scripts',                 [ $this, 'enqueue' ] );
+		add_filter( 'genesis_markup_entry-title_content', [ $this, 'handle_title' ], 10, 2 );
+		add_action( 'genesis_before_entry_content',       [ $this, 'do_event_info' ] );
+		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_content' ] );
+		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_updates' ] );
 	}
 
 	/**
@@ -186,40 +187,103 @@ class Mai_AskNews_Singular {
 		maiasknews_enqueue_styles();
 	}
 
-	/**
-	 * Do the event info.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @return void
-	 */
-	function do_event_info() {
-		$event_date = get_post_meta( $this->matchup_id, 'event_date', true );
+	function handle_title( $content, $args ) {
+		if ( ! isset( $args['params']['args']['context'] ) ||  'single' !== $args['params']['args']['context'] ) {
+			return $content;
+		}
 
-		// Bail if no date.
-		if ( ! $event_date ) {
+		// Set vars.
+		$sport = null;
+		$teams = [];
+		$array = explode( ' vs ', $content );
+
+		// Loop through teams.
+		foreach ( $array as $team ) {
+			// Get the sport.
+			if ( is_null( $sport ) ) {
+				$term   = get_term_by( 'name', $team, 'league' );
+				$parent = $term ? get_term( $term->parent, 'league' ) : null;
+				$sport  = $parent ? $parent->name : null;
+			}
+
+			// Skip if no sport.
+			if ( ! $sport ) {
+				continue;
+			}
+
+			// Get code and color.
+			$teams = maiasknews_get_teams( $sport );
+			$code  = isset( $teams[ $team ]['code'] ) ? $teams[ $team ]['code'] : '';
+			$color = isset( $teams[ $team ]['color'] ) ? $teams[ $team ]['color'] : '';
+
+			// Skip if no code or color.
+			if ( ! ( $code && $color ) ) {
+				continue;
+			}
+
+			// Replace the team with the code and color.
+			$replace = sprintf( '<a class="entry-title-team__link" href="%s" style="--team-color:%s;" data-code="%s">%s</a></span>', get_term_link( $term ), $color, $code, $team );
+			$content = str_replace( $team, $replace, $content );
+
+			// Add span to vs.
+			$content = str_replace( ' vs ', ' <span class="entry-title__vs">vs</span> ', $content );
+		}
+
+		return $content;
+	}
+
+	function do_event_info() {
+		// Get the first insight.
+		$insight_id = reset( $this->insights );
+
+		// Bail if no insight.
+		if ( ! $insight_id ) {
 			return;
 		}
-
-		// Force timestamp.
-		if ( ! is_numeric( $event_date ) ) {
-			$event_date = strtotime( $event_date );
-		}
-
-		// Get the date and times.
-		$day      = date( 'l, F j, Y ', $event_date );
-		$time_utc = new DateTime( "@$event_date", new DateTimeZone( 'UTC' ) );
-		$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
-		$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
-
-		// Display the date.
-		printf( '<p class="pm-datetime">%s @ %s / %s</p>', $day, $time_est, $time_pst );
 
 		// Get count.
 		$count = max( 1, count( $this->insights ) );
 
+		// Date.
+		$body = get_post_meta( $insight_id, 'asknews_body', true );
+		$date = maiasknews_get_key( 'date', $body );
+
+		// $time_utc = new DateTime( "@$date", new DateTimeZone( 'UTC' ) );
+		// $time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
+		// $time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
+
+
+
+		// Get times and interval.
+		$updated  = '';
+		$time_utc = new DateTime( $date, new DateTimeZone( 'UTC' ) );
+		$time_now = new DateTime( 'now', new DateTimeZone('UTC') );
+		$interval = $time_now->diff( $time_utc );
+
+		// If within our range.
+		if ( $interval->days < 2 ) {
+			if ( $interval->days > 0 ) {
+				$time_ago = $interval->days . ' day' . ( $interval->days > 1 ? 's' : '' ) . ' ago';
+			} elseif ( $interval->h > 0 ) {
+				$time_ago = $interval->h . ' hour' . ( $interval->h > 1 ? 's' : '' ) . ' ago';
+			} elseif ( $interval->i > 0 ) {
+				$time_ago = $interval->i . ' minute' . ( $interval->i > 1 ? 's' : '' ) . ' ago';
+			} else {
+				$time_ago = __( 'Just now', 'mai-asknews' );
+			}
+
+			$updated = $time_ago;
+		}
+		// Older than our range.
+		else {
+			$date     = $time_utc->setTimezone( new DateTimeZone('America/New_York'))->format( 'M j, Y' );
+			$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
+			$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
+			$updated  = $date . ' @ ' . $time_est . ' | ' . $time_pst;
+		}
+
 		// Display the update.
-		printf( '<p class="pm-update">%s #%s</p>', __( 'Update', 'mai-asknews' ), $count );
+		printf( '<p class="pm-update">%s #%s %s</p>', __( 'Update', 'mai-asknews' ), $count, $updated );
 	}
 
 	/**

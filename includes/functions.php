@@ -230,6 +230,99 @@ function maiasknews_get_key( $key, $array ) {
 }
 
 /**
+ * Get the matchup date and time.
+ *
+ * @since 0.1.0
+ *
+ * @param int $matchup_id The matchup ID.
+ *
+ * @return void
+ */
+function maiasknews_get_matchup_datetime( $matchup_id, $before = '' ) {
+	$event_date = get_post_meta( $matchup_id, 'event_date', true );
+
+	// Bail if no date.
+	if ( ! $event_date ) {
+		return '';
+	}
+
+	// Force timestamp.
+	if ( ! is_numeric( $event_date ) ) {
+		$event_date = strtotime( $event_date );
+	}
+
+	// Get the date and times.
+	$day      = date( 'l, F j, Y ', $event_date );
+	$time_utc = new DateTime( "@$event_date", new DateTimeZone( 'UTC' ) );
+	$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
+	$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
+	$before   = $before ? sprintf( '<strong>%s</strong> ', $before ) : '';
+
+	return sprintf( '<p class="pm-datetime">%s%s @ %s / %s</p>', $before, $day, $time_est, $time_pst );
+}
+
+/**
+ * Get the matchup teams list.
+ *
+ * @since 0.1.0
+ *
+ * @param array $atts The shortcode attributes.
+ *
+ * @return string
+ */
+function maiasknews_get_matchup_teams_list( $atts = [] ) {
+	// Atts.
+	$atts = shortcode_atts(
+		[
+			'before' => '',
+			'after'  => '',
+		],
+		$atts,
+		'pm_matchup_teams'
+	);
+
+	// Sanitize.
+	$atts = [
+		'before' => esc_html( $atts['before'] ),
+		'after'  => esc_html( $atts['after'] ),
+	];
+
+	$terms = get_the_terms( get_the_ID(), 'league' );
+
+	if ( ! $terms || is_wp_error( $terms ) ) {
+		return '';
+	}
+
+	// Remove top level terms.
+	$terms = array_filter( $terms, function( $term ) {
+		return 0 !== $term->parent;
+	} );
+
+	// Bail if no terms.
+	if ( ! $terms ) {
+		return '';
+	}
+
+	// Get teams.
+	$teams = maiasknews_get_teams( 'MLB' );
+
+	// Build the output.
+	$html = '<div class="pm-matchup-teams">';
+		$html .= '<ul class="pm-matchup-teams__list">';
+		foreach ( $terms as $term ) {
+			$code  = isset( $teams[ $term->name ]['code'] ) ? $teams[ $term->name ]['code'] : '';
+			$color = isset( $teams[ $term->name ]['color'] ) ? $teams[ $term->name ]['color'] : '';
+
+			// These class names match the archive team list, minus the team name span.
+			$html .= sprintf( '<li class="pm-team"><a class="pm-team__link" href="%s" style="--team-color:%s;" data-code="%s">%s</a></li>', get_term_link( $term ), $color, $code, $term->name );
+		}
+		$html .= '</ul>';
+	$html .= '</div>';
+
+	return $html;
+}
+
+/**
  * Get formatted confidence.
  *
  * @since 0.1.0

@@ -158,6 +158,7 @@ class Mai_AskNews_Archives {
 					$code  = $teams[ $term->name ]['code'];
 				}
 
+				// These class names match the pm_matchup_teams shortcode, minus the team name span.
 				printf( '<li class="pm-team" style="--team-color:%s;"><a class="pm-team__link" href="%s" data-code="%s"><span class="pm-team__name">%s</span></a></li>', $color, get_term_link( $term ), $code, $term->name );
 			}
 		echo '</ul>';

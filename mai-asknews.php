@@ -200,6 +200,7 @@ final class Mai_AskNews_Plugin {
 	public function classes() {
 		$endpoints = new Mai_AskNews_Endpoints;
 		$rewrites  = new Mai_AskNews_Rewrites;
+		$display   = new Mai_AskNews_Display;
 		$archives  = new Mai_AskNews_Archives;
 		$singular  = new Mai_AskNews_Singular;
 		// $votes     = new Mai_AskNews_Votes;
