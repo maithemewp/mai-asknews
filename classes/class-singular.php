@@ -242,20 +242,12 @@ class Mai_AskNews_Singular {
 		}
 
 		// Get count.
-		$count = max( 1, count( $this->insights ) );
+		// $count = max( 1, count( $this->insights ) );
 
-		// Date.
-		$body = get_post_meta( $insight_id, 'asknews_body', true );
-		$date = maiasknews_get_key( 'date', $body );
-
-		// $time_utc = new DateTime( "@$date", new DateTimeZone( 'UTC' ) );
-		// $time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
-		// $time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
-
-
-
-		// Get times and interval.
+		// Set vars.
 		$updated  = '';
+		$body     = get_post_meta( $insight_id, 'asknews_body', true );
+		$date     = maiasknews_get_key( 'date', $body );
 		$time_utc = new DateTime( $date, new DateTimeZone( 'UTC' ) );
 		$time_now = new DateTime( 'now', new DateTimeZone('UTC') );
 		$interval = $time_now->diff( $time_utc );
@@ -283,7 +275,7 @@ class Mai_AskNews_Singular {
 		}
 
 		// Display the update.
-		printf( '<p class="pm-update">%s #%s %s</p>', __( 'Update', 'mai-asknews' ), $count, $updated );
+		printf( '<p class="pm-update">%s %s</p>', __( 'Updated', 'mai-asknews' ), $updated );
 	}
 
 	/**
@@ -361,9 +353,9 @@ class Mai_AskNews_Singular {
 		// Do action before prediction.
 		do_action( 'pm_before_prediction', $body );
 
-		$this->do_votes( $body );
-
+		// If they have access.
 		if ( $has_access ) {
+			$this->do_votes( $body );
 			$this->do_prediction( $body );
 		}
 
