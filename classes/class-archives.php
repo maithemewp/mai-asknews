@@ -102,7 +102,7 @@ class Mai_AskNews_Archives {
 		$object = get_queried_object();
 
 		// Bail if not a league or season.
-		if ( ! $object || ! in_array( $object->taxonomy, [ 'team', 'season' ] ) ) {
+		if ( ! $object || ! in_array( $object->taxonomy, [ 'league', 'season' ] ) ) {
 			return;
 		}
 
