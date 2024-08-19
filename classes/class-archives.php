@@ -172,7 +172,7 @@ class Mai_AskNews_Archives {
 	 * @return void
 	 */
 	function do_upcoming_heading() {
-		echo '<h2>Upcoming Games</h2>';
+		printf( '<h2>%s</h2>', __( 'Upcoming Games', 'mai-asknews' ) );
 	}
 
 	/**

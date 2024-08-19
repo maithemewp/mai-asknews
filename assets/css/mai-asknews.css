@@ -217,6 +217,10 @@
 		column-gap: var(--spacing-sm);
 	}
 
+	.pm-team {
+		overflow: hidden;
+	}
+
 	.pm-team__link {
 		margin: 0 0 var(--spacing-sm);
 		background: var(--color-alt);
