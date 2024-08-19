@@ -310,22 +310,6 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-		// Display the nav.
-		echo '<ul class="pm-jumps">';
-			if ( maiasknews_has_access() ) {
-				printf( '<li class="pm-jump"><a class="pm-jump__link" href="#prediction">%s</a></li>', __( 'Prediction', 'mai-asknews' ) );
-			}
-
-			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#people">%s</a></li>', __( 'People', 'mai-asknews' ) );
-			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#timeline">%s</a></li>', __( 'Timeline', 'mai-asknews' ) );
-			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#web">%s</a></li>', __( 'Web', 'mai-asknews' ) );
-			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#sources">%s</a></li>', __( 'Sources', 'mai-asknews' ) );
-
-			if ( $this->insights ) {
-				printf( '<li class="pm-jump"><a class="pm-jump__link" href="#updates">%s</a></li>', __( 'Updates', 'mai-asknews' ) );
-			}
-		echo '</ul>';
-
 		// Do the content.
 		$this->do_insight( $body );
 	}
@@ -489,6 +473,21 @@ class Mai_AskNews_Singular {
 	function do_main( $data ) {
 		// Get odds table.
 		$odds = maiasknews_get_odds_table( $data );
+
+		// Display the nav.
+		echo '<ul class="pm-jumps">';
+			if ( $odds ) {
+				printf( '<li class="pm-jump"><a class="pm-jump__link" href="#odds">%s</a></li>', __( 'Odds', 'mai-asknews' ) );
+			}
+			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#people">%s</a></li>', __( 'People', 'mai-asknews' ) );
+			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#timeline">%s</a></li>', __( 'Timeline', 'mai-asknews' ) );
+			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#web">%s</a></li>', __( 'Web', 'mai-asknews' ) );
+			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#sources">%s</a></li>', __( 'Sources', 'mai-asknews' ) );
+
+			if ( $this->insights ) {
+				printf( '<li class="pm-jump"><a class="pm-jump__link" href="#updates">%s</a></li>', __( 'Updates', 'mai-asknews' ) );
+			}
+		echo '</ul>';
 
 		if ( $odds ) {
 			printf( '<p class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
