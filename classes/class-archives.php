@@ -108,14 +108,32 @@ class Mai_AskNews_Archives {
 		$object = get_queried_object();
 
 		// Bail if not a league or a top level term.
-		if ( ! $object || 'league' !== $object->taxonomy || 0 === wp_get_term_taxonomy_parent_id( $object->term_id, 'league' ) ) {
+		if ( ! $object || 'league' !== $object->taxonomy || 0 === $object->parent ) {
 			return $attributes;
 		}
 
-		// Get the team data.
+
+		// Get parent term and teams.
 		$parent = get_term( $object->parent, 'league' );
 		$teams  = maiasknews_get_teams( $parent->name );
-		$team   = isset( $teams[ $object->name ] ) ? $teams[ $object->name ] : null;
+
+		// Bail if no teams.
+		if ( ! $teams ) {
+			return $attributes;
+		}
+
+		// Build new teams array with the new key of city + team name.
+		$new = [];
+		foreach( $teams as $name => $values ) {
+			$new[ $values['city'] . ' ' . $name ] = [
+				'name'  => $name,
+				'color' => $values['color'],
+				'code'  => $values['code'],
+			];
+		}
+
+		// Get the team data.
+		$team = isset( $new[ $object->name ] ) ? $new[ $object->name ] : null;
 
 		// Bail if no team.
 		if ( ! $team ) {
@@ -124,7 +142,7 @@ class Mai_AskNews_Archives {
 
 		$attributes['style']     = isset( $attributes['style'] ) ? $attributes['style'] : '';
 		$attributes['style']    .= '--team-color:' . $team['color'] . ';';
- 		$attributes['data-code'] = $teams[ $object->name ]['code'];
+ 		$attributes['data-code'] = $new[ $object->name ]['code'];
 
 		return $attributes;
 	}
