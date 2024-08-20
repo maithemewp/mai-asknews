@@ -212,6 +212,10 @@ body {
 	}
 
 	.pm-prediction__list {
+		margin-bottom: var(--spacing-xl);
+		padding: var(--spacing-md);
+		background: var(--color-alt);
+		border-bottom: 3px solid var(--color-primary);
 		order: 5;
 	}
 }
