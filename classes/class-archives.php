@@ -174,25 +174,51 @@ class Mai_AskNews_Archives {
 			]
 		);
 
-		if ( ! $terms ) {
+		// Bail if no terms.
+		if ( ! $terms || is_wp_error( $terms ) ) {
 			return;
 		}
 
+		// Get the teams.
+		$list  = [];
+		$new   = [];
 		$teams = maiasknews_get_teams( $object->name );
 
+		// Format teams array.
+		foreach( $teams as $name => $values ) {
+			$new[ $values['city'] . ' ' . $name ] = [
+				'name'  => $name,
+				'color' => $values['color'],
+				'code'  => $values['code'],
+			];
+		}
+
+		// Format the list.
+		foreach ( $terms as $term ) {
+			// Bail if no team.
+			if ( ! ( $new && isset( $new[ $term->name ] ) ) ) {
+				continue;
+			}
+
+			// Add to the list.
+			$list[ $new[ $term->name ]['name'] ] = [
+				'color' => $new[ $term->name ]['color'],
+				'code'  => $new[ $term->name ]['code'],
+				'link'  => get_term_link( $term ),
+			];
+		}
+
+		// Order alphabetically by key.
+		ksort( $list );
+
+		// Output the list.
 		printf( '<h2>%s</h2>', __( 'All Teams', 'mai-asknews' ) );
 		echo '<ul class="pm-teams">';
-			foreach ( $terms as $term ) {
-				$color = '';
-				$code  = '';
-
-				if ( $teams && isset( $teams[ $term->name ] ) ) {
-					$color = $teams[ $term->name ]['color'];
-					$code  = $teams[ $term->name ]['code'];
-				}
-
+			foreach ( $list as $name => $item ) {
 				// These class names match the pm_matchup_teams shortcode, minus the team name span.
-				printf( '<li class="pm-team" style="--team-color:%s;"><a class="pm-team__link" href="%s" data-code="%s"><span class="pm-team__name">%s</span></a></li>', $color, get_term_link( $term ), $code, $term->name );
+				printf( '<li class="pm-team" style="--team-color:%s;">', $item['color'] );
+					printf( '<a class="pm-team__link" href="%s" data-code="%s"><span class="pm-team__name">%s</span></a>', $item['link'], $item['code'], $name );
+				echo '</li>';
 			}
 		echo '</ul>';
 	}
