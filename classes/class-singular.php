@@ -147,16 +147,8 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-		// If already voted.
-		if ( $this->vote_name ) {
-			// Display message.
-			add_action( 'genesis_before_loop', function() {
-				printf( '<p class="pm-notice error">%s %s.</p>', __( 'Your vote has not been saved. You have already voted for', 'mai-asknews' ), $this->vote_name );
-			});
-			return;
-		}
-
 		// Build comment data.
+		$update  = false;
 		$term    = get_term_by( 'name', $team, 'league' );
 		$term_id = $term ? $term->term_id : null;
 		$args    = [
@@ -171,11 +163,72 @@ class Mai_AskNews_Singular {
 			'comment_author_url'   => $this->user->user_url,
 		];
 
-		// Insert the comment.
-		$comment_id = wp_insert_comment( $args );
+		// If already voted.
+		if ( $this->vote_name ) {
+			// If the same team.
+			if ( $team === $this->vote_name ) {
+				// Display message.
+				add_action( 'genesis_before_loop', function() {
+					printf( '<p class="pm-notice error">%s %s.</p>', __( 'Your vote has not been saved. You have already voted for', 'mai-asknews' ), $this->vote_name );
+				});
+				return;
+			}
+			// Delete the old votes.
+			else {
+				// Delete the old vote.
+				$comments = get_comments(
+					[
+						'comment_type' => 'pm_vote',
+						'post_id'      => $this->matchup_id,
+						'user_id'      => $this->user->ID,
+					]
+				);
+
+				// If comments.
+				if ( $comments ) {
+					foreach ( $comments as $index => $comment ) {
+						// If first vote.
+						if ( 0 === $index ) {
+							// Update the team and term ID.
+							$update                  = true;
+							$args['comment_ID']      = $comment->comment_ID;
+							$args['comment_content'] = $team;
+							$args['comment_karma']   = $term_id;
+						}
+						// We shouldn't have more than 1 vote, so delete it.
+						else {
+							wp_delete_comment( $comment->comment_ID, true );
+						}
+					}
+				}
+			}
+		}
+
+		// If updating.
+		if ( $update ) {
+			// Update the comment.
+			wp_update_comment( $args );
+		}
+		// New vote.
+		else {
+			// Insert the comment.
+			wp_insert_comment( $args );
+		}
+
+		// Refresh to show the new vote.
+		wp_safe_redirect( get_permalink() );
 	}
 
-
+	/**
+	 * Handle the title links and styles.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string $content The default content.
+	 * @param array  $args    The markup args.
+	 *
+	 * @return string
+	 */
 	function handle_title( $content, $args ) {
 		if ( ! isset( $args['params']['args']['context'] ) ||  'single' !== $args['params']['args']['context'] ) {
 			return $content;
@@ -221,6 +274,13 @@ class Mai_AskNews_Singular {
 		return $content;
 	}
 
+	/**
+	 * Do the event info.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
 	function do_event_info() {
 		// Get the first insight.
 		$insight_id = reset( $this->insights );
