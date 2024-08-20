@@ -19,7 +19,7 @@ class Mai_AskNews_Archives {
 	}
 
 	/**
-	 * Force search results to use Matchup customizer args.
+	 * Force our taxonomies, author, and search results to use Matchup customizer args.
 	 *
 	 * @since 0.1.0
 	 *
@@ -28,7 +28,12 @@ class Mai_AskNews_Archives {
 	 * @return string
 	 */
 	function handle_archive_name( $name ) {
-		if ( is_author() || is_search() ) {
+		// Not sure why this is needed, but it was falling back to 'post' for some reason.
+		if ( is_tax( 'league' ) || is_tax( 'season' ) || is_tax( 'matchup_tag' ) ) {
+			$name = 'matchup';
+		}
+		// If author or search results.
+		elseif ( is_author() || is_search() ) {
 			$name = 'matchup';
 		}
 
