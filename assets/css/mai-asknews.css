@@ -284,7 +284,7 @@ body {
 
 .entry-custom-content > .pm-update {
 	margin-bottom: 0;
-	font-size: var(--font-size-sm);
+	font-size: var(--font-size-xs);
 }
 
 .archive-pagination {

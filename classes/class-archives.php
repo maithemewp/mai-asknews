@@ -237,6 +237,8 @@ class Mai_AskNews_Archives {
 				'post_type'       => 'matchup',
 				'posts_per_page'  => 100,
 				'columns'         => 1,
+				'column_gap'      => 'md',
+				'row_gap'         => 'xxl',
 				'show'            => [ 'title', 'custom_content', 'excerpt', 'more_link' ],
 				'custom_content'  => '[pm_date]',
 				'more_link_style' => 'button_link',
