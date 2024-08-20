@@ -371,9 +371,13 @@ class Mai_AskNews_Singular {
 		// Do action before prediction.
 		do_action( 'pm_before_prediction', $body );
 
+		// Only admins can vote.
+		if ( current_user_can( 'manage_options' ) ) {
+			$this->do_votes( $body );
+		}
+
 		// If they have access.
 		if ( $has_access ) {
-			$this->do_votes( $body );
 			$this->do_prediction( $body );
 		}
 

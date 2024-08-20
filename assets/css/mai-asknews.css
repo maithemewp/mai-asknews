@@ -315,6 +315,10 @@ body {
 	text-align: center;
 }
 
+.single-matchup .entry-excerpt-single {
+	--entry-excerpt-margin-bottom: var(--spacing-md);
+}
+
 .entry-title-team__link {
 	--link-color: var(--color-heading);
 	--link-color-hover: var(--color-heading);

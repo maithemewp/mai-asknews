@@ -338,8 +338,12 @@ class Mai_AskNews_Listener {
 
 		// Check season.
 		if ( isset( $this->body['season'] ) ) {
+			// Split season. Sometimes we see '2024-2025-preseason'.
+			$season = explode( '-', $this->body['season'] );
+			$season = reset( $season );
+
 			// Get or create the season term.
-			$season_id = $this->get_term( $this->body['season'], 'season' );
+			$season_id = $this->get_term( $season, 'season' );
 		}
 		// No seasons, use timestamp.
 		elseif ( $matchup_timestamp ) {
