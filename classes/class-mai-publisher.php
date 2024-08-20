@@ -38,8 +38,8 @@ class Mai_AskNews_Mai_Publisher {
 	 * @return array The modified location choices.
 	 */
 	function add_location_choices( $choices ) {
-		$choices['single']['in_web_results'] = __( 'In Matchup Web Results', 'mai-asknews' );
-		$choices['single']['in_sources']     = __( 'In Matchup Sources', 'mai-asknews' );
+		$choices['single']['in_web_results'] = __( 'In Matchup "Around the Web"', 'mai-asknews' );
+		$choices['single']['in_sources']     = __( 'In Matchup "Latest News Sources"', 'mai-asknews' );
 
 		return $choices;
 	}
