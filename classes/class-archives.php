@@ -81,25 +81,11 @@ class Mai_AskNews_Archives {
 		}
 
 		// Add hooks.
-		add_action( 'wp_enqueue_scripts',                        [ $this, 'enqueue' ] );
 		add_filter( 'genesis_attr_taxonomy-archive-description', [ $this, 'add_archive_title_atts' ], 10, 3 );
 		add_action( 'genesis_before_loop',                       [ $this, 'do_teams' ], 20 );
 		add_action( 'genesis_before_loop',                       [ $this, 'do_upcoming_heading' ], 20 );
-		add_filter( 'genesis_markup_entry-wrap_open',            [ $this, 'get_datetime' ], 10, 2 );
-		add_filter( 'genesis_markup_entry-wrap_close',           [ $this, 'get_predictions' ], 10, 2 );
 		add_action( 'genesis_after_loop',                        [ $this, 'do_past_games' ] );
 		add_filter( 'genesis_noposts_text',                      [ $this, 'get_noposts_text' ] );
-	}
-
-	/**
-	 * Enqueue CSS in the header.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @return void
-	 */
-	function enqueue() {
-		maiasknews_enqueue_styles();
 	}
 
 	/**
@@ -220,105 +206,6 @@ class Mai_AskNews_Archives {
 	 */
 	function do_upcoming_heading() {
 		printf( '<h2>%s</h2>', __( 'Upcoming Games', 'mai-asknews' ) );
-	}
-
-	/**
-	 * Get the datetime markup.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param string $content The default content.
-	 * @param array  $args    The markup args.
-	 *
-	 * @return string
-	 */
-	function get_datetime( $content, $args ) {
-		// Bail if not the opening markup.
-		if ( ! ( isset( $args['open'] ) && $args['open'] ) ) {
-			return $content;
-		}
-
-		// Get classes and context.
-		$class   = isset( $args['params']['args']['class'] ) ? $args['params']['args']['class'] : '';
-		$context = isset( $args['params']['args']['context'] ) ? $args['params']['args']['context'] : '';
-
-		// Bail if not an archive or MPG with custom class..
-		if ( ! ( 'archive' === $context || ( 'block' === $context && str_contains( $class, 'pm-matchups' ) ) ) ) {
-			return $content;
-		}
-
-		// Get day and times.
-		$event_date = get_post_meta( get_the_ID(), 'event_date', true );
-
-		// Bail if no date.
-		if ( ! $event_date ) {
-			return $content;
-		}
-
-		// Force timestamp.
-		if ( ! is_numeric( $event_date ) ) {
-			$event_date = strtotime( $event_date );
-		}
-
-		// Get the date and times.
-		$day      = date( 'M j ', $event_date );
-		$time_utc = new DateTime( "@$event_date", new DateTimeZone( 'UTC' ) );
-		$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
-		$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
-
-		// Build the markup.
-		$html  = '';
-		$html .= '<div class="pm-matchup__date">';
-			$html .= sprintf( '<span class="pm-matchup__day">%s</span>', $day );
-			$html .= sprintf( '<span class="pm-matchup__time">%s</span>', $time_est );
-			$html .= sprintf( '<span class="pm-matchup__time">%s</span>', $time_pst );
-		$html .= '</div>';
-
-		return $html . $content;
-	}
-
-	/**
-	 * Get the predictions markup.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param string $content The default content.
-	 * @param array  $args    The markup args.
-	 *
-	 * @return string
-	 */
-	function get_predictions( $content, $args ) {
-		// Bail if not the closing markup.
-		if ( ! ( isset( $args['close'] ) && $args['close'] ) ) {
-			return $content;
-		}
-
-		// Get classes and context.
-		$class   = isset( $args['params']['args']['class'] ) ? $args['params']['args']['class'] : '';
-		$context = isset( $args['params']['args']['context'] ) ? $args['params']['args']['context'] : '';
-
-		// Bail if not an archive or MPG with custom class..
-		if ( ! ( 'archive' === $context || ( 'block' === $context && str_contains( $class, 'pm-matchups' ) ) ) ) {
-			return $content;
-		}
-
-		// Bail if not an admin.
-		if ( ! maiasknews_has_access() ) {
-			return $content;
-		}
-
-		// Get the data.
-		$body = maiasknews_get_insight_body( get_the_ID() );
-		$list = maiasknews_get_prediction_list( $body );
-
-		// Bail if no list.
-		if ( ! $list ) {
-			return $content;
-		}
-
-		// TODO: Write "admin only" and color like the singular box.
-
-		return $list . $content;
 	}
 
 	/**

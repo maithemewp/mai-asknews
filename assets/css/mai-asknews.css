@@ -1,5 +1,12 @@
 /* General */
 
+body[data-timezone="ET"] [data-timezone="PT"],
+body[data-timezone="PT"] [data-timezone="ET"],
+body[data-timezone="ET"] [data-timezonesep],
+body[data-timezone="PT"] [data-timezonesep] {
+	display: none;
+}
+
 :root {
 	--font-scale: 1.125;
 	--shadow: 0;
@@ -176,9 +183,16 @@
 		content: '';
 	}
 
+	.entry-custom-content {
+		flex: 1 0 100%;
+		margin-bottom: 0;
+		font-size: var(--font-size-sm);
+		order: 3;
+	}
+
 	.entry-excerpt {
 		margin: 0;
-		order: 3;
+		order: 4;
 		flex-basis: 100%;
 	}
 
@@ -195,7 +209,7 @@
 	}
 
 	.pm-prediction__list {
-		order: 3;
+		order: 5;
 	}
 }
 
@@ -265,6 +279,11 @@
 	font-size: var(--font-size-xs);
 }
 
+.entry-custom-content > .pm-update {
+	margin-bottom: 0;
+	font-size: var(--font-size-sm);
+}
+
 .archive-pagination {
 	position: relative;
 	margin-bottom: var(--spacing-xxxl);
@@ -326,7 +345,7 @@
 	font-size: var(--font-size-md);
 }
 
-.pm-update {
+.entry-wrap-single > .pm-update {
 	margin-bottom: var(--spacing-lg);
 	font-size: var(--font-size-sm);
 	text-align: center;

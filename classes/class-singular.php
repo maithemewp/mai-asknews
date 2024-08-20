@@ -120,7 +120,6 @@ class Mai_AskNews_Singular {
 		}
 
 		// Add hooks.
-		add_action( 'wp_enqueue_scripts',                 [ $this, 'enqueue' ] );
 		add_filter( 'genesis_markup_entry-title_content', [ $this, 'handle_title' ], 10, 2 );
 		add_action( 'genesis_before_entry_content',       [ $this, 'do_event_info' ] );
 		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_content' ] );
@@ -176,16 +175,6 @@ class Mai_AskNews_Singular {
 		$comment_id = wp_insert_comment( $args );
 	}
 
-	/**
-	 * Enqueue CSS in the header.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @return void
-	 */
-	function enqueue() {
-		maiasknews_enqueue_styles();
-	}
 
 	function handle_title( $content, $args ) {
 		if ( ! isset( $args['params']['args']['context'] ) ||  'single' !== $args['params']['args']['context'] ) {
@@ -244,38 +233,7 @@ class Mai_AskNews_Singular {
 		// Get count.
 		// $count = max( 1, count( $this->insights ) );
 
-		// Set vars.
-		$updated  = '';
-		$body     = get_post_meta( $insight_id, 'asknews_body', true );
-		$date     = maiasknews_get_key( 'date', $body );
-		$time_utc = new DateTime( $date, new DateTimeZone( 'UTC' ) );
-		$time_now = new DateTime( 'now', new DateTimeZone('UTC') );
-		$interval = $time_now->diff( $time_utc );
-
-		// If within our range.
-		if ( $interval->days < 2 ) {
-			if ( $interval->days > 0 ) {
-				$time_ago = $interval->days . ' day' . ( $interval->days > 1 ? 's' : '' ) . ' ago';
-			} elseif ( $interval->h > 0 ) {
-				$time_ago = $interval->h . ' hour' . ( $interval->h > 1 ? 's' : '' ) . ' ago';
-			} elseif ( $interval->i > 0 ) {
-				$time_ago = $interval->i . ' minute' . ( $interval->i > 1 ? 's' : '' ) . ' ago';
-			} else {
-				$time_ago = __( 'Just now', 'mai-asknews' );
-			}
-
-			$updated = $time_ago;
-		}
-		// Older than our range.
-		else {
-			$date     = $time_utc->setTimezone( new DateTimeZone('America/New_York'))->format( 'M j, Y' );
-			$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
-			$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
-			$updated  = $date . ' @ ' . $time_est . ' | ' . $time_pst;
-		}
-
-		// Display the update.
-		printf( '<p class="pm-update">%s %s</p>', __( 'Updated', 'mai-asknews' ), $updated );
+		echo maiasknews_get_updated_date();
 	}
 
 	/**

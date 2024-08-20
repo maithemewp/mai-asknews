@@ -15,6 +15,22 @@ function maiasknews_has_access() {
 }
 
 /**
+ * If is a matchup archive page.
+ *
+ * @since 0.1.0
+ *
+ * @return bool
+ */
+function maiasknews_is_archive() {
+	return is_post_type_archive( 'matchup' )
+		|| is_tax( 'league' )
+		|| is_tax( 'season' )
+		|| is_tax( 'matchup_tag' )
+		|| is_author()
+		|| is_search();
+}
+
+/**
  * Enqueue the plugin styles.
  *
  * @since 0.1.0
@@ -77,6 +93,62 @@ function maiasknews_get_insight_id( $matchup ) {
 	);
 
 	return $insights && isset( $insights[0] ) ? $insights[0] : null;
+}
+
+/**
+ * Gets the updated date.
+ *
+ * @since 0.1.0
+ *
+ * @return string
+ */
+function maiasknews_get_updated_date() {
+	// Set vars.
+	$updated  = '';
+	$insights = get_post_meta( get_the_ID(), 'insight_ids', true );
+
+	// Bail if no insights.
+	if ( ! $insights ) {
+		return $updated;
+	}
+
+	// Get the last insight body.
+	$body = get_post_meta( reset( $insights ), 'asknews_body', true );
+
+	// Bail if no body.
+	if ( ! $body ) {
+		return $updated;
+	}
+
+	$date     = maiasknews_get_key( 'date', $body );
+	$time_utc = new DateTime( $date, new DateTimeZone( 'UTC' ) );
+	$time_now = new DateTime( 'now', new DateTimeZone('UTC') );
+	$interval = $time_now->diff( $time_utc );
+
+	// If within our range.
+	if ( $interval->days < 2 ) {
+		if ( $interval->days > 0 ) {
+			$time_ago = $interval->days . ' day' . ( $interval->days > 1 ? 's' : '' ) . ' ago';
+		} elseif ( $interval->h > 0 ) {
+			$time_ago = $interval->h . ' hour' . ( $interval->h > 1 ? 's' : '' ) . ' ago';
+		} elseif ( $interval->i > 0 ) {
+			$time_ago = $interval->i . ' minute' . ( $interval->i > 1 ? 's' : '' ) . ' ago';
+		} else {
+			$time_ago = __( 'Just now', 'mai-asknews' );
+		}
+
+		$updated = $time_ago;
+	}
+	// Older than our range.
+	else {
+		$date     = $time_utc->setTimezone( new DateTimeZone('America/New_York'))->format( 'M j, Y' );
+		$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
+		$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
+		$updated  = sprintf( '%s @ <span data-timezone="ET">%s</span><span data-timezonesep> | </span><span data-timezone="PT">%s</span>', $date, $time_est, $time_pst );
+	}
+
+	// Display the update.
+	return sprintf( '<p class="pm-update">%s %s</p>', __( 'Updated', 'mai-asknews' ), $updated );
 }
 
 /**
@@ -280,7 +352,7 @@ function maiasknews_get_matchup_datetime( $matchup_id, $before = '' ) {
 	$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
 	$before   = $before ? sprintf( '<strong>%s</strong> ', $before ) : '';
 
-	return sprintf( '<p class="pm-datetime">%s%s @ %s / %s</p>', $before, $day, $time_est, $time_pst );
+	return sprintf( '<p class="pm-datetime">%s%s @ <span data-timezone="ET">%s</span> <span data-timezonesep>/</span> <span data-timezone="PT">%s</span></p>', $before, $day, $time_est, $time_pst );
 }
 
 /**
