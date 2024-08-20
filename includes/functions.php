@@ -122,7 +122,8 @@ function maiasknews_get_updated_date() {
 
 	// Get the date.
 	$date         = maiasknews_get_key( 'date', $body );
-	$time_utc     = new DateTime( $date, new DateTimeZone( 'UTC' ) );
+	$date         = ! is_numeric( $date ) ? strtotime( $date ) : $date;
+	$time_utc     = new DateTime( "@$date", new DateTimeZone( 'UTC' ) );
 	$time_now     = new DateTime( 'now', new DateTimeZone( 'UTC' ) );
 	$interval_est = $time_now->setTimezone( new DateTimeZone( 'America/New_York' ) )->diff( $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) ) );
 	$interval_pst = $time_now->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->diff( $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) ) );
