@@ -120,24 +120,36 @@ function maiasknews_get_updated_date() {
 		return $updated;
 	}
 
-	$date     = maiasknews_get_key( 'date', $body );
-	$time_utc = new DateTime( $date, new DateTimeZone( 'UTC' ) );
-	$time_now = new DateTime( 'now', new DateTimeZone('UTC') );
-	$interval = $time_now->diff( $time_utc );
+	// Get the date.
+	$date         = maiasknews_get_key( 'date', $body );
+	$time_utc     = new DateTime( $date, new DateTimeZone( 'UTC' ) );
+	$time_now     = new DateTime( 'now', new DateTimeZone( 'UTC' ) );
+	$interval_est = $time_now->setTimezone( new DateTimeZone( 'America/New_York' ) )->diff( $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) ) );
+	$interval_pst = $time_now->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->diff( $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) ) );
 
 	// If within our range.
-	if ( $interval->days < 2 ) {
-		if ( $interval->days > 0 ) {
-			$time_ago = $interval->days . ' day' . ( $interval->days > 1 ? 's' : '' ) . ' ago';
-		} elseif ( $interval->h > 0 ) {
-			$time_ago = $interval->h . ' hour' . ( $interval->h > 1 ? 's' : '' ) . ' ago';
-		} elseif ( $interval->i > 0 ) {
-			$time_ago = $interval->i . ' minute' . ( $interval->i > 1 ? 's' : '' ) . ' ago';
+	if ( $interval_est->days < 2 || $interval_pst->days < 2 ) {
+		if ( $interval_est->days > 0 ) {
+			$time_ago_est = $interval_est->days . ' day' . ( $interval_est->days > 1 ? 's' : '' ) . ' ago';
+		} elseif ( $interval_est->h > 0 ) {
+			$time_ago_est = $interval_est->h . ' hour' . ( $interval_est->h > 1 ? 's' : '' ) . ' ago';
+		} elseif ( $interval_est->i > 0 ) {
+			$time_ago_est = $interval_est->i . ' minute' . ( $interval_est->i > 1 ? 's' : '' ) . ' ago';
 		} else {
-			$time_ago = __( 'Just now', 'mai-asknews' );
+			$time_ago_est = __( 'Just now', 'mai-asknews' );
 		}
 
-		$updated = $time_ago;
+		if ( $interval_pst->days > 0 ) {
+			$time_ago_pst = $interval_pst->days . ' day' . ( $interval_pst->days > 1 ? 's' : '' ) . ' ago';
+		} elseif ( $interval_pst->h > 0 ) {
+			$time_ago_pst = $interval_pst->h . ' hour' . ( $interval_pst->h > 1 ? 's' : '' ) . ' ago';
+		} elseif ( $interval_pst->i > 0 ) {
+			$time_ago_pst = $interval_pst->i . ' minute' . ( $interval_pst->i > 1 ? 's' : '' ) . ' ago';
+		} else {
+			$time_ago_pst = __( 'Just now', 'mai-asknews' );
+		}
+
+		$updated = sprintf( '<span data-timezone="ET">%s</span><span data-timezonesep> | </span><span data-timezone="PT">%s</span>', $time_ago_est, $time_ago_pst );
 	}
 	// Older than our range.
 	else {
@@ -162,8 +174,8 @@ function maiasknews_get_updated_date() {
  */
 function maiasknews_get_prediction_list( $body ) {
 	$choice         = maiasknews_get_key( 'choice', $body );
-	$probability    = maiasknews_get_key( 'probability', $body );
-	$probability    = $probability ? $probability . '%' : '';
+	// $probability    = maiasknews_get_key( 'probability', $body );
+	// $probability    = $probability ? $probability . '%' : '';
 	$likelihood     = maiasknews_get_key( 'likelihood', $body );
 
 	// TODO:
@@ -178,7 +190,8 @@ function maiasknews_get_prediction_list( $body ) {
 	// Get list body.
 	$table = [
 		__( 'Prediction', 'mai-asknews' )     => $choice,
-		__( 'Probability', 'mai-asknews' )    => sprintf( '%s, %s', $probability, $likelihood ),
+		__( 'Probability', 'mai-asknews' )    => $likelihood,
+		// __( 'Probability', 'mai-asknews' )    => sprintf( '%s, %s', $probability, $likelihood ),
 		// __( 'Confidence', 'mai-asknews' )     => $confidence,
 		// __( 'LLM Confidence', 'mai-asknews' ) => $llm_confidence,
 		// __( 'Likelihood', 'mai-asknews' )     => $likelihood,
