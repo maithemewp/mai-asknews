@@ -8,7 +8,9 @@ body[data-timezone="PT"] [data-timezonesep] {
 }
 
 :root {
-	--font-scale: 1.125;
+	--font-scale-mobile: 1.125;
+	--font-scale-tablet: 1.125;
+	--font-scale-desktop: 1.125;
 	--border-radius: 0;
 	--shadow: 0;
 	--background-lines: repeating-linear-gradient(
