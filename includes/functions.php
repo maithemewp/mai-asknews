@@ -213,7 +213,7 @@ function maiasknews_get_odds_table( $body ) {
 			$html .= '<tbody>';
 
 			$html .= '<tr class="is-top">';
-				$html .= sprintf( '<td><strong>%s</strong></td>', __( 'Average Odds', 'mai-asknews' ) );
+				$html .= sprintf( '<td><strong>%s</strong></td>', __( 'Average odds', 'mai-asknews' ) );
 				foreach ( $averages as $team => $average ) {
 					$rounded = round( $average, 2 );
 					$html   .= sprintf( '<td>%s%s</td>', $rounded > 0 ? '+' : '', $rounded );
