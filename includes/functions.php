@@ -164,6 +164,20 @@ function maiasknews_get_odds_table( $body ) {
 		return $html;
 	}
 
+	// Start the averages.
+	$averages = [];
+
+	// Get an average of the odds for each team.
+	foreach ( $odds_data as $team => $odds ) {
+		$sum = 0;
+
+		foreach ( $odds as $site => $odd ) {
+			$sum += $odd;
+		}
+
+		$averages[ $team ] = $sum / count( $odds );
+	}
+
 	// Get home and away teams.
 	list( $home_team, $away_team ) = array_keys( $odds_data );
 
@@ -198,11 +212,19 @@ function maiasknews_get_odds_table( $body ) {
 			$html .= '</thead>';
 			$html .= '<tbody>';
 
+			$html .= '<tr class="is-top">';
+				$html .= sprintf( '<td><strong>%s</strong></td>', __( 'Average Odds', 'mai-asknews' ) );
+				foreach ( $averages as $team => $average ) {
+					$rounded = round( $average, 2 );
+					$html   .= sprintf( '<td>%s%s</td>', $rounded > 0 ? '+' : '', $rounded );
+				}
+			$html .= '</tr>';
+
 			foreach ( $sites as $maker ) {
 				$class = in_array( strtolower( $maker ), $top_sites ) ? 'is-top' : 'is-not-top';
 
 				$html .= sprintf( '<tr class="%s">', $class );
-					$html .= sprintf( '<td>%s</td>', $maker );
+					$html .= sprintf( '<td>%s</td>', ucwords( $maker ) );
 					$html .= sprintf( '<td>%s</td>', isset( $odds_data[ $home_team ][ $maker ] ) ? $odds_data[ $home_team ][ $maker ] : 'N/A' );
 					$html .= sprintf( '<td>%s</td>', isset( $odds_data[ $away_team ][ $maker ] ) ? $odds_data[ $away_team ][ $maker ] : 'N/A' );
 				$html .= '</tr>';

@@ -482,7 +482,7 @@ class Mai_AskNews_Singular {
 		echo '</ul>';
 
 		if ( $odds ) {
-			printf( '<p ids="odds" class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
+			printf( '<p id="odds" class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
 			echo $odds;
 		}
 
@@ -650,6 +650,9 @@ class Mai_AskNews_Singular {
 				}
 				echo '</ul>';
 			echo '</li>';
+
+			// Add hook.
+			do_action( 'pm_after_web_result', $item );
 		}
 
 		echo '</ul>';
@@ -725,6 +728,9 @@ class Mai_AskNews_Singular {
 						echo '</ul>';
 					}
 				echo '</li>';
+
+					// Add hook.
+				do_action( 'pm_after_web_source', $item );
 			}
 
 		echo '</ul>';
