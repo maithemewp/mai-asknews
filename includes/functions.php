@@ -759,10 +759,10 @@ function maiasknews_do_breadcrumbs() {
 // 	return $array[ $sport ][ $team ];
 // }
 
-function maiasknews_get_teams( $sport ) {
+function maiasknews_get_teams( $sport = '' ) {
 	static $cache = [];
 
-	if ( isset( $cache[ $sport ] ) ) {
+	if ( $sport && isset( $cache[ $sport ] ) ) {
 		return $cache[ $sport ];
 	}
 
@@ -1398,5 +1398,5 @@ function maiasknews_get_teams( $sport ) {
 		],
 	];
 
-	return isset( $cache[ $sport ] ) ? $cache[ $sport ] : [];
+	return $sport && isset( $cache[ $sport ] ) ? $cache[ $sport ] : $cache;
 }

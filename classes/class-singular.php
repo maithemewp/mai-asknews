@@ -234,37 +234,52 @@ class Mai_AskNews_Singular {
 			return $content;
 		}
 
-		// Set vars.
-		$sport = null;
-		$teams = [];
+		// Get leagues.
+		$leagues = get_the_terms( get_the_ID(), 'league' );
+
+		// Bail if no leagues.
+		if ( ! $leagues ) {
+			return $content;
+		}
+
+		// Filter terms that don't have a parent.
+		$sports = array_filter( $leagues, function( $league ) {
+			return 0 === $league->parent;
+		});
+
+		// Get the first sport. There should only be one anyway.
+		$sport = reset( $sports );
+		$sport = $sport ? $sport->name : null;
+
+		// Bail if no sport.
+		if ( ! $sport ) {
+			return $content;
+		}
+
+		// Get team data.
+		$data = maiasknews_get_teams( $sport );
+
+		// Build teams array.
+		$teams = array_filter( $leagues, function( $league ) { return $league->parent > 0; });
+		$teams = wp_list_pluck( $teams, 'term_id', 'name' );
+
+		// Build array from title.
 		$array = explode( ' vs ', $content );
 
 		// Loop through teams.
 		foreach ( $array as $team ) {
-			// Get the sport.
-			if ( is_null( $sport ) ) {
-				$term   = get_term_by( 'name', $team, 'league' );
-				$parent = $term ? get_term( $term->parent, 'league' ) : null;
-				$sport  = $parent ? $parent->name : null;
-			}
-
-			// Skip if no sport.
-			if ( ! $sport ) {
-				continue;
-			}
-
 			// Get code and color.
-			$teams = maiasknews_get_teams( $sport );
-			$code  = isset( $teams[ $team ]['code'] ) ? $teams[ $team ]['code'] : '';
-			$color = isset( $teams[ $team ]['color'] ) ? $teams[ $team ]['color'] : '';
+			$city  = isset( $data[ $team ]['city'] ) ? $data[ $team ]['city'] : '';
+			$code  = isset( $data[ $team ]['code'] ) ? $data[ $team ]['code'] : '';
+			$color = isset( $data[ $team ]['color'] ) ? $data[ $team ]['color'] : '';
 
-			// Skip if no code or color.
-			if ( ! ( $code && $color ) ) {
+			// Skip if no city, code, or color.
+			if ( ! ( $city && $code && $color ) || ! isset( $teams[ "$city $team" ] ) ) {
 				continue;
 			}
 
 			// Replace the team with the code and color.
-			$replace = sprintf( '<a class="entry-title-team__link" href="%s" style="--team-color:%s;" data-code="%s">%s</a></span>', get_term_link( $term ), $color, $code, $team );
+			$replace = sprintf( '<a class="entry-title-team__link" href="%s" style="--team-color:%s;" data-code="%s">%s</a></span>', get_term_link( $teams[ "$city $team" ] ), $color, $code, $team );
 			$content = str_replace( $team, $replace, $content );
 
 			// Add span to vs.

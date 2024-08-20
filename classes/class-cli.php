@@ -46,6 +46,41 @@ class Mai_AskNews_CLI {
 	}
 
 	/**
+	 * Updates teams to show city and name instead of the original way of just name.
+	 * TODO: Remove this after all teams are updated on the live site.
+	 *
+	 * Usage: wp maiasknews convert_teams
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function convert_teams() {
+		$leagues = maiasknews_get_teams();
+
+		foreach ( $leagues as $sport => $teams ) {
+			$sport_term = get_term_by( 'name', $sport, 'league' );
+
+			foreach ( $teams as $name => $values ) {
+				$team_term = get_term_by( 'name', $name, 'league' );
+				$city      = $values['city'];
+
+				if ( $team_term ) {
+					// Update name and slug with $city .  ' ' . $name.
+					wp_update_term(
+						$team_term->term_id,
+						'league',
+						[
+							'name' => $city . ' ' . $name,
+							'slug' => sanitize_title( $city . ' ' . $name ),
+						]
+					);
+				}
+			}
+		}
+	}
+
+	/**
 	 * Updates posts from stored AskNews data.
 	 *
 	 * Usage: wp maiasknews update_insights --posts_per_page=10 --offset=0

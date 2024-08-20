@@ -315,12 +315,16 @@ class Mai_AskNews_Listener {
 		 * Set the league and season taxonomy terms.
 		 ***************************************************************/
 
+		// Get the full team names, including city. "New York Yankees".
+		$home_team_full = isset( $this->body['home_team'] ) ? $this->body['home_team'] : null;
+		$away_team_full = isset( $this->body['away_team'] ) ? $this->body['away_team'] : null;
+
 		// Get teams. This will create them if they don't exist.
 		$league_id  = $this->get_term( $this->body['sport'], 'league' );
 		$league_ids = [
 			$league_id,
-			$home_team ? $this->get_term( $home_team, 'league', $league_id ) : '',
-			$away_team ? $this->get_term( $away_team, 'league', $league_id ) : '',
+			$home_team_full ? $this->get_term( $home_team_full, 'league', $league_id ) : '',
+			$away_team_full ? $this->get_term( $away_team_full, 'league', $league_id ) : '',
 		];
 
 		// Remove empties.
