@@ -7,7 +7,8 @@ body[data-timezone="PT"] [data-timezonesep] {
 	display: none;
 }
 
-:root {
+:root,
+body {
 	--font-scale-mobile: 1.125;
 	--font-scale-tablet: 1.125;
 	--font-scale-desktop: 1.125;
