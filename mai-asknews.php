@@ -203,6 +203,7 @@ final class Mai_AskNews_Plugin {
 		$display   = new Mai_AskNews_Display;
 		$archives  = new Mai_AskNews_Archives;
 		$singular  = new Mai_AskNews_Singular;
+		$publisher = new Mai_AskNews_Mai_Publisher;
 		// $votes     = new Mai_AskNews_Votes;
 	}
 

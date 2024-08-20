@@ -697,7 +697,7 @@ class Mai_AskNews_Singular {
 				echo '</li>';
 
 				// Add hook.
-				do_action( 'pm_after_web_source', $source );
+				do_action( 'pm_after_source', $source );
 			}
 
 		echo '</ul>';
