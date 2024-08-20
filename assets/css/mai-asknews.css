@@ -109,7 +109,6 @@ body {
 	display: table-cell;
 }
 
-
 /* Archives */
 
 .archive-title {
@@ -346,6 +345,7 @@ body {
 }
 
 .entry-title__vs {
+	margin-inline: var(--spacing-sm);
 	font-size: var(--font-size-md);
 }
 
