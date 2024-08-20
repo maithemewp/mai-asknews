@@ -320,8 +320,8 @@ class Mai_AskNews_Singular {
 		$this->do_main( $body );
 		$this->do_people( $body );
 		$this->do_timeline( $body );
-		$this->do_web( $body );
 		$this->do_sources( $body );
+		$this->do_web( $body );
 	}
 
 	/**
@@ -544,6 +544,84 @@ class Mai_AskNews_Singular {
 	}
 
 	/**
+	 * Display the sources.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function do_sources( $data ) {
+		$sources = maiasknews_get_key( 'sources', $data );
+
+		if ( ! $sources ) {
+			return;
+		}
+
+		printf( '<h2 id="sources">%s</h2>', __( 'Latest News Sources', 'mai-asknews' ) );
+		echo '<ul class="pm-sources">';
+			// Loop through sources.
+			foreach ( $sources as $source ) {
+				$url        = maiasknews_get_key( 'article_url', $source );
+				$host       = maiasknews_get_key( 'domain_url', $source );
+				$name       = maiasknews_get_key( 'source_id', $source );
+				$parsed_url = wp_parse_url( $url );
+				$base_url   = $parsed_url['scheme'] . '://' . $parsed_url['host'];
+				$host       = $name ?: $parsed_url['host'];
+				$host       = str_replace( 'www.', '', $host );
+				$host       = $host ? 'mlb.com' === strtolower( $host ) ? 'MLB.com' : $host : '';
+				$host       = $host ? sprintf( '<a class="entry-title-link" href="%s" target="_blank">%s</a>', $url, $host ) : '';
+				$date       = maiasknews_get_key( 'pub_date', $source );
+				$date       = $date ? wp_date( get_option( 'date_format' ), strtotime( $date ) ) : '';
+				$title      = maiasknews_get_key( 'eng_title', $source );
+				$image_url  = maiasknews_get_key( 'image_url', $source );
+				$summary    = maiasknews_get_key( 'summary', $source );
+				$meta       = [ trim( $date ), trim( $title ) ];
+				$meta       = implode( ' &ndash; ', array_filter( $meta ) );
+				$entities   = maiasknews_get_key( 'entities', $source );
+				$persons    = maiasknews_get_key( 'Person', (array) $entities );
+
+				echo '<li class="pm-source">';
+					// Image.
+					echo '<figure class="pm-source__image">';
+						if ( $image_url ) {
+							printf( '<img class="pm-source__image-bg" src="%s" alt="%s" />', $image_url, $title );
+							printf( '<img class="pm-source__image-img" src="%s" alt="%s" />', $image_url, $title );
+						}
+					echo '</figure>';
+
+					// Title.
+					echo '<h3 class="pm-source__title entry-title">';
+						echo $host;
+					echo '</h3>';
+
+					// Meta.
+					echo '<p class="pm-source__meta">';
+						echo $meta;
+					echo '</p>';
+
+					// Summary.
+					echo '<p class="pm-source__summary">';
+						echo $summary;
+					echo '</p>';
+
+					// People/Entities.
+					if ( $persons ) {
+						echo '<ul class="pm-entities">';
+						foreach ( $persons as $person ) {
+							printf( '<li class="pm-entity">%s</li>', $person );
+						}
+						echo '</ul>';
+					}
+				echo '</li>';
+
+					// Add hook.
+				do_action( 'pm_after_web_source', $item );
+			}
+
+		echo '</ul>';
+	}
+
+	/**
 	 * Display the web search results.
 	 *
 	 * @since 0.1.0
@@ -612,84 +690,6 @@ class Mai_AskNews_Singular {
 			// Add hook.
 			do_action( 'pm_after_web_result', $item );
 		}
-
-		echo '</ul>';
-	}
-
-	/**
-	 * Display the sources.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @return void
-	 */
-	function do_sources( $data ) {
-		$sources = maiasknews_get_key( 'sources', $data );
-
-		if ( ! $sources ) {
-			return;
-		}
-
-		printf( '<h2 id="sources">%s</h2>', __( 'Additional News Sources', 'mai-asknews' ) );
-		echo '<ul class="pm-sources">';
-			// Loop through sources.
-			foreach ( $sources as $source ) {
-				$url        = maiasknews_get_key( 'article_url', $source );
-				$host       = maiasknews_get_key( 'domain_url', $source );
-				$name       = maiasknews_get_key( 'source_id', $source );
-				$parsed_url = wp_parse_url( $url );
-				$base_url   = $parsed_url['scheme'] . '://' . $parsed_url['host'];
-				$host       = $name ?: $parsed_url['host'];
-				$host       = str_replace( 'www.', '', $host );
-				$host       = $host ? 'mlb.com' === strtolower( $host ) ? 'MLB.com' : $host : '';
-				$host       = $host ? sprintf( '<a class="entry-title-link" href="%s" target="_blank">%s</a>', $url, $host ) : '';
-				$date       = maiasknews_get_key( 'pub_date', $source );
-				$date       = $date ? wp_date( get_option( 'date_format' ), strtotime( $date ) ) : '';
-				$title      = maiasknews_get_key( 'eng_title', $source );
-				$image_url  = maiasknews_get_key( 'image_url', $source );
-				$summary    = maiasknews_get_key( 'summary', $source );
-				$meta       = [ trim( $date ), trim( $title ) ];
-				$meta       = implode( ' &ndash; ', array_filter( $meta ) );
-				$entities   = maiasknews_get_key( 'entities', $source );
-				$persons    = maiasknews_get_key( 'Person', (array) $entities );
-
-				echo '<li class="pm-source">';
-					// Image.
-					echo '<figure class="pm-source__image">';
-						if ( $image_url ) {
-							printf( '<img class="pm-source__image-bg" src="%s" alt="%s" />', $image_url, $title );
-							printf( '<img class="pm-source__image-img" src="%s" alt="%s" />', $image_url, $title );
-						}
-					echo '</figure>';
-
-					// Title.
-					echo '<h3 class="pm-source__title entry-title">';
-						echo $host;
-					echo '</h3>';
-
-					// Meta.
-					echo '<p class="pm-source__meta">';
-						echo $meta;
-					echo '</p>';
-
-					// Summary.
-					echo '<p class="pm-source__summary">';
-						echo $summary;
-					echo '</p>';
-
-					// People/Entities.
-					if ( $persons ) {
-						echo '<ul class="pm-entities">';
-						foreach ( $persons as $person ) {
-							printf( '<li class="pm-entity">%s</li>', $person );
-						}
-						echo '</ul>';
-					}
-				echo '</li>';
-
-					// Add hook.
-				do_action( 'pm_after_web_source', $item );
-			}
 
 		echo '</ul>';
 	}
