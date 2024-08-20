@@ -9,6 +9,7 @@ body[data-timezone="PT"] [data-timezonesep] {
 
 :root {
 	--font-scale: 1.125;
+	--border-radius: 0;
 	--shadow: 0;
 	--background-lines: repeating-linear-gradient(
 		120deg,

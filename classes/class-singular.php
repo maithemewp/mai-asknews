@@ -534,6 +534,9 @@ class Mai_AskNews_Singular {
 		}
 
 		printf( '<h2 id="timeline" class="is-style-heading">%s</h2>', __( 'Timeline', 'mai-asknews' ) );
+
+		// TODO: Add short description here.
+
 		echo '<ul>';
 
 		foreach ( $timeline as $event ) {
@@ -614,8 +617,8 @@ class Mai_AskNews_Singular {
 					}
 				echo '</li>';
 
-					// Add hook.
-				do_action( 'pm_after_web_source', $item );
+				// Add hook.
+				do_action( 'pm_after_web_source', $source );
 			}
 
 		echo '</ul>';
@@ -650,6 +653,10 @@ class Mai_AskNews_Singular {
 
 		// Reindex.
 		$web = array_values( $web );
+
+		// Order by date. Only show the last 3 days before the most recent insight date.
+
+		// For subscription, show the last 2 weeks?
 
 		printf( '<h2 id="web">%s</h2>', __( 'Around the Web', 'mai-asknews' ) );
 		echo '<ul class="pm-results">';
