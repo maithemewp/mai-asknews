@@ -87,8 +87,8 @@ class Mai_AskNews_Archives {
 
 		// Add hooks.
 		add_filter( 'genesis_attr_taxonomy-archive-description', [ $this, 'add_archive_title_atts' ], 10, 3 );
-		add_action( 'genesis_before_loop',                       [ $this, 'do_teams' ], 20 );
-		add_action( 'genesis_before_loop',                       [ $this, 'do_upcoming_heading' ], 20 );
+		add_action( 'genesis_loop',                              [ $this, 'do_teams' ], 6 );
+		add_action( 'genesis_loop',                              [ $this, 'do_upcoming_heading' ], 8 );
 		add_action( 'genesis_after_loop',                        [ $this, 'do_past_games' ] );
 		add_filter( 'genesis_noposts_text',                      [ $this, 'get_noposts_text' ] );
 	}
