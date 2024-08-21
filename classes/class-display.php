@@ -357,7 +357,8 @@ function pm_register_form_tag( $output, $tag ) {
 	}
 
 	$button = sprintf( '<div class="button button-secondary button-small">%s</div>', __( 'Choose Option', 'mai-asknews' ) );
-	$output = str_replace( '</label>', $button . '</label>', $output );
+	// $output = str_replace( '</label> </li>', $button . '</label> </li>', $output );
+	$output = preg_replace( '/(<div\s+class="rcp_level_description">.*?<\/div>)/s', '$1' . $button, $output );
 
 	return $output;
 }
