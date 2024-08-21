@@ -28,8 +28,11 @@ class Mai_AskNews_Display {
 	function hooks() {
 		add_action( 'wp_head',                         [ $this, 'do_timezone_logic' ] );
 		add_action( 'wp_enqueue_scripts',              [ $this, 'enqueue' ] );
+		add_action( 'after_setup_theme',               [ $this, 'breadcrumbs' ] );
+		add_filter( 'get_post_metadata',               [ $this, 'fallback_thumbnail_id' ], 10, 4 );
 		add_filter( 'genesis_markup_entry-wrap_open',  [ $this, 'get_datetime' ], 10, 2 );
 		add_filter( 'genesis_markup_entry-wrap_close', [ $this, 'get_predictions' ], 10, 2 );
+		add_filter( 'mai_template-parts_config',       [ $this, 'add_ccas' ] );
 		add_shortcode( 'pm_date',                      [ $this, 'date_shortcode' ] );
 		add_shortcode( 'pm_matchup_time',              [ $this, 'matchup_time_shortcode' ] );
 		add_shortcode( 'pm_matchup_teams',             [ $this, 'matchup_teams_shortcode' ] );
@@ -73,6 +76,78 @@ class Mai_AskNews_Display {
 		}
 
 		maiasknews_enqueue_styles();
+	}
+
+	/**
+	 * Swap breadcrumbs.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function breadcrumbs() {
+		remove_action( 'genesis_before_content_sidebar_wrap', 'mai_do_breadcrumbs', 12 );
+		add_action( 'genesis_before_content_sidebar_wrap', [ $this, 'do_breadcrumbs' ], 12 );
+	}
+
+	/**
+	 * Maybe swap breadcrumbs.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function do_breadcrumbs() {
+		$is_tax      = is_tax( 'league' ) || is_tax( 'season' );
+		$is_singular = is_singular( 'matchup' );
+
+		if ( $is_tax || $is_singular ) {
+			maiasknews_do_breadcrumbs();
+		} else {
+			mai_do_breadcrumbs();
+		}
+	}
+
+	/**
+	 * Set fallback image(s) for featured images.
+	 *
+	 * @param mixed  $value     The value to return, either a single metadata value or an array of values depending on the value of $single. Default null.
+	 * @param int    $object_id ID of the object metadata is for.
+	 * @param string $meta_key  Metadata key.
+	 * @param bool   $single    Whether to return only the first value of the specified $meta_key.
+	 * @param string $meta_type Type of object metadata is for. Accepts 'post', 'comment', 'term', 'user', or any other object type with an associated meta table.
+	 *
+	 * @return mixed
+	 */
+	function fallback_thumbnail_id( $value, $post_id, $meta_key, $single ) {
+		// Bail if in admin.
+		if ( is_admin() ) {
+			return $value;
+		}
+
+		// Bail if not the key we want.
+		if ( '_thumbnail_id' !== $meta_key ) {
+			return $value;
+		}
+
+		// Remove filter to avoid loopbacks.
+		remove_filter( 'get_post_metadata', [ $this, 'fallback_thumbnail_id' ], 10, 4 );
+
+		// Check for an existing featured image.
+		$image_id = get_post_thumbnail_id( $post_id );
+
+		// Add back our filter.
+		add_filter( 'get_post_metadata', [ $this, 'fallback_thumbnail_id' ], 10, 4 );
+
+		// Bail if we already have a featured image.
+		if ( $image_id ) {
+			return $image_id;
+		}
+
+		// Set fallback image.
+		$image_id = 2624;
+
+		return $image_id;
 	}
 
 	/**
@@ -155,7 +230,7 @@ class Mai_AskNews_Display {
 			return $content;
 		}
 
-		// Bail if not an admin.
+		// Bail if no access.
 		if ( ! maiasknews_has_access() ) {
 			return $content;
 		}
@@ -172,6 +247,27 @@ class Mai_AskNews_Display {
 		// TODO: Write "admin only" and color like the singular box.
 
 		return $list . $content;
+	}
+
+	/**
+	 * Register CCAs.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param array $ccas The current CCAs.
+	 *
+	 * @return array
+	 */
+	function add_ccas( $ccas ) {
+		$ccas['matchup-promo-1'] = [
+			'hook' => 'pm_before_prediction',
+		];
+
+		$ccas['matchup-promo-2'] = [
+			'hook' => 'pm_before_prediction',
+		];
+
+		return $ccas;
 	}
 
 	/**

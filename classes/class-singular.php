@@ -95,15 +95,13 @@ class Mai_AskNews_Singular {
 		}
 
 		// Get insights.
-		$post_status = maiasknews_has_access() ? [ 'publish', 'pending', 'draft' ] : 'publish';
-		$event_uuid  = get_post_meta( $this->matchup_id, 'event_uuid', true );
+		$event_uuid = get_post_meta( $this->matchup_id, 'event_uuid', true );
 
 		// If event uuid.
 		if ( $event_uuid ) {
 			$this->insights = get_posts(
 				[
 					'post_type'    => 'insight',
-					'post_status'  => $post_status,
 					'orderby'      => 'date',
 					'order'        => 'DESC',
 					'meta_key'     => 'event_uuid',
@@ -381,8 +379,6 @@ class Mai_AskNews_Singular {
 	 * @return void
 	 */
 	function do_insight( $body ) {
-		$has_access = maiasknews_has_access();
-
 		// Do action before prediction.
 		do_action( 'pm_before_prediction', $body );
 
@@ -392,7 +388,7 @@ class Mai_AskNews_Singular {
 		}
 
 		// If they have access.
-		if ( $has_access ) {
+		if ( maiasknews_has_access() ) {
 			$this->do_prediction( $body );
 		}
 
@@ -417,7 +413,7 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-		$has_access = maiasknews_has_access();
+		$has_access = current_user_can( 'manage_options' );
 		$home       = $data['home_team_name'];
 		$away       = $data['away_team_name'];
 		$home       = ! $home && isset( $data['home_team'] ) ? end( explode( ' ', $data['home_team'] ) ) : $home;
