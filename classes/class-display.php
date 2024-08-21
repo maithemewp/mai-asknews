@@ -260,11 +260,11 @@ class Mai_AskNews_Display {
 	 */
 	function add_ccas( $ccas ) {
 		$ccas['matchup-promo-1'] = [
-			'hook' => 'pm_before_prediction',
+			'hook' => 'pm_cca',
 		];
 
 		$ccas['matchup-promo-2'] = [
-			'hook' => 'pm_before_prediction',
+			'hook' => 'pm_cca',
 		];
 
 		return $ccas;

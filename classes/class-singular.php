@@ -384,9 +384,6 @@ class Mai_AskNews_Singular {
 			$this->do_votes( $body );
 		}
 
-		// Do action before prediction.
-		do_action( 'pm_before_prediction', $body );
-
 		// If they have access.
 		if ( maiasknews_has_access() ) {
 			$this->do_prediction( $body );
@@ -395,6 +392,10 @@ class Mai_AskNews_Singular {
 		$this->do_main( $body );
 		$this->do_people( $body );
 		$this->do_timeline( $body );
+
+		// Do CCA hook.
+		do_action( 'pm_cca', $body );
+
 		$this->do_sources( $body );
 		$this->do_web( $body );
 	}
