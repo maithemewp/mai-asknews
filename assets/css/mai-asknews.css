@@ -543,6 +543,7 @@ body {
 
 .pm-vote {
 	--heading-color: white;
+	margin-bottom: var(--spacing-lg);
 	padding: var(--spacing-xl);
 	text-align: center;
 	background-color: var(--color-header);
@@ -788,3 +789,24 @@ body {
 .pm-insight__content {
 	padding: var(--spacing-md) var(--spacing-lg);
 }
+
+/* Plugins */
+
+/* .rcp_form {
+	.rcp_subscription_level_name {
+		display: block;
+		font-family: var(--font-family-heading);
+		font-weight: var(--heading-font-weight);
+		font-size: var(--font-size-md);
+	}
+
+	.rcp_separator:first-of-type {
+		display: none;
+	}
+
+	.rcp_level_description {
+		padding: 0;
+		border: 0;
+		font-size: var(--font-size-sm);
+	}
+} */

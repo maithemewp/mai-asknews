@@ -36,9 +36,16 @@ function maiasknews_is_user() {
  *
  * @since 0.1.0
  *
+ * @param string $league The league name.
+ *
  * @return bool
  */
 function maiasknews_has_access( $league = '' ) {
+	// Admins can always access.
+	if ( current_user_can( 'manage_options' ) ) {
+		return true;
+	}
+
 	// Get current page leage and user levels.
 	$league = $league ?: maiasknews_get_page_league();
 	$levels = maiasknews_get_membership_ids();
@@ -81,9 +88,16 @@ function maiasknews_has_access( $league = '' ) {
  *
  * @since 0.1.0
  *
+ * @param string $league The league name.
+ *
  * @return bool
  */
-function maiasknews_has_pro_access( $league ) {
+function maiasknews_has_pro_access( $league = '' ) {
+	// Admins can always access.
+	if ( current_user_can( 'manage_options' ) ) {
+		return true;
+	}
+
 	// Get current page leage and user levels.
 	$league = $league ?: maiasknews_get_page_league();
 	$levels = maiasknews_get_membership_ids();

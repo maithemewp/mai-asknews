@@ -71,7 +71,11 @@ class Mai_AskNews_Display {
 	 * @return void
 	 */
 	function enqueue() {
-		if ( ! ( maiasknews_is_archive() || is_singular( 'matchup' ) || is_front_page() ) ) {
+		if ( ! ( maiasknews_is_archive() || is_singular( [ 'page', 'matchup' ] ) || is_front_page() ) ) {
+			return;
+		}
+
+		if ( is_page() && ! has_shortcode( get_the_content(), 'register_form' ) ) {
 			return;
 		}
 

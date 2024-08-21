@@ -497,6 +497,24 @@ class Mai_AskNews_Singular {
 	 * @return void
 	 */
 	function do_main( $data ) {
+		$keys = [
+			'forecast'               => __( 'Forecast', 'mai-asknews' ),
+			'reasoning'              => __( 'Reasoning', 'mai-asknews' ),
+			'reconciled_information' => __( 'Reconciled Information', 'mai-asknews' ),
+			'unique_information'     => __( 'Synopsis', 'mai-asknews' ),
+		];
+
+		foreach ( $keys as $key => $value ) {
+			$content = maiasknews_get_key( $key, $data );
+
+			if ( ! $content ) {
+				continue;
+			}
+
+			printf( '<p><strong>%s:</strong> %s</p>', $value, $content );
+			// printf( '<p>%s</p>', $content );
+		}
+
 		// Get odds table.
 		$odds = maiasknews_get_odds_table( $data );
 
@@ -518,32 +536,6 @@ class Mai_AskNews_Singular {
 		if ( $odds ) {
 			printf( '<p id="odds" class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
 			echo $odds;
-		}
-
-		$keys = [
-			// 'forecast'               => __( 'Forecast', 'mai-asknews' ),
-			// 'reasoning'              => __( 'Reasoning', 'mai-asknews' ),
-			// 'reconciled_information' => __( 'Reconciled Information', 'mai-asknews' ),
-			'unique_information'     => __( 'Synopsis', 'mai-asknews' ),
-		];
-
-		foreach ( $keys as $key => $value ) {
-			$content = maiasknews_get_key( $key, $data );
-
-			if ( ! $content ) {
-				continue;
-			}
-
-			$classes = '';
-
-			if ( 'forecast' !== $key ) {
-				$classes = 'has-lg-margin-top';
-			}
-
-			$classes .= ' has-xs-margin-bottom';
-
-			// printf( '<p><strong>%s:</strong> %s</p>', $value, $content );
-			printf( '<p>%s</p>', $content );
 		}
 	}
 
