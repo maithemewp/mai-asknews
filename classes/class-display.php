@@ -75,7 +75,7 @@ class Mai_AskNews_Display {
 			return;
 		}
 
-		if ( is_page() && ! has_shortcode( get_the_content(), 'register_form' ) ) {
+		if ( ! is_front_page() && is_page() && ! has_shortcode( get_the_content(), 'register_form' ) ) {
 			return;
 		}
 

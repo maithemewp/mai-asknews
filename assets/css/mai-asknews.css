@@ -124,6 +124,10 @@ body {
 		column-gap: var(--spacing-sm);
 	}
 
+	.pm-team {
+		overflow: hidden; /* fixes columns overflowing on chrome */
+	}
+
 	.pm-team__link {
 		margin: 0 0 var(--spacing-sm);
 		padding: 0 var(--spacing-sm) 0 0;
@@ -795,21 +799,63 @@ body {
 
 /* Plugins */
 
-/* .rcp_form {
+.rcp_form {
+	.rcp_subscription_fieldset > ul {
+		display: grid;
+		gap: var(--spacing-md);
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	}
+
+	.rcp_subscription_level {
+		display: flex;
+		flex-direction: column;
+		padding: var(--spacing-lg);
+		background-color: var(--color-alt);
+
+		label {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	.rcp_subscription_level > *:not(.rcp_level) {
+		order: 1;
+	}
+
 	.rcp_subscription_level_name {
 		display: block;
+		margin-bottom: var(--spacing-lg);
 		font-family: var(--font-family-heading);
 		font-weight: var(--heading-font-weight);
 		font-size: var(--font-size-md);
 	}
 
-	.rcp_separator:first-of-type {
+	.rcp_separator {
 		display: none;
 	}
 
+	.rcp_price {
+		font-size: var(--font-size-xxl);
+	}
+
+	.rcp_level_duration {
+		margin-bottom: var(--spacing-md);
+	}
+
+	.rcp_level_duration::before {
+		content: " / ";
+	}
+
 	.rcp_level_description {
+		display: block;
+		margin-top: auto;
 		padding: 0;
 		border: 0;
 		font-size: var(--font-size-sm);
 	}
-} */
+
+	.rcp_level {
+		order: 2;
+	}
+}
