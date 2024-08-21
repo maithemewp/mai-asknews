@@ -12,6 +12,9 @@ defined( 'ABSPATH' ) || die;
  */
 function maiasknews_has_access() {
 	return current_user_can( 'read' );
+
+	// TODO: Is admin or is viewing NFL and has NFL Membership. Need this to hide predictions.
+	// TODO: Free account is logged in or has free membership. Right now free account is seeing predictions. This will only be necessary for voting.
 }
 
 /**
@@ -777,204 +780,198 @@ function maiasknews_get_teams( $sport = '' ) {
 		return $cache[ $sport ];
 	}
 
-			  // 'Angels' => [
-			  // 	'city'   => 'Los Angeles',
-			  // 	'code'   => 'LAA',
-			  // 	'fg' => '#BA0021',
-			  // 	'bg'   => '#013263',
-			  // ],
-
 	$cache = [
 		'MLB' => [
 			'Angels' => [
-				'city'  => 'Los Angeles',
-				'code'  => 'LAA',
-				'color' => '#BA0021', // Red
-				// 'color' => '#003263', // Blue
+				'city'   => 'Los Angeles',
+				'code'   => 'LAA',
+				'color'  => '#BA0021',       // Red
+				// 'color' => '#003263',       // Blue
 			],
 			'Astros' => [
-				'city'  => 'Houston',
-				'code'  => 'HOU',
-				'color' => '#002D62', // Blue
-				// 'color' => '#EB6E1F', // Orange
+				'city'   => 'Houston',
+				'code'   => 'HOU',
+				'color'  => '#002D62',   // Blue
+				// 'color' => '#EB6E1F',   // Orange
 			],
 			'Athletics' => [
-				'city'  => 'Oakland',
-				'code'  => 'OAK',
-				'color' => '#003831', // Green
-				// 'color' => '#EFB21E', // Yellow
+				'city'   => 'Oakland',
+				'code'   => 'OAK',
+				'color'  => '#003831',   // Green
+				// 'color' => '#EFB21E',   // Yellow
 			],
 			'Blue Jays' => [
-				'city'  => 'Toronto',
-				'code'  => 'TOR',
-				'color' => '#134A8E', // Blue
-				// 'color' => '#1D2D5C', // Dark Blue
+				'city'   => 'Toronto',
+				'code'   => 'TOR',
+				'color'  => '#134A8E',   // Blue
+				// 'color' => '#1D2D5C',   // Dark Blue
 				// 'color' => '#E8291C', // Red
 			],
 			'Braves' => [
-				'city'  => 'Atlanta',
-				'code'  => 'ATL',
-				'color' => '#13274F', // Blue
-				// 'color' => '#CE1141', // Red
+				'city'   => 'Atlanta',
+				'code'   => 'ATL',
+				'color'  => '#13274F',   // Blue
+				// 'color' => '#CE1141',   // Red
 			],
 			'Brewers' => [
-				'city'  => 'Milwaukee',
-				'code'  => 'MIL',
-				'color' => '#0A2351', // Navy Blue
-				// 'color' => '#B6922E', // Gold
+				'city'   => 'Milwaukee',
+				'code'   => 'MIL',
+				'color'  => '#0A2351',     // Navy Blue
+				// 'color' => '#B6922E',     // Gold
 			],
 			'Cardinals' => [
-				'city'  => 'St. Louis',
-				'code'  => 'STL',
-				'color' => '#C41E3A', // Red
-				// 'color' => '#000066', // Blue
+				'city'   => 'St. Louis',
+				'code'   => 'STL',
+				'color'  => '#C41E3A',     // Red
+				// 'color' => '#000066',     // Blue
 				// 'color' => '#FEDB00', // Yellow
 			],
 			'Cubs' => [
-				'city'  => 'Chicago',
-				'code'  => 'CHC',
-				'color' => '#0E3386', // Blue
-				// 'color' => '#CC3433', // Red
+				'city'   => 'Chicago',
+				'code'   => 'CHC',
+				'color'  => '#0E3386',   // Blue
+				// 'color' => '#CC3433',   // Red
 			],
 			'Diamondbacks' => [
-				'city'  => 'Arizona',
-				'code'  => 'ARI',
-				'color' => '#A71930', // Red
-				// 'color' => '#000000', // Black
+				'city'   => 'Arizona',
+				'code'   => 'ARI',
+				'color'  => '#A71930',   // Red
+				// 'color' => '#000000',   // Black
 				// 'color' => '#E3D4AD', // Tan
 			],
 			'Dodgers' => [
-				'city'  => 'Los Angeles',
-				'code'  => 'LAD',
-				'color' => '#005A9C', // Blue
-				// 'color' => '#EF3E42', // Red
+				'city'   => 'Los Angeles',
+				'code'   => 'LAD',
+				'color'  => '#005A9C',       // Blue
+				// 'color' => '#EF3E42',       // Red
 			],
 			'Giants' => [
-				'city'  => 'San Francisco',
-				'code'  => 'SFG',
-				'color' => '#FD5A1E', // Orange
-				// 'color' => '#000000', // Black
+				'city'   => 'San Francisco',
+				'code'   => 'SFG',
+				'color'  => '#FD5A1E',         // Orange
+				// 'color' => '#000000',         // Black
 				// 'color' => '#8B6F4E', // Gold
 			],
 			'Guardians' => [
-				'city'  => 'Cleveland',
-				'code'  => 'CLE',
-				'color' => '#E31937', // Red
-				// 'color' => '#002B5C', // Blue
+				'city'   => 'Cleveland',
+				'code'   => 'CLE',
+				'color'  => '#E31937',     // Red
+				// 'color' => '#002B5C',     // Blue
 			],
 			'Mariners' => [
-				'city'  => 'Seattle',
-				'code'  => 'SEA',
-				'color' => '#0C2C56', // Blue
-				// 'color' => '#005C5C', // Green
+				'city'   => 'Seattle',
+				'code'   => 'SEA',
+				'color'  => '#0C2C56',   // Blue
+				// 'color' => '#005C5C',   // Green
 				// 'color' => '#C4CED4', // Silver
 			],
 			'Marlins' => [
-				'city'  => 'Miami',
-				'code'  => 'MIA',
-				'color' => '#0077C8', // Blue
-				// 'color' => '#FF6600', // Orange
+				'city'   => 'Miami',
+				'code'   => 'MIA',
+				'color'  => '#0077C8',   // Blue
+				// 'color' => '#FF6600',   // Orange
 				// 'color' => '#FFD100', // Yellow
 				// 'color' => '#000000', // Black
 			],
 			'Mets' => [
-				'city'  => 'New York',
-				'code'  => 'NYM',
-				'color' => '#002D72', // Blue
-				// 'color' => '#FF5910', // Orange
+				'city'   => 'New York',
+				'code'   => 'NYM',
+				'color'  => '#002D72',    // Blue
+				// 'color' => '#FF5910',    // Orange
 			],
 			'Nationals' => [
-				'city'  => 'Washington',
-				'code'  => 'WSN',
-				'color' => '#AB0003', // Red
-				// 'color' => '#11225B', // Blue
+				'city'   => 'Washington',
+				'code'   => 'WSN',
+				'color'  => '#AB0003',      // Red
+				// 'color' => '#11225B',      // Blue
 			],
 			'Orioles' => [
-				'city'  => 'Baltimore',
-				'code'  => 'BAL',
-				'color' => '#DF4601', // Orange
-				// 'color' => '#000000', // Black
+				'city'   => 'Baltimore',
+				'code'   => 'BAL',
+				'color'  => '#DF4601',     // Orange
+				// 'color' => '#000000',     // Black
 			],
 			'Padres' => [
-				'city'  => 'San Diego',
-				'code'  => 'SDP',
-				'color' => '#7F411C', // Brown
-				// 'color' => '#002D62', // Blue
+				'city'   => 'San Diego',
+				'code'   => 'SDP',
+				'color'  => '#7F411C',     // Brown
+				// 'color' => '#002D62',     // Blue
 				// 'color' => '#FEC325', // Yellow
 				// 'color' => '#A0AAB2', // Silver
 			],
 			'Phillies' => [
-				'city'  => 'Philadelphia',
-				'code'  => 'PHI',
-				'color' => '#E81828', // Red
-				// 'color' => '#284898', // Blue
+				'city'   => 'Philadelphia',
+				'code'   => 'PHI',
+				'color'  => '#E81828',        // Red
+				// 'color' => '#284898',        // Blue
 			],
 			'Pirates' => [
-				'city'  => 'Pittsburgh',
-				'code'  => 'PIT',
-				'color' => '#FDB827', // Yellow
-				// 'color' => '#000000', // Black
+				'city'   => 'Pittsburgh',
+				'code'   => 'PIT',
+				'color'  => '#FDB827',      // Yellow
+				// 'color' => '#000000',      // Black
 			],
 			'Rangers' => [
-				'city'  => 'Texas',
-				'code'  => 'TEX',
-				'color' => '#003278', // Blue
-				// 'color' => '#C0111F', // Red
+				'city'   => 'Texas',
+				'code'   => 'TEX',
+				'color'  => '#003278',   // Blue
+				// 'color' => '#C0111F',   // Red
 			],
 			'Rays' => [
-				'city'  => 'Tampa Bay',
-				'code'  => 'TBR',
-				'color' => '#092C5C', // Navy Blue
-				// 'color' => '#8FBCE6', // Light Blue
+				'city'   => 'Tampa Bay',
+				'code'   => 'TBR',
+				'color'  => '#092C5C',     // Navy Blue
+				// 'color' => '#8FBCE6',     // Light Blue
 				// 'color' => '#F5D130', // Yellow
 			],
 			'Red Sox' => [
-				'city'  => 'Boston',
-				'code'  => 'BOS',
-				'color' => '#BD3039', // Red
-				// 'color' => '#0D2B56', // Blue
+				'city'   => 'Boston',
+				'code'   => 'BOS',
+				'color'  => '#BD3039',   // Red
+				// 'color' => '#0D2B56',   // Blue
 			],
 			'Reds' => [
-				'city'  => 'Cincinnati',
-				'code'  => 'CIN',
-				'color' => '#C6011F', // Red
-				// 'color' => '#000000', // Black
+				'city'   => 'Cincinnati',
+				'code'   => 'CIN',
+				'color'  => '#C6011F',      // Red
+				// 'color' => '#000000',      // Black
 			],
 			'Rockies' => [
-				'city'  => 'Colorado',
-				'code'  => 'COL',
-				'color' => '#333366', // Purple
-				// 'color' => '#231F20', // Black
+				'city'   => 'Colorado',
+				'code'   => 'COL',
+				'color'  => '#333366',    // Purple
+				// 'color' => '#231F20',    // Black
 				// 'color' => '#C4CED4', // Silver
 			],
 			'Royals' => [
-				'city'  => 'Kansas City',
-				'code'  => 'KCR',
-				'color' => '#004687', // Blue
-				// 'color' => '#C09A5B', // Gold
+				'city'   => 'Kansas City',
+				'code'   => 'KCR',
+				'color'  => '#004687',       // Blue
+				// 'color' => '#C09A5B',       // Gold
 			],
 			'Tigers' => [
-				'city'  => 'Detroit',
-				'code'  => 'DET',
-				'color' => '#0C2C56', // Blue
+				'city'   => 'Detroit',
+				'code'   => 'DET',
+				'color'  => '#0C2C56',   // Blue
+				// 'color' => '#FFFFFF',   // White
 			],
 			'Twins' => [
-				'city'  => 'Minnesota',
-				'code'  => 'MIN',
-				'color' => '#002B5C', // Blue
-				// 'color' => '#D31145', // Red
+				'city'   => 'Minnesota',
+				'code'   => 'MIN',
+				'color'  => '#002B5C',     // Blue
+				// 'color' => '#D31145',     // Red
 			],
 			'White Sox' => [
-				'city'  => 'Chicago',
-				'code'  => 'CHW',
-				'color' => '#000000', // Black
-				// 'color' => '#C4CED4', // Silver
+				'city'   => 'Chicago',
+				'code'   => 'CHW',
+				'color'  => '#000000',   // Black
+				// 'color' => '#C4CED4',   // Silver
 			],
 			'Yankees' => [
-				'city'  => 'New York',
-				'code'  => 'NYY',
-				'color' => '#003087', // Blue
-				// 'color' => '#E4002B', // Red
+				'city'   => 'New York',
+				'code'   => 'NYY',
+				'color'  => '#003087',    // Blue
+				// 'color' => '#E4002B',    // Red
 			],
 		],
 		'NFL' => [

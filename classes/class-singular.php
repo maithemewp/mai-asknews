@@ -279,7 +279,7 @@ class Mai_AskNews_Singular {
 			}
 
 			// Replace the team with the code and color.
-			$replace = sprintf( '<a class="entry-title-team__link" href="%s" style="--team-color:%s;" data-code="%s">%s</a></span>', get_term_link( $teams[ "$city $team" ] ), $color, $code, $team );
+			$replace = sprintf( '<a class="entry-title-team__link" href="%s" style="--team-color:%s;" data-code="%s"><span class="entry-title-team__name">%s</span></a>', get_term_link( $teams[ "$city $team" ] ), $color, $code, $team );
 			$content = str_replace( $team, $replace, $content );
 
 			// Add span to vs.

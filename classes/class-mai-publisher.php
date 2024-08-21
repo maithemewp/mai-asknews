@@ -75,3 +75,21 @@ class Mai_AskNews_Mai_Publisher {
 		return $locations;
 	}
 }
+
+// add_filter( 'acf/location/rule_match/taxonomy', 'modify_acf_location_rule_for_taxonomies', 10, 3 );
+// add_filter( 'acf/location/rule_match', 'modify_acf_location_rule_for_taxonomies', 10, 4 );
+function modify_acf_location_rule_for_taxonomies( $match, $rule, $options, $field_group ) {
+	if ( ! isset( $field_group['key'] ) || 'maipub_categories_field_group' !== $field_group['key'] ) {
+		return $match;
+	}
+
+	// Get current screen.
+	$screen = get_current_screen();
+
+	// Bail if not on a league or season taxonomy term edit screen.
+	if ( ! $screen || ! in_array( $screen->taxonomy, [ 'league', 'season' ] ) ) {
+		return $match;
+	}
+
+	return true;
+}
