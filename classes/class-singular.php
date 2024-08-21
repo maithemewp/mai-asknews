@@ -463,8 +463,8 @@ class Mai_AskNews_Singular {
 			$keys = [
 				'forecast'               => __( 'Forecast', 'mai-asknews' ),
 				'reasoning'              => __( 'Reasoning', 'mai-asknews' ),
-				// 'reconciled_information' => __( 'Reconciled Information', 'mai-asknews' ),
-				// 'unique_information'     => __( 'Synopsis', 'mai-asknews' ),
+				'reconciled_information' => '',
+				'unique_information'     => '',
 			];
 
 			foreach ( $keys as $key => $value ) {
@@ -474,15 +474,9 @@ class Mai_AskNews_Singular {
 					continue;
 				}
 
-				$classes = '';
+				$heading = $value ? sprintf( '<strong>%s:</strong><br>', $value ) : '';
 
-				if ( 'forecast' !== $key ) {
-					$classes = 'has-lg-margin-top';
-				}
-
-				$classes .= ' has-xs-margin-bottom';
-
-				printf( '<p><strong>%s:</strong> %s</p>', $value, $content );
+				printf( '<p>%s%s</p>', $heading, $content );
 				// printf( '<p>%s</p>', $content );
 			}
 
@@ -497,24 +491,6 @@ class Mai_AskNews_Singular {
 	 * @return void
 	 */
 	function do_main( $data ) {
-		$keys = [
-			'forecast'               => __( 'Forecast', 'mai-asknews' ),
-			'reasoning'              => __( 'Reasoning', 'mai-asknews' ),
-			'reconciled_information' => __( 'Reconciled Information', 'mai-asknews' ),
-			'unique_information'     => __( 'Synopsis', 'mai-asknews' ),
-		];
-
-		foreach ( $keys as $key => $value ) {
-			$content = maiasknews_get_key( $key, $data );
-
-			if ( ! $content ) {
-				continue;
-			}
-
-			printf( '<p><strong>%s:</strong> %s</p>', $value, $content );
-			// printf( '<p>%s</p>', $content );
-		}
-
 		// Get odds table.
 		$odds = maiasknews_get_odds_table( $data );
 

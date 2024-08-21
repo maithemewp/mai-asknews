@@ -590,6 +590,9 @@ body {
 
 	.pm-prediction__list {
 		--list-margin: 0 0 var(--spacing-md);
+		padding-bottom: var(--spacing-md);
+		font-size: var(--font-size-md);
+		border-bottom: 3px solid rgba(0, 0, 0, .025);
 	}
 }
 
