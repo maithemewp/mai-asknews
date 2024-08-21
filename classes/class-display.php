@@ -349,3 +349,15 @@ class Mai_AskNews_Display {
 		return $output;
 	}
 }
+
+add_filter( 'do_shortcode_tag', 'pm_register_form_tag', 10, 2 );
+function pm_register_form_tag( $output, $tag ) {
+	if ( 'register_form' !== $tag ) {
+		return $output;
+	}
+
+	$button = sprintf( '<div class="button button-secondary button-small">%s</div>', __( 'Choose Option', 'mai-asknews' ) );
+	$output = str_replace( '</label>', $button . '</label>', $output );
+
+	return $output;
+}

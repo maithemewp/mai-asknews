@@ -817,15 +817,41 @@ body {
 			display: flex;
 			flex-direction: column;
 		}
+
+		.button {
+			margin-top: auto;
+		}
+
+		.rcp_level:checked + label > .button {
+			--button-background: var(--color-primary);
+			--button-background-hover: var(--color-primary);
+			--button-color: white;
+		}
+
+		.rcp_level:checked + label > .button::after {
+			display: inline-block;
+			width: auto;
+			position: absolute;
+			top: calc(100% - var(--spacing-xxs));
+			left: 50%;
+			transform: translateX(-50%);
+			padding: var(--spacing-xxxs) var(--spacing-xs);
+			font-size: 60%;
+			font-weight: var(--body-font-weight-bold);
+			line-height: 1;
+			text-transform: uppercase;
+			background-color: white;
+			color: var(--color-body);
+			border-bottom: 1px solid var(--color-border);
+			border-radius: 10rem;
+			content: "Selected";
+		}
 	}
 
-	.rcp_subscription_level > *:not(.rcp_level) {
-		order: 1;
-	}
 
 	.rcp_subscription_level_name {
 		display: block;
-		margin-bottom: var(--spacing-lg);
+		margin-bottom: var(--spacing-md);
 		font-family: var(--font-family-heading);
 		font-weight: var(--heading-font-weight);
 		font-size: var(--font-size-md);
@@ -839,23 +865,25 @@ body {
 		font-size: var(--font-size-xxl);
 	}
 
-	.rcp_level_duration {
-		margin-bottom: var(--spacing-md);
-	}
-
 	.rcp_level_duration::before {
 		content: " / ";
 	}
 
 	.rcp_level_description {
 		display: block;
-		margin-top: auto;
+		margin-block: var(--spacing-md);
 		padding: 0;
 		border: 0;
 		font-size: var(--font-size-sm);
+		font-weight: var(--body-font-weight);
 	}
 
 	.rcp_level {
-		order: 2;
+		position: absolute !important;
+		clip: rect(0, 0, 0, 0);
+		height: 1px;
+		width: 1px;
+		border: 0;
+		overflow: hidden;
 	}
 }
