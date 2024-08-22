@@ -920,10 +920,11 @@ body {
 
 .rcp_registration_total:not(:first-child), /* why are there two of these? */
 #rcp_gateway_extra_fields,
-#rcp_submit_wrap {
+#rcp_submit_wrap,
+#rcp_auto_renew_wrap {
 	background-color: var(--color-alt);
 
-	> * {
+	> *:not(input[type="checkbox"]) {
 		width: 100%;
 		max-width: var(--breakpoint-xs);
 		margin-inline: auto;
@@ -933,6 +934,13 @@ body {
 .rcp_registration_total:not(:first-child),
 #rcp_gateway_extra_fields {
 	padding: var(--spacing-lg);
+}
+
+#rcp_auto_renew_wrap {
+	max-width: var(--breakpoint-xs);
+	margin-block: calc(var(--spacing-md) * -1) 0;
+	margin-inline: auto;
+	padding-bottom: var(--spacing-xxs);
 }
 
 #rcp_submit_wrap {
