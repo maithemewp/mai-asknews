@@ -193,15 +193,15 @@ class Mai_AskNews_Display {
 		}
 
 		// Get the date and times.
-		$day      = date( 'M j ', $event_date );
 		$time_utc = new DateTime( "@$event_date", new DateTimeZone( 'UTC' ) );
+		$day_est  = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'M j' );
 		$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
 		$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
 
 		// Build the markup.
 		$html  = '';
 		$html .= '<div class="pm-matchup__date">';
-			$html .= sprintf( '<span class="pm-matchup__day">%s</span>', $day );
+			$html .= sprintf( '<span class="pm-matchup__day">%s</span>', $day_est );
 			$html .= sprintf( '<span class="pm-matchup__time" data-timezone="ET">%s</span>', $time_est );
 			$html .= sprintf( '<span class="pm-matchup__time" data-timezone="PT">%s</span>', $time_pst );
 		$html .= '</div>';

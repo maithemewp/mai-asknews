@@ -472,6 +472,7 @@ body {
 	position: sticky;
 	top: var(--body-top);
 	background-color: var(--color-header);
+	border-bottom: 3px solid var(--color-primary);
 	overflow-x: auto;
 	z-index: 9;
 }
@@ -800,10 +801,17 @@ body {
 /* Plugins */
 
 .rcp_form {
-	.rcp_subscription_fieldset > ul {
-		display: grid;
-		gap: var(--spacing-md);
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	.rcp_subscription_message {
+		display: none;
+	}
+
+	.rcp_subscription_fieldset {
+
+		> ul {
+			display: grid;
+			gap: var(--spacing-md);
+			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		}
 	}
 
 	.rcp_subscription_level {
@@ -832,7 +840,7 @@ body {
 			display: inline-block;
 			width: auto;
 			position: absolute;
-			top: calc(100% - var(--spacing-xxs));
+			bottom: calc(100% - var(--spacing-xxs));
 			left: 50%;
 			transform: translateX(-50%);
 			padding: var(--spacing-xxxs) var(--spacing-xs);
@@ -842,12 +850,11 @@ body {
 			text-transform: uppercase;
 			background-color: white;
 			color: var(--color-body);
-			border-bottom: 1px solid var(--color-border);
+			border: 1px solid rgba(0, 0, 0, .1);
 			border-radius: 10rem;
-			content: "Selected";
+			content: "✔️ Selected";
 		}
 	}
-
 
 	.rcp_subscription_level_name {
 		display: block;
@@ -863,6 +870,10 @@ body {
 
 	.rcp_price {
 		font-size: var(--font-size-xxl);
+	}
+
+	.rcp_level_duration {
+		text-transform: lowercase;
 	}
 
 	.rcp_level_duration::before {
@@ -886,4 +897,97 @@ body {
 		border: 0;
 		overflow: hidden;
 	}
+}
+
+#rcp_discount_code_wrap {
+	width: 100%;
+	max-width: var(--breakpoint-xs);
+	margin-inline: auto;
+	margin-bottom: var(--spacing-xl);
+}
+
+.rcp_registration_total:not(:first-child), /* why are there two of these? */
+#rcp_gateway_extra_fields,
+#rcp_submit_wrap {
+	background-color: var(--color-alt);
+
+	> * {
+		width: 100%;
+		max-width: var(--breakpoint-xs);
+		margin-inline: auto;
+	}
+}
+
+.rcp_registration_total:not(:first-child),
+#rcp_gateway_extra_fields {
+	padding: var(--spacing-lg);
+}
+
+#rcp_submit_wrap {
+	padding: 0 var(--spacing-lg) var(--spacing-lg);
+	text-align: center;
+}
+
+.rcp_registration_total:not(:first-child) {
+	border-bottom: 2px solid rgba(0, 0, 0, .025);
+}
+
+.rcp_discount_code_field_wrap {
+	display: grid;
+	gap: var(--spacing-sm);
+	grid-template-columns: 1fr auto;
+}
+
+.rcp_registration_total_details.rcp-table {
+	width: 100%;
+	margin: 0;
+	border: 0;
+
+	.membership-amount tr {
+		display: none;
+	}
+
+	tr {
+		width: 100%;
+	}
+
+	tbody tr {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	tbody td {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	tfoot td  {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	.rcp-total {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+}
+
+#rcp_gateway_extra_fields {
+	label {
+		margin-bottom: var(--spacing-xxxs);
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"] {
+		padding: var(--spacing-sm) var(--spacing-md);
+	}
+}
+
+#rcp_card_wrap {
+	margin-bottom: 0;
 }
