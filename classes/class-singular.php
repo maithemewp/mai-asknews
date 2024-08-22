@@ -119,7 +119,7 @@ class Mai_AskNews_Singular {
 
 		// Add hooks.
 		add_filter( 'genesis_markup_entry-title_content', [ $this, 'handle_title' ], 10, 2 );
-		add_action( 'genesis_before_entry_content',       [ $this, 'do_event_info' ] );
+		add_action( 'mai_after_entry_title',              [ $this, 'do_event_info' ], 8 );
 		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_content' ] );
 		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_updates' ] );
 	}
