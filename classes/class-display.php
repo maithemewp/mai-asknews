@@ -36,6 +36,7 @@ class Mai_AskNews_Display {
 		add_shortcode( 'pm_date',                      [ $this, 'date_shortcode' ] );
 		add_shortcode( 'pm_matchup_time',              [ $this, 'matchup_time_shortcode' ] );
 		add_shortcode( 'pm_matchup_teams',             [ $this, 'matchup_teams_shortcode' ] );
+		add_filter( 'do_shortcode_tag',                [ $this, 'register_form_tag' ], 10, 2 );
 	}
 
 	function do_timezone_logic() {
@@ -348,17 +349,36 @@ class Mai_AskNews_Display {
 
 		return $output;
 	}
-}
 
-add_filter( 'do_shortcode_tag', 'pm_register_form_tag', 10, 2 );
-function pm_register_form_tag( $output, $tag ) {
-	if ( 'register_form' !== $tag ) {
+	/**
+	 * Add buttons to the membership levels.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param  string $output The output.
+	 * @param  string $tag    The tag.
+	 *
+	 * @return string
+	 */
+	function register_form_tag( $output, $tag ) {
+		if ( 'register_form' !== $tag ) {
+			return $output;
+		}
+
+		// Add buttons to the membership levels.
+		$button = sprintf( '<div class="button button-secondary button-small">%s</div>', __( 'Choose Option', 'mai-asknews' ) );
+		$output = preg_replace( '/(<div\s+class="rcp_level_description">.*?<\/div>)/s', '$1' . $button, $output );
+
+		// Set up tag processor.
+		$tags = new WP_HTML_Tag_Processor( $output );
+
+		// Loop through tags.
+		while ( $tags->next_tag( [ 'tag_name' => 'button', 'class_name' => 'rcp_button' ] ) ) {
+			$tags->add_class( 'button button-secondary button-small' );
+		}
+
+		$output = $tags->get_updated_html();
+
 		return $output;
 	}
-
-	$button = sprintf( '<div class="button button-secondary button-small">%s</div>', __( 'Choose Option', 'mai-asknews' ) );
-	// $output = str_replace( '</label> </li>', $button . '</label> </li>', $output );
-	$output = preg_replace( '/(<div\s+class="rcp_level_description">.*?<\/div>)/s', '$1' . $button, $output );
-
-	return $output;
 }
