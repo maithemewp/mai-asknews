@@ -830,13 +830,25 @@ body {
 			margin-top: auto;
 		}
 
+		.button,
+		.button:before,
+		.button:after {
+			transition: none;
+		}
+
 		.rcp_level:checked + label > .button {
 			--button-background: var(--color-primary);
 			--button-background-hover: var(--color-primary);
 			--button-color: white;
+			font-size: 0;
 		}
 
-		.rcp_level:checked + label > .button::after {
+		.rcp_level:checked + label > .button::before {
+			font-size: var(--button-font-size);
+			content: "Selected";
+		}
+
+		/* .rcp_level:checked + label > .button::after {
 			display: inline-block;
 			width: auto;
 			position: absolute;
@@ -853,7 +865,7 @@ body {
 			border: 1px solid rgba(0, 0, 0, .1);
 			border-radius: 10rem;
 			content: "✔️ Selected";
-		}
+		} */
 	}
 
 	.rcp_subscription_level_name {
