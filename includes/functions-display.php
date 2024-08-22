@@ -114,13 +114,13 @@ function maiasknews_get_matchup_datetime( $matchup_id, $before = '' ) {
 	}
 
 	// Get the date and times.
-	$day      = date( 'l, F j, Y ', $event_date );
 	$time_utc = new DateTime( "@$event_date", new DateTimeZone( 'UTC' ) );
+	$day_est  = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'l, F j, Y' );
 	$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
 	$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
 	$before   = $before ? sprintf( '<strong>%s</strong> ', $before ) : '';
 
-	return sprintf( '<p class="pm-datetime">%s%s @ <span data-timezone="ET">%s</span> <span data-timezonesep>/</span> <span data-timezone="PT">%s</span></p>', $before, $day, $time_est, $time_pst );
+	return sprintf( '<p class="pm-datetime">%s%s @ <span data-timezone="ET">%s</span> <span data-timezonesep>/</span> <span data-timezone="PT">%s</span></p>', $before, $day_est, $time_est, $time_pst );
 }
 
 /**
