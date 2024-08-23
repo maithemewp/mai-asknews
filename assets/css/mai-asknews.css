@@ -951,12 +951,9 @@ body {
 .rcp_registration_total:not(:first-child), /* why are there two of these? */
 #rcp_gateway_extra_fields {
 	background-color: var(--color-alt);
-
-	> * {
-		width: 100%;
-		max-width: var(--breakpoint-xs);
-		margin-inline: auto;
-	}
+	width: 100%;
+	max-width: var(--breakpoint-xs);
+	margin-inline: auto;
 }
 
 .rcp_form {
