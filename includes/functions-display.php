@@ -195,8 +195,8 @@ function maiasknews_get_matchup_teams_list( $atts = [] ) {
  */
 function maiasknews_get_prediction_list( $body ) {
 	$choice         = maiasknews_get_key( 'choice', $body );
-	// $probability    = maiasknews_get_key( 'probability', $body );
-	// $probability    = $probability ? $probability . '%' : '';
+	$probability    = maiasknews_get_key( 'probability', $body );
+	$probability    = $probability ? $probability . '%' : '';
 	$likelihood     = maiasknews_get_key( 'likelihood', $body );
 
 	// TODO:
@@ -211,8 +211,8 @@ function maiasknews_get_prediction_list( $body ) {
 	// Get list body.
 	$table = [
 		__( 'Prediction', 'mai-asknews' )     => $choice,
-		__( 'Probability', 'mai-asknews' )    => $likelihood,
-		// __( 'Probability', 'mai-asknews' )    => sprintf( '%s, %s', $probability, $likelihood ),
+		// __( 'Probability', 'mai-asknews' )    => $likelihood,
+		__( 'Probability', 'mai-asknews' )    => sprintf( '%s, %s', $probability, $likelihood ),
 		// __( 'Confidence', 'mai-asknews' )     => $confidence,
 		// __( 'LLM Confidence', 'mai-asknews' ) => $llm_confidence,
 		// __( 'Likelihood', 'mai-asknews' )     => $likelihood,
