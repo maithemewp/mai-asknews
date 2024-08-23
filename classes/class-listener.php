@@ -417,6 +417,96 @@ class Mai_AskNews_Listener {
 		}
 
 		/***************************************************************
+		 * Upload images froms sources and attach to the insight.
+		 ***************************************************************/
+
+		// Set the threshold for image size.
+		$threshold = function( $threshold ) {
+			return 600;
+		};
+
+		// Limit image sizes.
+		$sizes = function( $sizes ) {
+			foreach ( $sizes as $name => $values ) {
+				if ( 'medium' === $name ) {
+					continue;
+				}
+
+				unset( $sizes[ $name ] );
+			}
+
+			return $sizes;
+		};
+
+		// Resize images.
+		$resize = function( $metadata, $attachment_id ) {
+			$upload_dir    = wp_get_upload_dir();
+			$file_path     = $upload_dir['basedir'] . '/' . $metadata['file'];
+			$original_path = str_replace( '-scaled', '', $file_path );
+
+			// Check if the original full-size image exists.
+			if ( file_exists( $original_path )) {
+				// Delete the original full-size image.
+				unlink( $original_path );
+			}
+
+			return $metadata;
+		};
+
+		// Limit max image size.
+		add_filter( 'big_image_size_threshold', $threshold, 9999 );
+
+		// Limit image sizes.
+		add_filter( 'intermediate_image_sizes_advanced', $sizes, 9999 );
+
+		// Resize images.
+		add_filter( 'wp_generate_attachment_metadata', $resize, 9999, 2 );
+
+		// Get sources.
+		$has_images = false;
+		$sources    = $this->body['sources'];
+
+		// Loop through sources.
+		foreach ( $sources as $index => $source ) {
+			// Skip if no image.
+			if ( ! ( isset( $source['image_url'] ) && $source['image_url'] ) ) {
+				continue;
+			}
+
+			// Get file name.
+			$file_name = isset( $source['eng_title'] ) && $source['eng_title'] ? sanitize_title_with_dashes( $source['eng_title'] ) : '';
+
+			// Upload the image.
+			$image_id = $this->upload_image( $source['image_url'], $matchup_id, $file_name );
+
+			// If image.
+			if ( $image_id
+				&& ! is_wp_error( $image_id )
+				&& ! ( isset( $this->body['sources'][ $index ]['image_id'] ) && $image_id === $this->body['sources'][ $index ]['image_id'] )
+				) {
+				// Set the image ID in the sources array.
+				$this->body['sources'][ $index ]['image_id'] = $image_id;
+
+				// Sort the sources array by key.
+				ksort( $this->body['sources'][ $index ] );
+
+				// Update the insight body.
+				$has_images = true;
+			}
+		}
+
+		// If we have images, update the insight body.
+		if ( $has_images ) {
+			// Update the insight body.
+			update_post_meta( $insight_id, 'asknews_body', $this->body );
+		}
+
+		// Remove the filters.
+		remove_filter( 'wp_generate_attachment_metadata', $resize, 9999, 2 );
+		remove_filter( 'intermediate_image_sizes_advanced', $sizes, 9999 );
+		remove_filter( 'big_image_size_threshold', $threshold, 9999 );
+
+		/***************************************************************
 		 * Next Step TBD
 		 ***************************************************************/
 
@@ -568,12 +658,13 @@ class Mai_AskNews_Listener {
 	 *
 	 * @see https://developer.wordpress.org/reference/functions/media_handle_sideload/
 	 *
-	 * @param string $url     HTTP URL address of a remote file.
-	 * @param int    $post_id The post ID the media is associated with.
+	 * @param string $url       HTTP URL address of a remote file.
+	 * @param int    $post_id   The post ID the media is associated with.
+	 * @param string $file_name The name of the file to use.
 	 *
 	 * @return int|WP_Error The ID of the attachment or a WP_Error on failure.
 	 */
-	function upload_image( $image_url, $post_id ) {
+	function upload_image( $image_url, $post_id, $file_name = '' ) {
 		// Make sure we have the functions we need.
 		if ( ! function_exists( 'download_url' ) || ! function_exists( 'media_handle_sideload' ) ) {
 			require_once( ABSPATH . 'wp-admin/includes/media.php' );
@@ -581,13 +672,16 @@ class Mai_AskNews_Listener {
 			require_once( ABSPATH . 'wp-admin/includes/image.php' );
 		}
 
-		// Check if there is an attachment with asknews_url meta key and value of $image_url.
+		// Save original image url.
+		$original_url = $image_url;
+
+		// Check if there is an attachment with original_url meta key and value of $image_url.
 		$existing_ids = get_posts(
 			[
 				'post_type'    => 'attachment',
 				'post_status'  => 'any',
-				'meta_key'     => 'asknews_url',
-				'meta_value'   => $image_url,
+				'meta_key'     => 'original_url',
+				'meta_value'   => $original_url,
 				'meta_compare' => '=',
 				'fields'       => 'ids',
 				'numberposts'  => 1,
@@ -599,63 +693,77 @@ class Mai_AskNews_Listener {
 			return $existing_ids[0];
 		}
 
-		// Set the unitedrobots URL.
-		$asknews_url = $image_url;
-
-		// Check if the image is a streetview image.
-		$streetview_url   = str_contains( $image_url, 'maps.googleapis.com/maps/api/streetview' );
+		// Set vars.
 		$destination_file = null;
+		$image_url        = html_entity_decode( $image_url, ENT_QUOTES | ENT_HTML5, 'UTF-8' );  // Some urls may have `&amp;` instead of just `&`.
+		$image_contents   = file_get_contents( $image_url );
 
-		// If streetview.
-		if ( $streetview_url ) {
-			$image_url      = html_entity_decode( $image_url, ENT_QUOTES | ENT_HTML5, 'UTF-8' ); // Some urls had `&amp;` instead of just `&`.
-			$image_url      = str_replace( ' ', '%20', $image_url ); // Some urls had spaces in the location, like `streetview?location=33.58829796031562, -78.98837933325625`.
-			$image_contents = file_get_contents( $image_url );
-			$image_hashed   = md5( $image_url ) . '.jpg';
+		// Bail if no image contents.
+		if ( ! $image_contents ) {
+			return 0;
+		}
 
-			// Get the uploads directory.
-			$upload_dir = wp_get_upload_dir();
-			$upload_url = $upload_dir['baseurl'];
+		// Get the extension without query params.
+		$image_ext = pathinfo( $image_url, PATHINFO_EXTENSION );
+		$image_ext = explode( '?', $image_ext );
+		$image_ext = reset( $image_ext );
 
-			if ( $image_contents ) {
-				// Specify the path to the destination directory within uploads.
-				$destination_dir = $upload_dir['basedir'] . '/mai-asknews/';
+		// Remove query params from the extension
+		$image_name  = $file_name ? $file_name : pathinfo( $image_url, PATHINFO_FILENAME );
+		$image_name .= '.' . $image_ext;
 
-				// Create the destination directory if it doesn't exist.
-				if ( ! file_exists( $destination_dir ) ) {
-					mkdir( $destination_dir, 0755, true );
-				}
+		// Get the uploads directory.
+		$upload_dir = wp_get_upload_dir();
+		$upload_url = $upload_dir['baseurl'];
 
-				// Specify the path to the destination file.
-				$destination_file = $destination_dir . $image_hashed;
+		// If image contents.
+		if ( $image_contents ) {
+			// Specify the path to the destination directory within uploads.
+			$destination_dir = $upload_dir['basedir'] . '/mai-asknews/';
 
-				// Save the image to the destination file.
-				file_put_contents( $destination_file, $image_contents );
+			// Create the destination directory if it doesn't exist.
+			if ( ! file_exists( $destination_dir ) ) {
+				mkdir( $destination_dir, 0755, true );
+			}
 
-				// Bail if the file doesn't exist.
-				if ( ! file_exists( $destination_file ) ) {
-					return 0;
-				}
+			// Specify the path to the destination file.
+			$destination_file = $destination_dir . $image_name;
 
-				$image_url = $image_hashed;
+			// Save the image to the destination file.
+			file_put_contents( $destination_file, $image_contents );
+
+			// Bail if the file doesn't exist.
+			if ( ! file_exists( $destination_file ) ) {
+				return 0;
 			}
 
 			// Build the image url.
-			$image_url = untrailingslashit( $upload_url ) . '/mai-asknews/' . $image_hashed;
+			$image_url = untrailingslashit( $upload_url ) . '/mai-asknews/' . $image_name;
 		}
+
+		// Filter to disable SSL verification on local.
+		$ssl_verify = function( $args, $url ) {
+			$args['sslverify'] = 'local' !== wp_get_environment_type();
+			return $args;
+		};
+
+		// Add the filter.
+		add_filter( 'http_request_args', $ssl_verify, 10, 2 );
 
 		// Build a temp url.
 		$tmp = download_url( $image_url );
 
-		// If streetview and we have a destination file.
-		if ( $streetview_url && $destination_file ) {
+		// Remove the filter.
+		remove_filter( 'http_request_args', $ssl_verify, 10, 2 );
+
+		// If a destination file.
+		if ( $destination_file ) {
 			// Remove the temp file.
 			@unlink( $destination_file );
 		}
 
 		// Bail if error.
 		if ( is_wp_error( $tmp ) ) {
-			// mai_asknews_logger( $tmp->get_error_code() . ': upload_image() 1 ' . $image_url . ' ' . $tmp->get_error_message() );
 			return 0;
 		}
 
@@ -670,8 +778,6 @@ class Mai_AskNews_Listener {
 
 		// Bail if error.
 		if ( is_wp_error( $image_id ) ) {
-			// mai_asknews_logger( $image_id->get_error_code() . ': upload_image() 2 ' . $image_url . ' ' . $image_id->get_error_message() );
-
 			// Remove the original image and return the error.
 			@unlink( $file_array[ 'tmp_name' ] );
 			return $image_id;
@@ -680,11 +786,8 @@ class Mai_AskNews_Listener {
 		// Remove the original image.
 		@unlink( $file_array[ 'tmp_name' ] );
 
-		// Set the external url for possible reference later.
-		update_post_meta( $image_id, 'asknews_url', $asknews_url );
-
-		// Set image meta for allyinteractive block importer.
-		update_post_meta( $image_id, 'original_url', wp_get_attachment_image_url( $image_id, 'full' ) );
+		// Set image meta for reference later, and allyinteractive block importer.
+		update_post_meta( $image_id, 'original_url', $original_url );
 
 		return $image_id;
 	}
