@@ -111,9 +111,9 @@ class Mai_AskNews_Listener {
 			}
 		}
 
-		// If home and away, override matchup title.
+		// If home and away, override matchup title. Away vs Home.
 		if ( $home_team && $away_team ) {
-			$matchup_title = sprintf( '%s vs %s', $home_team, $away_team );
+			$matchup_title = sprintf( '%s vs %s', $away_team, $home_team );
 		}
 
 		// Check for an existing matchup.
@@ -143,6 +143,9 @@ class Mai_AskNews_Listener {
 				// If title needs updating.
 				if ( $needs_title ) {
 					$update_args['post_title'] = $matchup_title;
+
+					// TODO: Remove this after all matchups are updated. This was to convert `Home vs Away` to `Away vs Home`.
+					$update_args['post_name']  = sanitize_title( $matchup_title ) . ' ' . wp_date( 'Y-m-d', $matchup_timestamp );
 				}
 
 				// If summary needs updating.
