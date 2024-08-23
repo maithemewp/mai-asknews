@@ -806,13 +806,17 @@ body {
 		display: none;
 	}
 
+	.rcp_user_fieldset {
+		display: none;
+	}
+
 	.rcp_subscription_fieldset {
 
 		> ul {
 			display: grid;
 			gap: var(--spacing-xxxl) var(--spacing-md);
 			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-			margin-top: var(--spacing-lg);
+			margin-top: var(--spacing-xxxl);
 		}
 	}
 
