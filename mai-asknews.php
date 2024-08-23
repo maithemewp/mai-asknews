@@ -281,7 +281,7 @@ final class Mai_AskNews_Plugin {
 			'menu_icon'          => 'dashicons-analytics',
 			'menu_position'      => 6,
 			'public'             => false,
-			'publicly_queryable' => true,
+			'publicly_queryable' => false,
 			'show_in_menu'       => true,
 			'show_in_nav_menus'  => false,
 			'show_in_rest'       => true,

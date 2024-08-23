@@ -61,7 +61,7 @@ class Mai_AskNews_Archives {
 		}
 
 		// If author or search results.
-		if ( is_author() || is_search() ) {
+		if ( is_tax( 'league' ) || is_tax( 'season' ) || is_author() || is_search() ) {
 			$query->set( 'post_type', 'matchup' );
 		}
 	}
@@ -81,8 +81,15 @@ class Mai_AskNews_Archives {
 		$author   = is_author();
 		$search   = is_search();
 
+		// Bail if not a matchup archive.
 		if ( ! ( $matchups || $league || $season || $tag || $author || $search ) ) {
 			return;
+		}
+
+		// Bail if a season archive that doesn't have a league/team.
+		if ( $season && ! get_query_var( 'league' ) ) {
+			wp_safe_redirect( home_url() );
+			exit;
 		}
 
 		// Add hooks.
