@@ -166,7 +166,7 @@ class Mai_AskNews_Rewrites {
 			$query->set( 'meta_query', [
 				[
 					'key'     => 'event_date',
-					'value'   => strtotime( 'today' ),
+					'value'   => strtotime( 'now' ),
 					'compare' => '>=',
 					'type'    => 'NUMERIC',
 				],
