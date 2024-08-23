@@ -81,6 +81,38 @@ class Mai_AskNews_CLI {
 	}
 
 	/**
+	 * Deletes matchup tags that contain '('.
+	 * This is leftover from when we tried creating tags from key people,
+	 * when key people had a description in the string.
+	 *
+	 * TODO: Remove this after all tags are cleaned up on the live site.
+	 *
+	 * Usage: wp maiasknews cleanup_tags
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param array $args       Standard command args.
+	 * @param array $assoc_args Keyed args like --posts_per_page and --offset.
+	 *
+	 * @return void
+	 */
+	function cleanup_tags( $args, $assoc_args ) {
+		$terms = get_terms(
+			[
+				'taxonomy'   => 'matchup_tag',
+				'number'     => 0,
+				'hide_empty' => false,
+			]
+		);
+
+		foreach ( $terms as $term ) {
+			if ( str_contains( $term->name, '(' ) ) {
+				wp_delete_term( $term->term_id, 'matchup_tag' );
+			}
+		}
+	}
+
+	/**
 	 * Updates posts from stored AskNews data.
 	 *
 	 * Usage: wp maiasknews update_insights --posts_per_page=10 --offset=0
