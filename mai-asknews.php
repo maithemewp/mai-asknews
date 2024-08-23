@@ -227,7 +227,7 @@ final class Mai_AskNews_Plugin {
 			'labels'              => [
 				'name'               => _x( 'Matchups', 'Matchup general name', 'promatchups' ),
 				'singular_name'      => _x( 'Matchup', 'Matchup singular name', 'promatchups' ),
-				'menu_name'          => _x( 'Schedule', 'Matchup admin menu', 'promatchups' ),
+				'menu_name'          => _x( 'Matchups', 'Matchup admin menu', 'promatchups' ),
 				'name_admin_bar'     => _x( 'Matchup', 'Matchup add new on admin bar', 'promatchups' ),
 				'add_new'            => _x( 'Add New Matchup', 'Matchup', 'promatchups' ),
 				'add_new_item'       => __( 'Add New Matchup',  'promatchups' ),

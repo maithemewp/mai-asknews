@@ -521,6 +521,7 @@ body {
 	--entry-excerpt-margin-bottom: var(--spacing-md);
 }
 
+.is-style-line,
 .entry-content-single > h2 {
 	position: relative;
 	display: grid;
@@ -530,6 +531,7 @@ body {
 	margin-bottom: var(--spacing-lg);
 }
 
+.is-style-line::before,
 .entry-content-single > h2::before {
 	display: block;
 	width: 48px;
@@ -540,6 +542,7 @@ body {
 	content: "";
 }
 
+.is-style-line::after,
 .entry-content-single > h2::after {
 	height: 1.1cap;
 	background: var(--background-lines);

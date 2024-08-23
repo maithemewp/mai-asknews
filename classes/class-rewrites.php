@@ -121,7 +121,7 @@ class Mai_AskNews_Rewrites {
 	}
 
 	/**
-	 * TBD
+	 * Modify the main query to show only future events.
 	 *
 	 * @since 0.1.0
 	 *
@@ -162,11 +162,11 @@ class Mai_AskNews_Rewrites {
 				return;
 			}
 
-			// Remove events from yesterday and older, today and future only.
+			// Remove events 2 hours ago and older.
 			$query->set( 'meta_query', [
 				[
 					'key'     => 'event_date',
-					'value'   => strtotime( 'now' ),
+					'value'   => strtotime( '-2 hours' ),
 					'compare' => '>=',
 					'type'    => 'NUMERIC',
 				],
