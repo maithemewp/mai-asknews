@@ -635,6 +635,7 @@ class Mai_AskNews_Singular {
 				$date       = $date ? wp_date( get_option( 'date_format' ), strtotime( $date ) ) : '';
 				$title      = maiasknews_get_key( 'eng_title', $source );
 				$image_id   = maiasknews_get_key( 'image_id', $source );
+				$image_id   = $image_id ?: 4078;
 				$image_url  = $image_id && ! is_wp_error( $image_id ) ? wp_get_attachment_image_url( $image_id, 'medium' ) : '';
 				// $image_url  = maiasknews_get_key( 'image_url', $source );
 				$summary    = maiasknews_get_key( 'summary', $source );

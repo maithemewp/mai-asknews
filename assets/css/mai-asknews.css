@@ -967,7 +967,8 @@ body {
 
 	.rcp_agree_to_terms_fieldset,
 	.rcp_agree_to_privacy_policy_fieldset,
-	#rcp_auto_renew_wrap {
+	#rcp_auto_renew_wrap,
+	#rcp_submit_wrap {
 		max-width: var(--breakpoint-xs);
 		margin-block: calc(var(--spacing-md) * -1) 0;
 		margin-inline: auto;
@@ -978,6 +979,10 @@ body {
 		margin-top: var(--spacing-md);
 		padding: 0 var(--spacing-lg) var(--spacing-lg);
 		text-align: center;
+
+		#rcp_submit {
+			--button-width: 100%;
+		}
 	}
 }
 
