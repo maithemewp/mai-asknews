@@ -339,7 +339,7 @@ class Mai_AskNews_Archives {
 		$query_args['meta_query'] = [
 			[
 				'key'     => 'event_date',
-				'value'   => strtotime( 'yesterday' ),
+				'value'   => strtotime( '+2 hours' ),
 				'compare' => '<=',
 				'type'    => 'NUMERIC',
 			],
