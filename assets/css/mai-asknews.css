@@ -949,12 +949,10 @@ body {
 }
 
 .rcp_registration_total:not(:first-child), /* why are there two of these? */
-#rcp_gateway_extra_fields,
-#rcp_submit_wrap,
-#rcp_auto_renew_wrap {
+#rcp_gateway_extra_fields {
 	background-color: var(--color-alt);
 
-	> *:not(input[type="checkbox"]) {
+	> * {
 		width: 100%;
 		max-width: var(--breakpoint-xs);
 		margin-inline: auto;
@@ -966,6 +964,8 @@ body {
 	padding: var(--spacing-lg);
 }
 
+.rcp_agree_to_terms_fieldset,
+.rcp_agree_to_privacy_policy_fieldset,
 #rcp_auto_renew_wrap {
 	max-width: var(--breakpoint-xs);
 	margin-block: calc(var(--spacing-md) * -1) 0;
@@ -974,6 +974,7 @@ body {
 }
 
 #rcp_submit_wrap {
+	margin-top: var(--spacing-md);
 	padding: 0 var(--spacing-lg) var(--spacing-lg);
 	text-align: center;
 }
