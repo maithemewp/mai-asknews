@@ -965,6 +965,10 @@ body {
 		padding: var(--spacing-lg);
 	}
 
+	#rcp_gateway_extra_fields {
+		margin-bottom: var(--spacing-sm);
+	}
+
 	.rcp_agree_to_terms_fieldset,
 	.rcp_agree_to_privacy_policy_fieldset,
 	#rcp_auto_renew_wrap,
