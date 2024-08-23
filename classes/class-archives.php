@@ -242,7 +242,7 @@ class Mai_AskNews_Archives {
 		ksort( $list );
 
 		// Output the list.
-		printf( '<h2>%s</h2>', __( 'All Teams', 'mai-asknews' ) );
+		printf( '<h2 class="is-style-line has-xl-margin-bottom">%s</h2>', __( 'All Teams', 'mai-asknews' ) );
 		echo '<ul class="pm-teams">';
 			foreach ( $list as $name => $item ) {
 				// These class names match the pm_matchup_teams shortcode, minus the team name span.
@@ -261,7 +261,7 @@ class Mai_AskNews_Archives {
 	 * @return void
 	 */
 	function do_upcoming_heading() {
-		printf( '<h2 class="is-style-line">%s</h2>', __( 'Upcoming Games', 'mai-asknews' ) );
+		printf( '<h2 class="is-style-line has-xl-margin-bottom">%s</h2>', __( 'Upcoming Games', 'mai-asknews' ) );
 	}
 
 	/**
@@ -282,7 +282,7 @@ class Mai_AskNews_Archives {
 		}
 
 		// Heading.
-		printf( '<h2 class="is-style-line has-xxl-margin-top">%s</h2>', __( 'Past Games', 'mai-asknews' ) );
+		printf( '<h2 class="is-style-line has-xxl-margin-top has-xl-margin-bottom">%s</h2>', __( 'Past Games', 'mai-asknews' ) );
 
 		// Filter MPG query.
 		add_filter( 'mai_post_grid_query_args', [ $this, 'mpg_query_args' ], 10, 2 );
