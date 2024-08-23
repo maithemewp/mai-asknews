@@ -415,10 +415,24 @@ class Mai_AskNews_Singular {
 		}
 
 		$has_access = current_user_can( 'manage_options' );
-		$home       = $data['home_team_name'];
-		$away       = $data['away_team_name'];
-		$home       = ! $home && isset( $data['home_team'] ) ? end( explode( ' ', $data['home_team'] ) ) : $home;
-		$away       = ! $away && isset( $data['away_team'] ) ? end( explode( ' ', $data['away_team'] ) ) : $away;
+		$home       = isset( $data['home_team_name'] ) ? $data['home_team_name'] : '';
+		$away       = isset( $data['away_team_name'] ) ? $data['away_team_name'] : '';
+
+		// If home.
+		if ( ! $home ) {
+			// Old data didn't have name separate, so parse it from city team string.
+			$home = isset( $data['home_team'] ) ? $data['home_team'] : '';
+			$home = $home ? explode( ' ', $home ) : '';
+			$home = $home ? end( $home ) : '';
+		}
+
+		// If home.
+		if ( ! $away ) {
+			// Old data didn't have name separate, so parse it from city team string.
+			$away = isset( $data['away_team'] ) ? $data['away_team'] : '';
+			$away = $away ? explode( ' ', $away ) : '';
+			$away = $away ? end( $away ) : '';
+		}
 
 		// Bail if no teams.
 		if ( ! ( $home && $away ) ) {
