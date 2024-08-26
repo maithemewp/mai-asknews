@@ -476,8 +476,10 @@ class Mai_AskNews_Listener {
 		// Loop through sources.
 		foreach ( $sources as $index => $source ) {
 			// Skip if we have an image ID and it's 0 (can't upload image) or there is a file url.
-			if ( isset( $source['image_id'] ) && $source['image_id'] && ( 0 === $source['image_id'] || wp_get_attachment_image_url( $source['image_id'] ) ) ) {
-				continue;
+			if ( isset( $source['image_id'] ) && is_numeric( $source['image_id'] ) ) {
+				if ( 0 === (int) $source['image_id'] || wp_get_attachment_image_url( $source['image_id'] ) ) {
+					continue;
+				}
 			}
 
 			// Skip if no image.
@@ -496,7 +498,7 @@ class Mai_AskNews_Listener {
 			// upload the image every time we reprocess the insight.
 			if ( ! is_wp_error( $image_id ) && ! ( isset( $this->body['sources'][ $index ]['image_id'] ) && $image_id === $this->body['sources'][ $index ]['image_id'] ) ) {
 				// Set the image ID in the sources array.
-				$this->body['sources'][ $index ]['image_id'] = $image_id;
+				$this->body['sources'][ $index ]['image_id'] = (int) $image_id;
 
 				// Sort the sources array by key.
 				ksort( $this->body['sources'][ $index ] );
@@ -748,7 +750,6 @@ class Mai_AskNews_Listener {
 
 		// Set vars.
 		$destination_file = null;
-		$image_url        = urlencode( $image_url ); // Some urls may have `&amp;` instead of just `&`.
 		$image_contents   = file_get_contents( $image_url );
 
 		// Bail if no image contents.
@@ -760,10 +761,16 @@ class Mai_AskNews_Listener {
 		$image_ext = pathinfo( $image_url, PATHINFO_EXTENSION );
 		$image_ext = explode( '?', $image_ext );
 		$image_ext = reset( $image_ext );
+		$image_ext = $image_ext && in_array( $image_ext, [ 'jpg', 'jpeg', 'png', 'gif' ] ) ? $image_ext : 'jpg';
 
 		// Remove query params from the extension
 		$image_name  = $file_name ? $file_name : pathinfo( $image_url, PATHINFO_FILENAME );
+		$image_name  = urldecode( $image_name );
+		$image_name  = preg_replace( '/[^a-zA-Z0-9\-]/', '', $image_name );
+		$image_name  = sanitize_title_with_dashes( $image_name );
 		$image_name .= '.' . $image_ext;
+
+		ray( $image_name );
 
 		// Get the uploads directory.
 		$upload_dir = wp_get_upload_dir();
