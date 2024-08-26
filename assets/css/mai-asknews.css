@@ -851,7 +851,7 @@ body {
 	}
 
 	.rcp_user_fieldset {
-		display: none;
+		/* display: none; */
 	}
 
 	.rcp_subscription_fieldset {
