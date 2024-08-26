@@ -92,6 +92,12 @@ class Mai_AskNews_Archives {
 			exit;
 		}
 
+		// If a league or season archive.
+		if ( $league || $season ) {
+			// Remove the feed links.
+			remove_action( 'wp_head', 'feed_links_extra', 3 );
+		}
+
 		// Add hooks.
 		add_filter( 'genesis_attr_taxonomy-archive-description', [ $this, 'add_archive_title_atts' ], 10, 3 );
 		add_action( 'genesis_loop',                              [ $this, 'do_teams' ], 6 );
