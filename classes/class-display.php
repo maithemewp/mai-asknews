@@ -26,8 +26,6 @@ class Mai_AskNews_Display {
 	 * @return void
 	 */
 	function hooks() {
-		add_action( 'admin_init',                      [ $this, 'dashboad_redirect' ] );
-		add_action( 'after_setup_theme',               [ $this, 'disable_admin_bar' ] );
 		add_action( 'wp_head',                         [ $this, 'do_timezone_logic' ] );
 		add_action( 'wp_enqueue_scripts',              [ $this, 'enqueue' ] );
 		add_action( 'after_setup_theme',               [ $this, 'breadcrumbs' ] );
@@ -39,37 +37,6 @@ class Mai_AskNews_Display {
 		add_shortcode( 'pm_matchup_time',              [ $this, 'matchup_time_shortcode' ] );
 		add_shortcode( 'pm_matchup_teams',             [ $this, 'matchup_teams_shortcode' ] );
 		add_filter( 'do_shortcode_tag',                [ $this, 'register_form_tag' ], 10, 2 );
-	}
-
-	/**
-	 * Redirect non-admins to the homepage.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @return void
-	 */
-	function dashboad_redirect() {
-		if ( wp_doing_ajax() || current_user_can( 'edit_posts' ) ) {
-			return;
-		}
-
-		wp_safe_redirect( home_url() );
-		exit;
-	}
-
-	/**
-	 * Disable the admin bar for non-contributors.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @return void
-	 */
-	function disable_admin_bar() {
-		if ( current_user_can( 'edit_posts' ) ) {
-			return;
-		}
-
-		show_admin_bar( false );
 	}
 
 	/**
