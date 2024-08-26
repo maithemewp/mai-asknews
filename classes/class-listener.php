@@ -475,6 +475,11 @@ class Mai_AskNews_Listener {
 
 		// Loop through sources.
 		foreach ( $sources as $index => $source ) {
+			// Skip if we have an image ID and it's 0 (can't upload image) or there is a file url.
+			if ( isset( $source['image_id'] ) && $source['image_id'] && ( 0 === $source['image_id'] || wp_get_attachment_image_url( $source['image_id'] ) ) ) {
+				continue;
+			}
+
 			// Skip if no image.
 			if ( ! ( isset( $source['image_url'] ) && $source['image_url'] ) ) {
 				continue;
@@ -486,11 +491,10 @@ class Mai_AskNews_Listener {
 			// Upload the image.
 			$image_id = $this->upload_image( $source['image_url'], $matchup_id, $file_name );
 
-			// If image.
-			if ( $image_id
-				&& ! is_wp_error( $image_id )
-				&& ! ( isset( $this->body['sources'][ $index ]['image_id'] ) && $image_id === $this->body['sources'][ $index ]['image_id'] )
-				) {
+			// If not an error, and not already set.
+			// We're storing `0` as the ID too, so it doesn't continually try to
+			// upload the image every time we reprocess the insight.
+			if ( ! is_wp_error( $image_id ) && ! ( isset( $this->body['sources'][ $index ]['image_id'] ) && $image_id === $this->body['sources'][ $index ]['image_id'] ) ) {
 				// Set the image ID in the sources array.
 				$this->body['sources'][ $index ]['image_id'] = $image_id;
 
@@ -702,7 +706,7 @@ class Mai_AskNews_Listener {
 
 		// Set vars.
 		$destination_file = null;
-		$image_url        = html_entity_decode( $image_url, ENT_QUOTES | ENT_HTML5, 'UTF-8' );  // Some urls may have `&amp;` instead of just `&`.
+		$image_url        = urlencode( $image_url ); // Some urls may have `&amp;` instead of just `&`.
 		$image_contents   = file_get_contents( $image_url );
 
 		// Bail if no image contents.
