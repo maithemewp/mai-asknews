@@ -384,7 +384,10 @@ class Mai_AskNews_Singular {
 			$this->do_votes( $body );
 		}
 
-		$this->do_prediction( $body, ! maiasknews_has_access() );
+		if ( maiasknews_has_access() ) {
+			$this->do_prediction( $body, ! maiasknews_has_access() );
+		}
+
 		$this->do_main( $body );
 		$this->do_people( $body );
 		$this->do_timeline( $body );
