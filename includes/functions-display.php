@@ -190,14 +190,17 @@ function maiasknews_get_matchup_teams_list( $atts = [] ) {
  * @since 0.1.0
  *
  * @param array $body The insight body.
+ * @param bool  $hidden Whether to hide the list.
  *
  * @return array
  */
-function maiasknews_get_prediction_list( $body ) {
-	$choice         = maiasknews_get_key( 'choice', $body );
-	$probability    = maiasknews_get_key( 'probability', $body );
-	$probability    = $probability ? $probability . '%' : '';
-	$likelihood     = maiasknews_get_key( 'likelihood', $body );
+function maiasknews_get_prediction_list( $body, $hidden = false ) {
+	$home        = isset( $body['home_team'] ) ? $body['home_team'] : '';
+	$away        = isset( $body['away_team'] ) ? $body['away_team'] : '';
+	$choice      = maiasknews_get_key( 'choice', $body );
+	$probability = maiasknews_get_key( 'probability', $body );
+	$probability = $probability ? $probability . '%' : '';
+	$likelihood  = maiasknews_get_key( 'likelihood', $body );
 
 	// TODO:
 	// crystal ball next to prediction
@@ -210,9 +213,15 @@ function maiasknews_get_prediction_list( $body ) {
 
 	// Get list body.
 	$table = [
-		__( 'Prediction', 'mai-asknews' )     => $choice,
-		// __( 'Probability', 'mai-asknews' )    => $likelihood,
-		__( 'Probability', 'mai-asknews' )    => sprintf( '%s, %s', $probability, $likelihood ),
+		__( 'Prediction', 'mai-asknews' ) => [
+			// 'hidden'  => sprintf( '%s %s %s', $home, __( 'or', 'mai-asknews' ), $away ),
+			'hidden'  => __( 'Members Only', 'mai-asknews' ),
+			'visible' => $choice,
+		],
+		__( 'Probability', 'mai-asknews' ) => [
+			'hidden'  => __( 'Members Only', 'mai-asknews' ),
+			'visible' => sprintf( '%s, %s', $probability, $likelihood ),
+		],
 		// __( 'Confidence', 'mai-asknews' )     => $confidence,
 		// __( 'LLM Confidence', 'mai-asknews' ) => $llm_confidence,
 		// __( 'Likelihood', 'mai-asknews' )     => $likelihood,
@@ -225,7 +234,8 @@ function maiasknews_get_prediction_list( $body ) {
 
 	$html  = '';
 	$html .= '<ul class="pm-prediction__list">';
-	foreach ( $table as $label => $value ) {
+	foreach ( $table as $label => $values ) {
+		$value = $hidden ? sprintf( '<span class="d">%s</span>', $values['hidden'] ) : $values['visible'];
 		$html .= sprintf( '<li class="pm-prediction__item"><strong>%s:</strong> %s</li>', $label, $value );
 	}
 	$html .= '</ul>';

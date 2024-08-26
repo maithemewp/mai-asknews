@@ -113,6 +113,101 @@ class Mai_AskNews_CLI {
 	}
 
 	/**
+	 * Updates source urls after checking for redirects.
+	 *
+	 * Usage: wp maiasknews update_source_urls --posts_per_page=10 --offset=0
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param array $args       Standard command args.
+	 * @param array $assoc_args Keyed args like --posts_per_page and --offset.
+	 *
+	 * @return void
+	 */
+	function update_source_urls( $args, $assoc_args ) {
+		// Parse args.
+		$assoc_args = wp_parse_args(
+			$assoc_args,
+			[
+				'post_type'              => 'insight',
+				'post_status'            => 'any',
+				'posts_per_page'         => 10,
+				'offset'                 => 0,
+				'no_found_rows'          => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+			]
+		);
+
+		// Get posts.
+		$query = new WP_Query( $assoc_args );
+
+		// If we have posts.
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) : $query->the_post();
+				// Get AskNews data.
+				$body = get_post_meta( get_the_ID(), 'asknews_body', true );
+
+				// Bail if no data.
+				if ( ! $body ) {
+					WP_CLI::log( 'No AskNews data found for post ID: ' . get_the_ID() . ' ' . get_permalink() );
+					continue;
+				}
+
+				// Get sources.
+				$sources = maiasknews_get_key( 'sources', $body );
+
+				// Bail if no sources.
+				if ( ! $sources ) {
+					WP_CLI::log( 'No sources found for post ID: ' . get_the_ID() . ' ' . get_permalink() );
+					continue;
+				}
+
+				// Needs update.
+				$needs_update = false;
+
+				// Loop through sources.
+				foreach ( $sources as $index => $source ) {
+					$url = $source['article_url'];
+					$ch  = curl_init( $url );
+					curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+					curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
+					curl_setopt( $ch, CURLOPT_NOBODY, true ); // We don't need to fetch the body.
+					curl_exec( $ch );
+					$final = curl_getinfo( $ch, CURLINFO_EFFECTIVE_URL );
+					curl_close( $ch );
+
+					// Skip if no change.
+					if ( $url === $final ) {
+						continue;
+					}
+
+					// Update source.
+					$body['sources'][ $index ]['article_url'] = $final;
+
+					// Set flag.
+					$needs_update = true;
+				}
+
+				// If needs update.
+				if ( $needs_update ) {
+					// Update post meta.
+					// update_post_meta( get_the_ID(), 'asknews_body', $body );
+
+					WP_CLI::log( 'Updated sources for post ID: ' . get_the_ID() . ' ' . get_permalink() );
+				}
+
+			endwhile;
+		} else {
+			WP_CLI::log( 'No posts found.' );
+		}
+
+		wp_reset_postdata();
+
+		WP_CLI::success( 'Done.' );
+	}
+
+	/**
 	 * Updates posts from stored AskNews data.
 	 *
 	 * Usage: wp maiasknews update_insights --posts_per_page=10 --offset=0

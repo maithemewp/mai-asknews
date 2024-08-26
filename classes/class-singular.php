@@ -384,11 +384,7 @@ class Mai_AskNews_Singular {
 			$this->do_votes( $body );
 		}
 
-		// If they have access.
-		if ( maiasknews_has_access() ) {
-			$this->do_prediction( $body );
-		}
-
+		$this->do_prediction( $body, ! maiasknews_has_access() );
 		$this->do_main( $body );
 		$this->do_people( $body );
 		$this->do_timeline( $body );
@@ -466,34 +462,69 @@ class Mai_AskNews_Singular {
 	 *
 	 * @since 0.1.0
 	 *
+	 * @param array $data   The asknews data.
+	 * @param bool  $hidden Whether the prediction is hidden.
+	 *
 	 * @return void
 	 */
-	function do_prediction( $data ) {
+	function do_prediction( $data, $hidden = false ) {
+		// Get teams.
+		$home = isset( $data['home_team'] ) ? $data['home_team'] : '';
+		$away = isset( $data['away_team'] ) ? $data['away_team'] : '';
+
 		// Display the prediction.
 		echo '<div id="prediction" class="pm-prediction">';
 			printf( '<h2>%s</h2>', __( 'Our Prediction', 'mai-asknews' ) );
-			echo maiasknews_get_prediction_list( $data );
+				echo maiasknews_get_prediction_list( $data, $hidden );
 
-			$keys = [
-				'forecast'               => __( 'Forecast', 'mai-asknews' ),
-				'reasoning'              => __( 'Reasoning', 'mai-asknews' ),
-				'reconciled_information' => '',
-				'unique_information'     => '',
-			];
+				$reasoning = sprintf( __( 'Either the %s or the %s are predicted to win this game. You do not have access to our predictions.', 'mai-asknews' ), $home, $away );
+				$keys      = [
+					'forecast'               => [
+						'label'  => __( 'Forecast', 'mai-asknews' ),
+						'hidden' => sprintf( '%s %s %s', $home, __( 'or', 'mai-asknews' ), $away ),
+					],
+					'reasoning'              => [
+						'label'  => __( 'Reasoning', 'mai-asknews' ),
+						'hidden' => $reasoning,
+					],
+					'reconciled_information' => [
+						'label'  => '',
+						'hidden' => $reasoning,
+					],
+					'unique_information'     => [
+						'label'  => '',
+						'hidden' => $reasoning,
+					],
+				];
 
-			foreach ( $keys as $key => $value ) {
-				$content = maiasknews_get_key( $key, $data );
+				printf( '<div class="pm-prediction__inner%s">', $hidden ? ' pm-prediction__inner--obfuscated' : '' );
+					foreach ( $keys as $key => $value ) {
+						if ( $hidden ) {
+							// $content = sprintf( '<span class="pm-obfuscated">%s</span>', $value['hidden'] );
+							$content = $value['hidden'];
+						} else {
+							$content = maiasknews_get_key( $key, $data );
+						}
 
-				if ( ! $content ) {
-					continue;
-				}
+						if ( ! $content ) {
+							continue;
+						}
 
-				$heading = $value ? sprintf( '<strong>%s:</strong><br>', $value ) : '';
+						$heading = $value['label'] ? sprintf( '<strong>%s:</strong> ', $value['label'] ) : '';
 
-				printf( '<p>%s%s</p>', $heading, $content );
-				// printf( '<p>%s</p>', $content );
-			}
+						printf( '<p>%s%s</p>', $heading, $content );
+						// printf( '<p>%s</p>', $content );
+					}
 
+					if ( $hidden ) {
+						echo '<div class="pm-prediction__cta">';
+							printf( '<h3>%s</h3>', __( 'Gain the upper hand', 'mai-asknews' ) );
+							printf( '<p>%s</p>', __( 'Join now to get access to advanced insights and forecasts.', 'mai-asknews' ) );
+							printf( '<a class="button" href="%s">%s</a>', get_permalink( 41 ), __( 'Get Access', 'mai-asknews' ) );
+						echo '</div>';
+					}
+				echo '</div>';
+			echo '</div>';
 		echo '</div>';
 	}
 
@@ -622,7 +653,8 @@ class Mai_AskNews_Singular {
 		echo '<ul class="pm-sources">';
 			// Loop through sources.
 			foreach ( $sources as $source ) {
-				$url        = maiasknews_get_key( 'article_url', $source );
+				$url        = maiasknews_get_key( 'article_url_final', $source );
+				$url        = $url ?: maiasknews_get_key( 'article_url', $source );
 				$host       = maiasknews_get_key( 'domain_url', $source );
 				$name       = maiasknews_get_key( 'source_id', $source );
 				$parsed_url = wp_parse_url( $url );

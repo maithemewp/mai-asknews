@@ -518,6 +518,48 @@ class Mai_AskNews_Listener {
 		remove_filter( 'big_image_size_threshold', $threshold, 9999 );
 
 		/***************************************************************
+		 * Check and update all source urls for redirects.
+		 ***************************************************************/
+
+		// Needs update.
+		$has_redirects = false;
+
+		// Loop through sources.
+		foreach ( $sources as $index => $source ) {
+			// Skip if we already have a final url.
+			if ( isset( $source['article_url_final'] ) && $source['article_url_final'] ) {
+				continue;
+			}
+
+			// Skip if no url.
+			if ( ! ( isset( $source['article_url'] ) && $source['article_url'] ) ) {
+				continue;
+			}
+
+			// Get the final url via curl.
+			$url = $source['article_url'];
+			$ch  = curl_init( $url );
+			curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+			curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
+			curl_setopt( $ch, CURLOPT_NOBODY, true ); // We don't need to fetch the body.
+			curl_exec( $ch );
+			$final = curl_getinfo( $ch, CURLINFO_EFFECTIVE_URL );
+			curl_close( $ch );
+
+			// Update source. This may be the same url, but we want to store the final url key either way.
+			$this->body['sources'][ $index ]['article_url_final'] = $final;
+
+			// Set flag.
+			$has_redirects = true;
+		}
+
+		// If needs update.
+		if ( $has_redirects ) {
+			// Update post meta.
+			update_post_meta( get_the_ID(), 'asknews_body', $this->body );
+		}
+
+		/***************************************************************
 		 * Next Step TBD
 		 ***************************************************************/
 
