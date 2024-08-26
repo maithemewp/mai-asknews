@@ -770,8 +770,6 @@ class Mai_AskNews_Listener {
 		$image_name  = sanitize_title_with_dashes( $image_name );
 		$image_name .= '.' . $image_ext;
 
-		ray( $image_name );
-
 		// Get the uploads directory.
 		$upload_dir = wp_get_upload_dir();
 		$upload_url = $upload_dir['baseurl'];
