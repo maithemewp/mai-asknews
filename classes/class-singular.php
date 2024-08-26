@@ -478,55 +478,49 @@ class Mai_AskNews_Singular {
 		// Display the prediction.
 		echo '<div id="prediction" class="pm-prediction">';
 			printf( '<h2>%s</h2>', __( 'Our Prediction', 'mai-asknews' ) );
-				echo maiasknews_get_prediction_list( $data, $hidden );
+			echo maiasknews_get_prediction_list( $data, $hidden );
 
-				$reasoning = sprintf( __( 'Either the %s or the %s are predicted to win this game. You do not have access to our predictions.', 'mai-asknews' ), $home, $away );
-				$keys      = [
-					'forecast'               => [
-						'label'  => __( 'Forecast', 'mai-asknews' ),
-						'hidden' => sprintf( '%s %s %s', $home, __( 'or', 'mai-asknews' ), $away ),
-					],
-					'reasoning'              => [
-						'label'  => __( 'Reasoning', 'mai-asknews' ),
-						'hidden' => $reasoning,
-					],
-					'reconciled_information' => [
-						'label'  => '',
-						'hidden' => $reasoning,
-					],
-					'unique_information'     => [
-						'label'  => '',
-						'hidden' => $reasoning,
-					],
-				];
+			$reasoning = sprintf( __( 'Either the %s or the %s are predicted to win this game. You do not have access to our predictions.', 'mai-asknews' ), $home, $away );
+			$keys      = [
+				'forecast'               => [
+					'label'  => __( 'Forecast', 'mai-asknews' ),
+					'hidden' => sprintf( '%s %s %s', $home, __( 'or', 'mai-asknews' ), $away ),
+				],
+				'reasoning'              => [
+					'label'  => __( 'Reasoning', 'mai-asknews' ),
+					'hidden' => $reasoning,
+				],
+				'reconciled_information' => [
+					'label'  => '',
+					'hidden' => $reasoning,
+				],
+				'unique_information'     => [
+					'label'  => '',
+					'hidden' => $reasoning,
+				],
+			];
 
-				printf( '<div class="pm-prediction__inner%s">', $hidden ? ' pm-prediction__inner--obfuscated' : '' );
-					foreach ( $keys as $key => $value ) {
-						if ( $hidden ) {
-							// $content = sprintf( '<span class="pm-obfuscated">%s</span>', $value['hidden'] );
-							$content = $value['hidden'];
-						} else {
-							$content = maiasknews_get_key( $key, $data );
-						}
+			printf( '<div class="pm-prediction__inner%s">', $hidden ? ' pm-prediction__inner--obfuscated' : '' );
+				foreach ( $keys as $key => $value ) {
+					$content = $hidden ? $value['hidden'] : maiasknews_get_key( $key, $data );
 
-						if ( ! $content ) {
-							continue;
-						}
-
-						$heading = $value['label'] ? sprintf( '<strong>%s:</strong> ', $value['label'] ) : '';
-
-						printf( '<p>%s%s</p>', $heading, $content );
-						// printf( '<p>%s</p>', $content );
+					if ( ! $content ) {
+						continue;
 					}
 
-					if ( $hidden ) {
-						echo '<div class="pm-prediction__cta">';
-							printf( '<h3>%s</h3>', __( 'Gain the upper hand', 'mai-asknews' ) );
-							printf( '<p>%s</p>', __( 'Join now to get access to advanced insights and forecasts.', 'mai-asknews' ) );
-							printf( '<a class="button" href="%s">%s</a>', get_permalink( 41 ), __( 'Get Access', 'mai-asknews' ) );
-						echo '</div>';
-					}
-				echo '</div>';
+					$heading = $value['label'] ? sprintf( '<strong>%s:</strong> ', $value['label'] ) : '';
+
+					printf( '<p>%s%s</p>', $heading, $content );
+					// printf( '<p>%s</p>', $content );
+				}
+
+				if ( $hidden ) {
+					echo '<div class="pm-prediction__cta">';
+						printf( '<h3>%s</h3>', __( 'Gain the upper hand', 'mai-asknews' ) );
+						printf( '<p>%s</p>', __( 'Join now to get access to advanced insights and forecasts.', 'mai-asknews' ) );
+						printf( '<a class="button" href="%s">%s</a>', get_permalink( 41 ), __( 'Get Access', 'mai-asknews' ) );
+					echo '</div>';
+				}
 			echo '</div>';
 		echo '</div>';
 	}
@@ -552,9 +546,9 @@ class Mai_AskNews_Singular {
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#web">%s</a></li>', __( 'Web', 'mai-asknews' ) );
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#sources">%s</a></li>', __( 'Sources', 'mai-asknews' ) );
 
-			if ( $this->insights ) {
-				printf( '<li class="pm-jump"><a class="pm-jump__link" href="#updates">%s</a></li>', __( 'Updates', 'mai-asknews' ) );
-			}
+			// if ( $this->insights ) {
+			// 	printf( '<li class="pm-jump"><a class="pm-jump__link" href="#updates">%s</a></li>', __( 'Updates', 'mai-asknews' ) );
+			// }
 		echo '</ul>';
 
 		if ( $odds ) {
