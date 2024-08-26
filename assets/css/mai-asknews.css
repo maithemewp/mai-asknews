@@ -195,7 +195,7 @@ body {
 	place-items: center;
 	width: 48px;
 	height: 48px;
-	margin: 0 auto var(--spacing-xxs);
+	margin: 0 auto var(--spacing-xs);
 	font-size: var(--font-size-sm);
 	font-weight: var(--body-font-weight-bold);
 	background-color: var(--team-color);
