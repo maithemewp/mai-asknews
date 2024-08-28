@@ -288,7 +288,7 @@ function maiasknews_get_odds_table( $body ) {
 		$sum = 0;
 
 		foreach ( $odds as $site => $odd ) {
-			$sum += $odd;
+			$sum += (float) $odd;
 		}
 
 		$averages[ $team ] = $sum / count( $odds );
@@ -337,12 +337,19 @@ function maiasknews_get_odds_table( $body ) {
 			$html .= '</tr>';
 
 			foreach ( $sites as $maker ) {
-				$class = in_array( strtolower( $maker ), $top_sites ) ? 'is-top' : 'is-not-top';
+				// Set class and odds.
+				$class     = in_array( strtolower( $maker ), $top_sites ) ? 'is-top' : 'is-not-top';
+				$home_odds = isset( $odds_data[ $home_team ][ $maker ] ) ? (float) $odds_data[ $home_team ][ $maker ] : '';
+				$away_odds = isset( $odds_data[ $away_team ][ $maker ] ) ? (float) $odds_data[ $away_team ][ $maker ] : '';
+
+				// If value, and it's positive, add a plus sign.
+				$home_odds = $home_odds ? ( $home_odds > 0 ? '+' : '' ) . $home_odds : 'N/A';
+				$away_odds = $away_odds ? ( $away_odds > 0 ? '+' : '' ) . $away_odds : 'N/A';
 
 				$html .= sprintf( '<tr class="%s">', $class );
 					$html .= sprintf( '<td>%s</td>', ucwords( $maker ) );
-					$html .= sprintf( '<td>%s</td>', isset( $odds_data[ $home_team ][ $maker ] ) ? $odds_data[ $home_team ][ $maker ] : 'N/A' );
-					$html .= sprintf( '<td>%s</td>', isset( $odds_data[ $away_team ][ $maker ] ) ? $odds_data[ $away_team ][ $maker ] : 'N/A' );
+					$html .= sprintf( '<td>%s</td>', $home_odds );
+					$html .= sprintf( '<td>%s</td>', $away_odds );
 				$html .= '</tr>';
 			}
 
