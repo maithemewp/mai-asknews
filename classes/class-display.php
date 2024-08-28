@@ -37,6 +37,7 @@ class Mai_AskNews_Display {
 		add_shortcode( 'pm_matchup_time',              [ $this, 'matchup_time_shortcode' ] );
 		add_shortcode( 'pm_matchup_teams',             [ $this, 'matchup_teams_shortcode' ] );
 		add_filter( 'do_shortcode_tag',                [ $this, 'register_form_tag' ], 10, 2 );
+		add_filter( 'do_shortcode_tag',                [ $this, 'subscription_details_tag' ], 10, 2 );
 	}
 
 	/**
@@ -79,13 +80,15 @@ class Mai_AskNews_Display {
 	 * @return void
 	 */
 	function enqueue() {
-		if ( ! ( maiasknews_is_archive() || is_singular( [ 'page', 'matchup' ] ) || is_front_page() ) ) {
-			return;
-		}
+		// if ( ! ( maiasknews_is_archive() || is_singular( [ 'page', 'matchup' ] ) || is_front_page() ) ) {
+		// 	return;
+		// }
 
-		if ( ! is_front_page() && is_page() && ! has_shortcode( get_the_content(), 'register_form' ) ) {
-			return;
-		}
+		// if ( ! is_front_page() && is_page() && ! ( has_shortcode( get_the_content(), 'register_form' ) || has_shortcode( get_the_content(), 'subscription_details' ) ) ) {
+		// 	return;
+		// }
+
+		// TODO: Only add this when we need and move some styles to the theme.
 
 		maiasknews_enqueue_styles();
 	}
@@ -381,6 +384,34 @@ class Mai_AskNews_Display {
 
 		// Loop through tags.
 		while ( $tags->next_tag( [ 'tag_name' => 'button', 'class_name' => 'rcp_button' ] ) ) {
+			$tags->add_class( 'button button-secondary button-small' );
+		}
+
+		$output = $tags->get_updated_html();
+
+		return $output;
+	}
+
+	/**
+	 * Modify buttons on subscription details table.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param  string $output The output.
+	 * @param  string $tag    The tag.
+	 *
+	 * @return string
+	 */
+	function subscription_details_tag( $output, $tag ) {
+		if ( 'subscription_details' !== $tag ) {
+			return $output;
+		}
+
+		// Set up tag processor.
+		$tags = new WP_HTML_Tag_Processor( $output );
+
+		// Loop through tags.
+		while ( $tags->next_tag( [ 'tag_name' => 'button' ] ) ) {
 			$tags->add_class( 'button button-secondary button-small' );
 		}
 

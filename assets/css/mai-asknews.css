@@ -850,6 +850,10 @@ body {
 
 /* Plugins */
 
+.rcp-table {
+	font-size: var(--font-size-sm);
+}
+
 .rcp_form {
 	.rcp_subscription_message {
 		display: none;
@@ -1112,4 +1116,27 @@ body {
 
 #rcp_card_wrap {
 	margin-bottom: 0;
+}
+
+.rcp-table.subscription {
+
+	.button-small {
+		padding: .6rem .75rem;
+		font-size: .7rem;
+	}
+}
+
+.rcp-table-wrapper {
+
+	#rcp-account-overview,
+	#rcp-payment-history {
+		margin-bottom: var(--spacing-xl);
+	}
+
+	#rcp-account-overview th,
+	#rcp-payment-history th,
+	#rcp-account-overview td,
+	#rcp-payment-history td {
+		vertical-align: middle;
+	}
 }
