@@ -206,7 +206,7 @@ class Mai_AskNews_Listener {
 
 		// Meta title for Rank Math.
 		if ( $home_team && $away_team ) {
-			$meta_title = sprintf( '%s vs %s Matchup %s', $away_team, $home_team, wp_date( 'F j, Y', $matchup_timestamp ) );
+			$meta_title = sprintf( '%s vs %s Prediction and Insights %s', $away_team, $home_team, wp_date( 'F j, Y', $matchup_timestamp ) );
 
 			update_post_meta( $matchup_id, 'rank_math_title', $meta_title );
 		}
