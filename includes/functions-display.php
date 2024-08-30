@@ -115,7 +115,7 @@ function maiasknews_get_matchup_datetime( $matchup_id, $before = '' ) {
 
 	// Get the date and times.
 	$time_utc = new DateTime( "@$event_date", new DateTimeZone( 'UTC' ) );
-	$day_est  = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'l, F j, Y' );
+	$day_est  = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'l, M j, Y' );
 	$time_est = $time_utc->setTimezone( new DateTimeZone( 'America/New_York' ) )->format( 'g:i a' ) . ' ET';
 	$time_pst = $time_utc->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) )->format( 'g:i a' ) . ' PT';
 	$before   = $before ? sprintf( '<strong>%s</strong> ', $before ) : '';
@@ -346,6 +346,7 @@ function maiasknews_get_odds_table( $body ) {
 				$home_odds = $home_odds ? ( $home_odds > 0 ? '+' : '' ) . $home_odds : 'N/A';
 				$away_odds = $away_odds ? ( $away_odds > 0 ? '+' : '' ) . $away_odds : 'N/A';
 
+				// Build the row.
 				$html .= sprintf( '<tr class="%s">', $class );
 					$html .= sprintf( '<td>%s</td>', ucwords( $maker ) );
 					$html .= sprintf( '<td>%s</td>', $home_odds );

@@ -252,7 +252,6 @@ final class Mai_AskNews_Plugin {
 			'show_ui'            => true,
 			'supports'           => [ 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
 			'taxonomies'         => [ 'team', 'season' ],
-			// 'rewrite'            => false, // Handled in Mai_AskNews_Rewrites.
 			'rewrite'            => [
 				'slug'       => 'matchups',
 				'with_front' => false,

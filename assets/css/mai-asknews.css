@@ -40,6 +40,10 @@ body {
 	--content-max-width: 70ch;
 }
 
+.mai-grid.pm-matchup-list {
+	--heading-margin-bottom: var(--spacing-xxxs);
+}
+
 .pm-notice {
 	display: flex;
 	padding: var(--spacing-xxxs) var(--spacing-sm) var(--spacing-xxxs) 0;

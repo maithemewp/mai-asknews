@@ -620,6 +620,7 @@ class Mai_AskNews_Singular {
 		}
 
 		printf( '<h2 id="timeline" class="is-style-heading">%s</h2>', __( 'Timeline', 'mai-asknews' ) );
+		printf( '<p>%s</p>', __( 'Here\'s what happened over the last two weeks for both teams.', 'mai-asknews' ) );
 
 		// TODO: Add short description here.
 
