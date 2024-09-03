@@ -566,7 +566,7 @@ body {
 
 .pm-vote {
 	--heading-color: white;
-	margin-bottom: var(--spacing-lg);
+	margin-bottom: 0;
 	padding: var(--spacing-xl);
 	text-align: center;
 	background-color: var(--color-header);
@@ -610,7 +610,7 @@ body {
 	margin-bottom: var(--spacing-xl);
 	padding: var(--spacing-lg);
 	background: var(--color-alt);
-	border-bottom: 6px solid var(--color-primary);
+	border-bottom: 4px solid var(--color-primary);
 
 	.pm-prediction__list {
 		--list-margin: 0 0 var(--spacing-md);

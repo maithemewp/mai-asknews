@@ -286,18 +286,48 @@ function maiasknews_get_odds_table( $body ) {
 	 * https://3.basecamp.com/3158646/buckets/38751729/todos/7773461088
 	 */
 
+	// // Start the averages.
+	// $averages = [];
+
+	// // Get an average of the odds for each team.
+	// foreach ( $odds_data as $team => $odds ) {
+	// 	$sum = 0;
+
+	// 	foreach ( $odds as $site => $odd ) {
+	// 		$sum += (float) $odd;
+	// 	}
+
+	// 	$averages[ $team ] = $sum / count( $odds );
+	// }
+
 	// Start the averages.
 	$averages = [];
 
 	// Get an average of the odds for each team.
 	foreach ( $odds_data as $team => $odds ) {
-		$sum = 0;
+		$probabilities = [];
 
 		foreach ( $odds as $site => $odd ) {
-			$sum += (float) $odd;
+			if ( $odd > 0 ) {
+				$prob = 100 / ( $odd + 100 );
+			} else {
+				$prob = abs( $odd ) / ( abs( $odd ) + 100 );
+			}
+			$probabilities[] = $prob;
 		}
 
-		$averages[ $team ] = $sum / count( $odds );
+		// Calculate the average probability
+		$avg_prob = array_sum( $probabilities ) / count( $probabilities );
+
+		// Convert average probability back to odds
+		if ( $avg_prob < 0.5 ) {
+			$avg_odds = ( 100 / $avg_prob ) - 100;
+		} else {
+			$avg_odds = -100 / ( 1 - $avg_prob );
+		}
+
+		// Round and assign the average odds to the team
+		$averages[ $team ] = round( $avg_odds );
 	}
 
 	// Get home and away teams.
