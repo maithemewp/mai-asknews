@@ -128,6 +128,33 @@ function maiasknews_get_key( $key, $array ) {
 // }
 
 /**
+ * Prevent post_modified update.
+ *
+ * @since 0.1.0
+ *
+ * @param array $data                An array of slashed, sanitized, and processed post data.
+ * @param array $postarr             An array of sanitized (and slashed) but otherwise unmodified post data.
+ * @param array $unsanitized_postarr An array of slashed yet *unsanitized* and unprocessed post data as originally passed to wp_insert_post() .
+ * @param bool  $update              Whether this is an existing post being updated.
+ *
+ * @return array
+ */
+function maiasknews_prevent_post_modified_update( $data, $postarr, $unsanitized_postarr, $update ) {
+	if ( $update && ! empty( $postarr['ID'] ) ) {
+		// Get the existing post.
+		$existing = get_post( $postarr['ID'] );
+
+		// Preserve the current modified dates.
+		if ( $existing ) {
+			$data['post_modified']     = $existing->post_modified;
+			$data['post_modified_gmt'] = $existing->post_modified_gmt;
+		}
+	}
+
+	return $data;
+}
+
+/**
  * Get the teams and data.
  *
  * @since 0.1.0

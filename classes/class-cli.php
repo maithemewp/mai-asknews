@@ -85,7 +85,7 @@ class Mai_AskNews_CLI {
 					continue;
 				}
 
-				$listener = new Mai_AskNews_Listener( $asknews_body, $this->user );
+				$listener = new Mai_AskNews_Matchup_Listener( $asknews_body, $this->user );
 				$response = $listener->get_response();
 
 				if ( is_wp_error( $response ) ) {

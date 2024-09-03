@@ -10,7 +10,7 @@ use Alley\WP\Block_Converter\Block_Converter;
  *
  * @since 0.1.0
  */
-class Mai_AskNews_Listener {
+class Mai_AskNews_Matchup_Listener {
 	protected $body;
 	protected $user;
 	protected $return;
@@ -39,7 +39,7 @@ class Mai_AskNews_Listener {
 		}
 
 		// Prevent post_modified update.
-		add_filter( 'wp_insert_post_data', [ $this, 'prevent_post_modified_update' ], 10, 4 );
+		add_filter( 'wp_insert_post_data', 'maiasknews_prevent_post_modified_update', 10, 4 );
 
 		// Set the update flag.
 		$update = false;
@@ -578,7 +578,7 @@ class Mai_AskNews_Listener {
 		 ***************************************************************/
 
 		// Remove post_modified update filter.
-		remove_filter( 'wp_insert_post_data', [ $this, 'prevent_post_modified_update' ], 10, 4 );
+		remove_filter( 'wp_insert_post_data', 'maiasknews_prevent_post_modified_update', 10, 4 );
 
 		$text         = $update ? ' updated successfully' : ' imported successfully';
 		$this->return = $this->get_success( get_permalink( $insight_id ) . $text );
@@ -848,32 +848,5 @@ class Mai_AskNews_Listener {
 		update_post_meta( $image_id, 'original_url', $original_url );
 
 		return $image_id;
-	}
-
-	/**
-	 * Prevent post_modified update.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param array $data                An array of slashed, sanitized, and processed post data.
-	 * @param array $postarr             An array of sanitized (and slashed) but otherwise unmodified post data.
-	 * @param array $unsanitized_postarr An array of slashed yet *unsanitized* and unprocessed post data as originally passed to wp_insert_post() .
-	 * @param bool  $update              Whether this is an existing post being updated.
-	 *
-	 * @return array
-	 */
-	function prevent_post_modified_update( $data, $postarr, $unsanitized_postarr, $update ) {
-		if ( $update && ! empty( $postarr['ID'] ) ) {
-			// Get the existing post.
-			$existing = get_post( $postarr['ID'] );
-
-			// Preserve the current modified dates.
-			if ( $existing ) {
-				$data['post_modified']     = $existing->post_modified;
-				$data['post_modified_gmt'] = $existing->post_modified_gmt;
-			}
-		}
-
-		return $data;
 	}
 }

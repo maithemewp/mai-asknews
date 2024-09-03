@@ -280,6 +280,12 @@ function maiasknews_get_odds_table( $body ) {
 		return $html;
 	}
 
+	/**
+	 * TODO: Fix odds.
+	 *
+	 * https://3.basecamp.com/3158646/buckets/38751729/todos/7773461088
+	 */
+
 	// Start the averages.
 	$averages = [];
 

@@ -28,7 +28,7 @@ class Mai_AskNews_Endpoints {
 	 * @return void
 	 */
 	function hooks() {
-		add_filter( 'rest_api_init', [ $this, 'register_endpoint' ] );
+		add_filter( 'rest_api_init', [ $this, 'register_endpoints' ] );
 	}
 
 	/**
@@ -38,12 +38,14 @@ class Mai_AskNews_Endpoints {
 	 *
 	 * @return void
 	 */
-	function register_endpoint() {
+	function register_endpoints() {
 		/**
 		 * /maiasknews/v1/matchups/
+		 * /maiasknews/v1/outcome/
 		 */
 		$routes = [
 			'matchups' => 'handle_matchups_request',
+			'outcome'  => 'handle_outcome_request',
 		];
 
 		// Loop through routes and register them.
@@ -64,7 +66,21 @@ class Mai_AskNews_Endpoints {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	function handle_matchups_request( $request ) {
-		$listener = new Mai_AskNews_Listener( $request->get_body(), $this->user );
+		$listener = new Mai_AskNews_Matchup_Listener( $request->get_body(), $this->user );
+		$response = $listener->get_response();
+
+		return $response;
+	}
+
+	/**
+	 * Handle the outcome request.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return WP_REST_Response|WP_Error
+	 */
+	function handle_outcome_request( $request ) {
+		$listener = new Mai_AskNews_Outcome_Listener( $request->get_body(), $this->user );
 		$response = $listener->get_response();
 
 		return $response;
