@@ -580,6 +580,8 @@ class Mai_AskNews_Singular {
 
 		// Start markup.
 		printf( '<h2 id="people" class="is-style-heading">%s</h2>', __( 'Key People', 'mai-asknews' ) );
+		printf( '<p>%s</p>', __( 'Key people highlighted in this matchup. Click to follow.', 'mai-asknews' ) );
+
 		echo '<ul class="pm-people">';
 
 		foreach ( $people as $person ) {
@@ -627,9 +629,7 @@ class Mai_AskNews_Singular {
 		}
 
 		printf( '<h2 id="timeline" class="is-style-heading">%s</h2>', __( 'Timeline', 'mai-asknews' ) );
-		printf( '<p>%s</p>', __( 'Here\'s what happened over the last two weeks for both teams.', 'mai-asknews' ) );
-
-		// TODO: Add short description here.
+		printf( '<p>%s</p>', __( 'Timeline of relavant events and news articles.', 'mai-asknews' ) );
 
 		echo '<ul>';
 
@@ -654,7 +654,9 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-		printf( '<h2 id="sources">%s</h2>', __( 'Latest News Sources', 'mai-asknews' ) );
+		printf( '<h2 id="sources" class="is-style-heading">%s</h2>', __( 'Latest News Sources', 'mai-asknews' ) );
+		printf( '<p>%s</p>', __( 'We scoured the web to summarize the best articles for you.', 'mai-asknews' ) );
+
 		echo '<ul class="pm-sources">';
 			// Loop through sources.
 			foreach ( $sources as $source ) {
