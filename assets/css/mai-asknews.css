@@ -777,6 +777,10 @@ body {
 	margin: 0;
 }
 
+.pm-source__summary {
+	margin-bottom: var(--spacing-sm);
+}
+
 .pm-source__image {
 	position: relative;
 	float: right;
@@ -817,17 +821,18 @@ body {
 	list-style-type: none;
 	display: flex;
 	flex-wrap: wrap;
-	gap: .25em;
+	gap: .25em .5em;
 	margin: 0;
 }
 
 .pm-entity {
 	margin: 0;
-	padding: var(--spacing-xxxs) var(--spacing-xs);
 	font-size: var(--font-size-xs);
-	background: var(--color-alt);
-	color: var(--color-body);
 	text-decoration: none;
+}
+
+.pm-entity::before {
+	content: "#";
 }
 
 .pm-insight {
