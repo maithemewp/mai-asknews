@@ -678,13 +678,12 @@ body {
 	--table-margin: 0 0 var(--spacing-lg);
 }
 
-/* .pm-odds thead {
-	position: sticky;
-	top: var(--body-top);
-} */
-
 .pm-odds thead th {
 	background-color: rgba(0,0,0,0.025);
+}
+
+.pm-odds tbody {
+	font-size: var(--font-size-sm);
 }
 
 .pm-odds th:first-child,

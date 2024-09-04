@@ -269,9 +269,6 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 
 	// Loop through odds data.
 	foreach ( $odds_data as $team => $odds ) {
-
-		ray( $team );
-
 		// Merge the sites.
 		$sites = array_merge( $sites, array_keys( $odds ) );
 	}
@@ -321,8 +318,13 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 
 	// If we have teams array.
 	if ( $teams ) {
-		$home_team = isset( $teams[ $home_team ] ) ? $teams[ $home_team ] : $home_team;
-		$away_team = isset( $teams[ $away_team ] ) ? $teams[ $away_team ] : $away_team;
+		$home_name = isset( $teams[ $home_team ] ) ? $teams[ $home_team ] : $home_team;
+		$away_name = isset( $teams[ $away_team ] ) ? $teams[ $away_team ] : $away_team;
+	}
+	// Use the team names.
+	else {
+		$home_name = $home_team;
+		$away_name = $away_team;
 	}
 
 	// Top sites.
@@ -354,8 +356,8 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 			$html .= '<thead>';
 				$html .= '<tr>';
 					$html .= sprintf( '<th>%s</th>', $toggle );
-					$html .= sprintf( '<th>%s</th>', $home_team );
-					$html .= sprintf( '<th>%s</th>', $away_team );
+					$html .= sprintf( '<th>%s</th>', $home_name );
+					$html .= sprintf( '<th>%s</th>', $away_name );
 				$html .= '</tr>';
 			$html .= '</thead>';
 			$html .= '<tbody>';
@@ -363,10 +365,13 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 			$html .= '<tr class="is-top">';
 				$html .= sprintf( '<td><strong>%s</strong></td>', __( 'Average odds', 'mai-asknews' ) );
 				foreach ( $averages as $team => $average ) {
+					// If hidden, show N/A.
 					if ( $hidden ) {
 						$rounded = 'N/A';
 						$html   .= sprintf( '<td>%s</td>', $rounded );
-					} else {
+					}
+					// Otherwise, show the average.
+					else {
 						$rounded = round( $average, 2 );
 						$html   .= sprintf( '<td>%s%s</td>', $rounded > 0 ? '+' : '', $rounded );
 					}
@@ -388,10 +393,13 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 				$html .= sprintf( '<tr class="%s">', $class );
 					$html .= sprintf( '<td>%s</td>', ucwords( $maker ) );
 
+					// If hidden, show N/A.
 					if ( $hidden ) {
 						$html .= sprintf( '<td>%s</td>', __( 'N/A', 'mai-asknews' ) );
 						$html .= sprintf( '<td>%s</td>', __( 'N/A', 'mai-asknews' ) );
-					} else {
+					}
+					// Otherwise, show the odds.
+					else {
 						$html .= sprintf( '<td>%s</td>', $home_odds );
 						$html .= sprintf( '<td>%s</td>', $away_odds );
 					}
