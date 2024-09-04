@@ -513,14 +513,6 @@ class Mai_AskNews_Singular {
 					// printf( '<p>%s</p>', $content );
 				}
 
-				// Get odds table.
-				$odds = maiasknews_get_odds_table( $data, $hidden );
-
-				// Display the odds.
-				if ( $odds ) {
-					echo $odds;
-				}
-
 				// If hidden, show CTA.
 				if ( $hidden ) {
 					echo '<div class="pm-prediction__cta">';
@@ -530,6 +522,16 @@ class Mai_AskNews_Singular {
 							printf( '<a class="button" href="%s">%s</a>', get_permalink( 41 ), __( 'Get Access', 'mai-asknews' ) );
 						echo '</div>';
 					echo '</div>';
+				}
+				// Show odds.
+				else {
+					// Get odds table.
+					$odds = maiasknews_get_odds_table( $data, $hidden );
+
+					// Display the odds.
+					if ( $odds ) {
+						echo $odds;
+					}
 				}
 
 			echo '</div>';
@@ -547,7 +549,7 @@ class Mai_AskNews_Singular {
 	 */
 	function do_jumps( $data ) {
 		// If odds data.
-		$odds = maiasknews_get_key( 'odds_info', $data );
+		$odds = maiasknews_has_access() ? maiasknews_get_key( 'odds_info', $data ) : false;
 
 		// Display the nav.
 		echo '<ul class="pm-jumps">';
@@ -556,8 +558,10 @@ class Mai_AskNews_Singular {
 			}
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#people">%s</a></li>', __( 'People', 'mai-asknews' ) );
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#timeline">%s</a></li>', __( 'Timeline', 'mai-asknews' ) );
-			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#web">%s</a></li>', __( 'Web', 'mai-asknews' ) );
-			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#sources">%s</a></li>', __( 'Sources', 'mai-asknews' ) );
+			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#sources">%s</a></li>', __( 'Latest News', 'mai-asknews' ) );
+
+			// TODO: Better name for external sources and sites talking about this.
+			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#web">%s</a></li>', __( 'Mentions', 'mai-asknews' ) );
 
 			// if ( $this->insights ) {
 			// 	printf( '<li class="pm-jump"><a class="pm-jump__link" href="#updates">%s</a></li>', __( 'Updates', 'mai-asknews' ) );
