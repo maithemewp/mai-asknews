@@ -733,6 +733,7 @@ class Mai_AskNews_Singular {
 	 */
 	function do_web( $data ) {
 		$web = maiasknews_get_key( 'web_search_results', $data );
+		$web = $web ?: maiasknews_get_key( 'web_seach_results', $data ); // Temp fix for mispelled.
 
 		if ( ! $web ) {
 			return;
@@ -754,7 +755,7 @@ class Mai_AskNews_Singular {
 		// Reindex.
 		$web = array_values( $web );
 
-		// Order by date. Only show the last 3 days before the most recent insight date.
+		// Possible TODO: Order by date. Only show the last 3 days before the most recent insight date.
 
 		// For subscription, show the last 2 weeks?
 

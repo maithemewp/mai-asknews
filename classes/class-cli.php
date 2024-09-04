@@ -50,7 +50,8 @@ class Mai_AskNews_CLI {
 	 * This is leftover from when we tried creating tags from key people,
 	 * when key people had a description in the string.
 	 *
-	 * TODO: Remove this after all tags are cleaned up on the live site.
+	 * TODO: Possibly remove this after all tags are cleaned up on the live site.
+	 *       Need to check if they are back after a full update_insights first.
 	 *
 	 * Usage: wp maiasknews cleanup_tags
 	 *
