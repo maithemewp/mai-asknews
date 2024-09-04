@@ -303,31 +303,20 @@ function maiasknews_get_odds_table( $body ) {
 	// Start the averages.
 	$averages = [];
 
-	// Get an average of the odds for each team.
+	// Loop through the odds data for each team
 	foreach ( $odds_data as $team => $odds ) {
-		$probabilities = [];
+		$decimal_sum = 0;
 
-		foreach ( $odds as $site => $odd ) {
-			if ( $odd > 0 ) {
-				$prob = 100 / ( $odd + 100 );
-			} else {
-				$prob = abs( $odd ) / ( abs( $odd ) + 100 );
-			}
-			$probabilities[] = $prob;
+		// Convert each odd to decimal and sum them
+		foreach ( $odds as $odd ) {
+			$decimal_sum += maiasknews_odds_to_decimal( (float) $odd );
 		}
 
-		// Calculate the average probability
-		$avg_prob = array_sum( $probabilities ) / count( $probabilities );
+		// Find the average of the decimal odds
+		$decimal_avg = $decimal_sum / count( $odds );
 
-		// Convert average probability back to odds
-		if ( $avg_prob < 0.5 ) {
-			$avg_odds = ( 100 / $avg_prob ) - 100;
-		} else {
-			$avg_odds = -100 / ( 1 - $avg_prob );
-		}
-
-		// Round and assign the average odds to the team
-		$averages[ $team ] = round( $avg_odds );
+		// Convert the average decimal odds back to American odds
+		$averages[ $team ] = maiasknews_decimal_to_odds( $decimal_avg );
 	}
 
 	// Get home and away teams.
@@ -395,6 +384,26 @@ function maiasknews_get_odds_table( $body ) {
 	$html .= '</div>';
 
 	return $html;
+}
+
+function maiasknews_odds_to_decimal( $odd ) {
+	// If the odds are positive
+	if ( $odd > 0 ) {
+		return 1 + ( $odd / 100 );
+	}
+
+	// The odds are negative
+	return 1 + ( 100 / abs( $odd ) );
+}
+
+function maiasknews_decimal_to_odds( $decimal ) {
+	// If the decimal odds are 2.00 or greater.
+	if ( $decimal >= 2 ) {
+		return ( $decimal - 1 ) * 100;
+	}
+
+	// The decimal odds are less than 2.00
+	return -100 / ( $decimal - 1 );
 }
 
 /**
