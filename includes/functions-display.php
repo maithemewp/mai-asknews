@@ -309,14 +309,14 @@ function maiasknews_get_odds_table( $body ) {
 
 		// Convert each odd to decimal and sum them
 		foreach ( $odds as $odd ) {
-			$decimal_sum += maiasknews_odds_to_decimal( (float) $odd );
+			$decimal_sum += maiasknews_american_to_decimal( (float) $odd );
 		}
 
 		// Find the average of the decimal odds
 		$decimal_avg = $decimal_sum / count( $odds );
 
 		// Convert the average decimal odds back to American odds
-		$averages[ $team ] = maiasknews_decimal_to_odds( $decimal_avg );
+		$averages[ $team ] = round( maiasknews_decimal_to_american( $decimal_avg ) );
 	}
 
 	// Get home and away teams.
@@ -386,24 +386,46 @@ function maiasknews_get_odds_table( $body ) {
 	return $html;
 }
 
-function maiasknews_odds_to_decimal( $odd ) {
-	// If the odds are positive
-	if ( $odd > 0 ) {
-		return 1 + ( $odd / 100 );
+/**
+ * Convert American odds to decimal.
+ *
+ * @access private
+ *
+ * @since 0.1.0
+ *
+ * @param float $value
+ *
+ * @return float
+ */
+function maiasknews_american_to_decimal( $value ) {
+	// If the odds are positive.
+	if ( $value > 0 ) {
+		return 1 + ( $value / 100 );
 	}
 
-	// The odds are negative
-	return 1 + ( 100 / abs( $odd ) );
+	// The odds are negative.
+	return 1 + ( 100 / abs( $value ) );
 }
 
-function maiasknews_decimal_to_odds( $decimal ) {
+/**
+ * Convert decimal odds to American odds.
+ *
+ * @access private
+ *
+ * @since 0.1.0
+ *
+ * @param float $value
+ *
+ * @return float
+ */
+function maiasknews_decimal_to_american( $value ) {
 	// If the decimal odds are 2.00 or greater.
-	if ( $decimal >= 2 ) {
-		return ( $decimal - 1 ) * 100;
+	if ( $value >= 2 ) {
+		return ( $value - 1 ) * 100;
 	}
 
-	// The decimal odds are less than 2.00
-	return -100 / ( $decimal - 1 );
+	// The decimal odds are less than 2.00.
+	return -100 / ( $value - 1 );
 }
 
 /**
