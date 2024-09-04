@@ -629,11 +629,6 @@ body {
 	inset: 0;
 	width: 100%;
 	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
 
 	h3::before {
 		display: block;
@@ -648,8 +643,20 @@ body {
 	}
 }
 
+.pm-prediction__cta-inner {
+	position: sticky;
+	top: var(--body-top);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: var(--spacing-lg) 0 0;
+}
+
 .pm-prediction__inner--obfuscated > ul,
-.pm-prediction__inner--obfuscated > p {
+.pm-prediction__inner--obfuscated > p,
+.pm-prediction__inner--obfuscated > .pm-odds {
 	filter: blur(6px);
 	opacity: 0.5;
 	user-select: none;

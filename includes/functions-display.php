@@ -248,11 +248,12 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
  *
  * @since 0.1.0
  *
- * @param array $body The insight body.
+ * @param array $body   The insight body.
+ * @param bool  $hidden Whether to obfuscate the table.
  *
  * @return string
  */
-function maiasknews_get_odds_table( $body ) {
+function maiasknews_get_odds_table( $body, $hidden = false ) {
 	// Get the odds data.
 	$html      = '';
 	$odds_data = maiasknews_get_key( 'odds_info', $body );
@@ -268,6 +269,9 @@ function maiasknews_get_odds_table( $body ) {
 
 	// Loop through odds data.
 	foreach ( $odds_data as $team => $odds ) {
+
+		ray( $team );
+
 		// Merge the sites.
 		$sites = array_merge( $sites, array_keys( $odds ) );
 	}
@@ -280,25 +284,18 @@ function maiasknews_get_odds_table( $body ) {
 		return $html;
 	}
 
-	/**
-	 * TODO: Fix odds.
-	 *
-	 * https://3.basecamp.com/3158646/buckets/38751729/todos/7773461088
-	 */
+	// Get teams.
+	$sport = maiasknews_get_key( 'sport', $body );
+	$teams = maiasknews_get_teams( $sport );
+	$array = [];
 
-	// // Start the averages.
-	// $averages = [];
+	// Build array.
+	foreach ( $teams as $short => $values ) {
+		$array[ $values['city'] . ' ' . $short ] = $short;
+	}
 
-	// // Get an average of the odds for each team.
-	// foreach ( $odds_data as $team => $odds ) {
-	// 	$sum = 0;
-
-	// 	foreach ( $odds as $site => $odd ) {
-	// 		$sum += (float) $odd;
-	// 	}
-
-	// 	$averages[ $team ] = $sum / count( $odds );
-	// }
+	// Set new teams array.
+	$teams = $array;
 
 	// Start the averages.
 	$averages = [];
@@ -322,6 +319,12 @@ function maiasknews_get_odds_table( $body ) {
 	// Get home and away teams.
 	list( $home_team, $away_team ) = array_keys( $odds_data );
 
+	// If we have teams array.
+	if ( $teams ) {
+		$home_team = isset( $teams[ $home_team ] ) ? $teams[ $home_team ] : $home_team;
+		$away_team = isset( $teams[ $away_team ] ) ? $teams[ $away_team ] : $away_team;
+	}
+
 	// Top sites.
 	$top_sites = [
 		'betmgm (colorado)',
@@ -332,7 +335,11 @@ function maiasknews_get_odds_table( $body ) {
 	];
 
 	// Start the odds.
+	// $html .= sprintf( '<div class="pm-odds%s">', $hidden ? ' pm-obfuscated' : '' );
 	$html .= '<div class="pm-odds">';
+		// Heading.
+		$html .= sprintf( '<p id="odds" class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
+
 		// Add a checkbox to expand/collapse the odds.
 		$toggle = '<div class="pm-toggle">';
 			$toggle .= '<label for="pm-toggle-input" class="pm-toggle_label">';
@@ -356,8 +363,14 @@ function maiasknews_get_odds_table( $body ) {
 			$html .= '<tr class="is-top">';
 				$html .= sprintf( '<td><strong>%s</strong></td>', __( 'Average odds', 'mai-asknews' ) );
 				foreach ( $averages as $team => $average ) {
-					$rounded = round( $average, 2 );
-					$html   .= sprintf( '<td>%s%s</td>', $rounded > 0 ? '+' : '', $rounded );
+					if ( $hidden ) {
+						$rounded = 'N/A';
+						$html   .= sprintf( '<td>%s</td>', $rounded );
+					} else {
+						$rounded = round( $average, 2 );
+						$html   .= sprintf( '<td>%s%s</td>', $rounded > 0 ? '+' : '', $rounded );
+					}
+
 				}
 			$html .= '</tr>';
 
@@ -374,8 +387,14 @@ function maiasknews_get_odds_table( $body ) {
 				// Build the row.
 				$html .= sprintf( '<tr class="%s">', $class );
 					$html .= sprintf( '<td>%s</td>', ucwords( $maker ) );
-					$html .= sprintf( '<td>%s</td>', $home_odds );
-					$html .= sprintf( '<td>%s</td>', $away_odds );
+
+					if ( $hidden ) {
+						$html .= sprintf( '<td>%s</td>', __( 'N/A', 'mai-asknews' ) );
+						$html .= sprintf( '<td>%s</td>', __( 'N/A', 'mai-asknews' ) );
+					} else {
+						$html .= sprintf( '<td>%s</td>', $home_odds );
+						$html .= sprintf( '<td>%s</td>', $away_odds );
+					}
 				$html .= '</tr>';
 			}
 

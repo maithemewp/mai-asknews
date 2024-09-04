@@ -384,9 +384,7 @@ class Mai_AskNews_Singular {
 			$this->do_votes( $body );
 		}
 
-		// if ( maiasknews_has_access() ) {
-			$this->do_prediction( $body, ! maiasknews_has_access() );
-		// }
+		$this->do_prediction( $body, ! maiasknews_has_access() );
 
 		$this->do_main( $body );
 		$this->do_people( $body );
@@ -514,14 +512,28 @@ class Mai_AskNews_Singular {
 					// printf( '<p>%s</p>', $content );
 				}
 
+				// Get odds table.
+				$odds = maiasknews_get_odds_table( $data, $hidden );
+
+				// Display the odds.
+				if ( $odds ) {
+					echo $odds;
+				}
+
+				// If hidden, show CTA.
 				if ( $hidden ) {
 					echo '<div class="pm-prediction__cta">';
-						printf( '<h3>%s</h3>', __( 'Gain the upper hand', 'mai-asknews' ) );
-						printf( '<p>%s</p>', __( 'Join now to get access to advanced insights and forecasts.', 'mai-asknews' ) );
-						printf( '<a class="button" href="%s">%s</a>', get_permalink( 41 ), __( 'Get Access', 'mai-asknews' ) );
+						echo '<div class="pm-prediction__cta-inner">';
+							printf( '<h3>%s</h3>', __( 'Gain the upper hand', 'mai-asknews' ) );
+							printf( '<p>%s</p>', __( 'Join now to get access to advanced insights and forecasts.', 'mai-asknews' ) );
+							printf( '<a class="button" href="%s">%s</a>', get_permalink( 41 ), __( 'Get Access', 'mai-asknews' ) );
+						echo '</div>';
 					echo '</div>';
 				}
+
 			echo '</div>';
+
+
 		echo '</div>';
 	}
 
@@ -550,11 +562,6 @@ class Mai_AskNews_Singular {
 			// 	printf( '<li class="pm-jump"><a class="pm-jump__link" href="#updates">%s</a></li>', __( 'Updates', 'mai-asknews' ) );
 			// }
 		echo '</ul>';
-
-		if ( $odds ) {
-			printf( '<p id="odds" class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
-			echo $odds;
-		}
 	}
 
 	/**
