@@ -696,6 +696,10 @@ body {
 	text-align: center;
 }
 
+.pm-odds__average {
+	font-weight: bold;
+}
+
 .pm-toggle_label {
 	display: inline-flex;
 	gap: var(--spacing-xs);

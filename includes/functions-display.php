@@ -363,19 +363,23 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 			$html .= '<tbody>';
 
 			$html .= '<tr class="is-top">';
-				$html .= sprintf( '<td><strong>%s</strong></td>', __( 'Average odds', 'mai-asknews' ) );
-				foreach ( $averages as $team => $average ) {
-					// If hidden, show N/A.
-					if ( $hidden ) {
-						$rounded = 'N/A';
-						$html   .= sprintf( '<td>%s</td>', $rounded );
-					}
-					// Otherwise, show the average.
-					else {
-						$rounded = round( $average, 2 );
-						$html   .= sprintf( '<td>%s%s</td>', $rounded > 0 ? '+' : '', $rounded );
-					}
+				// If averages.
+				if ( $averages ) {
+					$html .= sprintf( '<td class="pm-odds__average">%s</td>', __( 'Average odds', 'mai-asknews' ) );
 
+					// Loop through the averages
+					foreach ( $averages as $team => $average ) {
+						// If hidden, show N/A.
+						if ( $hidden ) {
+							$rounded = 'N/A';
+							$html   .= sprintf( '<td class="pm-odds__average">%s</td>', $rounded );
+						}
+						// Otherwise, show the average.
+						else {
+							$rounded = round( $average, 2 );
+							$html   .= sprintf( '<td class="pm-odds__average">%s%s</td>', $rounded > 0 ? '+' : '', $rounded );
+						}
+					}
 				}
 			$html .= '</tr>';
 

@@ -379,14 +379,15 @@ class Mai_AskNews_Singular {
 	 * @return void
 	 */
 	function do_insight( $body ) {
+		// Nav links.
+		$this->do_jumps( $body );
+
 		// Only admins can vote.
 		if ( current_user_can( 'manage_options' ) ) {
 			$this->do_votes( $body );
 		}
 
 		$this->do_prediction( $body, ! maiasknews_has_access() );
-
-		$this->do_main( $body );
 		$this->do_people( $body );
 		$this->do_timeline( $body );
 
@@ -544,9 +545,9 @@ class Mai_AskNews_Singular {
 	 *
 	 * @return void
 	 */
-	function do_main( $data ) {
-		// Get odds table.
-		$odds = maiasknews_get_odds_table( $data );
+	function do_jumps( $data ) {
+		// If odds data.
+		$odds = maiasknews_get_key( 'odds_info', $data );
 
 		// Display the nav.
 		echo '<ul class="pm-jumps">';
@@ -655,7 +656,7 @@ class Mai_AskNews_Singular {
 		}
 
 		printf( '<h2 id="sources" class="is-style-heading">%s</h2>', __( 'Latest News Sources', 'mai-asknews' ) );
-		printf( '<p>%s</p>', __( 'We scoured the web to summarize the best articles for you.', 'mai-asknews' ) );
+		printf( '<p>%s</p>', __( 'We searched the web to summarize the best articles for you.', 'mai-asknews' ) );
 
 		echo '<ul class="pm-sources">';
 			// Loop through sources.
