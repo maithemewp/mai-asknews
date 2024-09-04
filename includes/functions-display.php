@@ -329,7 +329,8 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 
 	// Top sites.
 	$top_sites = [
-		'betmgm (colorado)',
+		'draftkings',
+		'betmgm',
 		'fanduel',
 		'bovada',
 		'pointsbet',
