@@ -120,11 +120,15 @@ class Mai_AskNews_Archives {
 	function add_archive_title_atts( $attributes, $context, $args ) {
 		$object = get_queried_object();
 
-		// Bail if not a league or a top level term.
-		if ( ! $object || 'league' !== $object->taxonomy || 0 === $object->parent ) {
-			return $attributes;
+		// If not a WP_Term object.
+		if ( ! ( $object && is_a( $object, 'WP_Term' ) ) ) {
+			return;
 		}
 
+		// Bail if not a league or a top level term.
+		if ( 'league' !== $object->taxonomy || 0 === $object->parent ) {
+			return $attributes;
+		}
 
 		// Get parent term and teams.
 		$parent = get_term( $object->parent, 'league' );
@@ -170,8 +174,13 @@ class Mai_AskNews_Archives {
 	function do_teams() {
 		$object = get_queried_object();
 
+		// If not a WP_Term object.
+		if ( ! ( $object && is_a( $object, 'WP_Term' ) ) ) {
+			return;
+		}
+
 		// Bail if not a league or season.
-		if ( ! $object || ! in_array( $object->taxonomy, [ 'league', 'season' ] ) ) {
+		if ( ! in_array( $object->taxonomy, [ 'league', 'season' ] ) ) {
 			return;
 		}
 
