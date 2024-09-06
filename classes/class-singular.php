@@ -674,7 +674,7 @@ class Mai_AskNews_Singular {
 				$host       = $name ?: $parsed_url['host'];
 				$host       = str_replace( 'www.', '', $host );
 				$host       = $host ? 'mlb.com' === strtolower( $host ) ? 'MLB.com' : $host : '';
-				$host       = $host ? sprintf( '<a class="entry-title-link" href="%s" target="_blank">%s</a>', $url, $host ) : '';
+				$host       = $host ? sprintf( '<a class="entry-title-link" href="%s" target="_blank" rel="nofollow">%s</a>', $url, $host ) : '';
 				$date       = maiasknews_get_key( 'pub_date', $source );
 				$date       = $date ? wp_date( get_option( 'date_format' ), strtotime( $date ) ) : '';
 				$title      = maiasknews_get_key( 'eng_title', $source );
@@ -760,8 +760,8 @@ class Mai_AskNews_Singular {
 		// Reindex.
 		$web = array_values( $web );
 
-		// Possible TODO: Order by date. Only show the last 3 days before the most recent insight date.
-
+		// Possible TODOs:
+		// Order by date. Only show the last 3 days before the most recent insight date.
 		// For subscription, show the last 2 weeks?
 
 		printf( '<h2 id="web">%s</h2>', __( 'Around the Web', 'mai-asknews' ) );
@@ -776,7 +776,7 @@ class Mai_AskNews_Singular {
 			$host       = $name ?: $parsed_url['host'];
 			$host       = str_replace( 'www.', '', $host );
 			$host       = $host ? 'mlb.com' === strtolower( $host ) ? 'MLB.com' : $host : '';
-			$host       = $host ? sprintf( '<a class="entry-title-link" href="%s" target="_blank">%s</a>', $url, $host ) : '';
+			$host       = $host ? sprintf( '<a class="entry-title-link" href="%s" target="_blank" rel="nofollow">%s</a>', $url, $host ) : '';
 			$title      = maiasknews_get_key( 'title', $item );
 			$date       = maiasknews_get_key( 'published', $item );
 			$date       = $date ? wp_date( get_option( 'date_format' ), strtotime( $date ) ) : '';
