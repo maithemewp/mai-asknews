@@ -29,11 +29,7 @@ class Mai_AskNews_Archives {
 	 */
 	function handle_archive_name( $name ) {
 		// Not sure why this is needed, but it was falling back to 'post' for some reason.
-		if ( is_tax( 'league' ) || is_tax( 'season' ) || is_tax( 'matchup_tag' ) ) {
-			$name = 'matchup';
-		}
-		// If author or search results.
-		elseif ( is_author() || is_search() ) {
+		if ( is_tax( 'league' ) || is_tax( 'season' ) || is_tax( 'matchup_tag' ) || is_author() || is_search() ) {
 			$name = 'matchup';
 		}
 
@@ -60,8 +56,8 @@ class Mai_AskNews_Archives {
 			return;
 		}
 
-		// If author or search results.
-		if ( is_tax( 'league' ) || is_tax( 'season' ) || is_author() || is_search() ) {
+		// If our archive.
+		if ( is_tax( 'league' ) || is_tax( 'season' ) || is_tax( 'matchup_tag' ) || is_author() || is_search() ) {
 			$query->set( 'post_type', 'matchup' );
 		}
 	}

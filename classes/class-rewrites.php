@@ -136,7 +136,7 @@ class Mai_AskNews_Rewrites {
 
 		// Get conditions.
 		$is_admin_archive = is_admin() && 'matchup' === $query->get( 'post_type' );
-		$is_front_archive = ! is_admin() && ( is_tax( 'league' ) || is_tax( 'season' ) );
+		$is_front_archive = ! is_admin() && ( is_tax( 'league' ) || is_tax( 'season' ) || is_tax( 'matchup_tag' ) );
 
 		// Bail if not an archive.
 		if ( ! ( $is_admin_archive || $is_front_archive ) ) {
@@ -144,17 +144,26 @@ class Mai_AskNews_Rewrites {
 		}
 
 		// If a taxonomy archive, check taxonomy.
-		if ( $is_front_archive && is_tax() ) {
+		if ( $is_front_archive ) {
 			// Get taxonomy.
 			$taxonomy = isset( $query->query_vars['taxonomy'] ) ? $query->query_vars['taxonomy'] : '';
+			$taxonomy = $taxonomy ?: ( isset( $query->query_vars['matchup_tag'] ) && $query->query_vars['matchup_tag'] ? 'matchup_tag' : '' );
 
 			// If not league or season, bail.
-			if ( ! in_array( $taxonomy, [ 'league', 'season' ] ) ) {
+			if ( ! in_array( $taxonomy, [ 'league', 'season', 'matchup_tag' ] ) ) {
 				return;
 			}
 
-			// Get term.
-			$slug = isset( $query->query_vars['term'] ) ? $query->query_vars['term'] : '';
+			// Get slug.
+			switch ( $taxonomy ) {
+				case 'matchup_tag':
+					$slug = $query->query_vars['matchup_tag'];
+				break;
+				default:
+					$slug = isset( $query->query_vars['term'] ) ? $query->query_vars['term'] : '';
+			}
+
+			// Get term by slug.
 			$term = $slug ? get_term_by( 'slug', $slug, $taxonomy ) : '';
 
 			// Bail if no term.
