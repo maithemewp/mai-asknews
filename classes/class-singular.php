@@ -660,7 +660,7 @@ class Mai_AskNews_Singular {
 		}
 
 		printf( '<h2 id="sources" class="is-style-heading">%s</h2>', __( 'Latest News Sources', 'mai-asknews' ) );
-		printf( '<p>%s</p>', __( 'We searched the web to summarize the best articles for you.', 'mai-asknews' ) );
+		printf( '<p>%s</p>', __( 'We searched the web to summarize the best articles for you, powered by <a href="https://asknews.app/en" target="_blank" rel="nofollow">AskNews.app</a>.', 'mai-asknews' ) );
 
 		echo '<ul class="pm-sources">';
 			// Loop through sources.
