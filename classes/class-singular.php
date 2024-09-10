@@ -437,6 +437,14 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
+		// Get start timestamp.
+		$timestamp = get_post_meta( $this->matchup_id, 'event_date', true );
+
+		// Bail if no timestamp or current timestamp is greater than the start timestamp.
+		if ( ! $timestamp || time() > $timestamp ) {
+			return;
+		}
+
 		// $has_access = current_user_can( 'manage_options' );
 		$has_access = is_user_logged_in();
 		$home_full  = isset( $data['home_team'] ) ? $data['home_team'] : '';
