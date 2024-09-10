@@ -398,6 +398,6 @@ class Mai_AskNews_Archives {
 	 * @return string
 	 */
 	function get_noposts_text() {
-		return '<p>' . __( 'Sorry, we don\'t have any upcoming game insights at this time. Check back soon!', 'mai-asknews' ) . '</p>';
+		return '<p>' . __( 'Check back soon! We are busy getting the next matchups ready.', 'mai-asknews' ) . '</p>';
 	}
 }
