@@ -36,6 +36,13 @@ body {
 	font-size: var(--font-size-sm);
 }
 
+@media only screen and (max-width: 599px) {
+
+	.menu-dashboard .menu-item-link {
+		font-size: 0;
+	}
+}
+
 @media only screen and (max-width: 799px) {
 
 	.nav-header-right .menu-item:not(.menu-dashboard) {
