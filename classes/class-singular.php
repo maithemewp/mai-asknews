@@ -225,7 +225,7 @@ class Mai_AskNews_Singular {
 		}
 
 		// Refresh to show the new vote.
-		wp_safe_redirect( get_permalink() );
+		wp_safe_redirect( get_permalink() . '#vote' );
 	}
 
 	/**
@@ -408,10 +408,7 @@ class Mai_AskNews_Singular {
 		$this->do_jumps( $data );
 
 		// Only admins can vote.
-		if ( current_user_can( 'manage_options' ) ) {
-			$this->do_votes( $data );
-		}
-
+		$this->do_votes( $data );
 		$this->do_prediction( $data, ! maiasknews_has_access() );
 		$this->do_people( $data );
 		$this->do_injuries( $data );
@@ -440,7 +437,8 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-		$has_access = current_user_can( 'manage_options' );
+		// $has_access = current_user_can( 'manage_options' );
+		$has_access = is_user_logged_in();
 		$home_full  = isset( $data['home_team'] ) ? $data['home_team'] : '';
 		$away_full  = isset( $data['away_team'] ) ? $data['away_team'] : '';
 		$home_name  = isset( $data['home_team_name'] ) ? $data['home_team_name'] : $home_full;
@@ -452,22 +450,43 @@ class Mai_AskNews_Singular {
 		}
 
 		echo '<div id="vote" class="pm-vote">';
+			// Get user avatar.
+			$avatar = get_avatar( get_current_user_id(), 128 );
+
+			// Display the avatar.
+			printf( '<div class="pm-vote__avatar">%s</div>', $avatar );
+
 			$text = $this->vote_id ? __( 'Change Your Vote', 'mai-asknews' ) : __( 'Cast Your Vote!', 'mai-asknews' );
 			printf( '<h2>%s</h2>', $text );
 
-			if ( $has_access ) {
+			// if ( $has_access ) {
 				if ( $this->vote_name ) {
 					printf( '<p>%s %s. %s.</p>', __( 'You have already voted for', 'mai-asknews' ), $this->vote_name, __( 'Change your vote below.', 'mai-asknews' ) );
 				} else {
 					printf( '<p>%s</p>', __( 'Compete with others and beat Chad, the ProMatchups Robot.<br>Who do you think will win?', 'mai-asknews' ) );
 				}
 				echo '<form class="pm-vote__form" method="post" action="">';
-					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $home_full === $this->vote_name ? ' selected' : '', $home_full, $home_name );
-					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $away_full === $this->vote_name ? ' selected' : '', $away_full, $away_name );
+					// If they have access to vote.
+					if ( $has_access ) {
+						printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $home_full === $this->vote_name ? ' selected' : '', $home_full, $home_name );
+						printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $away_full === $this->vote_name ? ' selected' : '', $away_full, $away_name );
+					}
+					// No access.
+					else {
+						$url = add_query_arg(
+							[
+								'rcp_redirect' => get_permalink(),
+							],
+							get_permalink( 7049 )
+						);
+
+						printf( '<a class="button" href="%s">%s</a>', esc_url( $url ), $home_name );
+						printf( '<a class="button" href="%s">%s</a>', esc_url( $url ), $away_name );
+					}
 				echo '</form>';
-			} else {
-				printf( '<p>%s</p>', __( 'You must be logged in to vote.', 'mai-asknews' ) );
-			}
+			// } else {
+			// 	printf( '<p>%s</p>', __( 'You must be logged in to vote.', 'mai-asknews' ) );
+			// }
 		echo '</div>';
 
 		$first = false;
