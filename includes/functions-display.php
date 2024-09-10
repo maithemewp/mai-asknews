@@ -213,12 +213,12 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 
 	// Get list body.
 	$table = [
-		__( 'Prediction', 'mai-asknews' ) => [
+		__( 'Team', 'mai-asknews' ) => [
 			// 'hidden'  => sprintf( '%s %s %s', $home, __( 'or', 'mai-asknews' ), $away ),
 			'hidden'  => __( 'Members Only', 'mai-asknews' ),
 			'visible' => $choice,
 		],
-		__( 'Probability', 'mai-asknews' ) => [
+		__( 'Chance', 'mai-asknews' ) => [
 			'hidden'  => __( 'Members Only', 'mai-asknews' ),
 			'visible' => sprintf( '%s, %s', $probability, $likelihood ),
 		],
@@ -235,7 +235,7 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 	$html  = '';
 	$html .= '<ul class="pm-prediction__list">';
 	foreach ( $table as $label => $values ) {
-		$value = $hidden ? sprintf( '<span class="d">%s</span>', $values['hidden'] ) : $values['visible'];
+		$value = $hidden ? $values['hidden'] : $values['visible'];
 		$html .= sprintf( '<li class="pm-prediction__item"><strong>%s:</strong> %s</li>', $label, $value );
 	}
 	$html .= '</ul>';

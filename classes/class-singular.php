@@ -24,6 +24,13 @@ class Mai_AskNews_Singular {
 	protected $insights;
 
 	/**
+	 * The insight body.
+	 *
+	 * @var array
+	 */
+	protected $body;
+
+	/**
 	 * The current user.
 	 *
 	 * @var WP_User|false
@@ -117,8 +124,12 @@ class Mai_AskNews_Singular {
 			$this->insights = [];
 		}
 
+		// Set the body.
+		$this->body = $this->get_body();
+
 		// Add hooks.
 		add_filter( 'genesis_markup_entry-title_content', [ $this, 'handle_title' ], 10, 2 );
+		add_action( 'mai_after_entry_title',              [ $this, 'handle_descriptive_title' ], 6 );
 		add_action( 'mai_after_entry_title',              [ $this, 'do_event_info' ], 8 );
 		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_content' ] );
 		add_action( 'mai_after_entry_content_inner',      [ $this, 'do_updates' ] );
@@ -288,6 +299,29 @@ class Mai_AskNews_Singular {
 	}
 
 	/**
+	 * Handle the descriptive title.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return void
+	 */
+	function handle_descriptive_title() {
+		// Bail if not an admin.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$title = maiasknews_get_key( 'descriptive_title', $this->body );
+
+		// Bail if no title.
+		if ( ! $title ) {
+			return;
+		}
+
+		printf( '<h2 class="pm-title">%s</h2>', $title . ' (admin only)' );
+	}
+
+	/**
 	 * Do the event info.
 	 *
 	 * @since 0.1.0
@@ -317,24 +351,13 @@ class Mai_AskNews_Singular {
 	 * @return void
 	 */
 	function do_content() {
-		// Get the first insight.
-		$insight_id = reset( $this->insights );
-
-		// Bail if no insight.
-		if ( ! $insight_id ) {
-			return;
-		}
-
-		// Get the body.
-		$body = get_post_meta( $insight_id, 'asknews_body', true );
-
 		// Bail if no body.
-		if ( ! $body ) {
+		if ( ! $this->body ) {
 			return;
 		}
 
 		// Do the content.
-		$this->do_insight( $body );
+		$this->do_insight( $this->body );
 	}
 
 	/**
@@ -359,13 +382,13 @@ class Mai_AskNews_Singular {
 		// Loop through insights.
 		foreach ( $insight_ids as $index => $insight_id ) {
 			// Get body, and the post date with the time.
-			$body = get_post_meta( $insight_id, 'asknews_body', true );
+			$data = get_post_meta( $insight_id, 'asknews_body', true );
 			$date = get_the_date( 'F j, Y @g:m a', $insight_id );
 
 			printf( '<details id="pm-insight-%s" class="pm-insight">', $index );
 				printf( '<summary class="pm-insight__summary">%s %s</summary>', get_the_title( $insight_id ), $date );
 				echo '<div class="pm-insight__content entry-content">';
-					$this->do_insight( $body );
+					$this->do_insight( $data );
 				echo '</div>';
 			echo '</details>';
 		}
@@ -376,32 +399,37 @@ class Mai_AskNews_Singular {
 	 *
 	 * @since 0.1.0
 	 *
+	 * @param array $data The insight data.
+	 *
 	 * @return void
 	 */
-	function do_insight( $body ) {
+	function do_insight( $data ) {
 		// Nav links.
-		$this->do_jumps( $body );
+		$this->do_jumps( $data );
 
 		// Only admins can vote.
 		if ( current_user_can( 'manage_options' ) ) {
-			$this->do_votes( $body );
+			$this->do_votes( $data );
 		}
 
-		$this->do_prediction( $body, ! maiasknews_has_access() );
-		$this->do_people( $body );
-		$this->do_timeline( $body );
+		$this->do_prediction( $data, ! maiasknews_has_access() );
+		$this->do_people( $data );
+		$this->do_injuries( $data );
+		$this->do_timeline( $data );
 
 		// Do CCA hook.
-		do_action( 'pm_cca', $body );
+		do_action( 'pm_cca', $data );
 
-		$this->do_sources( $body );
-		$this->do_web( $body );
+		$this->do_sources( $data );
+		$this->do_web( $data );
 	}
 
 	/**
 	 * Display the vote box.
 	 *
 	 * @since 0.1.0
+	 *
+	 * @param array $data The insight data.
 	 *
 	 * @return void
 	 */
@@ -413,27 +441,13 @@ class Mai_AskNews_Singular {
 		}
 
 		$has_access = current_user_can( 'manage_options' );
-		$home       = isset( $data['home_team_name'] ) ? $data['home_team_name'] : '';
-		$away       = isset( $data['away_team_name'] ) ? $data['away_team_name'] : '';
-
-		// If home.
-		if ( ! $home ) {
-			// Old data didn't have name separate, so parse it from city team string.
-			$home = isset( $data['home_team'] ) ? $data['home_team'] : '';
-			$home = $home ? explode( ' ', $home ) : '';
-			$home = $home ? end( $home ) : '';
-		}
-
-		// If home.
-		if ( ! $away ) {
-			// Old data didn't have name separate, so parse it from city team string.
-			$away = isset( $data['away_team'] ) ? $data['away_team'] : '';
-			$away = $away ? explode( ' ', $away ) : '';
-			$away = $away ? end( $away ) : '';
-		}
+		$home_full  = isset( $data['home_team'] ) ? $data['home_team'] : '';
+		$away_full  = isset( $data['away_team'] ) ? $data['away_team'] : '';
+		$home_name  = isset( $data['home_team_name'] ) ? $data['home_team_name'] : $home_full;
+		$away_name  = isset( $data['away_team_name'] ) ? $data['away_team_name'] : $away_full;
 
 		// Bail if no teams.
-		if ( ! ( $home && $away ) ) {
+		if ( ! ( $home_full && $away_full ) ) {
 			return;
 		}
 
@@ -445,11 +459,11 @@ class Mai_AskNews_Singular {
 				if ( $this->vote_name ) {
 					printf( '<p>%s %s. %s.</p>', __( 'You have already voted for', 'mai-asknews' ), $this->vote_name, __( 'Change your vote below.', 'mai-asknews' ) );
 				} else {
-					printf( '<p>%s</p>', __( 'Compete with others and beat the ProMatchups Robot.<br>Who do you think will win?', 'mai-asknews' ) );
+					printf( '<p>%s</p>', __( 'Compete with others and beat Chad, the ProMatchups Robot.<br>Who do you think will win?', 'mai-asknews' ) );
 				}
 				echo '<form class="pm-vote__form" method="post" action="">';
-					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $home === $this->vote_name ? ' selected' : '', $home, $home );
-					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $away === $this->vote_name ? ' selected' : '', $away, $away );
+					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $home_full === $this->vote_name ? ' selected' : '', $home_full, $home_name );
+					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $away_full === $this->vote_name ? ' selected' : '', $away_full, $away_name );
 				echo '</form>';
 			} else {
 				printf( '<p>%s</p>', __( 'You must be logged in to vote.', 'mai-asknews' ) );
@@ -476,8 +490,20 @@ class Mai_AskNews_Singular {
 
 		// Display the prediction.
 		echo '<div id="prediction" class="pm-prediction">';
-			printf( '<h2>%s</h2>', __( 'Our Prediction', 'mai-asknews' ) );
-			echo maiasknews_get_prediction_list( $data, $hidden );
+			// Display the header.
+			echo '<div class="pm-prediction__header">';
+				// Get image.
+				$image = (string) wp_get_attachment_image( 9592, 'medium', false, [ 'class' => 'pm-prediction__img' ] );
+
+				// Display the image. No conditions, always show, even if empty because of CSS grid.
+				printf( '<div class="pm-prediction__image">%s</div>', $image );
+
+				// Display the heading and prediction list.
+				echo '<div class="pm-prediction__bubble">';
+					printf( '<h2>%s</h2>', __( 'My Prediction', 'mai-asknews' ) );
+					echo maiasknews_get_prediction_list( $data, $hidden );
+				echo '</div>';
+			echo '</div>';
 
 			$reasoning = sprintf( __( 'Either the %s or the %s are predicted to win this game. You do not have access to our predictions.', 'mai-asknews' ), $home, $away );
 			$keys      = [
@@ -490,15 +516,16 @@ class Mai_AskNews_Singular {
 					'hidden' => $reasoning,
 				],
 				'reconciled_information' => [
-					'label'  => '',
+					'label'  => __( 'Reconciled Info', 'mai-asknews' ),
 					'hidden' => $reasoning,
 				],
 				'unique_information'     => [
-					'label'  => '',
+					'label'  => __( 'Unique Info', 'mai-asknews' ),
 					'hidden' => $reasoning,
 				],
 			];
 
+			// Display the inner content.
 			printf( '<div class="pm-prediction__inner%s">', $hidden ? ' pm-prediction__inner--obfuscated' : '' );
 				foreach ( $keys as $key => $value ) {
 					$content = $hidden ? $value['hidden'] : maiasknews_get_key( $key, $data );
@@ -511,6 +538,26 @@ class Mai_AskNews_Singular {
 
 					printf( '<p>%s%s</p>', $heading, $content );
 					// printf( '<p>%s</p>', $content );
+				}
+
+				// Get the interesting stat.
+				$stat = $hidden ? $reasoning : maiasknews_get_key( 'interesting_statistic', $data );
+
+				// Display the interesting stat.
+				if ( $stat ) {
+					$heading = sprintf( '<strong>%s:</strong> ', __( 'Interesting Statistic', 'mai-asknews' ) );
+
+					printf( '<p>%s%s</p>', $heading, $stat );
+				}
+
+				// Get the fantasy tip.
+				$fantasy = $hidden ? $reasoning : maiasknews_get_key( 'fantasy_tip', $data );
+
+				// Display the fantasy tip.
+				if ( $fantasy ) {
+					$heading = sprintf( '<strong>%s!</strong> ', __( 'Fantasy Tip', 'mai-asknews' ) );
+
+					printf( '<div class="pm-prediction__fantasy">%s%s</div>', $heading, wpautop( $fantasy, false ) );
 				}
 
 				// If hidden, show CTA.
@@ -545,6 +592,8 @@ class Mai_AskNews_Singular {
 	 *
 	 * @since 0.1.0
 	 *
+	 * @param array $data The insight data.
+	 *
 	 * @return void
 	 */
 	function do_jumps( $data ) {
@@ -574,6 +623,8 @@ class Mai_AskNews_Singular {
 	 *
 	 * @since 0.1.0
 	 *
+	 * @param array $data The insight data.
+	 *
 	 * @return void
 	 */
 	function do_people( $data ) {
@@ -589,6 +640,7 @@ class Mai_AskNews_Singular {
 
 		echo '<ul class="pm-people">';
 
+		// Loop through people.
 		foreach ( $people as $person ) {
 			// Early versions were a string of the person's name.
 			if ( is_string( $person ) ) {
@@ -619,10 +671,52 @@ class Mai_AskNews_Singular {
 		echo '</ul>';
 	}
 
+	function do_injuries( $data ) {
+		$injuries = maiasknews_get_key( 'relevant_injuries', $data );
+
+		// Bail if no injuries.
+		if ( ! $injuries ) {
+			return;
+		}
+
+		// Start lis.
+		$lis = [];
+
+		// Loop through injuries.
+		foreach ( $injuries as $index => $injury ) {
+			$name   = maiasknews_get_key( 'name', $injury );
+			$team   = maiasknews_get_key( 'team', $injury );
+			$status = maiasknews_get_key( 'status', $injury );
+
+			// Skip if no data.
+			if ( ! ( $name && $team && $status ) ) {
+				continue;
+			}
+
+			$lis[] = sprintf('<li><strong>%s</strong> (%s): %s</li>', $name, $team, $status );
+		}
+
+		// Bail if no lis.
+		if ( ! $lis ) {
+			return;
+		}
+
+		printf( '<h2 id="injuries" class="is-style-heading">%s</h2>', __( 'Injuries', 'mai-asknews' ) );
+		printf( '<p>%s</p>', __( 'Injuries that may affect the outcome of this matchup.', 'mai-asknews' ) );
+
+		echo '<ul class="pm-injuries">';
+			foreach ( $lis as $li ) {
+				echo $li;
+			}
+		echo '</ul>';
+	}
+
 	/**
 	 * Display the timeline.
 	 *
 	 * @since 0.1.0
+	 *
+	 * @param array $data The insight data.
 	 *
 	 * @return void
 	 */
@@ -650,6 +744,8 @@ class Mai_AskNews_Singular {
 	 *
 	 * @since 0.1.0
 	 *
+	 * @param array $data The insight data.
+	 *
 	 * @return void
 	 */
 	function do_sources( $data ) {
@@ -659,6 +755,7 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
+		// printf( '<h2 id="sources" class="is-style-heading">%s <span class="by-asknews">%s</span></h2>', __( 'Latest News Sources', 'mai-asknews' ), __( 'by Asknews.app', 'mai-asknews' ) );
 		printf( '<h2 id="sources" class="is-style-heading">%s</h2>', __( 'Latest News Sources', 'mai-asknews' ) );
 		printf( '<p>%s</p>', __( 'We searched the web to summarize the best articles for you, powered by <a href="https://asknews.app/en" target="_blank" rel="nofollow">AskNews.app</a>.', 'mai-asknews' ) );
 
@@ -734,6 +831,8 @@ class Mai_AskNews_Singular {
 	 *
 	 * @since 0.1.0
 	 *
+	 * @param array $data The insight data.
+	 *
 	 * @return void
 	 */
 	function do_web( $data ) {
@@ -805,5 +904,34 @@ class Mai_AskNews_Singular {
 		}
 
 		echo '</ul>';
+	}
+
+	/**
+	 * Get the body.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return array
+	 */
+	function get_body() {
+		static $cache = null;
+
+		if ( ! is_null( $cache ) ) {
+			return $cache;
+		}
+
+		// Get the first insight.
+		$cache      = [];
+		$insight_id = reset( $this->insights );
+
+		// Bail if no insight.
+		if ( ! $insight_id ) {
+			return $cache;
+		}
+
+		// Get the body.
+		$cache = (array) get_post_meta( $insight_id, 'asknews_body', true );
+
+		return $cache;
 	}
 }

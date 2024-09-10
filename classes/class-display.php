@@ -31,6 +31,7 @@ class Mai_AskNews_Display {
 		add_action( 'after_setup_theme',               [ $this, 'breadcrumbs' ] );
 		add_filter( 'get_post_metadata',               [ $this, 'fallback_thumbnail_id' ], 10, 4 );
 		add_filter( 'genesis_markup_entry-wrap_open',  [ $this, 'get_datetime' ], 10, 2 );
+		add_filter( 'mai_post_grid_query_args',        [ $this, 'mpg_query_args' ], 10, 2 );
 		add_filter( 'genesis_markup_entry-wrap_close', [ $this, 'get_predictions' ], 10, 2 );
 		add_filter( 'mai_template-parts_config',       [ $this, 'add_ccas' ] );
 		add_shortcode( 'pm_date',                      [ $this, 'date_shortcode' ] );
@@ -240,7 +241,7 @@ class Mai_AskNews_Display {
 		$class   = isset( $args['params']['args']['class'] ) ? $args['params']['args']['class'] : '';
 		$context = isset( $args['params']['args']['context'] ) ? $args['params']['args']['context'] : '';
 
-		// Bail if not an archive or MPG with custom class..
+		// Bail if not an archive or MPG with custom class.
 		if ( ! ( 'archive' === $context || ( 'block' === $context && str_contains( $class, 'pm-matchups' ) ) ) ) {
 			return $content;
 		}
@@ -262,6 +263,40 @@ class Mai_AskNews_Display {
 		// TODO: Write "admin only" and color like the singular box.
 
 		return $list . $content;
+	}
+
+	/**
+	 * Add the tax query to the MPG query.
+	 *
+	 * @param array $query_args WP_Query args.
+	 * @param array $args       Mai Post Grid args.
+	 *
+	 * @return array
+	 */
+	function mpg_query_args( $query_args, $args ) {
+		if ( ! isset( $args['class'] ) || empty( $args['class'] ) ) {
+			return $query_args;
+		}
+
+		if ( ! mai_has_string( 'pm-upcoming-matchups', $args['class'] ) ) {
+			return $query_args;
+		}
+
+		$query_args['meta_query'] = [
+			[
+				'key'     => 'event_date',
+				'value'   => strtotime( '-2 hours' ),
+				'compare' => '>',
+				'type'    => 'NUMERIC',
+			],
+		];
+
+		// Sort by event date.
+		$query_args['orderby']  = 'meta_value_num';
+		$query_args['order']    = 'ASC';
+		$query_args['meta_key'] = 'event_date';
+
+		return $query_args;
 	}
 
 	/**
