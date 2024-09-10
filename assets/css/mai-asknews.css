@@ -1200,7 +1200,7 @@ body {
 	display: none;
 }
 
-#rcp_registratin_form .rcp_user_last_wrap {
+#rcp_registratin_form #rcp_user_last_wrap {
 	display: none;
 }
 
