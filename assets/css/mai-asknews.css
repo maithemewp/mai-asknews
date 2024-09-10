@@ -1200,6 +1200,10 @@ body {
 	display: none;
 }
 
+#rcp_registratin_form .rcp_user_last_wrap {
+	display: none;
+}
+
 #rcp_discount_code_wrap {
 	width: 100%;
 	max-width: var(--breakpoint-xs);
