@@ -4,7 +4,7 @@
  * Plugin Name:     Mai AskNews
  * Plugin URI:      https://promatchups.com
  * Description:     A custom endpoint to receive data from AskNews.
- * Version:         0.1.0
+ * Version:         0.2.0
  *
  * Author:          BizBudding
  * Author URI:      https://bizbudding.com
@@ -99,7 +99,7 @@ final class Mai_AskNews_Plugin {
 	private function setup_constants() {
 		// Plugin version.
 		if ( ! defined( 'MAI_ASKNEWS_VERSION' ) ) {
-			define( 'MAI_ASKNEWS_VERSION', '0.1.0' );
+			define( 'MAI_ASKNEWS_VERSION', '0.2.0' );
 		}
 
 		// Plugin Folder Path.
