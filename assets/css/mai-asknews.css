@@ -32,6 +32,16 @@ body {
 	margin-bottom: -42px !important;
 }
 
+.nav-header {
+	.menu-item-last {
+		margin-left: auto !important;
+	}
+
+	.menu-item-button > .menu-item-link.button {
+		--menu-font-size: var(--font-size-xs);
+	}
+}
+
 .menu-dashboard {
 	font-size: var(--font-size-sm);
 }
