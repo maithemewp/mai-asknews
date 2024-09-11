@@ -211,21 +211,29 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 	// $confidence     = $confidence ? maiasknews_format_confidence( $confidence ) : '';
 	// $llm_confidence = maiasknews_get_key( 'llm_confidence', $body );
 
-	// Get list body.
-	$table = [
-		__( 'Team', 'mai-asknews' ) => [
-			// 'hidden'  => sprintf( '%s %s %s', $home, __( 'or', 'mai-asknews' ), $away ),
+	// Start table data.
+	$table = [];
+
+	// If choice.
+	if ( $choice ) {
+		$table[ __( 'Team', 'mai-asknews' ) ] = [
 			'hidden'  => __( 'Members Only', 'mai-asknews' ),
 			'visible' => $choice,
-		],
-		__( 'Chance', 'mai-asknews' ) => [
+		];
+	}
+
+	// If probability and likelihood.
+	if ( $probability && $likelihood ) {
+		$table[ __( 'Chance', 'mai-asknews' ) ] = [
 			'hidden'  => __( 'Members Only', 'mai-asknews' ),
 			'visible' => sprintf( '%s, %s', $probability, $likelihood ),
-		],
-		// __( 'Confidence', 'mai-asknews' )     => $confidence,
-		// __( 'LLM Confidence', 'mai-asknews' ) => $llm_confidence,
-		// __( 'Likelihood', 'mai-asknews' )     => $likelihood,
-	];
+		];
+	}
+
+	// TBD.
+	// $table[ __( 'Confidence', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
+	// $table[ __( 'LLM Confidence', 'mai-asknews' ) ] = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
+	// $table[ __( 'Likelihood', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
 
 	// Bail if no data.
 	if ( ! array_filter( $table ) ) {
