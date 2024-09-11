@@ -216,7 +216,8 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 
 	// If choice.
 	if ( $choice ) {
-		$table[ __( 'Team', 'mai-asknews' ) ] = [
+		$table[ 'choice' ] = [
+			// 'icon'    => $wand,
 			'hidden'  => __( 'Members Only', 'mai-asknews' ),
 			'visible' => $choice,
 		];
@@ -224,7 +225,13 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 
 	// If probability and likelihood.
 	if ( $probability && $likelihood ) {
-		$table[ __( 'Chance', 'mai-asknews' ) ] = [
+		// $table[ __( 'Chance', 'mai-asknews' ) ] = [
+		// 	'icon'    => $dice,
+		// 	'hidden'  => __( 'Members Only', 'mai-asknews' ),
+		// 	'visible' => sprintf( '%s, %s', $probability, $likelihood ),
+		// ];
+		$table[ 'probability' ] = [
+			// 'icon'    => $dice,
 			'hidden'  => __( 'Members Only', 'mai-asknews' ),
 			'visible' => sprintf( '%s, %s', $probability, $likelihood ),
 		];
@@ -242,10 +249,15 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 
 	$html  = '';
 	$html .= '<ul class="pm-prediction__list">';
-	foreach ( $table as $label => $values ) {
-		$value = $hidden ? $values['hidden'] : $values['visible'];
-		$html .= sprintf( '<li class="pm-prediction__item"><strong>%s:</strong> %s</li>', $label, $value );
-	}
+		if ( ! is_singular() ) {
+			$html .= sprintf( '<li class="pm-prediction__item label">%s</li>', __( 'Our Prediction', 'mai-asknews' ) );
+		}
+
+		foreach ( $table as $class => $values ) {
+			$value = $hidden ? $values['hidden'] : $values['visible'];
+			// $html .= sprintf( '<li class="pm-prediction__item"><strong>%s:</strong> %s</li>', $values['icon'], $value );
+			$html .= sprintf( '<li class="pm-prediction__item %s">%s</li>', $class, $value );
+		}
 	$html .= '</ul>';
 
 	return $html;
