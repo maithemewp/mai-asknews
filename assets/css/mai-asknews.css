@@ -1137,6 +1137,7 @@ footer.site-footer {
 			display: grid;
 			gap: var(--spacing-xxxl) var(--spacing-md);
 			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			margin-top: 36px; /* for ::before pseudo heading */
 		}
 	}
 
@@ -1194,7 +1195,7 @@ footer.site-footer {
 	.rcp_subscription_level_13::before {
 		position: absolute;
 		left: 0;
-		bottom: calc(100% + var(--spacing-sm));
+		bottom: calc(100% + var(--spacing-xxs));
 		display: block;
 		font-family: var(--font-family-heading);
 		font-weight: var(--heading-font-weight);
