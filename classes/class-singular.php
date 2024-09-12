@@ -591,8 +591,8 @@ class Mai_AskNews_Singular {
 				if ( $hidden ) {
 					echo '<div class="pm-prediction__cta">';
 						echo '<div class="pm-prediction__cta-inner">';
-							printf( '<h3>%s</h3>', __( 'Gain the upper hand', 'mai-asknews' ) );
-							printf( '<p>%s</p>', __( 'Join now to get access to advanced insights and forecasts.', 'mai-asknews' ) );
+							printf( '<h3>%s</h3>', __( 'Advanced Insights', 'mai-asknews' ) );
+							printf( '<p>%s</p>', __( 'Advanced insights and predictions available to members.', 'mai-asknews' ) );
 							printf( '<a class="button" href="%s">%s</a>', get_permalink( 41 ), __( 'Get Access', 'mai-asknews' ) );
 						echo '</div>';
 					echo '</div>';
