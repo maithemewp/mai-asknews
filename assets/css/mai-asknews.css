@@ -29,10 +29,6 @@ body {
 	/* --site-header-background: var(--color-gradient-dark); */
 }
 
-.title-area .custom-logo-link {
-	margin-bottom: -42px !important;
-}
-
 .nav-header {
 
 	.menu-item-button > .menu-item-link.button {
@@ -1267,12 +1263,16 @@ footer.site-footer {
 }
 
 #rcp_registration_form {
+	display: flex;
+	flex-direction: column;
 	padding: 0 !important;
+
+	> *:not(.rcp_user_fieldset)
 }
 
-#rcp_registration_form:has(.rcp_subscription_fieldset) .rcp_user_fieldset {
+/* #rcp_registration_form:has(.rcp_subscription_fieldset) .rcp_user_fieldset {
 	display: none;
-}
+} */
 
 #rcp_registration_form #rcp_user_last_wrap {
 	display: none;
