@@ -1326,6 +1326,7 @@ footer.site-footer {
 	.rcp_agree_to_privacy_policy_fieldset,
 	#rcp_auto_renew_wrap,
 	#rcp_submit_wrap {
+		width: 100%;
 		max-width: var(--breakpoint-xs);
 		margin-inline: auto;
 		padding: 0;
