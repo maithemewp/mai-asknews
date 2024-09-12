@@ -572,6 +572,7 @@ body {
 	color: white;
 }
 
+.nav-dashboard .menu,
 .pm-jumps {
 	--list-style-type: none;
 	--list-margin: 0 0 var(--spacing-lg);
@@ -607,7 +608,10 @@ body {
 	}
 }
 
+.nav-dashboard .menu-item-link,
 .pm-jump__link {
+	--menu-item-link-color: var(--color-white);
+	--menu-item-link-color-hover: var(--color-primary);
 	--link-color: var(--color-white);
 	--link-color-hover: var(--color-primary);
 	--link-text-decoration: none;
@@ -1079,6 +1083,11 @@ footer.site-footer {
 
 /* Plugins */
 
+/* add custom class to Group to hide form totals for beat the bot free registration form */
+.hide-rcp_registration_total .rcp_registration_total {
+	display: none;
+}
+
 .rcp-table {
 	font-size: var(--font-size-sm);
 }
@@ -1097,22 +1106,21 @@ footer.site-footer {
 	}
 
 	/* login text link */
-	/* form description, added this for the beat-the-bot free registration form */
-	/* total price (free) */
+	/* form description */
 	.rcp_login_link,
-	.rcp_description,
-	.rcp_registration_total {
+	.rcp_description {
 		display: none;
 	}
 
-	.rcp_user_fieldset {
-		> p {
-			margin-bottom: var(--spacing-md);
-		}
+	p:has(input, select) {
+		margin-bottom: var(--spacing-md);
+	}
 
-		label {
-			margin-bottom: var(--spacing-xxxxs);
-		}
+	label {
+		margin-bottom: var(--spacing-xxxxs);
+	}
+
+	.rcp_user_fieldset {
 
 		label::after {
 			display: inline-block;
@@ -1411,4 +1419,9 @@ footer.site-footer {
 	#rcp-payment-history td {
 		vertical-align: middle;
 	}
+}
+
+#rcp_profile_editor_form {
+	display: grid;
+	gap: var(--spacing-xl);
 }
