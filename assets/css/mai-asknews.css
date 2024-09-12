@@ -1088,6 +1088,10 @@ footer.site-footer {
 	display: none;
 }
 
+.rcp_header:empty {
+	display: none;
+}
+
 .rcp-table {
 	font-size: var(--font-size-sm);
 }
