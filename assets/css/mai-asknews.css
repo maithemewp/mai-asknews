@@ -76,7 +76,10 @@ body {
 .nav-after-header {
 	--menu-font-weight: var(--heading-font-weight);
 	--menu-item-name-filter-hover: none;
-	--menu-item-link-color-hover: var(--color-primary);
+
+	.menu-item:not(.menu-dashboard) .menu-item-link-current:not(.button):not(:hover):not(:focus) {
+		--menu-item-link-color-hover: var(--color-primary);
+	}
 }
 
 .button:not(.button-link) {
