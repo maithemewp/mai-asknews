@@ -464,37 +464,44 @@ class Mai_AskNews_Singular {
 			// Display the avatar.
 			printf( '<div class="pm-vote__avatar">%s</div>', $avatar );
 
+			// Display the title.
 			$text = $this->vote_id ? __( 'Change Your Vote', 'mai-asknews' ) : __( 'Cast Your Vote!', 'mai-asknews' );
 			printf( '<h2>%s</h2>', $text );
 
-			// if ( $has_access ) {
-				if ( $this->vote_name ) {
-					printf( '<p>%s %s. %s.</p>', __( 'You have already voted for', 'mai-asknews' ), $this->vote_name, __( 'Change your vote below.', 'mai-asknews' ) );
-				} else {
-					printf( '<p>%s</p>', __( 'Compete with others to beat the SportsDesk Bot.<br>Who do you think will win?', 'mai-asknews' ) );
-				}
-				echo '<form class="pm-vote__form" method="post" action="">';
-					// If they have access to vote.
-					if ( $has_access ) {
-						printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $home_full === $this->vote_name ? ' selected' : '', $home_full, $home_name );
-						printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $away_full === $this->vote_name ? ' selected' : '', $away_full, $away_name );
-					}
-					// No access.
-					else {
-						$url = add_query_arg(
-							[
-								'rcp_redirect' => get_permalink(),
-							],
-							get_permalink( 7049 )
-						);
+			// Display the description.
+			if ( $this->vote_name ) {
+				printf( '<p>%s %s. %s.</p>', __( 'You have already voted for', 'mai-asknews' ), $this->vote_name, __( 'Change your vote below.', 'mai-asknews' ) );
+			} else {
+				printf( '<p>%s</p>', __( 'Compete with others to beat the SportsDesk Bot.<br>Who do you think will win?', 'mai-asknews' ) );
+			}
 
-						printf( '<a class="button" href="%s">%s</a>', esc_url( $url ), $home_name );
-						printf( '<a class="button" href="%s">%s</a>', esc_url( $url ), $away_name );
-					}
+			// If they have access to vote.
+			if ( $has_access ) {
+				echo '<form class="pm-vote__form" method="post" action="">';
+					$selected  = sprintf( '<span class="pm-vote__selected">%s</span>', __( 'Your pick', 'promatchups' ) );
+					$home_name = $home_full === $this->vote_name ? $home_name . $selected : $home_name;
+					$away_name = $away_full === $this->vote_name ? $away_name . $selected : $away_name;
+
+					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $home_full === $this->vote_name ? ' selected' : '', $home_full, $home_name );
+					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $away_full === $this->vote_name ? ' selected' : '', $away_full, $away_name );
 				echo '</form>';
-			// } else {
-			// 	printf( '<p>%s</p>', __( 'You must be logged in to vote.', 'mai-asknews' ) );
-			// }
+			}
+			// No access.
+			else {
+				echo '<div class="pm-vote__form">';
+					// Build url.
+					$url = add_query_arg(
+						[
+							'rcp_redirect' => get_permalink(),
+						],
+						get_permalink( 7049 )
+					);
+
+					printf( '<a class="button" href="%s">%s</a>', esc_url( $url ), $home_name );
+					printf( '<a class="button" href="%s">%s</a>', esc_url( $url ), $away_name );
+				echo '</div>';
+			}
+
 		echo '</div>';
 
 		$first = false;
