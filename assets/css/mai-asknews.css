@@ -61,7 +61,7 @@ body {
 
 @media only screen and (max-width: 799px) {
 
-	.nav-header-right .menu-item:not(.menu-dashboard):not(.menu-item-button) {
+	.nav-header-right .menu-item:not(.menu-dashboard):not(.menu-item-button):not(.menu-item-icon) {
 		display: none !important;
 	}
 }
