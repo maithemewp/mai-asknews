@@ -471,7 +471,7 @@ class Mai_AskNews_Singular {
 				if ( $this->vote_name ) {
 					printf( '<p>%s %s. %s.</p>', __( 'You have already voted for', 'mai-asknews' ), $this->vote_name, __( 'Change your vote below.', 'mai-asknews' ) );
 				} else {
-					printf( '<p>%s</p>', __( 'Compete with others and beat Chad, the ProMatchups Robot.<br>Who do you think will win?', 'mai-asknews' ) );
+					printf( '<p>%s</p>', __( 'Compete with others to beat the SportsDesk Bot.<br>Who do you think will win?', 'mai-asknews' ) );
 				}
 				echo '<form class="pm-vote__form" method="post" action="">';
 					// If they have access to vote.
