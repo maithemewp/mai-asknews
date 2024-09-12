@@ -1074,14 +1074,12 @@ footer.site-footer {
 	content: "";
 }
 
-/* Plugins */
+/***********************************************
+ * Plugins
+ */
 
 /* add custom class to Group to hide form totals for beat the bot free registration form */
 .hide-rcp_registration_total .rcp_registration_total {
-	display: none;
-}
-
-.rcp_header:empty {
 	display: none;
 }
 
@@ -1089,7 +1087,10 @@ footer.site-footer {
 	font-size: var(--font-size-sm);
 }
 
+/* Default form stuff. */
 .rcp_form {
+	padding: 0 !important;
+
 	input[type="email"],
 	input[type="password"],
 	input[type="text"] {
@@ -1098,44 +1099,60 @@ footer.site-footer {
 		color: var(--input-color, var(--color-body)) !important;
 	}
 
-	.rcp_subscription_message {
-		display: none;
-	}
-
-	/* login text link */
-	/* form description */
-	.rcp_login_link,
-	.rcp_description {
-		display: none;
-	}
-
-	p:has(input, select) {
+	div:has(> input:not([type=checkbox]):not([type=hidden]), select),
+	p:has(> input:not([type=checkbox]):not([type=hidden]), select) {
 		margin-bottom: var(--spacing-md);
-	}
 
-	label {
-		margin-bottom: var(--spacing-xxxxs);
-	}
-
-	.rcp_user_fieldset {
-
-		label::after {
-			display: inline-block;
-			margin-left: var(--spacing-xxxs);
-			font-size: var(--font-size-xs);
-			color: red;
-			content: "(required)";
+		label {
+			margin-bottom: var(--spacing-xxxxs);
 		}
 	}
+}
 
-	.rcp_subscription_fieldset {
+/* Registration form shortcode. */
+#rcp_registration_form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-xxl);
+		/* padding: 0 !important; */
 
-		> ul {
-			display: grid;
-			gap: var(--spacing-xxxl) var(--spacing-md);
-			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-			margin-top: 36px; /* for ::before pseudo heading */
-		}
+	input[type="email"],
+	input[type="password"],
+	input[type="text"] {
+		width: 100%;
+	}
+
+	/* .pm-rcp-membership, */
+	.pm-rcp-account,
+	.pm-rcp-payment {
+		width: 100%;
+		max-width: var(--breakpoint-xs);
+		margin-inline: auto;
+	}
+
+	.pm-rcp-account__inner,
+	.pm-rcp-payment__inner {
+		padding: var(--spacing-xl);
+		background-color: var(--color-alt);
+	}
+
+	.rcp_user_fieldset label::after {
+		display: inline-block;
+		margin-left: var(--spacing-xxxs);
+		font-size: var(--font-size-xs);
+		color: red;
+		content: "(required)";
+	}
+
+	.rcp_subscription_fieldset ul,
+	.rcp_subscription_fieldset li {
+		margin: 0;
+	}
+
+	.rcp_subscription_fieldset ul {
+		display: grid;
+		gap: var(--spacing-xxxl) var(--spacing-md);
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	}
 
 	.rcp_subscription_level {
@@ -1185,7 +1202,7 @@ footer.site-footer {
 		display: none;
 	}
 
-	.rcp_subscription_level_1::before,
+	/* .rcp_subscription_level_1::before,
 	.rcp_subscription_level_4::before,
 	.rcp_subscription_level_7::before,
 	.rcp_subscription_level_10::before,
@@ -1217,7 +1234,7 @@ footer.site-footer {
 
 	.rcp_subscription_level_13::before {
 		content: "Voting";
-	}
+	} */
 
 	.rcp_subscription_level_name {
 		display: block;
@@ -1225,10 +1242,6 @@ footer.site-footer {
 		font-family: var(--font-family-heading);
 		font-weight: var(--heading-font-weight);
 		font-size: var(--font-size-md);
-	}
-
-	.rcp_separator {
-		display: none;
 	}
 
 	.rcp_price {
@@ -1260,150 +1273,103 @@ footer.site-footer {
 		border: 0;
 		overflow: hidden;
 	}
-}
 
-#rcp_registration_form {
-	display: flex;
-	flex-direction: column;
-	padding: 0 !important;
-
-	> *:not(.rcp_user_fieldset)
-}
-
-/* #rcp_registration_form:has(.rcp_subscription_fieldset) .rcp_user_fieldset {
-	display: none;
-} */
-
-#rcp_registration_form #rcp_user_last_wrap {
-	display: none;
-}
-
-#rcp_discount_code_wrap {
-	width: 100%;
-	max-width: var(--breakpoint-xs);
-	margin-inline: auto;
-	margin-bottom: var(--spacing-xl);
-}
-
-.rcp_registration_total:not(:first-child), /* why are there two of these? */
-#rcp_gateway_extra_fields {
-	background-color: var(--color-alt);
-	width: 100%;
-	max-width: var(--breakpoint-xs);
-	margin-inline: auto;
-}
-
-.rcp_form {
-	.rcp_registration_total:not(:first-child),
-	#rcp_gateway_extra_fields {
-		padding: var(--spacing-lg);
+	.pm-rcp-payment__inner {
+		display: grid;
+		gap: var(--spacing-xl);
 	}
 
-	.rcp-discount > td:first-child {
-		font-family: var(--code-font-family);
+	#rcp_discount_code_wrap {
+		margin: 0 !important;
 	}
 
-	#rcp_gateway_extra_fields {
-		margin-bottom: var(--spacing-sm);
-		padding-top: 0;
-
-		label {
-			margin-bottom: var(--spacing-xxxs);
-		}
-
-		input[type="text"],
-		input[type="password"],
-		input[type="email"] {
-			padding: var(--spacing-sm) var(--spacing-md);
-		}
+	.rcp_discount_code_field_wrap {
+		display: grid;
+		gap: var(--spacing-sm);
+		grid-template-columns: 1fr auto;
 	}
 
-	.rcp_agree_to_terms_fieldset {
-		margin-top: var(--spacing-sm);
+	.pm-rcp-payment__inner > .rcp_registration_total {
+		/* margin-block: var(--spacing-md) var(--spacing-xl); */
 	}
 
-	.rcp_agree_to_terms_fieldset,
-	.rcp_agree_to_privacy_policy_fieldset,
-	#rcp_auto_renew_wrap,
-	#rcp_submit_wrap {
+	.rcp_registration_total_details.rcp-table {
 		width: 100%;
-		max-width: var(--breakpoint-xs);
-		margin-inline: auto;
-		padding: 0;
+		margin: 0;
+		border: 0;
+
+		.membership-amount tr {
+			display: none;
+		}
+
+		tr {
+			width: 100%;
+		}
+
+		tbody tr {
+			margin: 0;
+			padding: 0;
+			border: 0;
+		}
+
+		tbody th {
+			margin: var(--spacing-sm) 0 0;
+			padding: 0;
+		}
+
+		tbody td {
+			margin: 0;
+			padding: 0;
+			border: 0;
+		}
+
+		tfoot tr:first-child {
+			margin: var(--spacing-sm) 0 0;
+		}
+
+		tfoot td  {
+			margin: 0;
+			padding: 0;
+			border: 0;
+		}
+
+		.rcp-total {
+			margin: 0;
+			padding: 0;
+			border: 0;
+		}
+	}
+
+	.rcp_gateway_fields:has([type="hidden"]:first-child):has([type="hidden"]:last-child) {
+		display: none !important;
+	}
+
+	.rcp_card_fieldset {
+		display: grid;
+		gap: var(--spacing-md);
+
+		#rcp_card_name_wrap,
+		#rcp_card_wrap {
+			margin: 0;
+		}
+	}
+
+	.pm-rcp-checkboxes p {
+		margin-bottom: var(--spacing-xxs);
+
+	}
+
+	#rcp_auto_renew_wrap {
+		margin-bottom: 0 !important;
 	}
 
 	#rcp_submit_wrap {
-		margin-top: var(--spacing-md);
+		margin: 0 !important;
 		text-align: center;
 
 		#rcp_submit {
-			--button-width: 100%;
+			width: 100%;
 		}
-	}
-}
-
-.rcp_discount_code_field_wrap {
-	display: grid;
-	gap: var(--spacing-sm);
-	grid-template-columns: 1fr auto;
-}
-
-.rcp_registration_total_details.rcp-table {
-	width: 100%;
-	margin: 0;
-	border: 0;
-
-	.membership-amount tr {
-		display: none;
-	}
-
-	tr {
-		width: 100%;
-	}
-
-	tbody tr {
-		margin: 0;
-		padding: 0;
-		border: 0;
-	}
-
-	tbody th {
-		margin: var(--spacing-sm) 0 0;
-		padding: 0;
-	}
-
-	tbody td {
-		margin: 0;
-		padding: 0;
-		border: 0;
-	}
-
-	tfoot tr:first-child {
-		margin: var(--spacing-sm) 0 0;
-	}
-
-	tfoot td  {
-		margin: 0;
-		padding: 0;
-		border: 0;
-	}
-
-	.rcp-total {
-		margin: 0;
-		padding: 0;
-		border: 0;
-	}
-}
-
-#rcp_card_wrap {
-	margin-bottom: 0;
-}
-
-.rcp-table.subscription {
-
-	.button-small {
-		padding: .6rem .75rem;
-		font-size: .7rem;
 	}
 }
 
