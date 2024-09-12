@@ -131,6 +131,13 @@ final class Mai_AskNews_Plugin {
 		// Include vendor libraries.
 		require_once __DIR__ . '/vendor/autoload.php';
 
+		// Listeners.
+		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener.php';
+		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-matchup.php';
+		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-outcome.php';
+		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-matchup-outcome.php';
+		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-vote.php';
+
 		// Includes.
 		foreach ( glob( MAI_ASKNEWS_DIR . 'classes/*.php' ) as $file ) { include $file; }
 		foreach ( glob( MAI_ASKNEWS_DIR . 'includes/*.php' ) as $file ) { include $file; }
@@ -250,7 +257,7 @@ final class Mai_AskNews_Plugin {
 			'show_in_nav_menus'  => true,
 			'show_in_rest'       => true,
 			'show_ui'            => true,
-			'supports'           => [ 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
+			'supports'           => [ 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
 			'taxonomies'         => [ 'team', 'season' ],
 			'rewrite'            => [
 				'slug'       => 'matchups',
