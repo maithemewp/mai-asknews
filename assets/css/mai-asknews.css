@@ -1137,7 +1137,6 @@ footer.site-footer {
 			display: grid;
 			gap: var(--spacing-xxxl) var(--spacing-md);
 			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-			margin-top: var(--spacing-xxxl);
 		}
 	}
 
@@ -1200,7 +1199,6 @@ footer.site-footer {
 		font-family: var(--font-family-heading);
 		font-weight: var(--heading-font-weight);
 		font-size: var(--font-size-xxxl);
-		border-bottom: 6px solid var(--color-primary);
 	}
 
 	.rcp_subscription_level_1::before {
