@@ -306,11 +306,6 @@ class Mai_AskNews_Singular {
 	 * @return void
 	 */
 	function handle_descriptive_title() {
-		// Bail if not an admin.
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
-		}
-
 		$title = maiasknews_get_key( 'descriptive_title', $this->body );
 
 		// Bail if no title.
@@ -318,7 +313,7 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-		printf( '<h2 class="pm-title">%s</h2>', $title . ' (admin only)' );
+		printf( '<h2 class="pm-title">%s</h2>', $title );
 	}
 
 	/**
