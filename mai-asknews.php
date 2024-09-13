@@ -132,11 +132,11 @@ final class Mai_AskNews_Plugin {
 		require_once __DIR__ . '/vendor/autoload.php';
 
 		// Listeners.
-		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener.php';
-		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-matchup.php';
-		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-outcome.php';
-		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-matchup-outcome.php';
-		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-vote.php';
+		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener.php';
+		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-matchup.php';
+		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-outcome.php';
+		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-matchup-outcome.php';
+		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-vote.php';
 
 		// Includes.
 		foreach ( glob( MAI_ASKNEWS_DIR . 'classes/*.php' ) as $file ) { include $file; }
