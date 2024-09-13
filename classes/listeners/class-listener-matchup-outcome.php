@@ -50,8 +50,6 @@ class Mai_AskNews_Matchup_Outcome_Listener extends Mai_AskNews_Listener {
 		// Update all votes for this matchup.
 		$counts = $this->update_comments();
 
-		ray( $counts );
-
 		// Return success.
 		$this->return = $this->get_success( $counts['votes'] . ' votes updated and ' . $counts['users'] . ' users updated for matchup ' . $this->matchup_id . ' ' . get_permalink( $this->matchup_id ) );
 	}
