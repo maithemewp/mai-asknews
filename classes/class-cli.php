@@ -79,6 +79,174 @@ class Mai_AskNews_CLI {
 	}
 
 	/**
+	 * Update votes from matchups.
+	 *
+	 * Usage: wp maiasknews update_votes --posts_per_page=10 --offset=0
+	 *
+	 * @param array $args       Standard command args.
+	 * @param array $assoc_args Keyed args like --posts_per_page and --offset.
+	 *
+	 * @return void
+	 */
+	function update_votes( $args, $assoc_args ) {
+		// Parse args.
+		$assoc_args = wp_parse_args(
+			$assoc_args,
+			[
+				'post_type'              => 'matchup',
+				'post_status'            => 'any',
+				'posts_per_page'         => 10,
+				'offset'                 => 0,
+				'no_found_rows'          => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+				'comment_count'          => [
+					'value'   => 1,
+					'compare' => '>=',
+				],
+			]
+		);
+
+		// Get posts.
+		$query = new WP_Query( $assoc_args );
+
+		// If we have posts.
+		if ( $query->have_posts() ) {
+			// Log how many total posts found.
+			WP_CLI::log( 'Posts found: ' . $query->post_count );
+
+			// Loop through posts.
+			while ( $query->have_posts() ) : $query->the_post();
+				$matchup_id = get_the_ID();
+				$comments   = get_comments(
+					[
+						'comment_type' => 'pm_vote',
+						'post_id'      => $matchup_id,
+						'approve'      => 1,
+					]
+				);
+
+				if ( ! $comments ) {
+					WP_CLI::log( 'No votes found for post ID: ' . $matchup_id . ' ' . get_permalink() );
+					continue;
+				}
+
+				// Loop through comments.
+				foreach ( $comments as $comment ) {
+					// Skip if karma is 1 or -1.
+					if ( in_array( $comment->comment_karma, [ 1, -1 ] ) ) {
+						continue;
+					}
+
+					// Remove karma.
+					wp_update_comment(
+						[
+							'comment_ID'    => $comment->comment_ID,
+							'comment_karma' => 0,
+						]
+					);
+				}
+
+				// Matchup updated.
+				WP_CLI::log( 'Matchup votes updated for post ID: ' . $matchup_id . ' ' . get_permalink() );
+
+			endwhile;
+		} else {
+			WP_CLI::log( 'No posts found.' );
+		}
+
+		wp_reset_postdata();
+
+		WP_CLI::success( 'Done.' );
+	}
+
+	/**
+	 * Processes outcomes from stored AskNews data.
+	 *
+	 * Usage: wp maiasknews update_outcomes --posts_per_page=10 --offset=0
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param array $args       Standard command args.
+	 * @param array $assoc_args Keyed args like --posts_per_page and --offset.
+	 *
+	 * @return void
+	 */
+	function update_outcomes( $args, $assoc_args ) {
+		// Parse args.
+		$assoc_args = wp_parse_args(
+			$assoc_args,
+			[
+				'post_type'              => 'matchup',
+				'post_status'            => 'any',
+				'posts_per_page'         => 10,
+				'offset'                 => 0,
+				'no_found_rows'          => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+				'comment_count'          => [
+					'value'   => 1,
+					'compare' => '>=',
+				],
+				// Do we need to check for past games?
+				// The outcome should not even be here if the game has not been played.
+
+				// Make sure the outcome is not empty.
+				'meta_query'             => [
+					[
+						'key'     => 'asknews_outcome',
+						'value'   => '',
+						'compare' => '!=',
+					],
+				],
+			]
+		);
+
+		// Get posts.
+		$query = new WP_Query( $assoc_args );
+
+		// If we have posts.
+		if ( $query->have_posts() ) {
+			// Log how many total posts found.
+			WP_CLI::log( 'Posts found: ' . $query->post_count );
+
+			// Loop through posts.
+			while ( $query->have_posts() ) : $query->the_post();
+				$matchup_id = get_the_ID();
+				$body       = maiasknews_get_insight_body( $matchup_id );
+				$outcome    = get_post_meta( $matchup_id, 'asknews_outcome', true );
+
+				if ( ! $body ) {
+					WP_CLI::log( 'No AskNews body data found for post ID: ' . $matchup_id . ' ' . get_permalink() );
+					continue;
+				}
+
+				if ( ! $outcome ) {
+					WP_CLI::log( 'No AskNews outcome data found for post ID: ' . $matchup_id . ' ' . get_permalink() );
+					continue;
+				}
+
+				// Get matchup listener response.
+				$listener = new Mai_AskNews_Matchup_Outcome_Listener( $matchup_id, $body, $outcome );
+				$response = $listener->get_response();
+
+				if ( is_wp_error( $response ) ) {
+					WP_CLI::log( 'Error: ' . $response->get_error_message() );
+				} else {
+					WP_CLI::log( 'Success: ' . $response->get_data() );
+				}
+
+			endwhile;
+		} else {
+			WP_CLI::log( 'No posts found.' );
+		}
+
+		wp_reset_postdata();
+
+		WP_CLI::success( 'Done.' );
+	}
+
+	/**
 	 * Updates posts from stored AskNews data.
 	 *
 	 * Usage: wp maiasknews update_insights --posts_per_page=10 --offset=0
@@ -110,6 +278,10 @@ class Mai_AskNews_CLI {
 
 		// If we have posts.
 		if ( $query->have_posts() ) {
+			// Log how many total posts found.
+			WP_CLI::log( 'Posts found: ' . $query->post_count );
+
+			// Loop through posts.
 			while ( $query->have_posts() ) : $query->the_post();
 				$asknews_body = get_post_meta( get_the_ID(), 'asknews_body', true );
 

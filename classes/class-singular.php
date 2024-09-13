@@ -86,15 +86,14 @@ class Mai_AskNews_Singular {
 					'comment_type' => 'pm_vote',
 					'post_id'      => $this->matchup_id,
 					'user_id'      => $this->user->ID,
+					'approve'      => 1,
 				]
 			);
 
 			// If user has voted.
 			if ( $comments ) {
 				$existing        = reset( $comments );
-				$this->vote_id   = $existing ? $existing->comment_karma : $this->vote_id;
-				$term            = $this->vote_id ? get_term( $this->vote_id, 'league' ) : null;
-				$this->vote_name = $term ? $term->name : '';
+				$this->vote_name = trim( $existing->comment_content );
 			}
 
 			// Add vote listener.
@@ -156,73 +155,9 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
-		// Build comment data.
-		$update  = false;
-		$term    = get_term_by( 'name', $team, 'league' );
-		$term_id = $term ? $term->term_id : null;
-		$args    = [
-			'comment_type'         => 'pm_vote',
-			'comment_post_ID'      => $this->matchup_id,
-			'comment_approved'     => 1,
-			'comment_content'      => $team,
-			'comment_karma'        => $term_id,
-			'user_id'              => $this->user->ID,
-			'comment_author'       => $this->user->user_login,
-			'comment_author_email' => $this->user->user_email,
-			'comment_author_url'   => $this->user->user_url,
-		];
-
-		// If already voted.
-		if ( $this->vote_name ) {
-			// If the same team.
-			if ( $team === $this->vote_name ) {
-				// Display message.
-				add_action( 'genesis_before_loop', function() {
-					printf( '<p class="pm-notice error">%s %s.</p>', __( 'Your vote has not been saved. You have already voted for', 'mai-asknews' ), $this->vote_name );
-				});
-				return;
-			}
-			// Delete the old votes.
-			else {
-				// Delete the old vote.
-				$comments = get_comments(
-					[
-						'comment_type' => 'pm_vote',
-						'post_id'      => $this->matchup_id,
-						'user_id'      => $this->user->ID,
-					]
-				);
-
-				// If comments.
-				if ( $comments ) {
-					foreach ( $comments as $index => $comment ) {
-						// If first vote.
-						if ( 0 === $index ) {
-							// Update the team and term ID.
-							$update                  = true;
-							$args['comment_ID']      = $comment->comment_ID;
-							$args['comment_content'] = $team;
-							$args['comment_karma']   = $term_id;
-						}
-						// We shouldn't have more than 1 vote, so delete it.
-						else {
-							wp_delete_comment( $comment->comment_ID, true );
-						}
-					}
-				}
-			}
-		}
-
-		// If updating.
-		if ( $update ) {
-			// Update the comment.
-			wp_update_comment( $args );
-		}
-		// New vote.
-		else {
-			// Insert the comment.
-			wp_insert_comment( $args );
-		}
+		// Run listener and get response.
+		$listener = new Mai_AskNews_Vote_Listener( $this->matchup_id, $team, $this->user );
+		$response = $listener->get_response();
 
 		// Refresh to show the new vote.
 		wp_safe_redirect( get_permalink() . '#vote' );
@@ -452,6 +387,7 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
+		// Start vote box.
 		echo '<div id="vote" class="pm-vote">';
 			// Get user avatar.
 			$avatar = get_avatar( get_current_user_id(), 128 );
@@ -460,7 +396,7 @@ class Mai_AskNews_Singular {
 			printf( '<div class="pm-vote__avatar">%s</div>', $avatar );
 
 			// Display the title.
-			$text = $this->vote_id ? __( 'Change Your Vote', 'mai-asknews' ) : __( 'Cast Your Vote!', 'mai-asknews' );
+			$text = $this->vote_id ? __( 'Change Your Pick', 'mai-asknews' ) : __( 'Make Your Pick!', 'mai-asknews' );
 			printf( '<h2>%s</h2>', $text );
 
 			// Display the description.
@@ -640,6 +576,11 @@ class Mai_AskNews_Singular {
 
 			// TODO: Better name for external sources and sites talking about this.
 			printf( '<li class="pm-jump"><a class="pm-jump__link" href="#web">%s</a></li>', __( 'Mentions', 'mai-asknews' ) );
+
+			// If comments open.
+			if ( comments_open() ) {
+				printf( '<li class="pm-jump"><a class="pm-jump__link" href="#comments">%s</a></li>', __( 'Comments', 'mai-asknews' ) );
+			}
 
 			// if ( $this->insights ) {
 			// 	printf( '<li class="pm-jump"><a class="pm-jump__link" href="#updates">%s</a></li>', __( 'Updates', 'mai-asknews' ) );
