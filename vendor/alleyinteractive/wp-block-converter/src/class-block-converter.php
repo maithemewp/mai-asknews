@@ -13,21 +13,32 @@ use DOMElement;
 use DOMNode;
 use Exception;
 use Mantle\Support\Traits\Macroable;
+use RuntimeException;
+use Throwable;
 
 /**
  * Converts a DOMDocument to Gutenberg block HTML.
+ *
+ * Mirrors the `htmlToBlocks()`/`rawHandler()` from the `@wordpress/blocks` package.
+ *
+ * @todo Improve logging to not silently fail when importing images.
  */
 class Block_Converter {
-	use Macroable {
+	use Concerns\Listens_For_Attachments, Macroable {
 		__call as macro_call;
 	}
 
 	/**
 	 * Setup the class.
 	 *
+	 * @throws RuntimeException If WordPress is not loaded.
+	 *
 	 * @param string $html The HTML to parse.
 	 */
 	public function __construct( public string $html ) {
+		if ( ! function_exists( 'do_action' ) ) {
+			throw new RuntimeException( 'WordPress must be loaded to use the Block_Converter class.' );
+		}
 	}
 
 	/**
@@ -36,6 +47,8 @@ class Block_Converter {
 	 * @return string The HTML.
 	 */
 	public function convert(): string {
+		$this->listen_for_attachment_creation();
+
 		// Get tags from the html.
 		$content = static::get_node_tag_from_html( $this->html );
 
@@ -51,24 +64,8 @@ class Block_Converter {
 				continue;
 			}
 
-			/**
-			 * Hook to allow output customizations.
-			 *
-			 * @since 1.0.0
-			 *
-			 * @param Block|null $block The generated block object.
-			 * @param DOMNode   $node  The node being converted.
-			 */
-			$tag_block = apply_filters( 'wp_block_converter_block', $this->{$node->nodeName}( $node ), $node );
-
-			// Bail early if is empty.
-			if ( empty( $tag_block ) ) {
-				continue;
-			}
-
 			// Merge the block into the HTML collection.
-
-			$html[] = $this->minify_block( (string) $tag_block );
+			$html[] = $this->minify_block( (string) $this->convert_node( $node ) );
 		}
 
 		$html = implode( "\n\n", $html );
@@ -84,7 +81,103 @@ class Block_Converter {
 		 * @param string        $html    HTML converted into Gutenberg blocks.
 		 * @param DOMNodeList $content The original DOMNodeList.
 		 */
-		return trim( (string) apply_filters( 'wp_block_converter_document_html', $html, $content ) );
+		$html = trim( (string) apply_filters( 'wp_block_converter_document_html', $html, $content ) );
+
+		$this->detach_attachment_creation_listener();
+
+		return $html;
+	}
+
+	/**
+	 * Convert a node to a block.
+	 *
+	 * @param DOMNode $node The node to convert.
+	 * @return Block|null
+	 */
+	protected function convert_node( DOMNode $node ): ?Block {
+		if ( '#text' === $node->nodeName ) {
+			return null;
+		}
+
+		/**
+		 * Hook to allow output customizations.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param Block|null $block The generated block object.
+		 * @param DOMNode   $node  The node being converted.
+		 */
+		$block = apply_filters( 'wp_block_converter_block', $this->{$node->nodeName}( $node ), $node );
+
+		if ( ! $block || ! $block instanceof Block ) {
+			return null;
+		}
+
+		return $block;
+	}
+
+	/**
+	 * Sideload any child images of a DOMNode and replace the src with the new URL.
+	 *
+	 * @param DOMNode $node The node.
+	 * @return DOMNode
+	 */
+	protected function sideload_child_images( DOMNode $node ): void {
+		$children = $node->childNodes;
+
+		if ( ! $children->length ) {
+			return;
+		}
+
+		foreach ( $children as $child_node ) {
+			// Skip if the node is not an image or is not an instance of DOMElement.
+			if ( 'img' !== $child_node->nodeName || ! $child_node instanceof DOMElement ) {
+				// Recursively sideload images in child nodes.
+				if ( $child_node->hasChildNodes() ) {
+					$this->sideload_child_images( $child_node );
+				}
+
+				continue;
+			}
+
+			$src = $child_node->getAttribute( 'src' );
+
+			if ( empty( $src ) ) {
+				continue;
+			}
+
+			try {
+				$previous_src = $src;
+				$src          = $this->upload_image( $src, $child_node->getAttribute( 'alt' ) );
+
+				if ( $src ) {
+					$child_node->setAttribute( 'src', $src );
+
+					// Remove any srcset attributes.
+					if ( $child_node->hasAttribute( 'srcset' ) ) {
+						$child_node->removeAttribute( 'srcset' );
+					}
+
+					// Update the parent node with the new link if the parent
+					// node is an anchor.
+					if ( 'a' === $node->nodeName && $previous_src === $node->getAttribute( 'href' ) ) {
+						$node->setAttribute( 'href', $src );
+					}
+
+					/**
+					 * Fires after a child image has been sideloaded.
+					 *
+					 * @since 1.5.0
+					 *
+					 * @param string  $src        The image source URL.
+					 * @param DOMNode $child_node The child node.
+					 */
+					do_action( 'wp_block_converter_sideloaded_image', $src, $child_node );
+				}
+			} catch ( Throwable ) { // phpcs:ignore Squiz.Commenting.EmptyCatchComment.Missing, Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+				// Do nothing.
+			}
+		}
 	}
 
 	/**
@@ -106,6 +199,7 @@ class Block_Converter {
 			'blockquote' => $this->blockquote( $arguments[0] ),
 			'h1', 'h2', 'h3', 'h4', 'h5', 'h6' => $this->h( $arguments[0] ),
 			'p', 'a', 'abbr', 'b', 'code', 'em', 'i', 'strong', 'sub', 'sup', 'span', 'u' => $this->p( $arguments[0] ),
+			'figure' => $this->figure( $arguments[0] ),
 			'br', 'cite', 'source' => null,
 			'hr' => $this->separator(),
 			default => $this->html( $arguments[0] ),
@@ -201,8 +295,16 @@ class Block_Converter {
 	 * @return Block|null
 	 */
 	protected function p( DOMNode $node ): ?Block {
+		if ( $this->is_anchor_wrapped_image( $node ) ) {
+			return $this->img( $node );
+		}
+
+		$this->sideload_child_images( $node );
+
 		$content = static::get_node_html( $node );
 
+		// TODO: Account for Twitter/Facebook embeds being inline links in
+		// content and not full embeds.
 		if ( ! empty( filter_var( $node->textContent, FILTER_VALIDATE_URL ) ) ) {
 			if ( \str_contains( $node->textContent, '//x.com' ) || \str_contains( $node->textContent, '//www.x.com' ) ) {
 				$node->textContent = str_replace( 'x.com', 'twitter.com', $node->textContent );
@@ -235,12 +337,93 @@ class Block_Converter {
 	}
 
 	/**
+	 * Create figure blocks.
+	 *
+	 * This method only supports converting a <figure> block that has either a
+	 * <img>, <a> or <figcaption> child. If the <figure> block has other children
+	 * the block will be converted to a HTML block.
+	 *
+	 * @param DOMNode $node The node.
+	 * @return Block|null
+	 */
+	public function figure( DOMNode $node ): ?Block {
+		if ( $this->is_supported_figure( $node ) ) {
+			$this->sideload_child_images( $node );
+
+			// Ensure it has the "wp-block-image" class.
+			if ( $node instanceof DOMElement ) {
+				$node->setAttribute( 'class', 'wp-block-image' );
+			}
+
+			return new Block(
+				block_name: 'image',
+				content: static::get_node_html( $node ),
+			);
+		}
+
+		return $this->html( $node );
+	}
+
+	/**
+	 * Check if the figure node is supported for conversion.
+	 *
+	 * @param DOMNode $node The node.
+	 * @return bool
+	 */
+	protected function is_supported_figure( DOMNode $node ): bool {
+		$children = $node->childNodes;
+
+		if ( ! $children->length ) {
+			return false;
+		}
+
+		if ( $children->length > 2 ) {
+			return false;
+		}
+
+		if ( 2 === $children->length ) {
+			if ( 'figcaption' !== $children->item( 1 )->nodeName ) {
+				return false;
+			}
+		}
+
+		// Check if the first child is an <img> or an <a> with an <img> child.
+		if ( 'img' === $children->item( 0 )->nodeName || $this->is_anchor_wrapped_image( $children->item( 0 ) ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if the figure node is an anchor wrapped image.
+	 *
+	 * @param DOMNode $node The node.
+	 * @return bool
+	 */
+	protected function is_anchor_wrapped_image( DOMNode $node ): bool {
+		$children = $node->childNodes;
+
+		if ( ! $children->length ) {
+			return false;
+		}
+
+		if ( 1 === $children->length && 'img' === $children->item( 0 )->nodeName ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Create ul blocks.
 	 *
 	 * @param DOMNode $node The node.
 	 * @return Block
 	 */
 	protected function ul( DOMNode $node ): Block {
+		$this->sideload_child_images( $node );
+
 		return new Block(
 			block_name: 'list',
 			content: static::get_node_html( $node ),
@@ -248,7 +431,12 @@ class Block_Converter {
 	}
 
 	/**
-	 * Create img blocks.
+	 * Create img block.
+	 *
+	 * Supports being passed a element that is a <img> or a parent element that
+	 * contains an <img>. If it is passed a parent element that contains an
+	 * <img> tag, the resulting block will preserve the parent element and wrap
+	 * it in a <figure> tag.
 	 *
 	 * @param DOMElement|DOMNode $element The node.
 	 * @return Block|null
@@ -258,16 +446,36 @@ class Block_Converter {
 			return null;
 		}
 
-		$image_src = $element->getAttribute( 'data-srcset' );
-		$alt       = $element->getAttribute( 'alt' );
+		// If the element passed isn't an <img> attempt to find it from the children.
+		if ( 'img' !== $element->nodeName ) {
+			$image_node = $element->getElementsByTagName( 'img' )->item( 0 );
 
-		if ( empty( $image_src ) && ! empty( $element->getAttribute( 'src' ) ) ) {
-			$image_src = $element->getAttribute( 'src' );
+			// Bail early if the image node is not found.
+			if ( ! $image_node || ! $image_node instanceof DOMElement ) {
+				return null;
+			}
+		} else {
+			$image_node = $element;
+		}
+
+		$image_src = $image_node->getAttribute( 'data-srcset' );
+		$alt       = $image_node->getAttribute( 'alt' );
+
+		if ( empty( $image_src ) && ! empty( $image_node->getAttribute( 'src' ) ) ) {
+			$image_src = $image_node->getAttribute( 'src' );
 		}
 
 		try {
 			$image_src = $this->upload_image( $image_src, $alt );
-		} catch ( Exception $e ) {
+
+			// Update the image src attribute.
+			$image_node->setAttribute( 'src', $image_src );
+
+			// Remove any srcset attributes.
+			if ( $image_node->hasAttribute( 'srcset' ) ) {
+				$image_node->removeAttribute( 'srcset' );
+			}
+		} catch ( Exception ) {
 			return null;
 		}
 
@@ -278,9 +486,8 @@ class Block_Converter {
 		return new Block(
 			block_name: 'image',
 			content: sprintf(
-				'<figure class="wp-block-image"><img src="%s" alt="%s"/></figure>',
-				esc_url( $image_src ),
-				esc_attr( $alt ),
+				'<figure class="wp-block-image">%s</figure>',
+				static::get_node_html( $element ),
 			),
 		);
 	}
@@ -292,6 +499,8 @@ class Block_Converter {
 	 * @return Block
 	 */
 	protected function ol( DOMNode $node ): Block {
+		$this->sideload_child_images( $node );
+
 		return new Block(
 			block_name: 'list',
 			attributes: [
@@ -379,7 +588,7 @@ class Block_Converter {
 	 * Create Instagram embed blocks.
 	 *
 	 * @param string $url The URL.
-	 * @return Blockx
+	 * @return Block
 	 */
 	protected function facebook_embed( string $url ): Block {
 		$atts = [
@@ -421,6 +630,8 @@ class Block_Converter {
 	 * @return Block|null
 	 */
 	protected function html( DOMNode $node ): ?Block {
+		$this->sideload_child_images( $node );
+
 		// Get the raw HTML.
 		$html = static::get_node_html( $node );
 
@@ -436,6 +647,11 @@ class Block_Converter {
 
 	/**
 	 * Get nodes from a specific tag.
+	 *
+	 * **Note:** This method converts the node to HTML and then gets the nodes.
+	 * It cannot be use for DOMNode object modification.
+	 *
+	 * @deprecated Not used by the library. Will be removed in a future release.
 	 *
 	 * @param DOMNode $node The current DOMNode.
 	 * @param string  $tag The tag to search for.

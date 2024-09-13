@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || die;
  * @since 0.1.0
  */
 class Mai_AskNews_Endpoints {
-	// protected $token;
+	protected $user;
 	protected $request;
 	protected $body;
 
@@ -17,7 +17,6 @@ class Mai_AskNews_Endpoints {
 	 * Construct the class.
 	 */
 	function __construct() {
-		// $this->token = defined( 'MAI_UNITED_ROBOTS_TOKEN' ) ? MAI_UNITED_ROBOTS_TOKEN : false;
 		$this->hooks();
 	}
 
@@ -29,7 +28,7 @@ class Mai_AskNews_Endpoints {
 	 * @return void
 	 */
 	function hooks() {
-		add_filter( 'rest_api_init', [ $this, 'register_endpoint' ] );
+		add_filter( 'rest_api_init', [ $this, 'register_endpoints' ] );
 	}
 
 	/**
@@ -39,12 +38,14 @@ class Mai_AskNews_Endpoints {
 	 *
 	 * @return void
 	 */
-	function register_endpoint() {
+	function register_endpoints() {
 		/**
-		 * /maiasknews/v1/sports/
+		 * /maiasknews/v1/matchups/
+		 * /maiasknews/v1/outcome/
 		 */
 		$routes = [
-			'sports' => 'handle_sports_request',
+			'matchups' => 'handle_matchups_request',
+			'outcome'  => 'handle_outcome_request',
 		];
 
 		// Loop through routes and register them.
@@ -52,30 +53,47 @@ class Mai_AskNews_Endpoints {
 			register_rest_route( 'maiasknews/v1', $path, [
 				'methods'             => 'POST', // I think the testing CLI needs PUT. The API does check for auth cookies and nonces when you make POST or PUT requests, but not GET requests.
 				'callback'            => [ $this, $callback ],
-				'permission_callback' => [ $this, 'validate_request' ],
+				'permission_callback' => [ $this, 'authenticate_request' ],
 			] );
 		}
 	}
 
 	/**
-	 * Handle the hurricane request.
+	 * Handle the matchups request.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @return void
+	 * @return WP_REST_Response|WP_Error
 	 */
-	function handle_sports_request( $request ) {
-		$listener = new Mai_AskNews_Listener( $request->get_body() );
+	function handle_matchups_request( $request ) {
+		$listener = new Mai_AskNews_Matchup_Listener( $request->get_body(), $this->user );
+		$response = $listener->get_response();
+
+		return $response;
 	}
 
 	/**
-	 * Validate the request.
+	 * Handle the outcome request.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return WP_REST_Response|WP_Error
+	 */
+	function handle_outcome_request( $request ) {
+		$listener = new Mai_AskNews_Outcome_Listener( $request->get_body(), $this->user );
+		$response = $listener->get_response();
+
+		return $response;
+	}
+
+	/**
+	 * Authenticate and validate the request.
 	 *
 	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
-	function validate_request( $request ) {
+	function authenticate_request( $request ) {
 		// Get the headers
 		$headers = $request->get_headers();
 
@@ -86,7 +104,7 @@ class Mai_AskNews_Endpoints {
 		}
 
 		// Extract the application password from the Authorization header.
-		$auth_header = $headers['authorization'];
+		$auth_header                = $headers['authorization'];
 		list( $type, $credentials ) = explode( ' ', reset( $auth_header ), 2 );
 
 		// Basic Authentication should start with 'Basic'
@@ -95,7 +113,7 @@ class Mai_AskNews_Endpoints {
 		}
 
 		// Decode the credentials
-		$decoded_credentials = base64_decode( $credentials );
+		$decoded_credentials         = base64_decode( $credentials );
 		list( $username, $password ) = explode( ':', $decoded_credentials, 2 );
 
 		// Validate the application password
@@ -104,10 +122,10 @@ class Mai_AskNews_Endpoints {
 		}
 
 		// Authenticate the user
-		$user = wp_authenticate_application_password( $password, $username, $password );
+		$this->user = wp_authenticate_application_password( $password, $username, $password );
 
 		// If the authentication failed.
-		if ( is_wp_error( $user ) ) {
+		if ( is_wp_error( $this->user ) ) {
 			return new WP_Error( 'rest_forbidden', 'Invalid application password.', [ 'status' => 403 ] );
 		}
 

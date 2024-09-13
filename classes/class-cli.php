@@ -23,6 +23,15 @@ add_action( 'cli_init', function() {
  * @since 0.1.0
  */
 class Mai_AskNews_CLI {
+	protected $user;
+
+	/**
+	 * Construct the class.
+	 */
+	function __construct() {
+		$this->user = get_user_by( 'login', defined( 'MAI_ASKNEWS_AUTH_UN' ) ? MAI_ASKNEWS_AUTH_UN : null );
+	}
+
 	/**
 	 * Gets environment.
 	 *
@@ -37,10 +46,14 @@ class Mai_AskNews_CLI {
 	}
 
 	/**
-	 * Updates posts from stored AskNews data.
+	 * Deletes matchup tags that contain '('.
+	 * This is leftover from when we tried creating tags from key people,
+	 * when key people had a description in the string.
 	 *
-	 * Usage: wp maiasknews update_posts --post_type=post --posts_per_page=10 --offset=0
-	 * Usage: wp maiasknews update_posts --post_type=post --cat=6 --posts_per_page=10 --offset=0
+	 * TODO: Possibly remove this after all tags are cleaned up on the live site.
+	 *       Need to check if they are back after a full update_insights first.
+	 *
+	 * Usage: wp maiasknews cleanup_tags
 	 *
 	 * @since 0.1.0
 	 *
@@ -49,7 +62,80 @@ class Mai_AskNews_CLI {
 	 *
 	 * @return void
 	 */
-	function update_posts( $args, $assoc_args ) {}
+	function cleanup_tags( $args, $assoc_args ) {
+		$terms = get_terms(
+			[
+				'taxonomy'   => 'matchup_tag',
+				'number'     => 0,
+				'hide_empty' => false,
+			]
+		);
+
+		foreach ( $terms as $term ) {
+			if ( str_contains( $term->name, '(' ) ) {
+				wp_delete_term( $term->term_id, 'matchup_tag' );
+			}
+		}
+	}
+
+	/**
+	 * Updates posts from stored AskNews data.
+	 *
+	 * Usage: wp maiasknews update_insights --posts_per_page=10 --offset=0
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param array $args       Standard command args.
+	 * @param array $assoc_args Keyed args like --posts_per_page and --offset.
+	 *
+	 * @return void
+	 */
+	function update_insights( $args, $assoc_args ) {
+		// Parse args.
+		$assoc_args = wp_parse_args(
+			$assoc_args,
+			[
+				'post_type'              => 'insight',
+				'post_status'            => 'any',
+				'posts_per_page'         => 10,
+				'offset'                 => 0,
+				'no_found_rows'          => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+			]
+		);
+
+		// Get posts.
+		$query = new WP_Query( $assoc_args );
+
+		// If we have posts.
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) : $query->the_post();
+				$asknews_body = get_post_meta( get_the_ID(), 'asknews_body', true );
+
+				if ( ! $asknews_body ) {
+					WP_CLI::log( 'No AskNews data found for post ID: ' . get_the_ID() . ' ' . get_permalink() );
+					continue;
+				}
+
+				$listener = new Mai_AskNews_Matchup_Listener( $asknews_body, $this->user );
+				$response = $listener->get_response();
+
+				if ( is_wp_error( $response ) ) {
+					WP_CLI::log( 'Error: ' . $response->get_error_message() );
+				} else {
+					WP_CLI::log( 'Success: ' . $response->get_data() );
+				}
+
+			endwhile;
+		} else {
+			WP_CLI::log( 'No posts found.' );
+		}
+
+		wp_reset_postdata();
+
+		WP_CLI::success( 'Done.' );
+	}
 
 	/**
 	 * Gets example json files from /examples/*.json and hits our endpoint.
@@ -95,7 +181,7 @@ class Mai_AskNews_CLI {
 			$i++;
 
 			// Set data.
-			$url      = home_url( '/wp-json/maiasknews/v1/sports/' );
+			$url      = home_url( '/wp-json/maiasknews/v1/matchups/' );
 			$name     = defined( 'MAI_ASKNEWS_AUTH_UN' ) ? MAI_ASKNEWS_AUTH_UN : '';
 			$password = defined( 'MAI_ASKNEWS_AUTH_PW' ) ? MAI_ASKNEWS_AUTH_PW : '';
 
@@ -113,8 +199,6 @@ class Mai_AskNews_CLI {
 				WP_CLI::log( 'File does not exists via ' . $file );
 				return;
 			}
-
-			// WP_CLI::log( $url );
 
 			// Data to be sent in the JSON packet.
 			// Get content from json file.
@@ -145,12 +229,21 @@ class Mai_AskNews_CLI {
 			}
 			// Success.
 			else {
-				// Decode the response body.
+				// Get code and decode the response body.
 				$code = wp_remote_retrieve_response_code( $response );
-				$body = json_decode( wp_remote_retrieve_body( $response ), true );
+				$body = wp_remote_retrieve_body( $response );
+				$body = json_decode( $body, true );
 
-				// Log the response.
-				WP_CLI::log( $code . ' : ' . $body['data'] );
+				// If error.
+				if ( 200 !== $code ) {
+					$message = $body && isset( $body['message'] ) ? $body['message'] : '';
+
+					WP_CLI::log( 'Error: ' . $message );
+					continue;
+				}
+
+				// If success.
+				WP_CLI::log( $code . ' : ' . $body );
 			}
 		}
 

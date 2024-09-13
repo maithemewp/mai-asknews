@@ -2,9 +2,9 @@
 
 /**
  * Plugin Name:     Mai AskNews
- * Plugin URI:      https://bizbudding.com
+ * Plugin URI:      https://promatchups.com
  * Description:     A custom endpoint to receive data from AskNews.
- * Version:         0.1.0
+ * Version:         0.2.0
  *
  * Author:          BizBudding
  * Author URI:      https://bizbudding.com
@@ -99,7 +99,7 @@ final class Mai_AskNews_Plugin {
 	private function setup_constants() {
 		// Plugin version.
 		if ( ! defined( 'MAI_ASKNEWS_VERSION' ) ) {
-			define( 'MAI_ASKNEWS_VERSION', '0.1.0' );
+			define( 'MAI_ASKNEWS_VERSION', '0.2.0' );
 		}
 
 		// Plugin Folder Path.
@@ -130,6 +130,13 @@ final class Mai_AskNews_Plugin {
 	private function includes() {
 		// Include vendor libraries.
 		require_once __DIR__ . '/vendor/autoload.php';
+
+		// Listeners.
+		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener.php';
+		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-matchup.php';
+		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-outcome.php';
+		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-matchup-outcome.php';
+		// include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-vote.php';
 
 		// Includes.
 		foreach ( glob( MAI_ASKNEWS_DIR . 'classes/*.php' ) as $file ) { include $file; }
@@ -199,6 +206,14 @@ final class Mai_AskNews_Plugin {
 	 */
 	public function classes() {
 		$endpoints = new Mai_AskNews_Endpoints;
+		$rewrites  = new Mai_AskNews_Rewrites;
+		$display   = new Mai_AskNews_Display;
+		$archives  = new Mai_AskNews_Archives;
+		$singular  = new Mai_AskNews_Singular;
+		$users     = new Mai_AskNews_Users;
+		$publisher = new Mai_AskNews_Mai_Publisher;
+		$rank_math = new Mai_AskNews_Rank_Math;
+		// $votes     = new Mai_AskNews_Votes;
 	}
 
 	/**
@@ -210,11 +225,118 @@ final class Mai_AskNews_Plugin {
 	 */
 	public function register_content_types() {
 		/***********************
+		 *  Post Types         *
+		 ***********************/
+
+		// Schedule/Matchups.
+		register_post_type( 'matchup', [
+			'exclude_from_search' => false,
+			'has_archive'         => true, // So customizer works.
+			'hierarchical'        => false,
+			'labels'              => [
+				'name'               => _x( 'Matchups', 'Matchup general name', 'promatchups' ),
+				'singular_name'      => _x( 'Matchup', 'Matchup singular name', 'promatchups' ),
+				'menu_name'          => _x( 'Matchups', 'Matchup admin menu', 'promatchups' ),
+				'name_admin_bar'     => _x( 'Matchup', 'Matchup add new on admin bar', 'promatchups' ),
+				'add_new'            => _x( 'Add New Matchup', 'Matchup', 'promatchups' ),
+				'add_new_item'       => __( 'Add New Matchup',  'promatchups' ),
+				'new_item'           => __( 'New Matchup', 'promatchups' ),
+				'edit_item'          => __( 'Edit Matchup', 'promatchups' ),
+				'view_item'          => __( 'View Matchup', 'promatchups' ),
+				'all_items'          => __( 'All Matchups', 'promatchups' ),
+				'search_items'       => __( 'Search Matchups', 'promatchups' ),
+				'parent_item_colon'  => __( 'Parent Matchups:', 'promatchups' ),
+				'not_found'          => __( 'No Matchups found.', 'promatchups' ),
+				'not_found_in_trash' => __( 'No Matchups found in Trash.', 'promatchups' )
+			],
+			'menu_icon'          => 'dashicons-calendar',
+			'menu_position'      => 5,
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_in_menu'       => true,
+			'show_in_nav_menus'  => true,
+			'show_in_rest'       => true,
+			'show_ui'            => true,
+			'supports'           => [ 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
+			'taxonomies'         => [ 'team', 'season' ],
+			'rewrite'            => [
+				'slug'       => 'matchups',
+				'with_front' => false,
+			],
+		] );
+
+		// Insights.
+		register_post_type( 'insight', [
+			'exclude_from_search' => false,
+			'has_archive'         => false,
+			'hierarchical'        => false,
+			'labels'              => [
+				'name'               => _x( 'Insights', 'Insight general name', 'promatchups' ),
+				'singular_name'      => _x( 'Insight', 'Insight singular name', 'promatchups' ),
+				'menu_name'          => _x( 'Insights', 'Insight admin menu', 'promatchups' ),
+				'name_admin_bar'     => _x( 'Insight', 'Insight add new on admin bar', 'promatchups' ),
+				'add_new'            => _x( 'Add New Insight', 'Insight', 'promatchups' ),
+				'add_new_item'       => __( 'Add New Insight',  'promatchups' ),
+				'new_item'           => __( 'New Insight', 'promatchups' ),
+				'edit_item'          => __( 'Edit Insight', 'promatchups' ),
+				'view_item'          => __( 'View Insight', 'promatchups' ),
+				'all_items'          => __( 'All Insights', 'promatchups' ),
+				'search_items'       => __( 'Search Insights', 'promatchups' ),
+				'parent_item_colon'  => __( 'Parent Insights:', 'promatchups' ),
+				'not_found'          => __( 'No Insights found.', 'promatchups' ),
+				'not_found_in_trash' => __( 'No Insights found in Trash.', 'promatchups' )
+			],
+			'menu_icon'          => 'dashicons-analytics',
+			'menu_position'      => 6,
+			'public'             => false,
+			'publicly_queryable' => false,
+			'show_in_menu'       => true,
+			'show_in_nav_menus'  => false,
+			'show_in_rest'       => true,
+			'show_ui'            => true,
+			'supports'           => [ 'title', 'editor', 'author', 'thumbnail', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
+			'taxonomies'         => [ 'team', 'league', 'season' ],
+			'rewrite'            => false, // Handled in Mai_AskNews_Rewrites.
+		] );
+
+		/***********************
 		 *  Custom Taxonomies  *
 		 ***********************/
 
-		 // Seasons.
-		register_taxonomy( 'season', [ 'post' ], [
+		// Leagues/Matchups.
+		register_taxonomy( 'league', [ 'matchup', 'insight' ], [
+			'hierarchical' => true,
+			'labels'       => [
+				'name'                       => _x( 'Leagues', 'League General Name', 'promatchups' ),
+				'singular_name'              => _x( 'League', 'League Singular Name', 'promatchups' ),
+				'menu_name'                  => __( 'Leagues', 'promatchups' ),
+				'all_items'                  => __( 'All Leagues', 'promatchups' ),
+				'parent_item'                => __( 'Parent League', 'promatchups' ),
+				'parent_item_colon'          => __( 'Parent League:', 'promatchups' ),
+				'new_item_name'              => __( 'New League Name', 'promatchups' ),
+				'add_new_item'               => __( 'Add New League', 'promatchups' ),
+				'edit_item'                  => __( 'Edit League', 'promatchups' ),
+				'update_item'                => __( 'Update League', 'promatchups' ),
+				'view_item'                  => __( 'View League', 'promatchups' ),
+				'separate_items_with_commas' => __( 'Separate items with commas', 'promatchups' ),
+				'add_or_remove_items'        => __( 'Add or remove items', 'promatchups' ),
+				'choose_from_most_used'      => __( 'Choose from the most used', 'promatchups' ),
+				'popular_items'              => __( 'Popular Leagues', 'promatchups' ),
+				'search_items'               => __( 'Search Leagues', 'promatchups' ),
+				'not_found'                  => __( 'Not Found', 'promatchups' ),
+			],
+			'meta_box_cb'       => false,   // Hides metabox.
+			'public'            => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => true,
+			'show_in_rest'      => true,
+			'show_tagcloud'     => false,
+			'show_ui'           => true,
+			'rewrite'           => false, // Handled in Mai_AskNews_Rewrites.
+		] );
+
+		// Seasons.
+		register_taxonomy( 'season', [ 'matchup', 'insight' ], [
 			'hierarchical' => false,
 			'labels'       => [
 				'name'                       => _x( 'Seasons', 'Season General Name', 'promatchups' ),
@@ -235,13 +357,49 @@ final class Mai_AskNews_Plugin {
 				'search_items'               => __( 'Search Items', 'promatchups' ),
 				'not_found'                  => __( 'Not Found', 'promatchups' ),
 			],
-			'meta_box_cb'       => false, // Hides metabox.
-			'public'            => false,
+			'meta_box_cb'       => false,   // Hides metabox.
+			'public'            => true,
 			'show_admin_column' => true,
 			'show_in_nav_menus' => false,
-			'show_in_rest'      => false,
+			'show_in_rest'      => true,
 			'show_tagcloud'     => false,
 			'show_ui'           => true,
+			'rewrite'           => false,   // Handled in Mai_AskNews_Rewrites.
+		] );
+
+		// Matchup Tags.
+		register_taxonomy( 'matchup_tag', 'matchup', [
+			'hierarchical' => false,
+			'labels'       => [
+				'name'                       => _x( 'Matchup Tags', 'Matchup Tag General Name', 'promatchups' ),
+				'singular_name'              => _x( 'Matchup Tag', 'Matchup Tag Singular Name', 'promatchups' ),
+				'menu_name'                  => __( 'Tags', 'promatchups' ),
+				'all_items'                  => __( 'All Matchup Tags', 'promatchups' ),
+				'parent_item'                => __( 'Parent Matchup Tag', 'promatchups' ),
+				'parent_item_colon'          => __( 'Parent Matchup Tag:', 'promatchups' ),
+				'new_item_name'              => __( 'New Matchup Tag Name', 'promatchups' ),
+				'add_new_item'               => __( 'Add New Matchup Tag', 'promatchups' ),
+				'edit_item'                  => __( 'Edit Matchup Tag', 'promatchups' ),
+				'update_item'                => __( 'Update Matchup Tag', 'promatchups' ),
+				'view_item'                  => __( 'View Matchup Tag', 'promatchups' ),
+				'separate_items_with_commas' => __( 'Separate items with commas', 'promatchups' ),
+				'add_or_remove_items'        => __( 'Add or remove items', 'promatchups' ),
+				'choose_from_most_used'      => __( 'Choose from the most used', 'promatchups' ),
+				'popular_items'              => __( 'Popular Matchup Tags', 'promatchups' ),
+				'search_items'               => __( 'Search Matchup Tags', 'promatchups' ),
+				'not_found'                  => __( 'Not Found', 'promatchups' ),
+			],
+			'meta_box_cb'       => false,   // Hides metabox.
+			'public'            => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => false,
+			'show_in_rest'      => true,
+			'show_tagcloud'     => true,
+			'show_ui'           => true,
+			'rewrite'           => [
+				'slug'       => 'tags',
+				'with_front' => false,
+			],
 		] );
 	}
 
