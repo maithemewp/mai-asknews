@@ -1315,6 +1315,10 @@ footer.site-footer {
 		content: "(required)";
 	}
 
+	#rcp_user_pass_requirements {
+		font-size: var(--font-size-xs) !important;
+	}
+
 	#rcp_discount_code_wrap {
 		margin: calc(var(--spacing-xs) * -1) 0 var(--spacing-md) !important;
 	}
