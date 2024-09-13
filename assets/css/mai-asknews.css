@@ -641,7 +641,7 @@ body {
 .is-style-line::before,
 .entry-content-single > h2::before {
 	display: block;
-	width: 48px;
+	width: 4ch;
 	height: 6px;
 	position: absolute;
 	top: 100%;
@@ -1088,18 +1088,21 @@ footer.site-footer {
 }
 
 /* Default form stuff. */
-.rcp_form {
+.rcp_form:not(.rcp_registration_form) {
 	padding: 0 !important;
+}
 
+.rcp_form {
 	input[type="email"],
 	input[type="password"],
 	input[type="text"] {
 		margin: var(--input-margin, 0) !important;
 		padding: var(--input-padding, .9em) !important;
 		color: var(--input-color, var(--color-body)) !important;
+		border-bottom-width: 2px !important;
 	}
 
-	div:has(> input:not([type=checkbox]):not([type=hidden]), select),
+	div:not(.pm-rcp-payment):has(> input:not([type=checkbox]):not([type=hidden]), select, #rcp-card-element),
 	p:has(> input:not([type=checkbox]):not([type=hidden]), select) {
 		margin-bottom: var(--spacing-md);
 
@@ -1111,89 +1114,155 @@ footer.site-footer {
 
 /* Registration form shortcode. */
 #rcp_registration_form {
-	display: flex;
-	flex-direction: column;
-	gap: var(--spacing-xxl);
-		/* padding: 0 !important; */
+	background-color: var(--color-alt);
+	border: var(--border);
+	border-radius: 12px;
 
 	input[type="email"],
 	input[type="password"],
 	input[type="text"] {
 		width: 100%;
 	}
+}
 
-	/* .pm-rcp-membership, */
-	.pm-rcp-account,
-	.pm-rcp-payment {
-		width: 100%;
-		max-width: var(--breakpoint-xs);
-		margin-inline: auto;
-	}
+#rcp_registration_form:not(:has(.pm-rcp-membership)) {
+	padding: var(--spacing-xl);
+}
 
-	.pm-rcp-account__inner,
-	.pm-rcp-payment__inner {
+@media only screen and (max-width: 799px) {
+
+	#rcp_registration_form:has(.pm-rcp-membership) {
+		display: grid;
+		gap: var(--spacing-xxl);
 		padding: var(--spacing-xl);
-		background-color: var(--color-alt);
 	}
+}
 
-	.rcp_user_fieldset label::after {
-		display: inline-block;
-		margin-left: var(--spacing-xxxs);
-		font-size: var(--font-size-xs);
-		color: red;
-		content: "(required)";
+@media only screen and (min-width: 800px) {
+
+	#rcp_registration_form:has(.pm-rcp-membership) {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0;
+		padding: 0;
+
+		> div:first-child {
+			padding-top: var(--spacing-xl);
+			border-top-left-radius: 12px;
+		}
+
+		> div:last-child {
+			padding-bottom: var(--spacing-xl);
+			border-bottom-left-radius: 12px;
+		}
+
+		> div:not(:first-child):not(:last-child) {
+			padding-block: var(--spacing-xl);
+		}
+
+		.pm-rcp-membership,
+		.pm-rcp-account,
+		.pm-rcp-payment,
+		.pm-rcp-checkboxes {
+			/* grid-column-start: 1; */
+			width: 100%;
+			max-width: calc(100% - 300px);
+			padding-inline: var(--spacing-xl);
+			background-color: var(--color-white);
+		}
+
+		.pm-rcp-membership {
+			order: 1;
+		}
+
+		.pm-rcp-order {
+			/* grid-column-start: 2; */
+			/* grid-row: 1/all; */
+			position: sticky;
+			top: var(--body-top);
+			order: 2;
+			max-width: 300px;
+			padding: var(--spacing-xl) var(--spacing-lg);
+			background-color: var(--color-alt);
+			border-radius: 0 12px 12px 0;
+		}
+
+		.pm-rcp-account {
+			order: 3;
+		}
+
+		.pm-rcp-payment {
+			order: 4;
+			margin: 0 !important;
+		}
 	}
+}
 
-	.rcp_subscription_fieldset ul,
-	.rcp_subscription_fieldset li {
+#rcp_registration_form {
+	.rcp_subscription_levels,
+	.rcp_subscription_levels li {
 		margin: 0;
 	}
 
-	.rcp_subscription_fieldset ul {
+	.rcp_subscription_levels.pm-levels-list {
 		display: grid;
-		gap: var(--spacing-xxxl) var(--spacing-md);
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	}
 
-	.rcp_subscription_level {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-
-		label {
-			flex: 1;
-			display: flex;
-			flex-direction: column;
+		.rcp_subscription_label {
+			display: grid;
+			gap: var(--spacing-xs) var(--spacing-md);
+			grid-template-columns: auto 1fr auto;
+			align-items: center;
 			padding: var(--spacing-lg);
-			background-color: var(--color-alt);
+			border: var(--border);
+			border-width: 1px 0;
 			transition: var(--transition);
 		}
 
-		label:hover,
-		label:focus {
-			filter: brightness(0.96);
+		.rcp_subscription_level:first-child .rcp_subscription_label {
+			border-top-width: 1px;
 		}
 
-		.button {
-			margin-top: auto;
+		.rcp_subscription_level_name {
+			margin-bottom: 0;
 		}
 
-		.button,
-		.button:before,
-		.button:after {
-			transition: none;
+		.rcp_level_description {
+			grid-column: 2/4;
 		}
 
-		.rcp_level:checked + label > .button {
-			--button-background: var(--color-primary);
-			--button-background-hover: var(--color-primary);
-			--button-color: white;
-			font-size: 0;
+		.pm-rcp-checkmark {
+			margin-left: auto;
+			width: 24px;
+			height: 24px;
+			border-radius: 100vw;
 		}
 
-		.rcp_level:checked + label > .button::before {
-			font-size: var(--button-font-size);
-			content: "Selected";
+		.rcp_level:not(:checked) + label {
+			background-color: white;
+		}
+
+		.rcp_level:checked + label {
+			color: white;
+			background: var(--background-gradient-dark);
+			border-bottom: 4px solid var(--color-primary);
+		}
+
+		.rcp_level:not(:checked) + label > .pm-rcp-checkmark.checked,
+		.rcp_level:checked + label > .pm-rcp-checkmark.unchecked {
+			display: none;
+		}
+
+		.rcp_level:checked + label > .pm-rcp-checkmark {
+			fill: currentColor;
+		}
+
+		.rcp_level {
+			position: absolute !important;
+			clip: rect(0, 0, 0, 0);
+			height: 1px;
+			width: 1px;
+			border: 0;
+			overflow: hidden;
 		}
 	}
 
@@ -1202,50 +1271,15 @@ footer.site-footer {
 		display: none;
 	}
 
-	/* .rcp_subscription_level_1::before,
-	.rcp_subscription_level_4::before,
-	.rcp_subscription_level_7::before,
-	.rcp_subscription_level_10::before,
-	.rcp_subscription_level_13::before {
-		position: absolute;
-		left: 0;
-		bottom: calc(100% + var(--spacing-xxs));
-		display: block;
-		font-family: var(--font-family-heading);
-		font-weight: var(--heading-font-weight);
-		font-size: var(--font-size-xxxl);
+	.rcp_subscription_label {
+		margin: 0;
 	}
-
-	.rcp_subscription_level_1::before {
-		content: "MLB";
-	}
-
-	.rcp_subscription_level_4::before {
-		content: "NFL";
-	}
-
-	.rcp_subscription_level_7::before {
-		content: "NHL";
-	}
-
-	.rcp_subscription_level_10::before {
-		content: "NBA";
-	}
-
-	.rcp_subscription_level_13::before {
-		content: "Voting";
-	} */
 
 	.rcp_subscription_level_name {
 		display: block;
-		margin-bottom: var(--spacing-md);
 		font-family: var(--font-family-heading);
 		font-weight: var(--heading-font-weight);
 		font-size: var(--font-size-md);
-	}
-
-	.rcp_price {
-		font-size: var(--font-size-xxl);
 	}
 
 	.rcp_level_duration {
@@ -1258,7 +1292,6 @@ footer.site-footer {
 
 	.rcp_level_description {
 		display: block;
-		margin-block: var(--spacing-md);
 		padding: 0;
 		border: 0;
 		font-size: var(--font-size-sm);
@@ -1274,69 +1307,57 @@ footer.site-footer {
 		overflow: hidden;
 	}
 
-	.pm-rcp-payment__inner {
-		display: grid;
-		gap: var(--spacing-xl);
+	.rcp_user_fieldset label::after {
+		display: inline-block;
+		margin-left: var(--spacing-xxxs);
+		font-size: var(--font-size-xs);
+		color: red;
+		content: "(required)";
 	}
 
 	#rcp_discount_code_wrap {
-		margin: 0 !important;
+		margin: calc(var(--spacing-xs) * -1) 0 var(--spacing-md) !important;
 	}
 
 	.rcp_discount_code_field_wrap {
 		display: grid;
-		gap: var(--spacing-sm);
 		grid-template-columns: 1fr auto;
-	}
 
-	.pm-rcp-payment__inner > .rcp_registration_total {
-		/* margin-block: var(--spacing-md) var(--spacing-xl); */
+		> input {
+			border-right: 0;
+		}
 	}
 
 	.rcp_registration_total_details.rcp-table {
+		display: grid;
 		width: 100%;
 		margin: 0;
 		border: 0;
 
-		.membership-amount tr {
-			display: none;
+		tbody {
+			border-bottom: 2px solid rgba(0, 0, 0, 0.05);
 		}
 
 		tr {
 			width: 100%;
+			margin: 0;
+			padding: var(--spacing-xxs) 0;
+			border: 0;
 		}
 
-		tbody tr {
+		tr:not(:last-child) {
+			border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+		}
+
+		td {
 			margin: 0;
 			padding: 0;
 			border: 0;
 		}
 
-		tbody th {
-			margin: var(--spacing-sm) 0 0;
-			padding: 0;
-		}
-
-		tbody td {
-			margin: 0;
-			padding: 0;
-			border: 0;
-		}
-
-		tfoot tr:first-child {
-			margin: var(--spacing-sm) 0 0;
-		}
-
-		tfoot td  {
-			margin: 0;
-			padding: 0;
-			border: 0;
-		}
-
-		.rcp-total {
-			margin: 0;
-			padding: 0;
-			border: 0;
+		td[data-th]:last-child {
+			font-weight: var(--body-font-weight-bold);
+			text-align: end;
 		}
 	}
 
@@ -1354,9 +1375,14 @@ footer.site-footer {
 		}
 	}
 
-	.pm-rcp-checkboxes p {
-		margin-bottom: var(--spacing-xxs);
+	.pm-rcp-checkboxes__inner {
+		display: grid;
+		gap: var(--spacing-sm);
+	}
 
+	.pm-rcp-checkboxes p,
+	.pm-rcp-checkboxes label {
+		margin: 0;
 	}
 
 	#rcp_auto_renew_wrap {
@@ -1364,7 +1390,7 @@ footer.site-footer {
 	}
 
 	#rcp_submit_wrap {
-		margin: 0 !important;
+		margin: var(--spacing-md) 0 0 !important;
 		text-align: center;
 
 		#rcp_submit {

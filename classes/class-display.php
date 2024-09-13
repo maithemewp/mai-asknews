@@ -37,7 +37,7 @@ class Mai_AskNews_Display {
 		add_shortcode( 'pm_date',                      [ $this, 'date_shortcode' ] );
 		add_shortcode( 'pm_matchup_time',              [ $this, 'matchup_time_shortcode' ] );
 		add_shortcode( 'pm_matchup_teams',             [ $this, 'matchup_teams_shortcode' ] );
-		add_filter( 'do_shortcode_tag',                [ $this, 'register_form_tag' ], 10, 2 );
+		// add_filter( 'do_shortcode_tag',                [ $this, 'register_form_tag' ], 10, 2 );
 		add_filter( 'do_shortcode_tag',                [ $this, 'subscription_details_tag' ], 10, 2 );
 	}
 
