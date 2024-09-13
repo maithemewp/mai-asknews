@@ -1146,18 +1146,20 @@ footer.site-footer {
 		gap: 0;
 		padding: 0;
 
+		> div {
+			padding-block: var(--spacing-xl);
+		}
+
+		> div + div:not(.pm-rcp-order) {
+			margin-top: calc(var(--spacing-xl) * -1);
+		}
+
 		> div:first-child {
-			padding-top: var(--spacing-xl);
 			border-top-left-radius: 12px;
 		}
 
 		> div:last-child {
-			padding-bottom: var(--spacing-xl);
 			border-bottom-left-radius: 12px;
-		}
-
-		> div:not(:first-child):not(:last-child) {
-			padding-block: var(--spacing-xl);
 		}
 
 		.pm-rcp-membership,
@@ -1193,7 +1195,6 @@ footer.site-footer {
 
 		.pm-rcp-payment {
 			order: 4;
-			margin: 0 !important;
 		}
 	}
 }
@@ -1245,6 +1246,7 @@ footer.site-footer {
 			color: white;
 			background: var(--background-gradient-dark);
 			border-bottom: 4px solid var(--color-primary);
+			border-radius: 6px;
 		}
 
 		.rcp_level:not(:checked) + label > .pm-rcp-checkmark.checked,
