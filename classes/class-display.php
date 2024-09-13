@@ -361,7 +361,7 @@ class Mai_AskNews_Display {
 	/**
 	 * Currently unused?
 	 *
-	 * @since TBD
+	 * @since 0.3.0
 	 *
 	 * @return string
 	 */

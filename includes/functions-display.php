@@ -237,7 +237,7 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 		];
 	}
 
-	// TBD.
+	// 0.3.0.
 	// $table[ __( 'Confidence', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
 	// $table[ __( 'LLM Confidence', 'mai-asknews' ) ] = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
 	// $table[ __( 'Likelihood', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
