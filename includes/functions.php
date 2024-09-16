@@ -109,7 +109,7 @@ function maiasknews_get_key( $key, $array ) {
  * Get the URL of a file in the plugin.
  * Checks if script debug is enabled.
  *
- * @since TBD
+ * @since 0.4.0
  *
  * @param string $filename The file name. Example: `dapper`.
  * @param string $type     The file type. Example: `css`.
