@@ -763,7 +763,7 @@ body {
 }
 
 .pm-outcome__selected {
-	bottom: calc(100% - var(--spacing-xxxs));
+	bottom: 100%;
 }
 
 .pm-vote__selected {
@@ -1014,10 +1014,6 @@ body {
 }
 
 .pm-prediction__fantasy {
-	/* margin-bottom: var(--spacing-lg); */
-	/* padding: var(--spacing-md); */
-	/* border: 2px dashed var(--color-header); */
-
 	margin-block: var(--spacing-lg);
 	margin-inline: calc(var(--spacing-lg) * -1);
 	padding: var(--spacing-lg);
