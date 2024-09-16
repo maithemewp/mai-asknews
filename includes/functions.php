@@ -105,27 +105,22 @@ function maiasknews_get_key( $key, $array ) {
 	return isset( $array[ $key ] ) ? $array[ $key ] : '';
 }
 
-// function maiasknews_get_team( $sport, $team, $key = '' ) {
-// 	$teams = maiasknews_get_teams( $sport );
+/**
+ * Get the URL of a file in the plugin.
+ * Checks if script debug is enabled.
+ *
+ * @since 0.4.0
+ *
+ * @param string $filename The file name. Example: `dapper`.
+ * @param string $type     The file type. Example: `css`.
+ *
+ * @return string
+ */
+function maiasknews_get_file_url( $filename, $type ) {
+	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-// 	if ( isset( $array[ $sport ][ $team ] ) ) {
-// 		if ( $key ) {
-// 			return isset( $array[ $sport ][ $team ][ $key ] ) ? $array[ $sport ][ $team ][ $key ] : null;
-// 		}
-
-// 		return $array[ $sport ][ $team ];
-// 	}
-
-// 	if ( $key ) {
-// 		$array[ $sport ][ $team ][ $key ] = null;
-
-// 		return $teams[ $team ][ $key ];
-// 	}
-
-// 	$array[ $sport ][ $team ] = null;
-
-// 	return $array[ $sport ][ $team ];
-// }
+	return MAI_ASKNEWS_URL . "build/{$type}/{$filename}{$suffix}.{$type}";
+}
 
 /**
  * Prevent post_modified update.
@@ -152,6 +147,22 @@ function maiasknews_prevent_post_modified_update( $data, $postarr, $unsanitized_
 	}
 
 	return $data;
+}
+
+function maiasknews_get_team_short_name( $team, $sport ) {
+	static $cache = [];
+
+	if ( $cache && isset( $cache[ $sport ][ $team ] ) ) {
+		return $cache[ $sport ][ $team ];
+	}
+
+	$teams = maiasknews_get_teams( $sport );
+
+	foreach( $teams as $name => $values ) {
+		$cache[ $sport ][ $values['city'] . ' ' . $name ] = $name;
+	}
+
+	return isset( $cache[ $sport ][ $team ] ) ? $cache[ $sport ][ $team ] : '';
 }
 
 /**
