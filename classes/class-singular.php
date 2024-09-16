@@ -370,55 +370,157 @@ class Mai_AskNews_Singular {
 		// Get start timestamp.
 		$timestamp = get_post_meta( $this->matchup_id, 'event_date', true );
 
-		// Bail if no timestamp or current timestamp is greater than the start timestamp.
-		if ( ! $timestamp || time() > $timestamp ) {
+		// Bail if no timestamp.
+		// We can't vote if we don't know when the game starts.
+		if ( ! $timestamp ) {
 			return;
 		}
 
+		// Bail if no timestamp or current timestamp is greater than the start timestamp.
+		// if ( ! $timestamp || time() > $timestamp ) {
+		// 	return;
+		// }
+
 		// $has_access = current_user_can( 'manage_options' );
-		$has_access = is_user_logged_in();
-		$home_full  = isset( $data['home_team'] ) ? $data['home_team'] : '';
-		$away_full  = isset( $data['away_team'] ) ? $data['away_team'] : '';
-		$home_name  = isset( $data['home_team_name'] ) ? $data['home_team_name'] : $home_full;
-		$away_name  = isset( $data['away_team_name'] ) ? $data['away_team_name'] : $away_full;
+		$has_access   = is_user_logged_in();
+		$home_full    = isset( $data['home_team'] ) ? $data['home_team'] : '';
+		$away_full    = isset( $data['away_team'] ) ? $data['away_team'] : '';
+		$home_name    = isset( $data['home_team_name'] ) ? $data['home_team_name'] : $home_full;
+		$away_name    = isset( $data['away_team_name'] ) ? $data['away_team_name'] : $away_full;
+		$started      = time() > $timestamp;
+		$choice       = maiasknews_get_key( 'choice', $data );
+		$outcome      = $started ? (array) get_post_meta( $this->matchup_id, 'asknews_outcome', true ) : [];
+		$winner_team  = isset( $outcome['winner']['team'] ) ? $outcome['winner']['team'] : '';
+		$winner_score = isset( $outcome['winner']['score'] ) ? $outcome['winner']['score'] : '';
+		$loser_team   = isset( $outcome['loser']['team'] ) ? $outcome['loser']['team'] : '';
+		$loser_score  = isset( $outcome['loser']['score'] ) ? $outcome['loser']['score'] : '';
+		$league       = maiasknews_get_page_league();
 
 		// Bail if no teams.
 		if ( ! ( $home_full && $away_full ) ) {
 			return;
 		}
 
+		// Get user avatar.
+		$avatar = get_avatar( get_current_user_id(), 128 );
+
 		// Start vote box.
 		echo '<div id="vote" class="pm-vote">';
-			// Get user avatar.
-			$avatar = get_avatar( get_current_user_id(), 128 );
+			// // Display the avatar.
+			// printf( '<div class="pm-vote__avatar">%s</div>', $avatar );
 
-			// Display the avatar.
-			printf( '<div class="pm-vote__avatar">%s</div>', $avatar );
-
-			// Display the title.
-			$text = $this->vote_id ? __( 'Change Your Pick', 'mai-asknews' ) : __( 'Make Your Pick!', 'mai-asknews' );
-			printf( '<h2>%s</h2>', $text );
-
-			// Display the description.
-			if ( $this->vote_name ) {
-				printf( '<p>%s %s. %s.</p>', __( 'You have already voted for', 'mai-asknews' ), $this->vote_name, __( 'Change your vote below.', 'mai-asknews' ) );
-			} else {
-				printf( '<p>%s</p>', __( 'Compete with others to beat the SportsDesk Bot.<br>Who do you think will win?', 'mai-asknews' ) );
+			// If the game has started.
+			if ( $started ) {
+				// If we have an outcome.
+				if ( $outcome ) {
+					// $heading = '';
+					$heading = sprintf( '<h2>%s</h2>', __( 'Game Results', 'mai-asknews' ) );
+					$desc    = sprintf( '<p>%s</p>', sprintf( __( 'The game has ended. The %s defeated the %s %s - %s.', 'mai-asknews' ), $outcome['winner']['team'], $outcome['loser']['team'], $outcome['winner']['score'], $outcome['loser']['score'] ) );
+				}
+				// No outcome.
+				else {
+					$heading = sprintf( '<h2>%s</h2>', __( 'Game Info', 'mai-asknews' ) );
+					$desc    = sprintf( '<p>%s</p>', __( 'Voting is closed after the game starts. Once we analyze the results and calculate your points we\'ll update here.', 'mai-asknews' ) );
+				}
+			}
+			// If they have already voted.
+			elseif ( $this->vote_name ) {
+				$heading = sprintf( '<h2>%s</h2>', __( 'Make Your Pick', 'mai-asknews' ) );
+				$desc    = sprintf( '<p>%s</p>', sprintf( __( 'You have already voted for the %s; leave it as is or change your vote before game time.', 'mai-asknews' ), $this->vote_name ) );
+			}
+			// Fallback for voting.
+			else {
+				$heading = sprintf( '<h2>%s</h2>', __( 'Make Your Pick', 'mai-asknews' ) );
+				$desc    = sprintf( '<p>%s</p>', __( 'Compete with others to beat the SportsDesk Bot.<br>Who do you think will win?', 'mai-asknews' ) );
 			}
 
-			// If they have access to vote.
-			if ( $has_access ) {
-				echo '<form class="pm-vote__form" method="post" action="">';
-					$selected  = sprintf( '<span class="pm-vote__selected">%s</span>', __( 'Your pick', 'promatchups' ) );
-					$home_name = $home_full === $this->vote_name ? $home_name . $selected : $home_name;
-					$away_name = $away_full === $this->vote_name ? $away_name . $selected : $away_name;
+			// Display the title.
+			echo $heading;
 
-					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $home_full === $this->vote_name ? ' selected' : '', $home_full, $home_name );
-					printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $away_full === $this->vote_name ? ' selected' : '', $away_full, $away_name );
+			// If game started.
+			if ( $started ) {
+				// If we have an outcome.
+				if ( $outcome ) {
+					// $icon_win        = '<svg class="pm-outcome__icon winner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M552 64H448V24c0-13.3-10.7-24-24-24H152c-13.3 0-24 10.7-24 24v40H24C10.7 64 0 74.7 0 88v56c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h-48c-35.3 0-64 20.7-64 56v12c0 6.6 5.4 12 12 12h296c6.6 0 12-5.4 12-12v-12c0-35.3-28.7-56-64-56h-48v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88c0-13.3-10.7-24-24-24zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2c1 32.6 5.8 61.2 12.8 86.2-15.1-5.2-29.2-12.4-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8-12.5 9-26.7 16.2-41.8 21.4 7-25 11.8-53.6 12.8-86.2H512v16z"/></svg>';
+					// $icon_win        = '<svg class="pm-outcome__icon winner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"/></svg>';
+					// $icon_win        = '<svg class="pm-outcome__icon winner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M104 224H24c-13.3 0-24 10.7-24 24v240c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V248c0-13.3-10.7-24-24-24zM64 472c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zM384 81.5c0 42.4-26 66.2-33.3 94.5h101.7c33.4 0 59.4 27.7 59.6 58.1 .1 17.9-7.5 37.2-19.4 49.2l-.1 .1c9.8 23.3 8.2 56-9.3 79.5 8.7 25.9-.1 57.7-16.4 74.8 4.3 17.6 2.2 32.6-6.1 44.6C440.2 511.6 389.6 512 346.8 512l-2.8 0c-48.3 0-87.8-17.6-119.6-31.7-16-7.1-36.8-15.9-52.7-16.2-6.5-.1-11.8-5.5-11.8-12v-213.8c0-3.2 1.3-6.3 3.6-8.5 39.6-39.1 56.6-80.6 89.1-113.1 14.8-14.8 20.2-37.2 25.4-58.9C282.5 39.3 291.8 0 312 0c24 0 72 8 72 81.5z"/></svg>';
+					// $icon_win        = '<svg class="pm-outcome__icon winner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 48c110.5 0 200 89.5 200 200 0 110.5-89.5 200-200 200-110.5 0-200-89.5-200-200 0-110.5 89.5-200 200-200m140.2 130.3l-22.5-22.7c-4.7-4.7-12.3-4.7-17-.1L215.3 303.7l-59.8-60.3c-4.7-4.7-12.3-4.7-17-.1l-22.7 22.5c-4.7 4.7-4.7 12.3-.1 17l90.8 91.5c4.7 4.7 12.3 4.7 17 .1l172.6-171.2c4.7-4.7 4.7-12.3 .1-17z"/></svg>';
+					$icon_win        = '<svg class="pm-outcome__icon winner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM227.3 387.3l184-184c6.2-6.2 6.2-16.4 0-22.6l-22.6-22.6c-6.2-6.2-16.4-6.2-22.6 0L216 308.1l-70.1-70.1c-6.2-6.2-16.4-6.2-22.6 0l-22.6 22.6c-6.2 6.2-6.2 16.4 0 22.6l104 104c6.2 6.2 16.4 6.2 22.6 0z"/></svg>';
+					// $icon_lose       = '<svg class="pm-outcome__icon loser" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 448c-110.3 0-200-89.7-200-200S137.7 56 248 56s200 89.7 200 200-89.7 200-200 200zm8-152c-13.2 0-24 10.8-24 24s10.8 24 24 24c23.8 0 46.3 10.5 61.6 28.8 8.1 9.8 23.2 11.9 33.8 3.1 10.2-8.5 11.6-23.6 3.1-33.8C330 320.8 294.1 304 256 304zm-88-64c17.7 0 32-14.3 32-32s-14.3-32-32-32-32 14.3-32 32 14.3 32 32 32zm160-64c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm-165.6 98.8C151 290.1 126 325.4 126 342.9c0 22.7 18.8 41.1 42 41.1s42-18.4 42-41.1c0-17.5-25-52.8-36.4-68.1-2.8-3.7-8.4-3.7-11.2 0z"/></svg>';
+					// $icon_lose       = '<svg class="pm-outcome__icon loser" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 56v240c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24H24C10.7 32 0 42.7 0 56zm40 200c0-13.3 10.7-24 24-24s24 10.7 24 24-10.7 24-24 24-24-10.7-24-24zm272 256c-20.2 0-29.5-39.3-33.9-57.8-5.2-21.7-10.6-44.1-25.4-58.9-32.5-32.5-49.5-74-89.1-113.1a12 12 0 0 1 -3.6-8.5V59.9c0-6.5 5.2-11.9 11.8-12 15.8-.3 36.7-9.1 52.7-16.2C256.2 17.6 295.7 0 344 0h2.8c42.8 0 93.4 .4 113.8 29.7 8.4 12.1 10.4 27 6.1 44.6 16.3 17.1 25.1 48.9 16.4 74.8 17.5 23.4 19.1 56.1 9.3 79.5l.1 .1c11.9 11.9 19.5 31.3 19.4 49.2-.2 30.4-26.2 58.1-59.6 58.1H350.7C358 364.3 384 388.1 384 430.5 384 504 336 512 312 512z"/></svg>';
+					// $icon_lose       = '<svg class="pm-outcome__icon loser" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z"/></svg>';
+					$icon_lose       = '<svg class="pm-outcome__icon loser" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>';
+
+					$selected_icon   = $this->vote_name === $winner_team ? $icon_win : $icon_lose;
+					$prediction_icon = $choice === $winner_team ? $icon_win : $icon_lose;
+					$home_class      = $home_full === $winner_team ? 'winner' : 'loser';
+					$away_class      = $away_full === $winner_team ? 'winner' : 'loser';
+					$winner_short    = maiasknews_get_team_short_name( $winner_team, $league );
+					$winner_team     = $winner_short ? $winner_short : $winner_team;
+					$loser_short     = maiasknews_get_team_short_name( $loser_team, $league );
+					$loser_team      = $loser_short ? $loser_short : $loser_team;
+					$selected        = sprintf( '<span class="pm-outcome__selected">%s%s</span>', __( 'Your pick', 'promatchups' ), $selected_icon );
+					$prediction      = sprintf( '<span class="pm-outcome__prediction">%s%s</span>', __( 'My pick', 'promatchups' ), $prediction_icon );
+					$home_name       = $home_full === $choice ? $home_name . $prediction : $home_name;
+					$away_name       = $away_full === $choice ? $away_name . $prediction : $away_name;
+					$home_name       = $home_full === $this->vote_name ? $home_name . $selected : $home_name;
+					$away_name       = $away_full === $this->vote_name ? $away_name . $selected : $away_name;
+
+					// If we have a winner and loser.
+					if ( $winner_team && $winner_score ) {
+						// Do the outcome.
+						echo '<div class="pm-outcome">';
+							// Away team first
+							echo '<div class="pm-outcome__col away">';
+								if ( 'winner'  === $away_class ) {
+									printf( '<p class="pm-outcome__status">%s</p>', __( 'Winner', 'mai-asknews' ) );
+								}
+								printf( '<p class="pm-outcome__team %s">%s</p>', $away_class, $away_name );
+								printf( '<p class="pm-outcome__score %s">%s</p>', $away_class, 'winner'  === $away_class ? $winner_score : $loser_score );
+							echo '</div>';
+
+							// Home team second
+							echo '<div class="pm-outcome__col home">';
+								if ( 'winner'  === $home_class ) {
+									printf( '<p class="pm-outcome__status">%s</p>', __( 'Winner', 'mai-asknews' ) );
+								}
+								printf( '<p class="pm-outcome__team %s">%s</p>', $home_class, $home_name );
+								printf( '<p class="pm-outcome__score %s">%s</p>', $home_class, 'winner' === $home_class ? $winner_score : $loser_score );
+							echo '</div>';
+						echo '</div>';
+					}
+				}
+				// no outcome.
+				else {
+				}
+			}
+			// If not started and they have access to vote.
+			elseif ( $has_access ) {
+				// Display the avatar.
+				printf( '<div class="pm-vote__avatar">%s</div>', $avatar );
+
+				// Display the vote form.
+				echo '<form class="pm-vote__form" method="post" action="">';
+					$selected     = sprintf( '<span class="pm-vote__selected">%s</span>', __( 'Your pick', 'promatchups' ) );
+					$prediction   = sprintf( '<span class="pm-vote__prediction">%s</span>', __( 'My pick', 'promatchups' ) );
+					$home_name    = $home_full === $choice ? $home_name . $prediction : $home_name;
+					$away_name    = $away_full === $choice ? $away_name . $prediction : $away_name;
+					$home_name    = $home_full === $this->vote_name ? $home_name . $selected : $home_name;
+					$away_name    = $away_full === $this->vote_name ? $away_name . $selected : $away_name;
+
+					// printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $home_full === $this->vote_name ? ' selected' : '', $home_full, $home_name );
+					// printf( '<button class="button%s" type="submit" name="team" value="%s">%s</button>', $away_full === $this->vote_name ? ' selected' : '', $away_full, $away_name );
+					printf( '<button class="button" type="submit" name="team" value="%s">%s</button>', $home_full, $home_name );
+					printf( '<button class="button" type="submit" name="team" value="%s">%s</button>', $away_full, $away_name );
+
 				echo '</form>';
 			}
 			// No access.
 			else {
+				// Display the avatar.
+				printf( '<div class="pm-vote__avatar">%s</div>', $avatar );
+
+				// Display the faux vote form.
 				echo '<div class="pm-vote__form">';
 					// Build url.
 					$url = add_query_arg(
@@ -432,6 +534,9 @@ class Mai_AskNews_Singular {
 					printf( '<a class="button" href="%s">%s</a>', esc_url( $url ), $away_name );
 				echo '</div>';
 			}
+
+			// Display the description.
+			echo $desc;
 
 		echo '</div>';
 

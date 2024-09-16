@@ -11,15 +11,8 @@ defined( 'ABSPATH' ) || die;
  * @return void
  */
 function maiasknews_enqueue_styles() {
-	$version   = MAI_ASKNEWS_VERSION;
-	$file      = 'assets/css/mai-asknews.css';
-	$file_path = MAI_ASKNEWS_DIR . $file;
-	$file_url  = MAI_ASKNEWS_URL . $file;
-	$version  .= '.' . date( 'njYHi', filemtime( $file_path ) );
-
-	wp_enqueue_style( 'mai-asknews', $file_url, [], $version );
+	wp_enqueue_style( 'mai-asknews', maiasknews_get_file_url( 'mai-asknews', 'css' ), [], MAI_ASKNEWS_VERSION );
 }
-
 
 /**
  * Gets the updated date.

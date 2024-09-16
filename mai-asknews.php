@@ -3,7 +3,7 @@
 /**
  * Plugin Name:     Mai AskNews
  * Plugin URI:      https://promatchups.com
- * Description:     A custom endpoint to receive data from AskNews.
+ * Description:     Custom functionality for promatchups.com.
  * Version:         0.3.0
  *
  * Author:          BizBudding

@@ -46,7 +46,7 @@ class Mai_AskNews_Vote_Listener extends Mai_AskNews_Listener {
 		if ( $existing['id'] && $existing['name'] ) {
 			// If the same team.
 			if ( $this->team === $existing['name'] ) {
-				$this->return = $this->get_success( sprintf( __( 'Vote has not been saved. User has already voted for %s.', 'mai-asknews' ), $this->vote_name ) );
+				$this->return = $this->get_success( sprintf( __( 'Vote has not been saved. User has already voted for %s.', 'mai-asknews' ), $this->team ) );
 				return;
 			}
 		}
