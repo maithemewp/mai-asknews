@@ -415,7 +415,25 @@ class Mai_AskNews_Singular {
 				if ( $outcome ) {
 					// $heading = '';
 					$heading = sprintf( '<h2>%s</h2>', __( 'Game Results', 'mai-asknews' ) );
-					$desc    = sprintf( '<p>%s</p>', sprintf( __( 'The game has ended. The %s defeated the %s %s - %s.', 'mai-asknews' ), $outcome['winner']['team'], $outcome['loser']['team'], $outcome['winner']['score'], $outcome['loser']['score'] ) );
+					$desc    = [];
+					$desc[]  = __( 'The game has ended.', 'mai-asknews' );
+
+					// If we have both scores.
+					if ( $winner_score && $loser_score ) {
+						$scores = " {$winner_score} - {$loser_score}";
+					} else {
+						$scores = '';
+					}
+
+					// If we have a winner and loser.
+					if ( $winner_team && $loser_team ) {
+						$desc[] = sprintf( __( 'The %s defeated the %s%s.', 'mai-asknews' ), $winner_team, $loser_team, $scores );
+					} else {
+						$desc[] = __( 'Sorry, we don\'t have scores at this time.', 'mai-asknews' );
+					}
+
+					// To string.
+					$desc = $desc ? sprintf( '<p>%s</p>', implode( ' ', $desc ) ) : '';
 				}
 				// No outcome.
 				else {
