@@ -196,6 +196,12 @@ function maiasknews_get_singular_vote_box() {
 
 	// Start vote box.
 	$html .= '<div id="vote" class="pm-vote pm-vote-single">';
+		// Get user avatar.
+		$avatar = get_avatar( get_current_user_id(), 128 );
+
+		// Display the avatar.
+		$html .= sprintf( '<div class="pm-vote__avatar">%s</div>', $avatar );
+
 		// If showing outcome.
 		if ( $show_outcome ) {
 			// Heading.
@@ -298,8 +304,8 @@ function maiasknews_get_vote_form( $data, $home_name, $away_name, $matchup_id, $
 	// Get the vote form markup.
 	$html .= sprintf( '<form class="pm-vote__form" method="post" action="%s">', esc_url( admin_url('admin-post.php') ) );
 		// Team buttons.
-		$html .= sprintf( '<button class="button button-small" type="submit" name="team" value="%s">%s</button>', $data['away_full'], $away_name );
-		$html .= sprintf( '<button class="button button-small" type="submit" name="team" value="%s">%s</button>', $data['home_full'], $home_name );
+		$html .= sprintf( '<button class="button button-small" type="submit" name="team" value="%s"%s>%s</button>', $data['away_full'], $data['vote'] === $data['away_full'] ? ' disabled' : '', $away_name );
+		$html .= sprintf( '<button class="button button-small" type="submit" name="team" value="%s"%s>%s</button>', $data['home_full'], $data['vote'] === $data['home_full'] ? ' disabled' : '', $home_name );
 		// Hidden inputs.
 		$html .= '<input type="hidden" name="action" value="pm_vote_submission">';
 		$html .= sprintf( '<input type="hidden" name="user_id" value="%s">', $user_id );

@@ -82,7 +82,7 @@ function maiasknews_get_page_league() {
 	}
 
 	// If a WP_Term object.
-	if ( ! ( $term && is_a( $term, 'WP_Term' ) ) ) {
+	if ( $term && is_a( $term, 'WP_Term' ) ) {
 		$term = $term->parent ? get_term( $term->parent, 'league' ) : $term;
 	}
 

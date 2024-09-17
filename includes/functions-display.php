@@ -259,7 +259,7 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 
 	$html  = '';
 	$html .= '<ul class="pm-prediction__list">';
-		if ( ! is_singular() ) {
+		if ( ! is_singular( 'matchup' ) ) {
 			$html .= sprintf( '<li class="pm-prediction__item label">%s</li>', __( 'Our Prediction', 'mai-asknews' ) );
 		}
 
