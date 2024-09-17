@@ -15,6 +15,23 @@ function maiasknews_enqueue_styles() {
 }
 
 /**
+ * Enqueue the plugin scripts.
+ *
+ * @since TBD
+ *
+ * @param string $selected The selected team.
+ *
+ * @return void
+ */
+function maiasknews_enqueue_scripts( $selected ) {
+	// Enqueue JS.
+	wp_enqueue_script( 'mai-asknews-vote', maiasknews_get_file_url( 'mai-asknews-vote', 'js' ), [], MAI_ASKNEWS_VERSION, true );
+	wp_localize_script( 'mai-asknews-vote', 'maiAskNewsVars', [
+		'selected'   => $selected,
+	] );
+}
+
+/**
  * Gets the updated date.
  *
  * @since 0.1.0
@@ -427,6 +444,112 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 			$html .= '</tbody>';
 		$html .= '</table>';
 	$html .= '</div>';
+
+	return $html;
+}
+
+/**
+ * Get the teams list.
+ *
+ * @since TBD
+ *
+ * @param array $args The shortcode attributes.
+ *
+ * @return string
+ */
+function maisknews_get_teams_list( $args = [] ) {
+	// Atts.
+	$args = shortcode_atts(
+		[
+			'league' => '',
+			'before' => '',
+			'after'  => '',
+		],
+		$args,
+		'pm_teams'
+	);
+
+	// Sanitize.
+	$args = [
+		'league' => sanitize_text_field( $args['league'] ),
+		'before' => esc_html( $args['before'] ),
+		'after'  => esc_html( $args['after'] ),
+	];
+
+	// If no league, get current.
+	if ( ! $args['league'] ) {
+		$args['league'] = maiasknews_get_page_league();
+	}
+
+	// Bail if no league.
+	if ( ! $args['league'] ) {
+		return '';
+	}
+
+	// Get the league object.
+	$object = get_term_by( 'slug', strtolower( $args['league'] ), 'league' );
+
+	// Bail if no league object.
+	if ( ! $object ) {
+		return '';
+	}
+
+	// Get child terms.
+	$terms = get_terms(
+		[
+			'taxonomy'   => 'league',
+			'hide_empty' => false,
+			'parent'     => $object->term_id,
+		]
+	);
+
+	// Bail if no terms.
+	if ( ! $terms || is_wp_error( $terms ) ) {
+		return '';
+	}
+
+	// Get the teams.
+	$list  = [];
+	$new   = [];
+	$teams = maiasknews_get_teams( $object->name );
+
+	// Format teams array.
+	foreach( $teams as $name => $values ) {
+		$new[ $values['city'] . ' ' . $name ] = [
+			'name'  => $name,
+			'color' => $values['color'],
+			'code'  => $values['code'],
+		];
+	}
+
+	// Format the list.
+	foreach ( $terms as $term ) {
+		// Bail if no team.
+		if ( ! ( $new && isset( $new[ $term->name ] ) ) ) {
+			continue;
+		}
+
+		// Add to the list.
+		$list[ $new[ $term->name ]['name'] ] = [
+			'color' => $new[ $term->name ]['color'],
+			'code'  => $new[ $term->name ]['code'],
+			'link'  => get_term_link( $term ),
+		];
+	}
+
+	// Order alphabetically by key.
+	ksort( $list );
+
+	// Get the HTML.
+	$html  = '';
+	$html .= '<ul class="pm-teams">';
+		foreach ( $list as $name => $item ) {
+			// These class names match the pm_matchup_teams shortcode, minus the team name span.
+			$html .= sprintf( '<li class="pm-team" style="--team-color:%s;">', $item['color'] );
+				$html .= sprintf( '<a class="pm-team__link" href="%s" data-code="%s"><span class="pm-team__name">%s</span></a>', $item['link'], $item['code'], $name );
+			$html .= '</li>';
+		}
+	$html .= '</ul>';
 
 	return $html;
 }
