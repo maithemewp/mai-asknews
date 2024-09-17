@@ -137,6 +137,7 @@ final class Mai_AskNews_Plugin {
 		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-outcome.php';
 		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-matchup-outcome.php';
 		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-vote.php';
+		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-admin-post-vote.php';
 
 		// Includes.
 		foreach ( glob( MAI_ASKNEWS_DIR . 'classes/*.php' ) as $file ) { include $file; }
@@ -213,6 +214,7 @@ final class Mai_AskNews_Plugin {
 		$users     = new Mai_AskNews_Users;
 		$publisher = new Mai_AskNews_Mai_Publisher;
 		$rank_math = new Mai_AskNews_Rank_Math;
+		$votes     = new Mai_AskNews_Admin_Post_Vote;
 		// $votes     = new Mai_AskNews_Votes;
 	}
 

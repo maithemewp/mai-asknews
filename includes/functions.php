@@ -4,6 +4,50 @@
 defined( 'ABSPATH' ) || die;
 
 /**
+ * Get the matchup data, including team names, outcome, bot choice, and user vote.
+ *
+ * @since TBD
+ *
+ * @param int     $matchup_id
+ * @param WP_User $user
+ *
+ * @return array
+ */
+function maiasknews_get_matchup_data( $matchup_id, $user = null ) {
+	static $cache = [];
+
+	if ( isset( $cache[ $matchup_id ] ) ) {
+		return $cache[ $matchup_id ];
+	}
+
+	// Get data.
+	$league  = maiasknews_get_page_league();
+	$data    = maiasknews_get_insight_body( $matchup_id );
+	$vote    = maiasknews_get_user_vote( $matchup_id, $user );
+	$outcome = (array) get_post_meta( $matchup_id, 'asknews_outcome', true );
+	$winner  = isset( $outcome['winner']['team'] ) ? $outcome['winner']['team'] : '';
+	$loser   = isset( $outcome['loser']['team'] ) ? $outcome['loser']['team'] : '';
+
+	// Store in cache.
+	$cache[ $matchup_id ] = [
+		'home_short'   => isset( $data['home_team_name'] ) && $data['home_team_name'] ? $data['home_team_name'] : maiasknews_get_team_short_name( $data['home_team'], $league ),
+		'away_short'   => isset( $data['away_team_name'] ) && $data['away_team_name'] ? $data['away_team_name'] : maiasknews_get_team_short_name( $data['away_team'], $league ),
+		'home_full'    => $data['home_team'],
+		'away_full'    => $data['away_team'],
+		'winner'       => $winner,
+		'loser'        => $loser,
+		'winner_score' => isset( $outcome['winner']['score'] ) ? $outcome['winner']['score'] : '',
+		'loser_score'  => isset( $outcome['loser']['score'] ) ? $outcome['loser']['score'] : '',
+		'winner_home'  => $winner && $loser ? $winner === $data['home_team'] : '',
+		'league'       => $league,
+		'choice'       => maiasknews_get_key( 'choice', $data ),
+		'vote'         => $vote['name'],
+	];
+
+	return $cache[ $matchup_id ];
+}
+
+/**
  * Get the league of the current page.
  *
  * @since 0.1.0
@@ -37,7 +81,11 @@ function maiasknews_get_page_league() {
 		$term   = $league ? get_term_by( 'slug', $league, 'league' ) : null;
 	}
 
-	$term  = $term && $term->parent ? get_term( $term->parent, 'league' ) : $term;
+	// If a WP_Term object.
+	if ( ! ( $term && is_a( $term, 'WP_Term' ) ) ) {
+		$term = $term->parent ? get_term( $term->parent, 'league' ) : $term;
+	}
+
 	$cache = $term ? $term->name : '';
 
 	return $cache;
@@ -149,6 +197,16 @@ function maiasknews_prevent_post_modified_update( $data, $postarr, $unsanitized_
 	return $data;
 }
 
+/**
+ * Get the short name of a team.
+ *
+ * @since TBD
+ *
+ * @param string $team  The team name.
+ * @param string $sport The sport.
+ *
+ * @return string
+ */
 function maiasknews_get_team_short_name( $team, $sport ) {
 	static $cache = [];
 

@@ -9,6 +9,8 @@ defined( 'ABSPATH' ) || die;
  * @since 0.1.0
  */
 class Mai_AskNews_Display {
+	protected $can_vote = false;
+
 	/**
 	 * Construct the class.
 	 *
@@ -26,6 +28,7 @@ class Mai_AskNews_Display {
 	 * @return void
 	 */
 	function hooks() {
+		add_action( 'template_redirect',               [ $this, 'set_vars' ] );
 		add_action( 'wp_head',                         [ $this, 'do_timezone_logic' ] );
 		add_action( 'wp_enqueue_scripts',              [ $this, 'enqueue' ] );
 		add_action( 'after_setup_theme',               [ $this, 'breadcrumbs' ] );
@@ -37,8 +40,20 @@ class Mai_AskNews_Display {
 		add_shortcode( 'pm_date',                      [ $this, 'date_shortcode' ] );
 		add_shortcode( 'pm_matchup_time',              [ $this, 'matchup_time_shortcode' ] );
 		add_shortcode( 'pm_matchup_teams',             [ $this, 'matchup_teams_shortcode' ] );
+		add_shortcode( 'pm_teams',                     [ $this, 'teams_shortcode' ] );
 		// add_filter( 'do_shortcode_tag',                [ $this, 'register_form_tag' ], 10, 2 );
 		add_filter( 'do_shortcode_tag',                [ $this, 'subscription_details_tag' ], 10, 2 );
+	}
+
+	function set_vars() {
+		// Bail if not a league-specific archive.
+		if ( ! ( is_tax( 'league' ) || is_tax( 'season' ) ) ) {
+			return;
+		}
+
+		$league = maiasknews_get_page_league();
+		$access = maiasknews_has_pro_access( $league );
+
 	}
 
 	/**
@@ -252,17 +267,37 @@ class Mai_AskNews_Display {
 		}
 
 		// Get the data.
-		$body = maiasknews_get_insight_body( get_the_ID() );
-		$list = maiasknews_get_prediction_list( $body );
+		$data = maiasknews_get_insight_body( get_the_ID() );
 
-		// Bail if no list.
-		if ( ! $list ) {
-			return $content;
-		}
+		// // Get start timestamp.
+		// $timestamp = get_post_meta( get_the_ID(), 'event_date', true );
 
-		// TODO: Write "admin only" and color like the singular box.
+		// // If game hasn't started.
+		// if ( $timestamp && time() <= $timestamp ) {
+		// 	// Get the vote box.
+		// 	$vote = maiasknews_get_archive_vote_box();
 
-		return $list . $content;
+		// 	if ( $vote ) {
+		// 		$content = $vote . $content;
+		// 	}
+		// }
+
+		// // Get the prediction list.
+		// $list = maiasknews_get_prediction_list( $data );
+
+		// // If list, add it.
+		// if ( $list ) {
+		// 	$content = $list . $content;
+		// }
+
+		$list = maiasknews_get_prediction_list( $data );
+		$vote = maiasknews_get_archive_vote_box();
+		$html = '<div class="pm-archive-content">';
+			$html .= $list;
+			$html .= $vote;
+		$html .= '</div>';
+
+		return $html . $content;
 	}
 
 	/**
@@ -359,7 +394,7 @@ class Mai_AskNews_Display {
 	}
 
 	/**
-	 * Currently unused?
+	 * Displays the matchup teams.
 	 *
 	 * @since 0.3.0
 	 *
@@ -367,6 +402,17 @@ class Mai_AskNews_Display {
 	 */
 	function matchup_teams_shortcode( $atts ) {
 		return maiasknews_get_matchup_teams_list( $atts );
+	}
+
+	/**
+	 * Displays the teams.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return string
+	 */
+	function teams_shortcode( $atts ) {
+		return maisknews_get_teams_list( $atts );
 	}
 
 	/**
