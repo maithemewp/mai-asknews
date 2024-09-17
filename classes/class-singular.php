@@ -75,7 +75,6 @@ class Mai_AskNews_Singular {
 		// Set initial data.
 		$this->matchup_id = get_the_ID();
 		$this->user       = wp_get_current_user();
-		$this->vote_id    = null;
 		$this->vote_name  = '';
 
 		// If user is logged in.
@@ -381,7 +380,6 @@ class Mai_AskNews_Singular {
 		// 	return;
 		// }
 
-		// $has_access = current_user_can( 'manage_options' );
 		$has_access   = is_user_logged_in();
 		$home_full    = isset( $data['home_team'] ) ? $data['home_team'] : '';
 		$away_full    = isset( $data['away_team'] ) ? $data['away_team'] : '';
@@ -478,7 +476,7 @@ class Mai_AskNews_Singular {
 					$loser_short     = maiasknews_get_team_short_name( $loser_team, $league );
 					$loser_team      = $loser_short ? $loser_short : $loser_team;
 					$selected        = sprintf( '<span class="pm-outcome__selected">%s%s</span>', __( 'Your pick', 'promatchups' ), $selected_icon );
-					$prediction      = sprintf( '<span class="pm-outcome__prediction">%s%s</span>', __( 'My pick', 'promatchups' ), $prediction_icon );
+					$prediction      = sprintf( '<span class="pm-outcome__prediction">%s%s</span>', __( 'Bot pick', 'promatchups' ), $prediction_icon );
 					$home_name       = $home_full === $choice ? $home_name . $prediction : $home_name;
 					$away_name       = $away_full === $choice ? $away_name . $prediction : $away_name;
 					$home_name       = $home_full === $this->vote_name ? $home_name . $selected : $home_name;
@@ -524,7 +522,7 @@ class Mai_AskNews_Singular {
 				// Display the vote form.
 				echo '<form class="pm-vote__form" method="post" action="">';
 					$selected     = sprintf( '<span class="pm-vote__selected">%s</span>', __( 'Your pick', 'promatchups' ) );
-					$prediction   = sprintf( '<span class="pm-vote__prediction">%s</span>', __( 'My pick', 'promatchups' ) );
+					$prediction   = sprintf( '<span class="pm-vote__prediction">%s</span>', __( 'Bot pick', 'promatchups' ) );
 					$home_name    = $home_full === $choice ? $home_name . $prediction : $home_name;
 					$away_name    = $away_full === $choice ? $away_name . $prediction : $away_name;
 					$home_name    = $home_full === $this->vote_name ? $home_name . $selected : $home_name;
@@ -856,8 +854,8 @@ class Mai_AskNews_Singular {
 		}
 
 		// printf( '<h2 id="sources" class="is-style-heading">%s <span class="by-asknews">%s</span></h2>', __( 'Latest News Sources', 'mai-asknews' ), __( 'by Asknews.app', 'mai-asknews' ) );
-		printf( '<h2 id="sources" class="is-style-heading">%s</h2>', __( 'Latest News Sources', 'mai-asknews' ) );
-		printf( '<p>%s</p>', __( 'We summarized the best articles for you, powered by <a href="https://asknews.app/en" target="_blank" rel="nofollow">AskNews.app</a>.', 'mai-asknews' ) );
+		printf( '<h2 id="sources" class="is-style-heading">%s</h2>', __( 'Latest News by AskNews.app', 'mai-asknews' ) );
+		// printf( '<p>%s</p>', __( 'We summarized the best articles for you, powered by <a href="https://asknews.app/en" target="_blank" rel="nofollow">AskNews.app</a>.', 'mai-asknews' ) );
 
 		echo '<ul class="pm-sources">';
 			// Loop through sources.
