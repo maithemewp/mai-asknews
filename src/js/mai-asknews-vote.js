@@ -59,14 +59,20 @@ document.addEventListener('DOMContentLoaded', function () {
 			event.submitter.querySelector('.pm-loading-wrap').remove();
 
 			// Restore original button text.
-			event.submitter.insertAdjacentHTML( 'afterbegin', buttonText );
-
-			// Enable the button.
-			event.submitter.disabled = false;
+			// event.submitter.insertAdjacentHTML( 'afterbegin', buttonText );
+			event.submitter.insertAdjacentText( 'afterbegin', buttonText );
 
 			// If successful, add the selected element back.
 			if ( 200 ===  data.status ) {
 				event.submitter.insertAdjacentHTML( 'beforeend', maiAskNewsVars.selected );
+			}
+
+			// Find the button that is not the event submitter.
+			let otherButton = form.querySelector('button:not([value="' + event.submitter.value + '"])');
+
+			// If we have one, enable it.
+			if ( otherButton ) {
+				otherButton.disabled = false;
 			}
 		})
 		.catch( error => {
@@ -76,10 +82,16 @@ document.addEventListener('DOMContentLoaded', function () {
 			event.submitter.querySelector('.pm-loading-wrap').remove();
 
 			// Restore original button text.
-			event.submitter.insertAdjacentHTML( 'afterbegin', buttonText );
+			// event.submitter.insertAdjacentHTML( 'afterbegin', buttonText );
+			event.submitter.insertAdjacentText( 'afterbegin', buttonText );
 
-			// Enable the button.
-			event.submitter.disabled = false;
+			// Find the button that is not the event submitter.
+			let otherButton = form.querySelector('button:not([value="' + event.submitter.value + '"])');
+
+			// If we have one, enable it.
+			if ( otherButton ) {
+				otherButton.disabled = false;
+			}
 		});
 	});
 });

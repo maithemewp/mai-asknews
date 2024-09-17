@@ -753,6 +753,10 @@ body {
 		position: relative;
 	}
 
+	.button:disabled {
+		opacity: 1;
+	}
+
 	.button:has(.pm-loading) {
 		cursor: wait;
 	}
