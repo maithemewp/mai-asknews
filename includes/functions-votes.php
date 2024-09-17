@@ -109,10 +109,10 @@ function maiasknews_get_singular_vote_box() {
 	// Get current user.
 	$user = is_user_logged_in() ? wp_get_current_user() : false;
 
-	// Bail if no user.
-	if ( ! $user ) {
-		return $html;
-	}
+	// // Bail if no user.
+	// if ( ! $user ) {
+	// 	return $html;
+	// }
 
 	// Get the matchup ID.
 	$matchup_id = get_the_ID();
@@ -137,10 +137,10 @@ function maiasknews_get_singular_vote_box() {
 	$show_outcome = $started && $data['winner'] && $data['loser'];
 	$show_vote    = ! $started && $has_access;
 
-	// Bail if conditions are not met.
-	if ( ! ( $show_outcome || $show_vote ) ) {
-		return $html;
-	}
+	// // Bail if conditions are not met.
+	// if ( ! ( $show_outcome || $show_vote ) ) {
+	// 	return $html;
+	// }
 
 	// Set vars.
 	$status     = sprintf( '<p class="pm-outcome__status">%s</p>', __( 'Winner', 'mai-asknews' ) );
