@@ -752,6 +752,10 @@ body {
 	.button {
 		position: relative;
 	}
+
+	.button:has(.pm-loading) {
+		cursor: wait;
+	}
 }
 
 @keyframes pmSpin {
