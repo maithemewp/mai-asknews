@@ -309,6 +309,7 @@ class Mai_AskNews_Singular {
 			return;
 		}
 
+		// Display the vote box.
 		echo maiasknews_get_singular_vote_box();
 
 		$first = false;

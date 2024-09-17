@@ -196,6 +196,12 @@ function maiasknews_get_singular_vote_box() {
 
 	// Start vote box.
 	$html .= '<div id="vote" class="pm-vote pm-vote-single">';
+		// Get user avatar.
+		$avatar = get_avatar( get_current_user_id(), 128 );
+
+		// Display the avatar.
+		$html .= sprintf( '<div class="pm-vote__avatar">%s</div>', $avatar );
+
 		// If showing outcome.
 		if ( $show_outcome ) {
 			// Heading.
