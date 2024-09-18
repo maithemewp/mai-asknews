@@ -219,7 +219,8 @@ function maiasknews_get_singular_vote_box() {
  */
 function maiasknews_get_outcome_box( $data ) {
 	$html       = '';
-	$prediction = $data['show_prediction'] ? maiasknews_get_vote_elements( 'prediction' ) : '';
+	// $prediction = $data['show_prediction'] ? maiasknews_get_vote_elements( 'prediction' ) : '';
+	$prediction = $data['user_id'] ? maiasknews_get_vote_elements( 'prediction' ) : '';
 	$selected   = maiasknews_get_vote_elements( 'selected' );
 	$status     = maiasknews_get_vote_elements( 'winner' );
 	$home_class = $data['winner_home'] ? 'winner' : 'loser';
