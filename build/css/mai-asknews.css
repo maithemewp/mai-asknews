@@ -702,16 +702,22 @@ body {
 	content: "";
 }
 
-.pm-outcome {
+.pm-actions {
+	--button-width: 100%;
 	display: grid;
-	grid-template-columns: repeat(2, minmax(140px, 1fr));
-	gap: var(--spacing-sm);
+	gap: var(--spacing-lg) var(--spacing-md);
+	place-items: center;
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 	max-width: var(--breakpoint-xs);
 	margin-inline: auto;
 }
 
-.pm-outcome__col {
+.pm-action__col {
 	position: relative;
+	width: 100%;
+}
+
+.pm-outcome__col {
 	display: grid;
 	place-content: center;
 	border-radius: 12px;
@@ -740,17 +746,12 @@ body {
 	line-height: var(--line-height-sm);
 }
 
-.pm-vote__form {
-	--button-width: 100%;
-	display: grid;
-	gap: var(--spacing-md);
-	place-items: center;
-	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-	max-width: var(--breakpoint-xs);
-	margin-inline: auto;
+.pm-vote__buttons {
 
 	.button {
-		position: relative;
+		/* disable transitions on text-index */
+		transition-property: all, text-indent;
+		transition-duration: 0.3s, 0s;
 	}
 
 	.button:disabled {
@@ -758,6 +759,7 @@ body {
 	}
 
 	.button:has(.pm-loading) {
+		text-indent: -200vw; /* To hide the () that make the button keep the same height. */
 		cursor: wait;
 	}
 }
@@ -802,18 +804,18 @@ body {
 .pm-loading {
 	width: auto;
 	height: 1em;
-	fill: currentColor;
+	fill: white;
 	animation: pmSpin 1s infinite ease-in;
 }
 
 .pm-outcome__prediction,
 .pm-vote__prediction {
-	animation: pmFadeInDown 500ms ease-in;
+	animation: pmFadeInDown 100ms linear;
 }
 
 .pm-outcome__selected,
 .pm-vote__selected {
-	animation: pmFadeInUp 500ms ease-in;
+	animation: pmFadeInUp 100ms linear;
 }
 
 .pm-outcome__prediction,
@@ -937,7 +939,7 @@ body {
 
 	.pm-outcome,
 	.pm-vote__form {
-		margin-block: var(--spacing-xl);
+		margin: var(--spacing-xl) auto;
 	}
 
 	.pm-outcome__col {

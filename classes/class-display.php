@@ -96,16 +96,6 @@ class Mai_AskNews_Display {
 	 * @return void
 	 */
 	function enqueue() {
-		// if ( ! ( maiasknews_is_archive() || is_singular( [ 'page', 'matchup' ] ) || is_front_page() ) ) {
-		// 	return;
-		// }
-
-		// if ( ! is_front_page() && is_page() && ! ( has_shortcode( get_the_content(), 'register_form' ) || has_shortcode( get_the_content(), 'subscription_details' ) ) ) {
-		// 	return;
-		// }
-
-		// TODO: Only add this when we need and move some styles to the theme.
-
 		maiasknews_enqueue_styles();
 	}
 
@@ -261,37 +251,14 @@ class Mai_AskNews_Display {
 			return $content;
 		}
 
-		// Bail if no access.
-		if ( ! maiasknews_has_access() ) {
-			return $content;
-		}
-
 		// Get the data.
-		$data = maiasknews_get_insight_body( get_the_ID() );
+		$access = maiasknews_has_access();
+		$hidden = ! $access;
+		$data   = maiasknews_get_insight_body( get_the_ID() );
+		$list   = maiasknews_get_prediction_list( $data, $hidden );
+		$vote   = maiasknews_get_archive_vote_box();
 
-		// // Get start timestamp.
-		// $timestamp = get_post_meta( get_the_ID(), 'event_date', true );
-
-		// // If game hasn't started.
-		// if ( $timestamp && time() <= $timestamp ) {
-		// 	// Get the vote box.
-		// 	$vote = maiasknews_get_archive_vote_box();
-
-		// 	if ( $vote ) {
-		// 		$content = $vote . $content;
-		// 	}
-		// }
-
-		// // Get the prediction list.
-		// $list = maiasknews_get_prediction_list( $data );
-
-		// // If list, add it.
-		// if ( $list ) {
-		// 	$content = $list . $content;
-		// }
-
-		$list = maiasknews_get_prediction_list( $data );
-		$vote = maiasknews_get_archive_vote_box();
+		// Build the markup.
 		$html = '<div class="pm-archive-content">';
 			$html .= $list;
 			$html .= $vote;

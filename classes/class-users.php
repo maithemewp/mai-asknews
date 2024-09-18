@@ -39,7 +39,13 @@ class Mai_AskNews_Users {
 	 * @return void
 	 */
 	function dashboad_redirect() {
+		// Bail if doing ajax or user can edit posts.
 		if ( wp_doing_ajax() || current_user_can( 'edit_posts' ) ) {
+			return;
+		}
+
+		// Bail if handling vote submissions to admin-post.php
+		if ( isset( $_POST['action'] ) && 'pm_vote_submission' === sanitize_text_field( $_POST['action'] ) ) {
 			return;
 		}
 

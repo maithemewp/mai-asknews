@@ -357,8 +357,13 @@ class Mai_AskNews_Singular {
 					'label'  => __( 'Reasoning', 'mai-asknews' ),
 					'hidden' => $reasoning,
 				],
-				'reconciled_information' => [
-					'label'  => __( 'Reconciled Info', 'mai-asknews' ),
+				// Disabled per Rob's request. "reconciled info is not really meant for anything besides internal thinking of the LLM".
+				// 'reconciled_information' => [
+				// 	'label'  => __( 'Reconciled Info', 'mai-asknews' ),
+				// 	'hidden' => $reasoning,
+				// ],
+				'unique_prediction'      => [
+					'label'  => __( 'Unique Prediction', 'mai-asknews' ),
 					'hidden' => $reasoning,
 				],
 				'unique_information'     => [
@@ -576,7 +581,7 @@ class Mai_AskNews_Singular {
 		}
 
 		printf( '<h2 id="timeline" class="is-style-heading">%s</h2>', __( 'Timeline', 'mai-asknews' ) );
-		printf( '<p>%s</p>', __( 'Timeline of relavant events and news articles.', 'mai-asknews' ) );
+		printf( '<p>%s</p>', __( 'Timeline of relevant events and news articles.', 'mai-asknews' ) );
 
 		echo '<ul>';
 
