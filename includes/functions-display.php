@@ -27,7 +27,8 @@ function maiasknews_enqueue_scripts( $selected ) {
 	// Enqueue JS.
 	wp_enqueue_script( 'mai-asknews-vote', maiasknews_get_file_url( 'mai-asknews-vote', 'js' ), [], MAI_ASKNEWS_VERSION, true );
 	wp_localize_script( 'mai-asknews-vote', 'maiAskNewsVars', [
-		'selected'   => $selected,
+		'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
+		'selected' => $selected,
 	] );
 }
 
