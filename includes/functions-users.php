@@ -60,9 +60,16 @@ function maiasknews_is_user() {
  * @return bool
  */
 function maiasknews_has_access( $league = '' ) {
+	static $cache = [];
+
+	if ( isset( $cache[ $league ] ) ) {
+		return $cache[ $league ];
+	}
+
 	// Admins can always access.
 	if ( current_user_can( 'manage_options' ) ) {
-		return true;
+		$cache[ $league ] = true;
+		return $cache[ $league ];
 	}
 
 	// Get current page leage and user levels.
@@ -71,7 +78,8 @@ function maiasknews_has_access( $league = '' ) {
 
 	// If no league or no levels, bail.
 	if ( ! ( $league && $levels ) ) {
-		return false;
+		$cache[ $league ] = false;
+		return $cache[ $league ];
 	}
 
 	// Hardcoded paid membership IDs, including pro.
@@ -99,7 +107,9 @@ function maiasknews_has_access( $league = '' ) {
 	];
 
 	// If they have any of these ids.
-	return (bool) isset( $paid[ $league ] ) ? array_intersect( $levels, $paid[ $league ] ) : false;
+	$cache[ $league ] = (bool) isset( $paid[ $league ] ) ? array_intersect( $levels, $paid[ $league ] ) : false;
+
+	return $cache[ $league ];
 }
 
 /**
@@ -112,9 +122,16 @@ function maiasknews_has_access( $league = '' ) {
  * @return bool
  */
 function maiasknews_has_pro_access( $league = '' ) {
+	static $cache = [];
+
+	if ( isset( $cache[ $league ] ) ) {
+		return $cache[ $league ];
+	}
+
 	// Admins can always access.
 	if ( current_user_can( 'manage_options' ) ) {
-		return true;
+		$cache[ $league ] = true;
+		return $cache[ $league ];
 	}
 
 	// Get current page leage and user levels.
@@ -135,7 +152,9 @@ function maiasknews_has_pro_access( $league = '' ) {
 	];
 
 	// If they have any of these ids.
-	return (bool) isset( $pro[ $league ] ) ? array_intersect( $levels, $pro[ $league ] ) : false;
+	$cache[ $league ] = (bool) isset( $pro[ $league ] ) ? array_intersect( $levels, $pro[ $league ] ) : false;
+
+	return $cache[ $league ];
 }
 
 /**
