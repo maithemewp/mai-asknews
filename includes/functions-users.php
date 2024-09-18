@@ -10,6 +10,25 @@ defined( 'ABSPATH' ) || die;
 // rcp_user_has_access( $user_id = 0, $access_level_needed = 0 )
 
 /**
+ * Get the current user.
+ *
+ * @since TBD
+ *
+ * @return WP_User|false
+ */
+function maiasknews_get_user() {
+	static $cache = null;
+
+	if ( ! is_null( $cache ) ) {
+		return $cache;
+	}
+
+	$cache = is_user_logged_in() ? wp_get_current_user() : false;
+
+	return $cache;
+}
+
+/**
  * If the user has access to view restricted content.
  *
  * @since 0.1.0

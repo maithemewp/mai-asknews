@@ -24,7 +24,8 @@ class Mai_AskNews_Admin_Post_Vote {
 	 * @return void
 	 */
 	function hooks() {
-		add_action( 'admin_post_pm_vote_submission', [ $this, 'handle_submission' ] );
+		add_action( 'admin_post_pm_vote_submission',        [ $this, 'handle_submission' ] );
+		add_action( 'admin_post_nopriv_pm_vote_submission', [ $this, 'handle_submission' ] );
 	}
 
 	/**
@@ -48,6 +49,7 @@ class Mai_AskNews_Admin_Post_Vote {
 				'user_id'    => null,
 				'matchup_id' => null,
 				'redirect'   => null,
+				'fetch'      => null,
 			]
 		);
 
@@ -56,39 +58,44 @@ class Mai_AskNews_Admin_Post_Vote {
 		$user_id    = absint( $args['user_id'] );
 		$matchup_id = absint( $args['matchup_id'] );
 		$redirect   = esc_url( $args['redirect'] );
+		$fetch      = rest_sanitize_boolean( $args['fetch'] );
 
 		// Bail if no team.
 		if ( ! $team ) {
-			return new WP_Error( 'team', __( 'No team selected.', 'mai-asknews' ) );
-			// wp_die( __( 'No team selected.', 'mai-asknews' ) );
+			wp_send_json_error( [ 'message' => __( 'No team selected.', 'mai-asknews' ) ] );
+			exit;
 		}
 
 		// Bail if no user ID.
 		if ( ! $user_id ) {
-			return new WP_Error( 'user_id', __( 'No user ID found.', 'mai-asknews' ) );
-			// wp_die( __( 'No user ID found.', 'mai-asknews' ) );
+			wp_send_json_error( [ 'message' => __( 'No user ID found.', 'mai-asknews' ) ] );
+			exit;
 		}
 
 		// Bail if no matchup ID.
 		if ( ! $matchup_id ) {
-			return new WP_Error( 'matchup_id', __( 'No matchup ID found.', 'mai-asknews' ) );
-			// wp_die( __( 'No matchup ID found.', 'mai-asknews' ) );
+			wp_send_json_error( [ 'message' => __( 'No matchup ID found.', 'mai-asknews' ) ] );
+			exit;
 		}
 
 		// Run listener and get response.
 		$listener = new Mai_AskNews_Vote_Listener( $matchup_id, $team, $user_id );
 		$response = $listener->get_response();
 
-		// If redirecting.
-		if ( $args['redirect'] ) {
-			// Redirect.
+		// Handle response.
+		if ( is_wp_error( $response ) ) {
+			wp_send_json_error( [ 'message' => $response->get_error_message() ] );
+			exit;
+		}
+
+		// If redirecting, do it.
+		if ( ! $fetch && $args['redirect'] ) {
 			wp_safe_redirect( $redirect );
 			exit;
 		}
 
-		ray( $response );
-
-		// Return the response.
-		return $response;
+		// Send success response.
+		wp_send_json_success( $response->get_data() );
+		exit;
 	}
 }

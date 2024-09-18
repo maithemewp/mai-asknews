@@ -21,28 +21,63 @@ function maiasknews_get_matchup_data( $matchup_id, $user = null ) {
 	}
 
 	// Get data.
-	$league  = maiasknews_get_page_league();
+	$league  = maiasknews_get_matchup_league( $matchup_id );
 	$data    = maiasknews_get_insight_body( $matchup_id );
 	$vote    = maiasknews_get_user_vote( $matchup_id, $user );
 	$outcome = (array) get_post_meta( $matchup_id, 'asknews_outcome', true );
 	$winner  = isset( $outcome['winner']['team'] ) ? $outcome['winner']['team'] : '';
 	$loser   = isset( $outcome['loser']['team'] ) ? $outcome['loser']['team'] : '';
+	$user    = maiasknews_get_user();
 
 	// Store in cache.
 	$cache[ $matchup_id ] = [
-		'home_short'   => isset( $data['home_team_name'] ) && $data['home_team_name'] ? $data['home_team_name'] : maiasknews_get_team_short_name( $data['home_team'], $league ),
-		'away_short'   => isset( $data['away_team_name'] ) && $data['away_team_name'] ? $data['away_team_name'] : maiasknews_get_team_short_name( $data['away_team'], $league ),
 		'home_full'    => $data['home_team'],
 		'away_full'    => $data['away_team'],
-		'winner'       => $winner,
-		'loser'        => $loser,
+		'home_short'   => isset( $data['home_team_name'] ) && $data['home_team_name'] ? $data['home_team_name'] : maiasknews_get_team_short_name( $data['home_team'], $league ),
+		'away_short'   => isset( $data['away_team_name'] ) && $data['away_team_name'] ? $data['away_team_name'] : maiasknews_get_team_short_name( $data['away_team'], $league ),
+		'winner_full'  => $winner,
+		'loser_full'   => $loser,
+		'winner_short' => $winner ? maiasknews_get_team_short_name( $winner, $league ) : '',
+		'loser_short'  => $loser ? maiasknews_get_team_short_name( $loser, $league ) : '',
 		'winner_score' => isset( $outcome['winner']['score'] ) ? $outcome['winner']['score'] : '',
 		'loser_score'  => isset( $outcome['loser']['score'] ) ? $outcome['loser']['score'] : '',
 		'winner_home'  => $winner && $loser ? $winner === $data['home_team'] : '',
 		'league'       => $league,
-		'choice'       => maiasknews_get_key( 'choice', $data ),
+		'prediction'   => maiasknews_get_key( 'choice', $data ),
 		'vote'         => $vote['name'],
+		'matchup_id'   => $matchup_id,
+		'user_id'      => $user ? $user->ID : '',
 	];
+
+	return $cache[ $matchup_id ];
+}
+
+/**
+ * Get the matchup league.
+ *
+ * @param int $matchup_id
+ *
+ * @return WP_Term|null
+ */
+function maiasknews_get_matchup_league( $matchup_id ) {
+	static $cache = [];
+
+	if ( isset( $cache[ $matchup_id ] ) ) {
+		return $cache[ $matchup_id ];
+	}
+
+	// Get the league.
+	$terms = get_the_terms( $matchup_id, 'league' );
+	$top   = array_filter( $terms, function( $term ) { return 0 === $term->parent; });
+	$term  = $top ? reset( $top ) : reset( $terms );
+
+	// If a WP_Term object.
+	if ( $term && is_a( $term, 'WP_Term' ) ) {
+		$term = $term->parent ? get_term( $term->parent, 'league' ) : $term;
+	}
+
+	// Set cache.
+	$cache[ $matchup_id ] = $term ? $term->name : '';
 
 	return $cache[ $matchup_id ];
 }
@@ -65,10 +100,9 @@ function maiasknews_get_page_league() {
 
 	// Single matchup.
 	if ( is_singular( 'matchup' ) ) {
-		$terms = get_the_terms( get_the_ID(), 'league' );
-		$top   = array_filter( $terms, function( $term ) { return 0 === $term->parent; });
-		$term  = $top ? reset( $top ) : reset( $terms );
-
+		$terms      = get_the_terms( get_the_ID(), 'league' );
+		$top        = array_filter( $terms, function( $term ) { return 0 === $term->parent; });
+		$term       = $top ? reset( $top ) : reset( $terms );
 	}
 	// League archive.
 	elseif ( is_tax( 'league' ) ) {
