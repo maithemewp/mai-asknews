@@ -43,8 +43,7 @@ function maiasknews_get_archive_vote_box() {
 	}
 
 	// Add data.
-	$data['redirect']        = home_url( add_query_arg( [] ) );
-	$data['show_prediction'] = maiasknews_has_access( $data['league'] );
+	$data['redirect'] = home_url( add_query_arg( [] ) );
 
 	// Start vote box.
 	$html .= '<div class="pm-vote pm-vote-archive">';
@@ -125,8 +124,7 @@ function maiasknews_get_singular_vote_box() {
 	$show_vote    = ! $started && $has_access;
 
 	// Add data.
-	$data['redirect']        = get_permalink( $matchup_id ) . '#vote';
-	$data['show_prediction'] = maiasknews_has_access( $data['league'] );
+	$data['redirect'] = get_permalink( $matchup_id ) . '#vote';
 
 	// If the game has started.
 	if ( $started ) {
@@ -219,7 +217,6 @@ function maiasknews_get_singular_vote_box() {
  */
 function maiasknews_get_outcome_box( $data ) {
 	$html       = '';
-	// $prediction = $data['show_prediction'] ? maiasknews_get_vote_elements( 'prediction' ) : '';
 	$prediction = $data['user_id'] ? maiasknews_get_vote_elements( 'prediction' ) : '';
 	$selected   = maiasknews_get_vote_elements( 'selected' );
 	$status     = maiasknews_get_vote_elements( 'winner' );
@@ -299,7 +296,7 @@ function maiasknews_get_outcome_box( $data ) {
  */
 function maiasknews_get_vote_form( $data ) {
 	$html       = '';
-	$prediction = $data['show_prediction'] ? maiasknews_get_vote_elements( 'prediction' ) : '';
+	$prediction = maiasknews_has_access( $data['league'] ) ? maiasknews_get_vote_elements( 'prediction' ) : '';
 	$selected   = maiasknews_get_vote_elements( 'selected' );
 
 	// Get the vote form markup.
