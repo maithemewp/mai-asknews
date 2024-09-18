@@ -318,16 +318,67 @@ body {
 	content: attr(data-code);
 }
 
-.tax-league .entry-archive,
-.tax-season .entry-archive,
-.tax-matchup_tag .entry-archive,
-.pm-matchups .entry-grid,
-.author .entry-archive,
-.search-results .entry-archive {
-	--heading-margin-bottom: var(--spacing-sm);
-	display: grid;
-	gap: max(2vw, var(--spacing-md));
-	grid-template-columns: auto 1fr;
+.pm-matchup__date {
+	text-transform: uppercase;
+	letter-spacing: -.5px;
+}
+
+
+
+@media only screen and (max-width: 599px) {
+	.pm-matchup__date {
+		display: flex;
+		align-items: center;
+	}
+
+	.pm-matchup__day,
+	.pm-matchup__time {
+		font-size: var(--font-size-xs);
+	}
+
+	body[data-timezone="ET"] .pm-matchup__time[data-timezone="ET"]::before,
+	body[data-timezone="PT"] .pm-matchup__time[data-timezone="PT"]::before {
+		display: inline-block;
+		margin-inline: .25em;
+		content: "@";
+	}
+}
+
+@media only screen and (min-width: 600px) {
+
+	.tax-league .entry-archive,
+	.tax-season .entry-archive,
+	.tax-matchup_tag .entry-archive,
+	.pm-matchups .entry-grid,
+	.author .entry-archive,
+	.search-results .entry-archive {
+		--heading-margin-bottom: var(--spacing-sm);
+		display: grid;
+		gap: max(2vw, var(--spacing-md));
+		grid-template-columns: auto 1fr;
+	}
+
+	.pm-matchup__date {
+		margin-top: .2em;
+	}
+
+	.pm-matchup__day {
+		font-size: var(--font-size-sm);
+		font-weight: var(--body-font-weight-bold);
+	}
+
+	.pm-matchup__time {
+		font-size: var(--font-size-xs);
+	}
+
+	.pm-matchup__day,
+	.pm-matchup__time {
+		display: block;
+		text-align: end;
+		padding-right: max(2vw, var(--spacing-md));
+		font-size: var(--font-size-sm);
+		border-right: 2px solid var(--color-body);
+	}
 }
 
 .tax-league .entry-archive .entry-wrap,
@@ -387,16 +438,32 @@ body {
 
 	.pm-archive-content {
 		display: grid;
-		grid-template-columns: 40% 1fr;
+		/* grid-template-columns: 40% 1fr; */
 		/* display: flex; */
 		/* justify-content: space-between; */
-		gap: 1em;
-		/* grid-template-columns: 40% 1fr; */
+		gap: var(--spacing-lg) 1em;
 		width: 100%;
 		padding: var(--spacing-lg);
 		background: var(--color-alt);
 		border-bottom: 3px solid var(--color-primary);
 		order: 5;
+	}
+
+	@media only screen and (min-width: 600px) {
+
+		.pm-archive-content:has(.pm-prediction__list):has(.pm-vote-archive) {
+			/* grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); */
+			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+			grid-template-columns: 1fr 2fr;
+		}
+	}
+
+	.pm-archive-content:has(.pm-prediction__list):not(:has(.pm-vote-archive)) {
+
+	}
+
+	.pm-archive-content:not(:has(.pm-prediction__list)):has(.pm-vote-archive) {
+
 	}
 
 	.pm-prediction__item.label,
@@ -412,29 +479,6 @@ body {
 	.pm-vote__heading {
 		margin-bottom: var(--spacing-md);
 	}
-}
-
-.pm-matchup__date {
-	margin-top: .2em;
-	text-transform: uppercase;
-	letter-spacing: -.5px;
-}
-
-.pm-matchup__day,
-.pm-matchup__time {
-	display: block;
-	text-align: end;
-	padding-right: max(2vw, var(--spacing-md));
-	border-right: 2px solid var(--color-body);
-}
-
-.pm-matchup__day {
-	font-size: var(--font-size-sm);
-	font-weight: var(--body-font-weight-bold);
-}
-
-.pm-matchup__time {
-	font-size: var(--font-size-xs);
 }
 
 .entry-custom-content > .pm-update {
@@ -705,11 +749,10 @@ body {
 .pm-actions {
 	--button-width: 100%;
 	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
 	gap: var(--spacing-lg) var(--spacing-md);
 	place-items: center;
-	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 	max-width: var(--breakpoint-xs);
-	margin-inline: auto;
 }
 
 .pm-action__col {
@@ -895,13 +938,17 @@ body {
 }
 
 .pm-vote-archive {
+	--button-color: var(--button-secondary-color);
+	--button-color-hover: var(--button-secondary-color-hover, var(--button-secondary-color));
+	--button-background: var(--button-secondary-background, var(--color-secondary));
+	--button-background-hover: var(--button-secondary-background-hover, var(--color-secondary-dark, var(--color-secondary)));
 
 	.pm-outcome__col {
-		border: 2px solid var(--color-body);
+		border: 2px solid var(--color-heading);
 	}
 
 	.pm-outcome__status {
-		background-color: var(--color-body);
+		background-color: var(--color-heading);
 		color: white;
 	}
 
@@ -937,6 +984,10 @@ body {
 		border-radius: 100vw;
 	}
 
+	.pm-actions {
+		margin-inline: auto;
+	}
+
 	.pm-outcome,
 	.pm-vote__form {
 		margin: var(--spacing-xl) auto;
@@ -968,10 +1019,6 @@ body {
 
 	.pm-outcome__score {
 		font-size: var(--font-size-xxxl);
-	}
-
-	.pm-vote__form {
-		max-width: var(--breakpoint-xs);
 	}
 }
 

@@ -347,6 +347,7 @@ class Mai_AskNews_Singular {
 				echo '</div>';
 			echo '</div>';
 
+			// Get reasoning and build keys.
 			$reasoning = sprintf( __( 'Either the %s or the %s are predicted to win this game. You do not have access to our predictions.', 'mai-asknews' ), $home, $away );
 			$keys      = [
 				'forecast'               => [
@@ -374,6 +375,7 @@ class Mai_AskNews_Singular {
 
 			// Display the inner content.
 			printf( '<div class="pm-prediction__inner%s">', $hidden ? ' pm-prediction__inner--obfuscated' : '' );
+				// Loop through and display the key data.
 				foreach ( $keys as $key => $value ) {
 					$content = $hidden ? $value['hidden'] : maiasknews_get_key( $key, $data );
 
@@ -430,8 +432,6 @@ class Mai_AskNews_Singular {
 				}
 
 			echo '</div>';
-
-
 		echo '</div>';
 	}
 

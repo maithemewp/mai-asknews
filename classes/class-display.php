@@ -35,7 +35,7 @@ class Mai_AskNews_Display {
 		add_filter( 'get_post_metadata',               [ $this, 'fallback_thumbnail_id' ], 10, 4 );
 		add_filter( 'genesis_markup_entry-wrap_open',  [ $this, 'get_datetime' ], 10, 2 );
 		add_filter( 'mai_post_grid_query_args',        [ $this, 'mpg_query_args' ], 10, 2 );
-		add_filter( 'genesis_markup_entry-wrap_close', [ $this, 'get_predictions' ], 10, 2 );
+		add_filter( 'genesis_markup_entry-wrap_close', [ $this, 'get_custom_content' ], 10, 2 );
 		add_filter( 'mai_template-parts_config',       [ $this, 'add_ccas' ] );
 		add_shortcode( 'pm_date',                      [ $this, 'date_shortcode' ] );
 		add_shortcode( 'pm_matchup_time',              [ $this, 'matchup_time_shortcode' ] );
@@ -227,7 +227,7 @@ class Mai_AskNews_Display {
 	}
 
 	/**
-	 * Get the predictions markup.
+	 * Get the predictions and vote box markup.
 	 *
 	 * @since 0.1.0
 	 *
@@ -236,7 +236,7 @@ class Mai_AskNews_Display {
 	 *
 	 * @return string
 	 */
-	function get_predictions( $content, $args ) {
+	function get_custom_content( $content, $args ) {
 		// Bail if not the closing markup.
 		if ( ! ( isset( $args['close'] ) && $args['close'] ) ) {
 			return $content;
@@ -252,17 +252,23 @@ class Mai_AskNews_Display {
 		}
 
 		// Get the data.
-		$access = maiasknews_has_access();
-		$hidden = ! $access;
-		$data   = maiasknews_get_insight_body( get_the_ID() );
-		$list   = maiasknews_get_prediction_list( $data, $hidden );
-		$vote   = maiasknews_get_archive_vote_box();
+		$matchup_id = get_the_ID();
+		$timestamp  = get_post_meta( $matchup_id, 'event_date', true );
+		$started    = $timestamp && time() > $timestamp;
+		$access     = maiasknews_has_access();
+		$data       = maiasknews_get_insight_body( $matchup_id );
+		$list       = maiasknews_get_prediction_list( $data, ! $access );
+		$vote       = maiasknews_get_archive_vote_box();
 
 		// Build the markup.
-		$html = '<div class="pm-archive-content">';
+		$html = '';
+		if ( $access ) {
 			$html .= $list;
-			$html .= $vote;
-		$html .= '</div>';
+		}
+		$html .= $vote;
+
+		// If we have markup, wrap it.
+		$html = $html ? sprintf( '<div class="pm-archive-content">%s</div>', $html ) : '';
 
 		return $html . $content;
 	}
