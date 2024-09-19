@@ -41,10 +41,18 @@ class Mai_AskNews_Display {
 		add_shortcode( 'pm_matchup_time',              [ $this, 'matchup_time_shortcode' ] );
 		add_shortcode( 'pm_matchup_teams',             [ $this, 'matchup_teams_shortcode' ] );
 		add_shortcode( 'pm_teams',                     [ $this, 'teams_shortcode' ] );
+		add_shortcode( 'pm_team',                      [ $this, 'team_shortcode' ] );
 		// add_filter( 'do_shortcode_tag',                [ $this, 'register_form_tag' ], 10, 2 );
 		add_filter( 'do_shortcode_tag',                [ $this, 'subscription_details_tag' ], 10, 2 );
 	}
 
+	/**
+	 * Set vars.
+	 *
+	 * @since TBD
+	 *
+	 * @return void
+	 */
 	function set_vars() {
 		// Bail if not a league-specific archive.
 		if ( ! ( is_tax( 'league' ) || is_tax( 'season' ) ) ) {
@@ -386,6 +394,17 @@ class Mai_AskNews_Display {
 	 */
 	function teams_shortcode( $atts ) {
 		return maisknews_get_teams_list( $atts );
+	}
+
+	/**
+	 * Displays the team.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return string
+	 */
+	function team_shortcode( $atts ) {
+		return maisknews_get_team_name();
 	}
 
 	/**

@@ -556,6 +556,34 @@ function maisknews_get_teams_list( $args = [] ) {
 }
 
 /**
+ * Get the team name from the league/team archive.
+ *
+ * @since TBD
+ *
+ * @param string $name   The team name.
+ * @param string $league The league name.
+ *
+ * @return string
+ */
+function maisknews_get_team_name() {
+	if ( ! is_tax( 'league' ) ) {
+		return '';
+	}
+
+	static $cache = null;
+
+	if ( ! is_null( $cache ) ) {
+		return $cache;
+	}
+
+	$term  = get_queried_object();
+	$name  = $term ? $term->name : '';
+	$cache = $name ? maiasknews_get_team_short_name( $name, maiasknews_get_page_league() ) : '';
+
+	return $cache;
+}
+
+/**
  * Convert American odds to decimal.
  *
  * @access private
