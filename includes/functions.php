@@ -188,6 +188,23 @@ function maiasknews_get_key( $key, $array ) {
 }
 
 /**
+ * Get a file version based on last modified date.
+ *
+ * @param string $filename
+ * @param string $type
+ *
+ * @return string
+ */
+function maiasknews_get_file_version( $filename, $type ) {
+	$version  = MAI_ASKNEWS_VERSION;
+	$suffix   = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+	$filepath = MAI_ASKNEWS_DIR . "build/{$type}/{$filename}{$suffix}.{$type}";
+	$version .= '.' . date( 'njYHi', filemtime( $filepath ) );
+
+	return $version;
+}
+
+/**
  * Get the URL of a file in the plugin.
  * Checks if script debug is enabled.
  *

@@ -26,6 +26,8 @@ class Mai_AskNews_Admin_Post_Vote {
 	function hooks() {
 		add_action( 'admin_post_pm_vote_submission',        [ $this, 'handle_submission' ] );
 		add_action( 'admin_post_nopriv_pm_vote_submission', [ $this, 'handle_submission' ] );
+		add_action( 'wp_ajax_pm_vote_submission',           [ $this, 'handle_submission' ] );
+		add_action( 'wp_ajax_nopriv_pm_vote_submission',    [ $this, 'handle_submission' ] );
 	}
 
 	/**

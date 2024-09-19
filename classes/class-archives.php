@@ -94,9 +94,19 @@ class Mai_AskNews_Archives {
 			remove_action( 'wp_head', 'feed_links_extra', 3 );
 		}
 
+		// If a league.
+		if ( $league ) {
+			// Get current object.
+			$object = get_queried_object();
+
+			// If it's a parent term.
+			if ( $object && is_a( $object, 'WP_Term' ) && 0 === $object->parent ) {
+				add_action( 'genesis_loop', [ $this, 'do_teams' ], 6 );
+			}
+		}
+
 		// Add hooks.
 		add_filter( 'genesis_attr_taxonomy-archive-description', [ $this, 'add_archive_title_atts' ], 10, 3 );
-		add_action( 'genesis_loop',                              [ $this, 'do_teams' ], 6 );
 		add_action( 'genesis_loop',                              [ $this, 'do_upcoming_heading' ], 8 );
 		add_action( 'genesis_after_loop',                        [ $this, 'do_past_games' ] );
 		add_filter( 'genesis_noposts_text',                      [ $this, 'get_noposts_text' ] );
@@ -180,7 +190,7 @@ class Mai_AskNews_Archives {
 	 * @return void
 	 */
 	function do_upcoming_heading() {
-		printf( '<h2 class="is-style-line has-xl-margin-bottom">%s</h2>', __( 'Upcoming Games', 'mai-asknews' ) );
+		printf( '<h2 class="is-style-line has-xl-margin-bottom">%s</h2>', sprintf( __( 'Upcoming %s Games', 'mai-asknews' ), maisknews_get_team_name( [ 'fallback' => 'league' ] ) ) );
 	}
 
 	/**
@@ -201,7 +211,7 @@ class Mai_AskNews_Archives {
 		}
 
 		// Heading.
-		printf( '<h2 class="is-style-line has-xxl-margin-top has-xl-margin-bottom">%s</h2>', __( 'Past Games', 'mai-asknews' ) );
+		printf( '<h2 class="is-style-line has-xxl-margin-top has-xl-margin-bottom">%s</h2>', sprintf( __( 'Past %s Games', 'mai-asknews' ), maisknews_get_team_name( [ 'fallback' => 'league' ] ) ) );
 
 		// Filter MPG query.
 		add_filter( 'mai_post_grid_query_args', [ $this, 'mpg_query_args' ], 10, 2 );

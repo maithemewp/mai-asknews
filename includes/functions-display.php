@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || die;
  * @return void
  */
 function maiasknews_enqueue_styles() {
-	wp_enqueue_style( 'mai-asknews', maiasknews_get_file_url( 'mai-asknews', 'css' ), [], MAI_ASKNEWS_VERSION );
+	wp_enqueue_style( 'mai-asknews', maiasknews_get_file_url( 'mai-asknews', 'css' ), [], maiasknews_get_file_version( 'mai-asknews', 'css' ) );
 }
 
 /**
@@ -25,9 +25,10 @@ function maiasknews_enqueue_styles() {
  */
 function maiasknews_enqueue_scripts( $selected ) {
 	// Enqueue JS.
-	wp_enqueue_script( 'mai-asknews-vote', maiasknews_get_file_url( 'mai-asknews-vote', 'js' ), [], MAI_ASKNEWS_VERSION, true );
+	wp_enqueue_script( 'mai-asknews-vote', maiasknews_get_file_url( 'mai-asknews-vote', 'js' ), [], maiasknews_get_file_version( 'mai-asknews-vote', 'js' ), true );
 	wp_localize_script( 'mai-asknews-vote', 'maiAskNewsVars', [
-		'selected'   => $selected,
+		'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
+		'selected' => $selected,
 	] );
 }
 
@@ -552,6 +553,75 @@ function maisknews_get_teams_list( $args = [] ) {
 	$html .= '</ul>';
 
 	return $html;
+}
+
+/**
+ * Get the team name from the league/team archive.
+ *
+ * @since TBD
+ *
+ * @param array $atts The shortcode attributes.
+ *
+ * @return string
+ */
+function maisknews_get_team_name( $atts ) {
+	if ( ! is_tax( 'league' ) ) {
+		return '';
+	}
+
+	// Atts.
+	$atts = shortcode_atts(
+		[
+			'full_name' => false,
+			'fallback'  => '',      // Accepts 'league'.
+		],
+		$atts,
+		'pm_team'
+	);
+
+	// Sanitize.
+	$atts = [
+		'full_name' => rest_sanitize_boolean( $atts['full_name'] ),
+		'fallback'  => sanitize_text_field( $atts['fallback'] ),
+	];
+
+	// Hash the args.
+	$hash = md5( serialize( $atts ) );
+
+	// Cache the results.
+	static $cache = [];
+
+	if ( isset( $cache[ $hash ] ) ) {
+		return $cache[ $hash ];
+	}
+
+	// Set vars.
+	$league = maiasknews_get_page_league();
+	$term   = get_queried_object();
+	$name   = $term ? $term->name : '';
+
+	// If not showing full name.
+	if ( ! $atts['full_name'] ) {
+		$short = maiasknews_get_team_short_name( $name, $league );
+		$name  = $short ?: $name;
+	}
+
+	// If no name and we have a fallback.
+	if ( ! $name && $atts['fallback'] ) {
+		// If falling back to league.
+		if ( 'league' === $atts['fallback'] ) {
+			$name = $league;
+		}
+		// Not league, use string.
+		else {
+			$name = $atts['fallback'];
+		}
+	}
+
+	// Cache the results.
+	$cache[ $hash ] = $name;
+
+	return $cache[ $hash ];
 }
 
 /**
