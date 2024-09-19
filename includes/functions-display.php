@@ -606,9 +606,16 @@ function maisknews_get_team_name( $atts ) {
 		$name  = $short ?: $name;
 	}
 
-	// If no name and falling back to league.
-	if ( ! $name && 'league' === $atts['fallback'] ) {
-		$name = $league;
+	// If no name and we have a fallback.
+	if ( ! $name && $atts['fallback'] ) {
+		// If falling back to league.
+		if ( 'league' === $atts['fallback'] ) {
+			$name = $league;
+		}
+		// Not league, use string.
+		else {
+			$name = $atts['fallback'];
+		}
 	}
 
 	// Cache the results.
