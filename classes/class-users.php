@@ -26,9 +26,21 @@ class Mai_AskNews_Users {
 	 * @return void
 	 */
 	function hooks() {
-		add_filter( 'rcp_can_upgrade_subscription',    '__return_false' );
-		add_action( 'admin_init',                      [ $this, 'dashboad_redirect' ] );
-		add_action( 'after_setup_theme',               [ $this, 'disable_admin_bar' ] );
+		add_filter( 'rcp_can_upgrade_subscription', '__return_false' );
+		add_filter( 'auth_cookie_expiration',       [ $this, 'stay_logged_in' ] );
+		add_action( 'admin_init',                   [ $this, 'dashboad_redirect' ] );
+		add_action( 'after_setup_theme',            [ $this, 'disable_admin_bar' ] );
+	}
+
+	/**
+	 * Logged in expiration.
+	 *
+	 * @since TBD
+	 *
+	 * @return int
+	 */
+	function stay_logged_in() {
+		return WEEK_IN_SECONDS * 2; // 2 weeks.
 	}
 
 	/**
