@@ -94,9 +94,19 @@ class Mai_AskNews_Archives {
 			remove_action( 'wp_head', 'feed_links_extra', 3 );
 		}
 
+		// If a league.
+		if ( $league ) {
+			// Get current object.
+			$object = get_queried_object();
+
+			// If it's a parent term.
+			if ( $object && is_a( $object, 'WP_Term' ) && 0 === $object->parent ) {
+				add_action( 'genesis_loop', [ $this, 'do_teams' ], 6 );
+			}
+		}
+
 		// Add hooks.
 		add_filter( 'genesis_attr_taxonomy-archive-description', [ $this, 'add_archive_title_atts' ], 10, 3 );
-		add_action( 'genesis_loop',                              [ $this, 'do_teams' ], 6 );
 		add_action( 'genesis_loop',                              [ $this, 'do_upcoming_heading' ], 8 );
 		add_action( 'genesis_after_loop',                        [ $this, 'do_past_games' ] );
 		add_filter( 'genesis_noposts_text',                      [ $this, 'get_noposts_text' ] );
