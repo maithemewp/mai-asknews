@@ -560,28 +560,61 @@ function maisknews_get_teams_list( $args = [] ) {
  *
  * @since TBD
  *
- * @param string $name   The team name.
- * @param string $league The league name.
+ * @param array $atts The shortcode attributes.
  *
  * @return string
  */
-function maisknews_get_team_name( $fallback = '' ) {
+function maisknews_get_team_name( $atts ) {
 	if ( ! is_tax( 'league' ) ) {
 		return '';
 	}
 
-	static $cache = null;
+	// Atts.
+	$atts = shortcode_atts(
+		[
+			'full_name' => false,
+			'fallback'  => '',      // Accepts 'league'.
+		],
+		$atts,
+		'pm_team'
+	);
 
-	if ( ! is_null( $cache ) ) {
-		return $cache;
+	// Sanitize.
+	$atts = [
+		'full_name' => rest_sanitize_boolean( $atts['full_name'] ),
+		'fallback'  => sanitize_text_field( $atts['fallback'] ),
+	];
+
+	// Hash the args.
+	$hash = md5( serialize( $atts ) );
+
+	// Cache the results.
+	static $cache = [];
+
+	if ( isset( $cache[ $hash ] ) ) {
+		return $cache[ $hash ];
 	}
 
-	$term  = get_queried_object();
-	$name  = $term ? $term->name : '';
-	$name  = $name ? maiasknews_get_team_short_name( $name, maiasknews_get_page_league() ) : '';
-	$cache = $name ? $name : $fallback;
+	// Set vars.
+	$league = maiasknews_get_page_league();
+	$term   = get_queried_object();
+	$name   = $term ? $term->name : '';
 
-	return $cache;
+	// If not showing full name.
+	if ( ! $atts['full_name'] ) {
+		$short = maiasknews_get_team_short_name( $name, $league );
+		$name  = $short ?: $name;
+	}
+
+	// If no name and falling back to league.
+	if ( ! $name && 'league' === $atts['fallback'] ) {
+		$name = $league;
+	}
+
+	// Cache the results.
+	$cache[ $hash ] = $name;
+
+	return $cache[ $hash ];
 }
 
 /**

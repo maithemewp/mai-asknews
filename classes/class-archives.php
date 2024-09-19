@@ -190,7 +190,7 @@ class Mai_AskNews_Archives {
 	 * @return void
 	 */
 	function do_upcoming_heading() {
-		printf( '<h2 class="is-style-line has-xl-margin-bottom">%s</h2>', sprintf( __( 'Upcoming %s Games', 'mai-asknews' ), maisknews_get_team_name( maiasknews_get_page_league() ) ) );
+		printf( '<h2 class="is-style-line has-xl-margin-bottom">%s</h2>', sprintf( __( 'Upcoming %s Games', 'mai-asknews' ), maisknews_get_team_name( [ 'fallback' => 'league' ] ) ) );
 	}
 
 	/**
@@ -211,7 +211,7 @@ class Mai_AskNews_Archives {
 		}
 
 		// Heading.
-		printf( '<h2 class="is-style-line has-xxl-margin-top has-xl-margin-bottom">%s</h2>', sprintf( __( 'Past %s Games', 'mai-asknews' ), maisknews_get_team_name( maiasknews_get_page_league() ) ) );
+		printf( '<h2 class="is-style-line has-xxl-margin-top has-xl-margin-bottom">%s</h2>', sprintf( __( 'Past %s Games', 'mai-asknews' ), maisknews_get_team_name( [ 'fallback' => 'league' ] ) ) );
 
 		// Filter MPG query.
 		add_filter( 'mai_post_grid_query_args', [ $this, 'mpg_query_args' ], 10, 2 );

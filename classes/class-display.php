@@ -404,7 +404,7 @@ class Mai_AskNews_Display {
 	 * @return string
 	 */
 	function team_shortcode( $atts ) {
-		return maisknews_get_team_name();
+		return maisknews_get_team_name( $atts );
 	}
 
 	/**
