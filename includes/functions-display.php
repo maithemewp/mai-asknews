@@ -565,7 +565,7 @@ function maisknews_get_teams_list( $args = [] ) {
  *
  * @return string
  */
-function maisknews_get_team_name() {
+function maisknews_get_team_name( $fallback = '' ) {
 	if ( ! is_tax( 'league' ) ) {
 		return '';
 	}
@@ -578,7 +578,8 @@ function maisknews_get_team_name() {
 
 	$term  = get_queried_object();
 	$name  = $term ? $term->name : '';
-	$cache = $name ? maiasknews_get_team_short_name( $name, maiasknews_get_page_league() ) : '';
+	$name  = $name ? maiasknews_get_team_short_name( $name, maiasknews_get_page_league() ) : '';
+	$cache = $name ? $name : $fallback;
 
 	return $cache;
 }
