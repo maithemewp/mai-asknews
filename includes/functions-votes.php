@@ -171,6 +171,9 @@ function maiasknews_get_singular_vote_box() {
 		$html .= sprintf( '<div class="pm-vote__avatar">%s</div>', $avatar );
 
 		// If showing outcome.
+
+		// TODO: If game started, show outcome box without winner/scores.
+
 		if ( $show_outcome ) {
 			// Heading.
 			$html .= $heading;
@@ -179,7 +182,7 @@ function maiasknews_get_singular_vote_box() {
 			$html .= maiasknews_get_outcome_box( $data );
 		}
 		// If not started and they have access to vote.
-		elseif ( $show_vote ) {
+		elseif ( ! $started ) {
 			// Enqueue JS.
 			maiasknews_enqueue_scripts( maiasknews_get_vote_elements( 'selected' ) );
 
@@ -190,7 +193,7 @@ function maiasknews_get_singular_vote_box() {
 			$html .= maiasknews_get_vote_form( $data );
 		}
 		// Not started, and no access to vote.
-		else {
+		elseif ( $has_access ) {
 			// Heading.
 			$html .= $heading;
 
