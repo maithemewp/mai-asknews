@@ -120,7 +120,8 @@ function maiasknews_get_singular_vote_box() {
 	// Set vars.
 	$has_access   = $user && $user->ID;
 	$started      = time() > $timestamp;
-	$show_outcome = $started && $data['winner_full'] && $data['loser_full'];
+	// $show_outcome = $started && $data['winner_full'] && $data['loser_full'];
+	$show_outcome = $started;
 	$show_vote    = ! $started && $has_access;
 
 	// Add data.
@@ -182,7 +183,7 @@ function maiasknews_get_singular_vote_box() {
 			$html .= maiasknews_get_outcome_box( $data );
 		}
 		// If not started and they have access to vote.
-		elseif ( ! $started ) {
+		elseif ( ! $started && $has_access ) {
 			// Enqueue JS.
 			maiasknews_enqueue_scripts( maiasknews_get_vote_elements( 'selected' ) );
 
@@ -193,7 +194,7 @@ function maiasknews_get_singular_vote_box() {
 			$html .= maiasknews_get_vote_form( $data );
 		}
 		// Not started, and no access to vote.
-		elseif ( $has_access ) {
+		elseif ( ! $has_access ) {
 			// Heading.
 			$html .= $heading;
 
@@ -223,15 +224,22 @@ function maiasknews_get_outcome_box( $data ) {
 	$prediction = $data['user_id'] ? maiasknews_get_vote_elements( 'prediction' ) : '';
 	$selected   = maiasknews_get_vote_elements( 'selected' );
 	$status     = maiasknews_get_vote_elements( 'winner' );
+	$has_winner = $data['winner_full'] && $data['loser_full'];
 	$home_class = $data['winner_home'] ? 'winner' : 'loser';
 	$away_class = ! $data['winner_home'] ? 'winner' : 'loser';
+
+	// Set empty scores.
+	if ( ! $has_winner ) {
+		$data['winner_score'] = '--';
+		$data['loser_score']  = '--';
+	}
 
 	// Build the markup.
 	$html .= '<div class="pm-outcome pm-actions">';
 		// Away team first.
 		$html .= '<div class="pm-outcome__col pm-action__col away">';
 			// Status.
-			if ( ! $data['winner_home'] ) {
+			if ( $has_winner && ! $data['winner_home'] ) {
 				$html .= $status;
 			}
 
@@ -255,7 +263,7 @@ function maiasknews_get_outcome_box( $data ) {
 		// Home team second.
 		$html .= '<div class="pm-outcome__col pm-action__col home">';
 			// Status.
-			if ( $data['winner_home'] ) {
+			if ( $has_winner && $data['winner_home'] ) {
 				$html .= $status;
 			}
 
