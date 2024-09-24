@@ -179,7 +179,7 @@ function maiasknews_get_singular_vote_box() {
 			$html .= maiasknews_get_outcome_box( $data );
 		}
 		// If not started and they have access to vote.
-		elseif ( $has_access ) {
+		elseif ( $show_vote ) {
 			// Enqueue JS.
 			maiasknews_enqueue_scripts( maiasknews_get_vote_elements( 'selected' ) );
 
@@ -507,10 +507,10 @@ function maiasknews_get_user_vote( $matchup_id, $user = null ) {
 	// Get user votes.
 	$comments = get_comments(
 		[
-			'comment_type' => 'pm_vote',
-			'post_id'      => $matchup_id,
-			'user_id'      => $user->ID,
-			'number'       => 1,
+			'type'    => 'pm_vote',
+			'post_id' => $matchup_id,
+			'user_id' => $user->ID,
+			'number'  => 1,
 		]
 	);
 
