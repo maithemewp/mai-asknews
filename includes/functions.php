@@ -4,6 +4,35 @@
 defined( 'ABSPATH' ) || die;
 
 /**
+ * Get all league names.
+ *
+ * @since TBD
+ *
+ * @return array
+ */
+function maiasknews_get_all_leagues() {
+	static $cache = null;
+
+	if ( ! is_null( $cache ) ) {
+		return $cache;
+	}
+
+	$terms = get_terms(
+		[
+			'taxonomy'   => 'league',
+			'fields'     => 'names',
+			'parent'     => 0,
+			'hide_empty' => false,
+		]
+	);
+
+	// Get names.
+	$cache = $terms && ! is_wp_error( $terms ) ? $terms : [];
+
+	return $cache;
+}
+
+/**
  * Get the matchup data, including team names, outcome, bot choice, and user vote.
  *
  * @since TBD
@@ -55,14 +84,26 @@ function maiasknews_get_matchup_data( $matchup_id, $user = null ) {
 /**
  * Get the matchup league.
  *
+ * @since TBD
+ *
  * @param int $matchup_id
  *
- * @return WP_Term|null
+ * @return string
  */
 function maiasknews_get_matchup_league( $matchup_id ) {
 	static $cache = [];
 
 	if ( isset( $cache[ $matchup_id ] ) ) {
+		return $cache[ $matchup_id ];
+	}
+
+	// Get the insight body and sport.
+	$body  = maiasknews_get_insight_body( $matchup_id );
+	$sport = maiasknews_get_key( 'sport', $body );
+
+	// If we have a sport set cache and return it.
+	if ( $sport ) {
+		$cache[ $matchup_id ] = $sport;
 		return $cache[ $matchup_id ];
 	}
 
@@ -171,107 +212,6 @@ function maiasknews_get_insight_id( $matchup ) {
 	);
 
 	return $insights && isset( $insights[0] ) ? $insights[0] : null;
-}
-
-/**
- * Get the source data by key.
- *
- * @since 0.1.0
- *
- * @param string $key    The data key.
- * @param array  $array  The data array.
- *
- * @return mixed
- */
-function maiasknews_get_key( $key, $array ) {
-	return isset( $array[ $key ] ) ? $array[ $key ] : '';
-}
-
-/**
- * Get a file version based on last modified date.
- *
- * @param string $filename
- * @param string $type
- *
- * @return string
- */
-function maiasknews_get_file_version( $filename, $type ) {
-	$version  = MAI_ASKNEWS_VERSION;
-	$suffix   = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-	$filepath = MAI_ASKNEWS_DIR . "build/{$type}/{$filename}{$suffix}.{$type}";
-	$version .= '.' . date( 'njYHi', filemtime( $filepath ) );
-
-	return $version;
-}
-
-/**
- * Get the URL of a file in the plugin.
- * Checks if script debug is enabled.
- *
- * @since 0.4.0
- *
- * @param string $filename The file name. Example: `dapper`.
- * @param string $type     The file type. Example: `css`.
- *
- * @return string
- */
-function maiasknews_get_file_url( $filename, $type ) {
-	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-	return MAI_ASKNEWS_URL . "build/{$type}/{$filename}{$suffix}.{$type}";
-}
-
-/**
- * Prevent post_modified update.
- *
- * @since 0.1.0
- *
- * @param array $data                An array of slashed, sanitized, and processed post data.
- * @param array $postarr             An array of sanitized (and slashed) but otherwise unmodified post data.
- * @param array $unsanitized_postarr An array of slashed yet *unsanitized* and unprocessed post data as originally passed to wp_insert_post() .
- * @param bool  $update              Whether this is an existing post being updated.
- *
- * @return array
- */
-function maiasknews_prevent_post_modified_update( $data, $postarr, $unsanitized_postarr, $update ) {
-	if ( $update && ! empty( $postarr['ID'] ) ) {
-		// Get the existing post.
-		$existing = get_post( $postarr['ID'] );
-
-		// Preserve the current modified dates.
-		if ( $existing ) {
-			$data['post_modified']     = $existing->post_modified;
-			$data['post_modified_gmt'] = $existing->post_modified_gmt;
-		}
-	}
-
-	return $data;
-}
-
-/**
- * Get the short name of a team.
- *
- * @since TBD
- *
- * @param string $team  The team name.
- * @param string $sport The sport.
- *
- * @return string
- */
-function maiasknews_get_team_short_name( $team, $sport ) {
-	static $cache = [];
-
-	if ( $cache && isset( $cache[ $sport ][ $team ] ) ) {
-		return $cache[ $sport ][ $team ];
-	}
-
-	$teams = maiasknews_get_teams( $sport );
-
-	foreach( $teams as $name => $values ) {
-		$cache[ $sport ][ $values['city'] . ' ' . $name ] = $name;
-	}
-
-	return isset( $cache[ $sport ][ $team ] ) ? $cache[ $sport ][ $team ] : '';
 }
 
 /**

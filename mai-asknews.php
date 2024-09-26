@@ -136,8 +136,10 @@ final class Mai_AskNews_Plugin {
 		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-matchup.php';
 		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-outcome.php';
 		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-matchup-outcome.php';
-		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-vote.php';
-		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-admin-post-vote.php';
+		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-user-vote.php';
+		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-listener-user-points.php';
+		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-ajax-post-commentary.php';
+		include_once MAI_ASKNEWS_DIR . 'classes/listeners/class-ajax-post-vote.php';
 
 		// Includes.
 		foreach ( glob( MAI_ASKNEWS_DIR . 'classes/*.php' ) as $file ) { include $file; }
@@ -206,17 +208,18 @@ final class Mai_AskNews_Plugin {
 	 * @return void
 	 */
 	public function classes() {
-		$endpoints = new Mai_AskNews_Endpoints;
-		$rewrites  = new Mai_AskNews_Rewrites;
-		$display   = new Mai_AskNews_Display;
-		$archives  = new Mai_AskNews_Archives;
-		$singular  = new Mai_AskNews_Singular;
-		$users     = new Mai_AskNews_Users;
-		$publisher = new Mai_AskNews_Mai_Publisher;
-		$rank_math = new Mai_AskNews_Rank_Math;
-		// $pro_squad = new Mai_AskNews_Pro_Squad;
-		$votes     = new Mai_AskNews_Admin_Post_Vote;
-		// $votes     = new Mai_AskNews_Votes;
+		$endpoints  = new Mai_AskNews_Endpoints;
+		$rewrites   = new Mai_AskNews_Rewrites;
+		$display    = new Mai_AskNews_Display;
+		$archives   = new Mai_AskNews_Archives;
+		$singular   = new Mai_AskNews_Singular;
+		$users      = new Mai_AskNews_Users;
+		$publisher  = new Mai_AskNews_Mai_Publisher;
+		$rank_math  = new Mai_AskNews_Rank_Math;
+		$pro_squad  = new Mai_AskNews_Pro_Squad;
+		$comments   = new Mai_AskNews_Comments;
+		$commentary = new Mai_AskNews_Ajax_Post_Commentary;
+		$votes      = new Mai_AskNews_Ajax_Post_Vote;
 	}
 
 	/**

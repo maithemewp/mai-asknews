@@ -51,6 +51,39 @@ function maiasknews_is_user() {
 }
 
 /**
+ * If user has role.
+ *
+ * @since TBD
+ *
+ * @param string $role
+ * @param int    $user_id
+ *
+ * @return bool
+ */
+function maiasknews_has_role( $role, $user_id = 0 ) {
+	// Get user ID.
+	$user_id = $user_id ?: get_current_user_id();
+
+	// Set cache.
+	static $roles = [];
+
+	// If we have cache, return it.
+	if ( isset( $roles[ $user_id ] ) ) {
+		return in_array( $role, $roles[ $user_id ] );
+	}
+
+	// If user ID.
+	if ( $user_id ) {
+		$user              = get_userdata( $user_id );
+		$roles[ $user_id ] = $user ? $user->roles : [];
+	} else {
+		$roles[ $user_id ] = [];
+	}
+
+	return in_array( $role, $roles[ $user_id ] );
+}
+
+/**
  * If the user has access to non-pro-level restricted content.
  *
  * @since 0.1.0

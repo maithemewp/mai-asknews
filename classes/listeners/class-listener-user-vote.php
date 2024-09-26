@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || die;
  *
  * @since 0.1.0
  */
-class Mai_AskNews_Vote_Listener extends Mai_AskNews_Listener {
+class Mai_AskNews_User_Vote_Listener extends Mai_AskNews_Listener {
 	protected $matchup_id;
 	protected $team;
 	protected $user;
@@ -21,7 +21,7 @@ class Mai_AskNews_Vote_Listener extends Mai_AskNews_Listener {
 	function __construct( $matchup_id, $team, $user = null ) {
 		$this->matchup_id = absint( $matchup_id );
 		$this->team       = sanitize_text_field( $team );
-		$this->user       = $user ?: wp_get_current_user();
+		$this->user       = $this->get_user( $user );
 		$this->run();
 	}
 
@@ -33,6 +33,12 @@ class Mai_AskNews_Vote_Listener extends Mai_AskNews_Listener {
 	 * @return void
 	 */
 	function run() {
+		// Bail if not a valid user.
+		if ( ! $this->user ) {
+			$this->return = $this->get_error( 'User not found.' );
+			return;
+		}
+
 		// If no capabilities.
 		if ( ! is_user_logged_in( $this->user ) ) {
 			$this->return = $this->get_error( 'User is not logged in.' );

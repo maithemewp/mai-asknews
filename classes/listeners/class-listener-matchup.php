@@ -20,7 +20,7 @@ class Mai_AskNews_Matchup_Listener extends Mai_AskNews_Listener {
 	 */
 	function __construct( $body, $user = null ) {
 		$this->body = is_string( $body ) ? json_decode( $body, true ) : $body;
-		$this->user  = $user ?: wp_get_current_user();
+		$this->user = $this->get_user( $user );
 		$this->run();
 	}
 
@@ -32,6 +32,12 @@ class Mai_AskNews_Matchup_Listener extends Mai_AskNews_Listener {
 	 * @return void
 	 */
 	function run() {
+		// No user.
+		if ( ! $this->user ) {
+			$this->return = $this->get_error( 'User not found.' );
+			return;
+		}
+
 		// If no capabilities.
 		if ( ! user_can( $this->user, 'edit_posts' ) ) {
 			$this->return = $this->get_error( 'User cannot edit posts.' );

@@ -97,9 +97,8 @@ function maiasknews_get_archive_vote_box() {
  * @return string
  */
 function maiasknews_get_singular_vote_box() {
-	$html = '';
-
 	// Get the user and matchup data.
+	$html       = '';
 	$matchup_id = get_the_ID();
 	$user       = maiasknews_get_user();
 	$data       = maiasknews_get_matchup_data( $matchup_id );
@@ -467,6 +466,9 @@ function maiasknews_add_user_vote( $matchup_id, $team, $user = null ) {
 
 	// Get existing vote.
 	$existing = maiasknews_get_user_vote( $matchup_id, $user );
+
+	// Get comment.
+	$comment = get_comment( $existing['id'] );
 
 	// If user has voted, update.
 	if ( $existing['id'] ) {
