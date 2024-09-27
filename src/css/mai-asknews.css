@@ -700,12 +700,20 @@ body {
 	--list-style-type: none;
 	--list-margin: 0 0 var(--spacing-lg);
 	--list-item-margin: 0;
+	background: var(--background-gradient-dark);
+	border-bottom: 3px solid var(--color-primary);
+}
+
+.nav-dashboard .menu {
+	display: flex;
+	justify-content: start;
+}
+
+.pm-jumps {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	position: sticky;
 	top: var(--body-top);
-	background: var(--background-gradient-dark);
-	border-bottom: 3px solid var(--color-primary);
 	overflow-x: auto;
 	z-index: 9;
 }
@@ -727,6 +735,13 @@ body {
 		background: #18193699;
 		color: white;
 		content: " ↔ ";
+	}
+}
+
+@media only screen and (min-width: 600px) {
+
+	.nav-dashboard .menu-item-last {
+		margin-left: auto;
 	}
 }
 
