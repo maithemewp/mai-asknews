@@ -93,7 +93,8 @@ class Mai_AskNews_Shortcodes {
 						switch ( $key ) {
 							case 'xp_points':
 							case 'confidence':
-								$value = '0.8.0';
+								// Converting to uppercase because i do a search-replace for the caps version when updating versions ;P
+								$value = strtoupper( 'tbd' );
 							break;
 							case 'win_percent':
 								$value  = maiasknews_parse_float( get_user_meta( $user_id, $key, true ) );
