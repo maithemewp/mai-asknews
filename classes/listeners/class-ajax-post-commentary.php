@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || die;
  *
  * TODO: Make a AjaxPost class and extend it here.
  *
- * @since TBD
+ * @since 0.8.0
  */
 class Mai_AskNews_Ajax_Post_Commentary {
 	protected $ajax = null;
@@ -23,7 +23,7 @@ class Mai_AskNews_Ajax_Post_Commentary {
 	/**
 	 * Add hooks.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
@@ -37,7 +37,7 @@ class Mai_AskNews_Ajax_Post_Commentary {
 	/**
 	 * Handles the vote submission.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
@@ -131,7 +131,7 @@ class Mai_AskNews_Ajax_Post_Commentary {
 	/**
 	 * Handles errors.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param string $message The error message.
 	 *

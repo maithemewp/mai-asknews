@@ -141,7 +141,7 @@ class Mai_AskNews_Endpoints {
 	/**
 	 * Register the metaboxes.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
@@ -180,7 +180,7 @@ class Mai_AskNews_Endpoints {
 	/**
 	 * Display the matchup outcome metabox.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param WP_Post $post
 	 *
@@ -193,7 +193,7 @@ class Mai_AskNews_Endpoints {
 	/**
 	 * Display the matchup insight metabox.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param WP_Post $post
 	 *
@@ -208,7 +208,7 @@ class Mai_AskNews_Endpoints {
 	/**
 	 * Display the insight metabox.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param WP_Post $post
 	 *
@@ -223,7 +223,7 @@ class Mai_AskNews_Endpoints {
 	/**
 	 * Get the metabox content.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param int    $post_id The post ID.
 	 * @param string $key     The post meta key for the data.
@@ -243,7 +243,7 @@ class Mai_AskNews_Endpoints {
 	/**
 	 * Get the HTML for the list.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param array $data   The data to display.
 	 * @param bool  $nested Whether the list is nested.
@@ -288,7 +288,7 @@ class Mai_AskNews_Endpoints {
 	/**
 	 * Get the toggle script.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return string
 	 */

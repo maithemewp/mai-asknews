@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || die;
 /**
  * The listener class.
  *
- * @since TBD
+ * @since 0.8.0
  */
 class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 	protected $keys;
@@ -38,7 +38,7 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 	/**
 	 * Run the class.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
@@ -289,7 +289,7 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 	/**
 	 * Get the confidence score.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return float|int Between 0-1.
 	 */
@@ -304,7 +304,7 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 	/**
 	 * Get the XP.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return float|int
 	 */
@@ -318,7 +318,7 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 	/**
 	 * Get all keys.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return array
 	 */

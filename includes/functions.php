@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || die;
 /**
  * Get all league names.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @return array
  */
@@ -35,7 +35,7 @@ function maiasknews_get_all_leagues() {
 /**
  * Get the matchup data, including team names, outcome, bot choice, and user vote.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param int     $matchup_id
  * @param WP_User $user
@@ -84,7 +84,7 @@ function maiasknews_get_matchup_data( $matchup_id, $user = null ) {
 /**
  * Get the matchup league.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param int $matchup_id
  *

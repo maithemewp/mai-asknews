@@ -328,7 +328,7 @@ class Mai_AskNews_Singular {
 	/**
 	 * Display the pro squad commentary submission.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param array $data The insight data.
 	 *
@@ -476,7 +476,7 @@ class Mai_AskNews_Singular {
 	/**
 	 * Display the commentary.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param array $data The insight data.
 	 *
@@ -703,7 +703,7 @@ class Mai_AskNews_Singular {
 	/**
 	 * Display the injuries.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param array $data The insight data.
 	 * @param bool  $first Whether this is the first insight.

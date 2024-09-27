@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || die;
 /**
  * Calculate the points for a matchup.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param float $odds The odds for the team.
  *
@@ -31,7 +31,7 @@ function maiasknews_get_odds_points( $odds ) {
  * Returns an array with the average odds for the away and home teams.
  * The array is ordered by the away team first.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param array $body The insight body.
  *

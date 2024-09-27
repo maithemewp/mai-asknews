@@ -17,7 +17,7 @@ function maiasknews_enqueue_styles() {
 /**
  * Enqueue the plugin scripts.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param string $selected The selected team.
  *
@@ -440,7 +440,7 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 /**
  * Get the teams list.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param array $args The shortcode attributes.
  *
@@ -546,7 +546,7 @@ function maisknews_get_teams_list( $args = [] ) {
 /**
  * Get the team name from the league/team archive.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param array $atts The shortcode attributes.
  *
@@ -615,7 +615,7 @@ function maisknews_get_team_name( $atts ) {
 /**
  * Get the short name of a team.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param string $team  The team name.
  * @param string $sport The sport.

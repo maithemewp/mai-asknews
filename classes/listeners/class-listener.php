@@ -13,7 +13,7 @@ class Mai_AskNews_Listener {
 	/**
 	 * Get user.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param int|WP_User|null $user The user ID or object. Null for current user.
 	 *

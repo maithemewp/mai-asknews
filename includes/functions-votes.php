@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || die;
 /**
  * Get the archive vote box for a matchup.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @return string
  */
@@ -92,7 +92,7 @@ function maiasknews_get_archive_vote_box() {
 /**
  * Get the singular vote box for a matchup.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @return string
  */
@@ -212,7 +212,7 @@ function maiasknews_get_singular_vote_box() {
 /**
  * Get the outcome box.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param array $data The matchup data.
  *
@@ -290,7 +290,7 @@ function maiasknews_get_outcome_box( $data ) {
 /**
  * Get the vote form.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param array $data The matchup data.
  *
@@ -355,7 +355,7 @@ function maiasknews_get_vote_form( $data ) {
 /**
  * Get the faux vote form.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param array $data The matchup data.
  *
@@ -391,7 +391,7 @@ function maiasknews_get_faux_vote_form( $data ) {
 /**
  * Enqueue the vote scripts.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param string $selected The selected markup.
  *

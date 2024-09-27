@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || die;
  *
  * TODO: Make a AjaxPost class and extend it here.
  *
- * @since TBD
+ * @since 0.8.0
  */
 class Mai_AskNews_Ajax_Post_Vote {
 	/**
@@ -21,7 +21,7 @@ class Mai_AskNews_Ajax_Post_Vote {
 	/**
 	 * Add hooks.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
@@ -35,7 +35,7 @@ class Mai_AskNews_Ajax_Post_Vote {
 	/**
 	 * Handles the vote submission.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */

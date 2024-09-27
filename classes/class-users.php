@@ -35,7 +35,7 @@ class Mai_AskNews_Users {
 	/**
 	 * Logged in expiration.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return int
 	 */

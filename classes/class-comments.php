@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || die;
 /**
  * The comments class.
  *
- * @since TBD
+ * @since 0.8.0
  */
 class Mai_AskNews_Comments {
 	/**
@@ -19,7 +19,7 @@ class Mai_AskNews_Comments {
 	/**
 	 * Run the hooks.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
@@ -31,7 +31,7 @@ class Mai_AskNews_Comments {
 	/**
 	 * Modify the comment query to handle the custom comment types.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param WP_Comment_Query $query The comment query.
 	 *
@@ -65,7 +65,7 @@ class Mai_AskNews_Comments {
 	/**
 	 * Add custom comment types to the comment type dropdown.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param array $types The comment types.
 	 *

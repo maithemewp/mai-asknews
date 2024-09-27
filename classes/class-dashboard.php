@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || die;
 /**
  * The dashboard class.
  *
- * @since TBD
+ * @since 0.8.0
  */
 class Mai_AskNews_Dashboard {
 	protected $dashboard_id;
@@ -21,7 +21,7 @@ class Mai_AskNews_Dashboard {
 	/**
 	 * Run the hooks.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
@@ -32,7 +32,7 @@ class Mai_AskNews_Dashboard {
 	/**
 	 * Redirect to dashboard if not logged in and trying to access a dashboard page.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
@@ -61,7 +61,7 @@ class Mai_AskNews_Dashboard {
 	/**
 	 * Check if the current page is a dashboard page.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return bool
 	 */

@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || die;
 /**
  * Shortcodes class.
  *
- * @since TBD
+ * @since 0.8.0
  */
 class Mai_AskNews_Shortcodes {
 
@@ -20,7 +20,7 @@ class Mai_AskNews_Shortcodes {
 	/**
 	 * Add hooks.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
@@ -32,7 +32,7 @@ class Mai_AskNews_Shortcodes {
 	/**
 	 * Display the current user stats.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param array $atts Shortcode attributes.
 	 *
@@ -93,7 +93,7 @@ class Mai_AskNews_Shortcodes {
 						switch ( $key ) {
 							case 'xp_points':
 							case 'confidence':
-								$value = 'TBD';
+								$value = '0.8.0';
 							break;
 							case 'win_percent':
 								$value  = maiasknews_parse_float( get_user_meta( $user_id, $key, true ) );
@@ -146,7 +146,7 @@ class Mai_AskNews_Shortcodes {
 	/**
 	 * Display the leaderboard.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @param array $atts Shortcode attributes.
 	 *

@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die;
 /**
  * Get the current user.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @return WP_User|false
  */
@@ -31,7 +31,7 @@ function maiasknews_get_user() {
 /**
  * If user has role.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param string $role
  * @param int    $user_id

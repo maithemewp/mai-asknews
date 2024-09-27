@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || die;
 /**
  * The Pro Squad class.
  *
- * @since TBD
+ * @since 0.8.0
  */
 class Mai_AskNews_Pro_Squad {
 	/**
@@ -19,7 +19,7 @@ class Mai_AskNews_Pro_Squad {
 	/**
 	 * Add hooks.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
@@ -30,7 +30,7 @@ class Mai_AskNews_Pro_Squad {
 	/**
 	 * Add user role if it doesn't exist.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
