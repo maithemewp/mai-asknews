@@ -72,6 +72,7 @@ class Mai_AskNews_Shortcodes {
 		$keys = [
 			'xp_points'    => __( 'XP', 'promatchups' ),
 			'total_points' => __( 'Points', 'promatchups' ),
+			'win_percent'  => __( 'Win %', 'promatchups' ),
 			'total_wins'   => __( 'Wins', 'promatchups' ),
 			'total_losses' => __( 'Losses', 'promatchups' ),
 			'total_ties'   => __( 'Ties', 'promatchups' ),
@@ -89,7 +90,20 @@ class Mai_AskNews_Shortcodes {
 
 					// Get user meta.
 					foreach ( $keys as $key => $label ) {
-						$value  = sanitize_text_field( get_user_meta( $user_id, $key, true ) );
+						switch ( $key ) {
+							case 'xp_points':
+							case 'confidence':
+								$value = 'TBD';
+							break;
+							case 'win_percent':
+								$value  = maiasknews_parse_float( get_user_meta( $user_id, $key, true ) );
+								$value .= '%';
+							break;
+							default:
+								$value = maiasknews_parse_float( get_user_meta( $user_id, $key, true ) );
+								$value = 'win_percent' === $key ? $value . '%' : $value;
+						}
+
 						$html  .= sprintf( '<li class="pm-userstats__item"><span class="pm-userstats__label">%s</span><span class="pm-userstats__value">%s</span></li>', $label, $value );
 					}
 
@@ -102,6 +116,7 @@ class Mai_AskNews_Shortcodes {
 				$keys = [
 					"xp_points_{$league}"    => __( 'XP', 'promatchups' ),
 					"total_points_{$league}" => __( 'Points', 'promatchups' ),
+					"win_percent_{$league}"  => __( 'Win %', 'promatchups' ),
 					"total_wins_{$league}"   => __( 'Wins', 'promatchups' ),
 					"total_losses_{$league}" => __( 'Losses', 'promatchups' ),
 					"total_ties_{$league}"   => __( 'Ties', 'promatchups' ),
@@ -115,7 +130,8 @@ class Mai_AskNews_Shortcodes {
 
 					// Get user meta.
 					foreach ( $keys as $key => $label ) {
-						$value = sanitize_text_field( get_user_meta( $user_id, $key, true ) );
+						$value = maiasknews_parse_float( get_user_meta( $user_id, $key, true ) );
+						$value = "win_percent_{$league}" === $key ? $value . '%' : $value;
 						$html .= sprintf( '<li class="pm-userstats__item"><span class="pm-userstats__label">%s</span><span class="pm-userstats__value">%s</span></li>', $label, $value );
 					}
 

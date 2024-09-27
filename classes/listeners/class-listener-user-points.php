@@ -12,6 +12,7 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 	protected $keys;
 	protected $user;
 	protected $points;
+	protected $win_percent;
 	protected $confidence;
 	protected $return;
 
@@ -19,10 +20,11 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 	 * Construct the class.
 	 */
 	function __construct( $user = null ) {
-		$this->keys       = $this->get_all_keys();
-		$this->user       = $this->get_user( $user );
-		$this->points     = array_flip( $this->keys );
-		$this->confidence = [];
+		$this->keys        = $this->get_all_keys();
+		$this->user        = $this->get_user( $user );
+		$this->points      = array_flip( $this->keys );
+		$this->win_percent = [];
+		$this->confidence  = [];
 
 		// Set all point values to 0.
 		foreach ( $this->points as $key => $value ) {
@@ -188,23 +190,57 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 					$this->points["total_ties_{$league}"]++;
 				break;
 			}
+		}
 
-			// Skip if no total votes.
+		// Calculate win percent.
+		$win_percent = $this->points['total_wins'] / $total_votes['all'] * 100;
+		$win_percent = round( $win_percent, 2 ); // Round to 2 decimal places.
+
+		// Set win percent.
+		$this->win_percent['win_percent'] = $win_percent;
+
+		// Loop through leagues and calculate win percent.
+		foreach ( $leagues as $league ) {
+			// Skip if total votes not set.
 			if ( ! isset( $total_votes[ $league ] ) ) {
 				continue;
 			}
 
-			// Skip if no required minimum.
-			if ( ! isset( $req_min[ $league ] ) ) {
+			// Skip if total wins not set.
+			if ( ! isset( $this->points["total_wins_{$league}"] ) ) {
 				continue;
 			}
+
+			// Skip if total votes is 0 or less.
+			if ( $total_votes[ $league ] <= 0 ) {
+				continue;
+			}
+
+			// Calculate win percent.
+			$league_win_percent = $this->points["total_wins_{$league}"] / $total_votes[ $league ] * 100;
+			$league_win_percent = round( $league_win_percent, 2 ); // Round to 2 decimal places.
+
+			// Set win percent.
+			$this->win_percent["win_percent_{$league}"] = $league_win_percent;
 		}
 
+		// Skipping all time confidence until we can figure out a formula.
 		// Get confidence.
-		$this->confidence['confidence'] = $this->get_confidence( $total_votes['all'], $req_min['all'] );
+		// $this->confidence['confidence'] = $this->get_confidence( $total_votes['all'], $req_min['all'] );
 
 		// Loop through leagues and get confidence.
 		foreach ( $leagues as $league ) {
+			// Skip if total votes not set.
+			if ( ! isset( $total_votes[ $league ] ) ) {
+				continue;
+			}
+
+			// Skip if required minimum not set.
+			if ( ! isset( $req_min[ $league ] ) ) {
+				continue;
+			}
+
+			// Set confidence.
 			$this->confidence[ "confidence_{$league}" ] = $this->get_confidence( $total_votes[ $league ], $req_min[ $league ] );
 		}
 
@@ -215,12 +251,28 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 
 		// Loop through leagues and get XP.
 		foreach ( $leagues as $league ) {
+			// Skip if points not set.
+			if ( ! isset( $this->points["total_points_{$league}" ] ) ) {
+				continue;
+			}
+
+			// Skip if confidence not set.
+			if ( ! isset( $this->confidence[ "confidence_{$league}" ] ) ) {
+				continue;
+			}
+
+			// Set XP.
 			$xp[ "xp_points_{$league}" ] = $this->get_xp( $this->points[ "total_points_{$league}" ], $this->confidence[ "confidence_{$league}" ] );
 		}
 
-		// Loop through and update them all.
+		// Loop through points and update them all.
 		foreach ( $this->points as $key => $value ) {
-			update_user_meta( $this->user->ID, $key, $value );
+			update_user_meta( $this->user->ID, $key, round( $value ) );
+		}
+
+		// Loop through win percent and update them all.
+		foreach ( $this->win_percent as $key => $value ) {
+			update_user_meta( $this->user->ID, $key, round( $value ) );
 		}
 
 		// Loop through confidence and update them all.
@@ -258,8 +310,7 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 	 */
 	function get_xp( $points, $confidence ) {
 		$xp = $points * $confidence;
-		$xp = round( $xp, 2 );
-		$xp = maiasknews_parse_float( $xp );
+		$xp = round( $xp );
 
 		return $xp;
 	}
