@@ -23,7 +23,7 @@ function maiasknews_get_odds_points( $odds ) {
 	}
 
 	// Return the calculated points, rounded to 2 decimal places.
-	return round( $points, 2 );
+	return maiasknews_parse_float( round( $points, 2 ) );
 }
 
 /**
