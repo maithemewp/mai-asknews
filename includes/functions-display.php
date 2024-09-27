@@ -248,7 +248,7 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 
 		if ( $team_name_1 && $team_name_2 && $team_score_1 && $team_score_2 ) {
 			// Build short names.
-			$league      = maiasknews_get_page_league();
+			$league      = maiasknews_get_key( 'sport', $body );
 			$team_name_1 = maiasknews_get_team_short_name( $team_name_1, $league );
 			$team_name_2 = maiasknews_get_team_short_name( $team_name_2, $league );
 
