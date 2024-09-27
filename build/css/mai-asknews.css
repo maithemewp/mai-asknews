@@ -1586,7 +1586,7 @@ footer.site-footer {
 
 .pm-leaderboard__item.bot-user,
 .pm-leaderboard__item.current-user {
-	padding-inline: 4px;
+	padding-inline: 8px;
 	border-bottom: 2px solid var(--color-primary);
 }
 
