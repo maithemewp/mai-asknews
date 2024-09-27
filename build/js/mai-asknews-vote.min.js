@@ -45,9 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
       // Collect form data.
       var formData = new FormData(form);
 
-      // Change formData user_id to 144444l
-      formData.set('user_id', '144444');
-
       // Add the team value from the button that was clicked.
       formData.append('team', event.submitter.value);
       formData.append('fetch', true);
