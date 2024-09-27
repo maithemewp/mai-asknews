@@ -302,6 +302,7 @@ body {
 	display: flex;
 	gap: var(--spacing-sm);
 	align-items: center;
+
 }
 
 .pm-prediction__item.choice::before,
@@ -489,9 +490,6 @@ body {
 
 	.pm-archive-content {
 		display: grid;
-		/* grid-template-columns: 40% 1fr; */
-		/* display: flex; */
-		/* justify-content: space-between; */
 		gap: var(--spacing-lg) 1em;
 		width: 100%;
 		padding: var(--spacing-lg);
@@ -503,18 +501,9 @@ body {
 	@media only screen and (min-width: 600px) {
 
 		.pm-archive-content:has(.pm-prediction__list):has(.pm-vote-archive) {
-			/* grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); */
 			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 			grid-template-columns: 1fr 2fr;
 		}
-	}
-
-	.pm-archive-content:has(.pm-prediction__list):not(:has(.pm-vote-archive)) {
-
-	}
-
-	.pm-archive-content:not(:has(.pm-prediction__list)):has(.pm-vote-archive) {
-
 	}
 
 	.pm-prediction__item.label,
@@ -529,6 +518,10 @@ body {
 	.pm-prediction__item.label,
 	.pm-vote__heading {
 		margin-bottom: var(--spacing-md);
+	}
+
+	.pm-prediction__item:not(.label) {
+		font-size: var(--font-size-xs);
 	}
 }
 
