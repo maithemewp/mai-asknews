@@ -35,7 +35,7 @@ class Mai_AskNews_Users {
 	/**
 	 * Logged in expiration.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return int
 	 */
@@ -57,7 +57,7 @@ class Mai_AskNews_Users {
 		}
 
 		// Bail if handling vote submissions to admin-post.php
-		if ( isset( $_POST['action'] ) && 'pm_vote_submission' === sanitize_text_field( $_POST['action'] ) ) {
+		if ( isset( $_POST['action'] ) && in_array( sanitize_text_field( $_POST['action'] ), [ 'pm_vote_submission', 'pm_commentary_submission' ] ) ) {
 			return;
 		}
 

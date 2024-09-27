@@ -17,7 +17,7 @@ function maiasknews_enqueue_styles() {
 /**
  * Enqueue the plugin scripts.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param string $selected The selected team.
  *
@@ -206,29 +206,22 @@ function maiasknews_get_matchup_teams_list( $atts = [] ) {
  * @return array
  */
 function maiasknews_get_prediction_list( $body, $hidden = false ) {
+	$list       = [];
 	$home        = isset( $body['home_team'] ) ? $body['home_team'] : '';
 	$away        = isset( $body['away_team'] ) ? $body['away_team'] : '';
 	$choice      = maiasknews_get_key( 'choice', $body );
 	$probability = maiasknews_get_key( 'probability', $body );
 	$probability = $probability ? $probability . '%' : '';
 	$likelihood  = maiasknews_get_key( 'likelihood', $body );
-
-	// TODO:
-	// crystal ball next to prediction
-	// dice next to probability
-	// thumbs up/down next to likelihood?
+	$final_score = maiasknews_get_key( 'final_score', $body );
 
 	// $confidence     = maiasknews_get_key( 'confidence', $body );
 	// $confidence     = $confidence ? maiasknews_format_confidence( $confidence ) : '';
 	// $llm_confidence = maiasknews_get_key( 'llm_confidence', $body );
 
-	// Start table data.
-	$table = [];
-
 	// If choice.
 	if ( $choice ) {
-		$table[ 'choice' ] = [
-			// 'icon'    => $wand,
+		$list['choice'] = [
 			'hidden'  => __( 'Members Only', 'mai-asknews' ),
 			'visible' => $choice,
 		];
@@ -236,25 +229,60 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 
 	// If probability and likelihood.
 	if ( $probability && $likelihood ) {
-		// $table[ __( 'Chance', 'mai-asknews' ) ] = [
-		// 	'icon'    => $dice,
+		// $list[ __( 'Chance', 'mai-asknews' ) ] = [
 		// 	'hidden'  => __( 'Members Only', 'mai-asknews' ),
 		// 	'visible' => sprintf( '%s, %s', $probability, $likelihood ),
 		// ];
-		$table[ 'probability' ] = [
-			// 'icon'    => $dice,
+		$list['probability'] = [
 			'hidden'  => __( 'Members Only', 'mai-asknews' ),
 			'visible' => sprintf( '%s, %s', $probability, $likelihood ),
 		];
 	}
 
+	// If final score.
+	if ( $final_score ) {
+		$team_name_1  = isset( $final_score[0]['team'] ) ? $final_score[0]['team'] : '';
+		$team_name_2  = isset( $final_score[1]['team'] ) ? $final_score[1]['team'] : '';
+		$team_score_1 = isset( $final_score[0]['score'] ) ? $final_score[0]['score'] : '';
+		$team_score_2 = isset( $final_score[1]['score'] ) ? $final_score[1]['score'] : '';
+
+		if ( $team_name_1 && $team_name_2 && $team_score_1 && $team_score_2 ) {
+			// Build short names.
+			$league      = maiasknews_get_page_league();
+			$team_name_1 = maiasknews_get_team_short_name( $team_name_1, $league );
+			$team_name_2 = maiasknews_get_team_short_name( $team_name_2, $league );
+
+			// If tie.
+			if ( $team_score_1 === $team_score_2 ) {
+				$list['score'] = [
+					'hidden'  => __( 'Members Only', 'mai-asknews' ),
+					'visible' => sprintf( "Tie %s-%s", $team_score_1, $team_score_2 ),
+				];
+			}
+			// If team 1 wins.
+			elseif ( $team_score_1 > $team_score_2 ) {
+				$list['score'] = [
+					'hidden'  => __( 'Members Only', 'mai-asknews' ),
+					'visible' => sprintf( "%s win %s-%s", $team_name_1, $team_score_1, $team_score_2 ),
+				];
+			}
+			// If team 2 wins.
+			else {
+				$list['score'] = [
+					'hidden'  => __( 'Members Only', 'mai-asknews' ),
+					'visible' => sprintf( "%s win %s-%s", $team_name_2, $team_name_2, $team_score_1 ),
+				];
+			}
+		}
+	}
+
 	// 0.3.0.
-	// $table[ __( 'Confidence', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
-	// $table[ __( 'LLM Confidence', 'mai-asknews' ) ] = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
-	// $table[ __( 'Likelihood', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
+	// $list[ __( 'Confidence', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
+	// $list[ __( 'LLM Confidence', 'mai-asknews' ) ] = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
+	// $list[ __( 'Likelihood', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
 
 	// Bail if no data.
-	if ( ! array_filter( $table ) ) {
+	if ( ! array_filter( $list ) ) {
 		return;
 	}
 
@@ -264,7 +292,8 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 			$html .= sprintf( '<li class="pm-prediction__item label">%s</li>', __( 'Our Prediction', 'mai-asknews' ) );
 		}
 
-		foreach ( $table as $class => $values ) {
+		// Loop through list.
+		foreach ( $list as $class => $values ) {
 			$value = $hidden ? $values['hidden'] : $values['visible'];
 			// $html .= sprintf( '<li class="pm-prediction__item"><strong>%s:</strong> %s</li>', $values['icon'], $value );
 			$html .= sprintf( '<li class="pm-prediction__item %s">%s</li>', $class, $value );
@@ -287,21 +316,28 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 function maiasknews_get_odds_table( $body, $hidden = false ) {
 	// Get the odds data.
 	$html      = '';
-	$odds_data = maiasknews_get_key( 'odds_info', $body );
-	$odds_data = $odds_data && is_array( $odds_data ) ? $odds_data : [];
+	$league    = maiasknews_get_key( 'sport', $body );
+	$odds_data = maiasknews_get_odds_data( $body );
 
 	// If we have odds data.
 	if ( ! $odds_data ) {
 		return $html;
 	}
 
+	// Get home and away teams.
+	list( $away_team, $home_team ) = array_keys( $odds_data );
+
+	// Get short names.
+	$away_short = maiasknews_get_team_short_name( $away_team, $league );
+	$home_short = maiasknews_get_team_short_name( $home_team, $league );
+
 	// Start the table data.
 	$sites = [];
 
 	// Loop through odds data.
-	foreach ( $odds_data as $team => $odds ) {
+	foreach ( $odds_data as $team => $data ) {
 		// Merge the sites.
-		$sites = array_merge( $sites, array_keys( $odds ) );
+		$sites = array_merge( $sites, array_keys( $data['odds'] ) );
 	}
 
 	// Remove duplicates.
@@ -310,52 +346,6 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 	// Bail if no sites.
 	if ( ! $sites ) {
 		return $html;
-	}
-
-	// Get teams.
-	$sport = maiasknews_get_key( 'sport', $body );
-	$teams = maiasknews_get_teams( $sport );
-	$array = [];
-
-	// Build array.
-	foreach ( $teams as $short => $values ) {
-		$array[ $values['city'] . ' ' . $short ] = $short;
-	}
-
-	// Set new teams array.
-	$teams = $array;
-
-	// Start the averages.
-	$averages = [];
-
-	// Loop through the odds data for each team
-	foreach ( $odds_data as $team => $odds ) {
-		$decimal_sum = 0;
-
-		// Convert each odd to decimal and sum them
-		foreach ( $odds as $odd ) {
-			$decimal_sum += maiasknews_american_to_decimal( (float) $odd );
-		}
-
-		// Find the average of the decimal odds
-		$decimal_avg = $decimal_sum / count( $odds );
-
-		// Convert the average decimal odds back to American odds
-		$averages[ $team ] = round( maiasknews_decimal_to_american( $decimal_avg ) );
-	}
-
-	// Get home and away teams.
-	list( $home_team, $away_team ) = array_keys( $odds_data );
-
-	// If we have teams array.
-	if ( $teams ) {
-		$home_name = isset( $teams[ $home_team ] ) ? $teams[ $home_team ] : $home_team;
-		$away_name = isset( $teams[ $away_team ] ) ? $teams[ $away_team ] : $away_team;
-	}
-	// Use the team names.
-	else {
-		$home_name = $home_team;
-		$away_name = $away_team;
 	}
 
 	// Top sites.
@@ -376,9 +366,9 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 
 		// Add a checkbox to expand/collapse the odds.
 		$toggle = '<div class="pm-toggle">';
-			$toggle .= '<label for="pm-toggle-input" class="pm-toggle_label">';
+			$toggle .= '<label class="pm-toggle_label">';
 				$toggle .= __( 'Show All', 'mai-asknews' );
-				$toggle .= '<input id="pm-toggle-input" class="pm-toggle__input" type="checkbox" />';
+				$toggle .= '<input class="pm-toggle__input" name="pm-toggle__input" type="checkbox" />';
 				$toggle .= '<span class="pm-toggle__slider"></span>';
 			$toggle .= '</label>';
 		$toggle .= '</div>';
@@ -388,42 +378,40 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 			$html .= '<thead>';
 				$html .= '<tr>';
 					$html .= sprintf( '<th>%s</th>', $toggle );
-					$html .= sprintf( '<th>%s</th>', $home_name );
-					$html .= sprintf( '<th>%s</th>', $away_name );
+					$html .= sprintf( '<th>%s</th>', $away_short );
+					$html .= sprintf( '<th>%s</th>', $home_short );
 				$html .= '</tr>';
 			$html .= '</thead>';
 			$html .= '<tbody>';
 
 			$html .= '<tr class="is-top">';
-				// If averages.
-				if ( $averages ) {
-					$html .= sprintf( '<td class="pm-odds__average">%s</td>', __( 'Average odds', 'mai-asknews' ) );
+				$html .= sprintf( '<td class="pm-odds__average">%s</td>', __( 'Average odds', 'mai-asknews' ) );
 
-					// Loop through the averages
-					foreach ( $averages as $team => $average ) {
-						// If hidden, show N/A.
-						if ( $hidden ) {
-							$rounded = 'N/A';
-							$html   .= sprintf( '<td class="pm-odds__average">%s</td>', $rounded );
-						}
-						// Otherwise, show the average.
-						else {
-							$rounded = round( $average, 2 );
-							$html   .= sprintf( '<td class="pm-odds__average">%s%s</td>', $rounded > 0 ? '+' : '', $rounded );
-						}
+				// Loop through the odds.
+				foreach ( $odds_data as $team => $values ) {
+					// If hidden, show N/A.
+					if ( $hidden ) {
+						$rounded = 'N/A';
+						$html   .= sprintf( '<td class="pm-odds__average">%s</td>', $rounded );
+					}
+					// Otherwise, show the average.
+					else {
+						$rounded = round( $values['average'], 2 );
+						$html   .= sprintf( '<td class="pm-odds__average">%s%s</td>', $rounded > 0 ? '+' : '', $rounded );
 					}
 				}
 			$html .= '</tr>';
 
+			// Loop through the sites.
 			foreach ( $sites as $maker ) {
 				// Set class and odds.
 				$class     = in_array( strtolower( $maker ), $top_sites ) ? 'is-top' : 'is-not-top';
-				$home_odds = isset( $odds_data[ $home_team ][ $maker ] ) ? (float) $odds_data[ $home_team ][ $maker ] : '';
-				$away_odds = isset( $odds_data[ $away_team ][ $maker ] ) ? (float) $odds_data[ $away_team ][ $maker ] : '';
+				$away_odds = isset( $odds_data[ $away_team ]['odds'][ $maker ] ) ? (float) $odds_data[ $away_team ]['odds'][ $maker ] : '';
+				$home_odds = isset( $odds_data[ $home_team ]['odds'][ $maker ] ) ? (float) $odds_data[ $home_team ]['odds'][ $maker ] : '';
 
 				// If value, and it's positive, add a plus sign.
-				$home_odds = $home_odds ? ( $home_odds > 0 ? '+' : '' ) . $home_odds : 'N/A';
 				$away_odds = $away_odds ? ( $away_odds > 0 ? '+' : '' ) . $away_odds : 'N/A';
+				$home_odds = $home_odds ? ( $home_odds > 0 ? '+' : '' ) . $home_odds : 'N/A';
 
 				// Build the row.
 				$html .= sprintf( '<tr class="%s">', $class );
@@ -436,8 +424,8 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 					}
 					// Otherwise, show the odds.
 					else {
-						$html .= sprintf( '<td>%s</td>', $home_odds );
 						$html .= sprintf( '<td>%s</td>', $away_odds );
+						$html .= sprintf( '<td>%s</td>', $home_odds );
 					}
 				$html .= '</tr>';
 			}
@@ -452,7 +440,7 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 /**
  * Get the teams list.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param array $args The shortcode attributes.
  *
@@ -558,7 +546,7 @@ function maisknews_get_teams_list( $args = [] ) {
 /**
  * Get the team name from the league/team archive.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @param array $atts The shortcode attributes.
  *
@@ -625,58 +613,29 @@ function maisknews_get_team_name( $atts ) {
 }
 
 /**
- * Convert American odds to decimal.
+ * Get the short name of a team.
  *
- * @access private
+ * @since 0.8.0
  *
- * @since 0.1.0
- *
- * @param float $value
- *
- * @return float
- */
-function maiasknews_american_to_decimal( $value ) {
-	// If the odds are positive.
-	if ( $value > 0 ) {
-		return 1 + ( $value / 100 );
-	}
-
-	// The odds are negative.
-	return 1 + ( 100 / abs( $value ) );
-}
-
-/**
- * Convert decimal odds to American odds.
- *
- * @access private
- *
- * @since 0.1.0
- *
- * @param float $value
- *
- * @return float
- */
-function maiasknews_decimal_to_american( $value ) {
-	// If the decimal odds are 2.00 or greater.
-	if ( $value >= 2 ) {
-		return ( $value - 1 ) * 100;
-	}
-
-	// The decimal odds are less than 2.00.
-	return -100 / ( $value - 1 );
-}
-
-/**
- * Get formatted confidence.
- *
- * @since 0.1.0
- *
- * @param float|mixed $confidence
+ * @param string $team  The team name.
+ * @param string $sport The sport.
  *
  * @return string
  */
-function maiasknews_format_confidence( $confidence ) {
-	return $confidence ? round( (float) $confidence * 100 ) . '%' : '';
+function maiasknews_get_team_short_name( $team, $sport ) {
+	static $cache = [];
+
+	if ( $cache && isset( $cache[ $sport ][ $team ] ) ) {
+		return $cache[ $sport ][ $team ];
+	}
+
+	$teams = maiasknews_get_teams( $sport );
+
+	foreach( $teams as $name => $values ) {
+		$cache[ $sport ][ $values['city'] . ' ' . $name ] = $name;
+	}
+
+	return isset( $cache[ $sport ][ $team ] ) ? $cache[ $sport ][ $team ] : $team;
 }
 
 /**

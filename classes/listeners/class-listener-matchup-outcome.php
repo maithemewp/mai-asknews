@@ -13,16 +13,17 @@ class Mai_AskNews_Matchup_Outcome_Listener extends Mai_AskNews_Listener {
 	protected $body;
 	protected $outcome;
 	protected $prediction;
+	protected $tie;
 	protected $winner;
 	protected $return;
 
 	/**
 	 * Construct the class.
 	 */
-	function __construct( $matchup_id, $body, $outcome ) {
+	function __construct( $matchup_id ) {
 		$this->matchup_id = (int) $matchup_id;
-		$this->body       = $body;
-		$this->outcome    = $outcome;
+		$this->body       = maiasknews_get_insight_body( $this->matchup_id );
+		$this->outcome    = get_post_meta( $this->matchup_id, 'asknews_outcome', true );
 		$this->prediction = '';
 		$this->winner     = '';
 
@@ -37,15 +38,35 @@ class Mai_AskNews_Matchup_Outcome_Listener extends Mai_AskNews_Listener {
 	 * @return void
 	 */
 	function run() {
-		// Get prediction and winning teams.
-		$this->prediction = isset( $this->body['choice'] ) ? $this->sanitize_name( $this->body['choice'] ) : '';
-		$this->winner     = isset( $this->outcome['winner']['team'] ) ? $this->sanitize_name( $this->outcome['winner']['team'] ) : '';
-
-		// If we don't have prediction and winner, return error.
-		if ( ! ( $this->prediction && $this->winner ) ) {
-			$this->return = $this->get_error( 'No prediction or winner found.' );
+		// If no body or outcome, return error.
+		if ( ! $this->body ) {
+			$this->return = $this->get_error( 'No AskNews body data found for post ID: ' . $this->matchup_id . ' ' . get_permalink( $this->matchup_id ) );
 			return;
 		}
+
+		// If no outcome, return error.
+		if ( ! $this->outcome ) {
+			$this->return = $this->get_error( 'No AskNews outcome data found for post ID: ' . $this->matchup_id . ' ' . get_permalink( $this->matchup_id ) );
+			return;
+		}
+
+		// Set vars.
+		$prediction   = isset( $this->body['choice'] ) ? $this->sanitize_name( $this->body['choice'] ) : '';
+		$winner_team  = isset( $this->outcome['winner']['team'] ) ? $this->sanitize_name( $this->outcome['winner']['team'] ) : '';
+		$winner_score = isset( $this->outcome['winner']['score'] ) ? $this->outcome['winner']['score'] : '';
+		$loser_team   = isset( $this->outcome['loser']['team'] ) ? $this->sanitize_name( $this->outcome['loser']['team'] ) : '';
+		$loser_score  = isset( $this->outcome['loser']['score'] ) ? $this->outcome['loser']['score'] : '';
+
+		// If we don't have prediction and winner/loser, return error.
+		if ( ! ( $prediction && $winner_team && $loser_team ) ) {
+			$this->return = $this->get_error( 'No prediction or winner/loser found.' );
+			return;
+		}
+
+		// Set prediction, if tied, and winning team.
+		$this->prediction = $prediction;
+		$this->tie        = $winner_score && $loser_score && $winner_score === $loser_score;
+		$this->winner     = ! $this->tie ? $winner_team : '';
 
 		// Update all votes for this matchup.
 		$counts = $this->update_comments();
@@ -56,6 +77,8 @@ class Mai_AskNews_Matchup_Outcome_Listener extends Mai_AskNews_Listener {
 
 	/**
 	 * Update all votes for this matchup.
+	 * Skips if comment karma is already set,
+	 * which means the vote and points were already updated.
 	 *
 	 * @since 0.2.0
 	 *
@@ -68,52 +91,70 @@ class Mai_AskNews_Matchup_Outcome_Listener extends Mai_AskNews_Listener {
 		// Get all votes for this matchup.
 		$votes = get_comments(
 			[
-				'comment_type' => 'pm_vote',
-				'status'       => 'approve',
-				'post_id'      => $this->matchup_id,
+				'type'    => 'pm_vote',
+				'status'  => 'approve',
+				'post_id' => $this->matchup_id,
 			]
 		);
 
 		// Loop through all votes.
 		foreach ( $votes as $comment ) {
-			// Get teh user data.
-			$user_id   = $comment->user_id;
-			$user_vote = $this->sanitize_name( $comment->comment_content );
-			$user_won  = $this->winner === $user_vote;
+			// Get the user.
+			$user_id  = $comment->user_id;
+			$user     = get_user_by( 'ID', $user_id );
+			$user_won = null;
 
-			// Update comment, 1 for win, -1 for loss.
+			// Skip if no user.
+			if ( ! $user ) {
+				continue;
+			}
+
+			// Bail if comment karma is already set.
+			// This prevents us from updating the same comment multiple times,
+			// and more importantly, from updating the same user meta multiple times.
+			if ( 0 !== (int) $comment->comment_karma ) {
+				continue;
+			}
+
+			// Get karma. 1 for win, -1 for loss, 2 for a tie. 0 is default for karma.
+			// If tie, set karma to 2.
+			if ( $this->tie ) {
+				$karma = 2;
+			}
+			// If we have a winner.
+			elseif ( $this->winner ) {
+				// Get user vote.
+				$user_vote = $this->sanitize_name( $comment->comment_content );
+
+				// Bail if no use vote.
+				if ( ! $user_vote ) {
+					continue;
+				}
+
+				// Set karma based on user vote.
+				$user_won  = $this->winner === $user_vote;
+				$karma     = $user_won ? 1 : -1;
+			}
+
+			// Update comment,
 			$update = wp_update_comment(
 				[
 					'comment_ID'    => $comment->comment_ID,
-					'comment_karma' => $user_won ? 1 : -1,
+					'comment_karma' => $karma,
 				]
 			);
 
 			// Maybe update comment count.
-			if ( $update ) {
+			if ( $update && ! is_wp_error( $update ) ) {
 				$comments++;
 			}
 
-			// Get user.
-			$user = get_user_by( 'ID', $user_id );
+			// Update the user's points.
+			$listener = new Mai_AskNews_User_Points( $user );
+			$response = $listener->get_response();
 
-			// If we have a user, update their wins, losses, and points.
-			if ( $user ) {
-				// Get existing values.
-				$wins   = (int) get_user_meta( $user_id, 'total_wins', true );
-				$losses = (int) get_user_meta( $user_id, 'total_losses', true );
-				$points = (int) get_user_meta( $user_id, 'total_points', true );
-
-				// If user won.
-				if ( $user_won ) {
-					update_user_meta( $user_id, 'total_wins', $wins + 1 );
-					update_user_meta( $user_id, 'total_points', $points + 1 );
-				} else {
-					update_user_meta( $user_id, 'total_losses', $losses + 1 );
-				}
-
-				$users++;
-			}
+			// Increment users.
+			$users++;
 		}
 
 		return [
@@ -121,18 +162,6 @@ class Mai_AskNews_Matchup_Outcome_Listener extends Mai_AskNews_Listener {
 			'users' => $users,
 		];
 	}
-
-	// function get_vote_counts($matchup_id) {
-	// 	global $wpdb;
-	// 	$results = $wpdb->get_results($wpdb->prepare(
-	// 		"SELECT comment_content AS vote_option, COUNT(*) AS vote_count
-	// 		 FROM $wpdb->comments
-	// 		 WHERE comment_post_ID = %d AND comment_type = 'vote' AND comment_approved = 1
-	// 		 GROUP BY comment_content",
-	// 		$matchup_id
-	// 	));
-	// 	return $results;
-	// }
 
 	/**
 	 * Sanitize a team name.

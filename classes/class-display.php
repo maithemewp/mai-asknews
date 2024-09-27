@@ -49,7 +49,7 @@ class Mai_AskNews_Display {
 	/**
 	 * Set vars.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */

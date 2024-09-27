@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die;
 /**
  * Get the current user.
  *
- * @since TBD
+ * @since 0.8.0
  *
  * @return WP_User|false
  */
@@ -29,21 +29,53 @@ function maiasknews_get_user() {
 }
 
 /**
- * If the user has access to view restricted content.
+ * If user has role.
+ *
+ * @since 0.8.0
+ *
+ * @param string $role
+ * @param int    $user_id
+ *
+ * @return bool
+ */
+function maiasknews_has_role( $role, $user_id = 0 ) {
+	// Get user ID.
+	$user_id = $user_id ?: get_current_user_id();
+
+	// Set cache.
+	static $roles = [];
+
+	// If we have cache, return it.
+	if ( isset( $roles[ $user_id ] ) ) {
+		return in_array( $role, $roles[ $user_id ] );
+	}
+
+	// If user ID.
+	if ( $user_id ) {
+		$user              = get_userdata( $user_id );
+		$roles[ $user_id ] = $user ? $user->roles : [];
+	} else {
+		$roles[ $user_id ] = [];
+	}
+
+	return in_array( $role, $roles[ $user_id ] );
+}
+
+/**
+ * If the user has any membership.
  *
  * @since 0.1.0
  *
  * @return bool
  */
-function maiasknews_is_user() {
+function maiasknews_has_membership() {
 	static $cache = null;
 
-	if ( null !== $cache ) {
+	if ( ! is_null( $cache ) ) {
 		return $cache;
 	}
 
-	$cache = current_user_can( 'read' )
-		|| maiasknews_has_free_membership()
+	$cache = maiasknews_has_free_membership()
 		|| maiasknews_has_paid_membership()
 		|| maiasknews_has_pro_membership();
 

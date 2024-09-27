@@ -6,9 +6,11 @@ defined( 'ABSPATH' ) || die;
 /**
  * The admin post voting class.
  *
- * @since TBD
+ * TODO: Make a AjaxPost class and extend it here.
+ *
+ * @since 0.8.0
  */
-class Mai_AskNews_Admin_Post_Vote {
+class Mai_AskNews_Ajax_Post_Vote {
 	/**
 	 * Construct the class.
 	 */
@@ -19,7 +21,7 @@ class Mai_AskNews_Admin_Post_Vote {
 	/**
 	 * Add hooks.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
@@ -33,14 +35,15 @@ class Mai_AskNews_Admin_Post_Vote {
 	/**
 	 * Handles the vote submission.
 	 *
-	 * @since TBD
+	 * @since 0.8.0
 	 *
 	 * @return void
 	 */
 	function handle_submission() {
 		// Verify nonce for security.
 		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'pm_vote_nonce' ) ) {
-			return new WP_Error( 'security', __( 'Vote submission security check failed.', 'mai-asknews' ) );
+			wp_send_json_error( [ 'message' => __( 'Vote submission security check failed.', 'mai-asknews' ) ] );
+			exit;
 		}
 
 		// Get the post data.
@@ -54,6 +57,8 @@ class Mai_AskNews_Admin_Post_Vote {
 				'fetch'      => null,
 			]
 		);
+
+		// TODO: Switch 'fetch' to 'ajax' and handle errors like post commentary.
 
 		// Sanitize.
 		$team       = sanitize_text_field( $args['team'] );
@@ -81,7 +86,7 @@ class Mai_AskNews_Admin_Post_Vote {
 		}
 
 		// Run listener and get response.
-		$listener = new Mai_AskNews_Vote_Listener( $matchup_id, $team, $user_id );
+		$listener = new Mai_AskNews_User_Vote_Listener( $matchup_id, $team, $user_id );
 		$response = $listener->get_response();
 
 		// Handle response.

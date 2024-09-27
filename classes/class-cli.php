@@ -76,19 +76,76 @@ class Mai_AskNews_CLI {
 				wp_delete_term( $term->term_id, 'matchup_tag' );
 			}
 		}
+
+		WP_CLI::success( 'Done.' );
+	}
+
+	/**
+	 * Updates user points.
+	 *
+	 * Usage: wp maiasknews update_user_points --number=10 --offset=0
+	 * Usage: wp maiasknews update_user_points --number=10 --include=2
+	 *
+	 * @param array $args       Standard command args.
+	 * @param array $assoc_args Keyed args like --number, --offset and --include.
+	 *
+	 * @return void
+	 */
+	function update_user_points( $args, $assoc_args ) {
+		// Parse args.
+		$assoc_args = wp_parse_args(
+			$assoc_args,
+			[
+				'number' => 10,
+				'offset' => 0,
+				'fields' => 'ID',
+			]
+		);
+
+		// Get users.
+		$users = get_users( $assoc_args );
+
+		// If users.
+		if ( $users ) {
+			// Log how many total users found.
+			WP_CLI::log( 'Users found: ' . count( $users ) );
+
+			// Loop through users.
+			foreach ( $users as $user_id ) {
+				// Log user display name.
+				WP_CLI::log( 'Calculating totals for: ' . get_the_author_meta( 'display_name', $user_id ) );
+
+				// Get listener response.
+				$listener = new Mai_AskNews_User_Points( $user_id );
+				$response = $listener->get_response();
+
+				// Log response.
+				if ( is_wp_error( $response ) ) {
+					WP_CLI::log( 'Error: ' . $response->get_error_message() );
+				} else {
+					WP_CLI::log( 'Success: ' . $response->get_data() );
+				}
+			}
+		}
+		// No users.
+		else {
+			WP_CLI::log( 'No users found.' );
+		}
+
+		WP_CLI::success( 'Done.' );
 	}
 
 	/**
 	 * Update votes from matchups.
 	 *
-	 * Usage: wp maiasknews update_votes --posts_per_page=10 --offset=0
+	 * Usage: wp maiasknews update_matchup_votes --posts_per_page=10 --offset=0
 	 *
 	 * @param array $args       Standard command args.
 	 * @param array $assoc_args Keyed args like --posts_per_page and --offset.
 	 *
 	 * @return void
 	 */
-	function update_votes( $args, $assoc_args ) {
+	function update_matchup_votes( $args, $assoc_args ) {
 		// Parse args.
 		$assoc_args = wp_parse_args(
 			$assoc_args,
@@ -120,9 +177,9 @@ class Mai_AskNews_CLI {
 				$matchup_id = get_the_ID();
 				$comments   = get_comments(
 					[
-						'comment_type' => 'pm_vote',
-						'post_id'      => $matchup_id,
-						'approve'      => 1,
+						'type'    => 'pm_vote',
+						'post_id' => $matchup_id,
+						'approve' => 1,
 					]
 				);
 
@@ -133,8 +190,8 @@ class Mai_AskNews_CLI {
 
 				// Loop through comments.
 				foreach ( $comments as $comment ) {
-					// Skip if karma is 1 or -1.
-					if ( in_array( $comment->comment_karma, [ 1, -1 ] ) ) {
+					// Skip if karma is 1, -1, or 2.
+					if ( in_array( $comment->comment_karma, [ 1, -1, 2 ] ) ) {
 						continue;
 					}
 
@@ -163,7 +220,7 @@ class Mai_AskNews_CLI {
 	/**
 	 * Processes outcomes from stored AskNews data.
 	 *
-	 * Usage: wp maiasknews update_outcomes --posts_per_page=10 --offset=0
+	 * Usage: wp maiasknews update_matchup_outcomes --posts_per_page=10 --offset=0
 	 *
 	 * @since 0.1.0
 	 *
@@ -172,7 +229,7 @@ class Mai_AskNews_CLI {
 	 *
 	 * @return void
 	 */
-	function update_outcomes( $args, $assoc_args ) {
+	function update_matchup_outcomes( $args, $assoc_args ) {
 		// Parse args.
 		$assoc_args = wp_parse_args(
 			$assoc_args,
@@ -212,23 +269,10 @@ class Mai_AskNews_CLI {
 
 			// Loop through posts.
 			while ( $query->have_posts() ) : $query->the_post();
-				$matchup_id = get_the_ID();
-				$body       = maiasknews_get_insight_body( $matchup_id );
-				$outcome    = get_post_meta( $matchup_id, 'asknews_outcome', true );
-
-				if ( ! $body ) {
-					WP_CLI::log( 'No AskNews body data found for post ID: ' . $matchup_id . ' ' . get_permalink() );
-					continue;
-				}
-
-				if ( ! $outcome ) {
-					WP_CLI::log( 'No AskNews outcome data found for post ID: ' . $matchup_id . ' ' . get_permalink() );
-					continue;
-				}
-
 				// Get matchup listener response.
-				$listener = new Mai_AskNews_Matchup_Outcome_Listener( $matchup_id, $body, $outcome );
-				$response = $listener->get_response();
+				$matchup_id = get_the_ID();
+				$listener   = new Mai_AskNews_Matchup_Outcome_Listener( $matchup_id );
+				$response   = $listener->get_response();
 
 				if ( is_wp_error( $response ) ) {
 					WP_CLI::log( 'Error: ' . $response->get_error_message() );

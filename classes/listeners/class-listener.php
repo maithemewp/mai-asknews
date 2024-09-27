@@ -11,6 +11,22 @@ defined( 'ABSPATH' ) || die;
 class Mai_AskNews_Listener {
 
 	/**
+	 * Get user.
+	 *
+	 * @since 0.8.0
+	 *
+	 * @param int|WP_User|null $user The user ID or object. Null for current user.
+	 *
+	 * @return WP_User
+	 */
+	function get_user( $user ) {
+		$user = is_numeric( $user ) ? get_user_by( 'ID', $user ) : $user;
+		$user = ! $user && is_null( $user ) ? wp_get_current_user() : $user;
+
+		return $user;
+	}
+
+	/**
 	 * Maybe send json error.
 	 *
 	 * @since 0.1.0

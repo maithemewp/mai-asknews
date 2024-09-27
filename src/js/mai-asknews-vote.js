@@ -17,16 +17,27 @@ document.addEventListener('DOMContentLoaded', function () {
 			// Disable the button.
 			event.submitter.disabled = true;
 
-			// Get the selected element.
+			// Get elements.
 			let selectedEl = form.querySelector('.pm-outcome__selected');
+			let pmNotices  = form.querySelectorAll('.pm-notice');
 
 			// If we have one, fade out then remove it.
 			if ( selectedEl ) {
 				selectedEl.remove();
 			}
 
+			// If we have notices, remove them.
+			if ( pmNotices ) {
+				pmNotices.forEach((notice) => {
+					notice.remove();
+				});
+			}
+
 			// Collect form data.
 			const formData = new FormData(form);
+
+			// Change formData user_id to 144444l
+			formData.set('user_id', '144444');
 
 			// Add the team value from the button that was clicked.
 			formData.append( 'team', event.submitter.value );
@@ -48,37 +59,50 @@ document.addEventListener('DOMContentLoaded', function () {
 			})
 			.then( response => response.json() ) // Assuming the server returns JSON
 			.then( data => {
-				revertForm();
-
 				// If successful, add the selected element back.
 				if ( data.success ) {
 					event.submitter.closest('.pm-vote__button').insertAdjacentHTML( 'beforeend', maiAskNewsVars.selected );
+				} else {
+					console.log( data.data.message );
+					// Create an element.
+					const error = document.createElement('p');
+					// Add classes for pm-notice and error.
+					error.classList.add('pm-notice', 'error');
+					// Add the error message to the div.
+					error.innerHTML = data.data.message;
+					// Prepend red text to the form.
+					form.prepend(error);
 				}
+
+				revertForm(data.success);
 			})
 			.catch( error => {
 				console.error( 'promatchups error:', error );
 
-				revertForm();
+				revertForm(false);
 			});
 
 			/**
 			 * Revert the form back to its original state.
 			 *
+			 * @param {boolean} success Whether the form was successful or not.
+			 *
 			 * @return {void}
 			 */
-			function revertForm() {
+			function revertForm(success = true) {
 				// Remove the loading icon.
 				event.submitter.querySelector('.pm-loading-wrap').remove();
 
 				// Restore original button text.
 				event.submitter.innerHTML = buttonText;
 
-				// Find the button that is not the event submitter.
-				let otherButton = form.querySelector('button:not([value="' + event.submitter.value + '"])');
-
-				// If we have one, enable it.
-				if ( otherButton ) {
-					otherButton.disabled = false;
+				// If success, enable the other button.
+				if ( success ) {
+					form.querySelector('button:not([value="' + event.submitter.value + '"])').disabled = false;
+				}
+				// If error, enable the submitter.
+				if ( ! success ) {
+					event.submitter.disabled = false
 				}
 			}
 		});
