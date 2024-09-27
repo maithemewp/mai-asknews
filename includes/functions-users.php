@@ -29,28 +29,6 @@ function maiasknews_get_user() {
 }
 
 /**
- * If the user has access to view restricted content.
- *
- * @since 0.1.0
- *
- * @return bool
- */
-function maiasknews_is_user() {
-	static $cache = null;
-
-	if ( null !== $cache ) {
-		return $cache;
-	}
-
-	$cache = current_user_can( 'read' )
-		|| maiasknews_has_free_membership()
-		|| maiasknews_has_paid_membership()
-		|| maiasknews_has_pro_membership();
-
-	return $cache;
-}
-
-/**
  * If user has role.
  *
  * @since TBD
@@ -81,6 +59,27 @@ function maiasknews_has_role( $role, $user_id = 0 ) {
 	}
 
 	return in_array( $role, $roles[ $user_id ] );
+}
+
+/**
+ * If the user has any membership.
+ *
+ * @since 0.1.0
+ *
+ * @return bool
+ */
+function maiasknews_has_membership() {
+	static $cache = null;
+
+	if ( ! is_null( $cache ) ) {
+		return $cache;
+	}
+
+	$cache = maiasknews_has_free_membership()
+		|| maiasknews_has_paid_membership()
+		|| maiasknews_has_pro_membership();
+
+	return $cache;
 }
 
 /**

@@ -206,33 +206,22 @@ function maiasknews_get_matchup_teams_list( $atts = [] ) {
  * @return array
  */
 function maiasknews_get_prediction_list( $body, $hidden = false ) {
+	$list       = [];
 	$home        = isset( $body['home_team'] ) ? $body['home_team'] : '';
 	$away        = isset( $body['away_team'] ) ? $body['away_team'] : '';
 	$choice      = maiasknews_get_key( 'choice', $body );
 	$probability = maiasknews_get_key( 'probability', $body );
 	$probability = $probability ? $probability . '%' : '';
 	$likelihood  = maiasknews_get_key( 'likelihood', $body );
-
-
-	// TODO: Predicted score?
-
-
-	// TODO:
-	// crystal ball next to prediction
-	// dice next to probability
-	// thumbs up/down next to likelihood?
+	$final_score = maiasknews_get_key( 'final_score', $body );
 
 	// $confidence     = maiasknews_get_key( 'confidence', $body );
 	// $confidence     = $confidence ? maiasknews_format_confidence( $confidence ) : '';
 	// $llm_confidence = maiasknews_get_key( 'llm_confidence', $body );
 
-	// Start table data.
-	$table = [];
-
 	// If choice.
 	if ( $choice ) {
-		$table[ 'choice' ] = [
-			// 'icon'    => $wand,
+		$list['choice'] = [
 			'hidden'  => __( 'Members Only', 'mai-asknews' ),
 			'visible' => $choice,
 		];
@@ -240,25 +229,60 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 
 	// If probability and likelihood.
 	if ( $probability && $likelihood ) {
-		// $table[ __( 'Chance', 'mai-asknews' ) ] = [
-		// 	'icon'    => $dice,
+		// $list[ __( 'Chance', 'mai-asknews' ) ] = [
 		// 	'hidden'  => __( 'Members Only', 'mai-asknews' ),
 		// 	'visible' => sprintf( '%s, %s', $probability, $likelihood ),
 		// ];
-		$table[ 'probability' ] = [
-			// 'icon'    => $dice,
+		$list['probability'] = [
 			'hidden'  => __( 'Members Only', 'mai-asknews' ),
 			'visible' => sprintf( '%s, %s', $probability, $likelihood ),
 		];
 	}
 
+	// If final score.
+	if ( $final_score ) {
+		$team_name_1  = isset( $final_score[0]['team'] ) ? $final_score[0]['team'] : '';
+		$team_name_2  = isset( $final_score[1]['team'] ) ? $final_score[1]['team'] : '';
+		$team_score_1 = isset( $final_score[0]['score'] ) ? $final_score[0]['score'] : '';
+		$team_score_2 = isset( $final_score[1]['score'] ) ? $final_score[1]['score'] : '';
+
+		if ( $team_name_1 && $team_name_2 && $team_score_1 && $team_score_2 ) {
+			// Build short names.
+			$league      = maiasknews_get_page_league();
+			$team_name_1 = maiasknews_get_team_short_name( $team_name_1, $league );
+			$team_name_2 = maiasknews_get_team_short_name( $team_name_2, $league );
+
+			// If tie.
+			if ( $team_score_1 === $team_score_2 ) {
+				$list['score'] = [
+					'hidden'  => __( 'Members Only', 'mai-asknews' ),
+					'visible' => sprintf( "Tie %s-%s", $team_score_1, $team_score_2 ),
+				];
+			}
+			// If team 1 wins.
+			elseif ( $team_score_1 > $team_score_2 ) {
+				$list['score'] = [
+					'hidden'  => __( 'Members Only', 'mai-asknews' ),
+					'visible' => sprintf( "%s win %s-%s", $team_name_1, $team_score_1, $team_score_2 ),
+				];
+			}
+			// If team 2 wins.
+			else {
+				$list['score'] = [
+					'hidden'  => __( 'Members Only', 'mai-asknews' ),
+					'visible' => sprintf( "%s win %s-%s", $team_name_2, $team_name_2, $team_score_1 ),
+				];
+			}
+		}
+	}
+
 	// 0.3.0.
-	// $table[ __( 'Confidence', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
-	// $table[ __( 'LLM Confidence', 'mai-asknews' ) ] = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
-	// $table[ __( 'Likelihood', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
+	// $list[ __( 'Confidence', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
+	// $list[ __( 'LLM Confidence', 'mai-asknews' ) ] = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
+	// $list[ __( 'Likelihood', 'mai-asknews' ) ]     = [ 'hidden' => __( 'Members Only', 'mai-asknews' ), 'visible' => '' ];
 
 	// Bail if no data.
-	if ( ! array_filter( $table ) ) {
+	if ( ! array_filter( $list ) ) {
 		return;
 	}
 
@@ -268,7 +292,8 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 			$html .= sprintf( '<li class="pm-prediction__item label">%s</li>', __( 'Our Prediction', 'mai-asknews' ) );
 		}
 
-		foreach ( $table as $class => $values ) {
+		// Loop through list.
+		foreach ( $list as $class => $values ) {
 			$value = $hidden ? $values['hidden'] : $values['visible'];
 			// $html .= sprintf( '<li class="pm-prediction__item"><strong>%s:</strong> %s</li>', $values['icon'], $value );
 			$html .= sprintf( '<li class="pm-prediction__item %s">%s</li>', $class, $value );

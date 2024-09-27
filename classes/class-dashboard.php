@@ -37,7 +37,7 @@ class Mai_AskNews_Dashboard {
 	 * @return void
 	 */
 	function maybe_redirect_dashboard() {
-		// Bail if logged in.
+		// Bail if user is not logged in.
 		if ( is_user_logged_in() ) {
 			return;
 		}
