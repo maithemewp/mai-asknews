@@ -245,9 +245,13 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 		}
 
 		// Get XP. Total points x confidence.
-		$xp = [
-			'xp_points' => $this->get_xp( $this->points['total_points'], $this->confidence['confidence'] ),
-		];
+		// Skipping all time xp until we can figure out a formula.
+		// And cause we don't have confidence cause that is skipped too.
+		// $xp = [
+		// 	'xp_points' => $this->get_xp( $this->points['total_points'], $this->confidence['confidence'] ),
+		// ];
+
+		$xp = [];
 
 		// Loop through leagues and get XP.
 		foreach ( $leagues as $league ) {
