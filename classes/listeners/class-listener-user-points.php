@@ -76,15 +76,6 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 		$leagues = maiasknews_get_all_leagues();
 		$leagues = array_map( 'strtolower', $leagues );
 
-		// // Start total votes.
-		// // Can't use count() here because some votes may not count because matchups/outcomes may be missing, etc.
-		// $total_votes = [ 'all' => 0 ];
-
-		// // Loop through leagues and add to total votes.
-		// foreach ( $leagues as $league ) {
-		// 	$total_votes[ $league ] = 0;
-		// }
-
 		// Get required minimum votes. ~80% of the total games per team, per season.
 		$req_min = [
 			'all' => 200, // Random.
@@ -144,14 +135,6 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 				$leagues[] = $league;
 			}
 
-
-
-			// Add to total votes.
-			// $total_votes['all']++;
-			// $total_votes[ $league ]++;
-
-			// Add total votes to the $th
-
 			// Get karma.
 			$karma = (int) $comment->comment_karma;
 
@@ -201,16 +184,6 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 
 		// Loop through leagues and calculate win percent.
 		foreach ( $leagues as $league ) {
-			// // Skip if total votes not set.
-			// if ( ! isset( $total_votes[ $league ] ) ) {
-			// 	continue;
-			// }
-
-			// // Skip if total wins not set.
-			// if ( ! isset( $this->points["total_wins_{$league}"] ) ) {
-			// 	continue;
-			// }
-
 			// Skip if total votes is 0 or less.
 			if ( $this->points["total_votes_{$league}"] <= 0 ) {
 				continue;
@@ -230,16 +203,6 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 
 		// Loop through leagues and get confidence.
 		foreach ( $leagues as $league ) {
-			// // Skip if total votes not set.
-			// if ( ! isset( $total_votes[ $league ] ) ) {
-			// 	continue;
-			// }
-
-			// // Skip if required minimum not set.
-			// if ( ! isset( $req_min[ $league ] ) ) {
-			// 	continue;
-			// }
-
 			// Set confidence.
 			$this->confidence[ "confidence_{$league}" ] = $this->get_confidence( $this->points["total_votes_{$league}"], $req_min[ $league ] );
 		}
@@ -255,16 +218,6 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 
 		// Loop through leagues and get XP.
 		foreach ( $leagues as $league ) {
-			// // Skip if points not set.
-			// if ( ! isset( $this->points["total_points_{$league}" ] ) ) {
-			// 	continue;
-			// }
-
-			// // Skip if confidence not set.
-			// if ( ! isset( $this->confidence[ "confidence_{$league}" ] ) ) {
-			// 	continue;
-			// }
-
 			// Set XP.
 			$xp[ "xp_points_{$league}" ] = $this->get_xp( $this->points[ "total_points_{$league}" ], $this->confidence[ "confidence_{$league}" ] );
 		}
