@@ -88,6 +88,11 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 		// Loop through and add leagues,
 		// so we don't have to check isset later.
 		foreach ( $leagues as $league ) {
+			// Skip if set already.
+			if ( isset( $req_min[ $league ] ) ) {
+				continue;
+			}
+
 			$req_min[ $league ] = 200; // Random.
 		}
 
