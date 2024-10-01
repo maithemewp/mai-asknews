@@ -70,14 +70,14 @@ class Mai_AskNews_Shortcodes {
 		// Get base keys.
 		// Get league keys and labels.
 		$keys = [
-			'xp_points'    => __( 'XP', 'promatchups' ),
-			'total_points' => __( 'Points', 'promatchups' ),
-			'total_votes'  => __( 'Votes', 'promatchups' ),
-			'win_percent'  => __( 'Win %', 'promatchups' ),
+			'total_votes'  => __( 'Total Picks', 'promatchups' ),
 			'total_wins'   => __( 'Wins', 'promatchups' ),
 			'total_losses' => __( 'Losses', 'promatchups' ),
 			'total_ties'   => __( 'Ties', 'promatchups' ),
+			'win_percent'  => __( 'Win %', 'promatchups' ),
+			'total_points' => __( 'Points Awarded', 'promatchups' ),
 			'confidence'   => __( 'Confidence', 'promatchups' ),
+			'xp_points'    => __( 'XPoints', 'promatchups' ),
 		];
 
 		// Build HTML.
@@ -106,7 +106,7 @@ class Mai_AskNews_Shortcodes {
 								$value = 'win_percent' === $key ? $value . '%' : $value;
 						}
 
-						$html  .= sprintf( '<li class="pm-userstats__item"><span class="pm-userstats__label">%s</span><span class="pm-userstats__value">%s</span></li>', $label, $value );
+						$html  .= sprintf( '<li class="pm-userstats__item %s"><span class="pm-userstats__label">%s</span><span class="pm-userstats__value">%s</span></li>', sanitize_html_class( $key ), $label, $value );
 					}
 
 				$html .= '</ul>';
@@ -116,14 +116,14 @@ class Mai_AskNews_Shortcodes {
 			foreach ( $leagues as $league ) {
 				// Get league keys and labels.
 				$keys = [
-					"xp_points_{$league}"    => __( 'XP', 'promatchups' ),
-					"total_points_{$league}" => __( 'Points', 'promatchups' ),
-					"total_votes_{$league}"  => __( 'Votes', 'promatchups' ),
-					"win_percent_{$league}"  => __( 'Win %', 'promatchups' ),
+					"total_votes_{$league}"  => __( 'Total Picks', 'promatchups' ),
 					"total_wins_{$league}"   => __( 'Wins', 'promatchups' ),
 					"total_losses_{$league}" => __( 'Losses', 'promatchups' ),
 					"total_ties_{$league}"   => __( 'Ties', 'promatchups' ),
+					"win_percent_{$league}"  => __( 'Win %', 'promatchups' ),
+					"total_points_{$league}" => __( 'Points Awarded', 'promatchups' ),
 					"confidence_{$league}"   => __( 'Confidence', 'promatchups' ),
+					"xp_points_{$league}"    => __( 'XPoints', 'promatchups' ),
 				];
 
 				// Build main section.
@@ -135,7 +135,7 @@ class Mai_AskNews_Shortcodes {
 					foreach ( $keys as $key => $label ) {
 						$value = maiasknews_parse_float( get_user_meta( $user_id, $key, true ) );
 						$value = "win_percent_{$league}" === $key ? $value . '%' : $value;
-						$html .= sprintf( '<li class="pm-userstats__item"><span class="pm-userstats__label">%s</span><span class="pm-userstats__value">%s</span></li>', $label, $value );
+						$html .= sprintf( '<li class="pm-userstats__item %s"><span class="pm-userstats__label">%s</span><span class="pm-userstats__value">%s</span></li>', sanitize_html_class( $key ), $label, $value );
 					}
 
 				$html .= '</ul>';
