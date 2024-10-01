@@ -43,27 +43,27 @@ class Mai_AskNews_Shortcodes {
 
 		// Parse atts.
 		$atts = shortcode_atts([
+			'user_id'  => get_current_user_id(),
 			'all_time' => true,
 			'leagues'  => 'mlb,nba,nfl,nhl',
 		], $atts, 'pm_user_stats' );
 
 		// Sanitize.
+		$user_id  = absint( $atts['user_id'] );
+		$user     = get_user_by( 'ID', $user_id );
 		$all_time = rest_sanitize_boolean( $atts['all_time'] );
 		$leagues  = explode( ',', $atts['leagues'] );
 		$leagues  = array_map( 'sanitize_text_field', $leagues );
 		$leagues  = array_map( 'strtolower', $leagues );
 		$leagues  = array_filter( $leagues );
 
-		// Bail if no leagues.
-		if ( ! $leagues ) {
+		// Bail if no user.
+		if ( ! $user ) {
 			return $html;
 		}
 
-		// Get user ID.
-		$user_id = get_current_user_id();
-
-		// Bail if no user ID.
-		if ( ! $user_id ) {
+		// Bail if no leagues.
+		if ( ! $leagues ) {
 			return $html;
 		}
 
@@ -72,6 +72,7 @@ class Mai_AskNews_Shortcodes {
 		$keys = [
 			'xp_points'    => __( 'XP', 'promatchups' ),
 			'total_points' => __( 'Points', 'promatchups' ),
+			'total_votes'  => __( 'Votes', 'promatchups' ),
 			'win_percent'  => __( 'Win %', 'promatchups' ),
 			'total_wins'   => __( 'Wins', 'promatchups' ),
 			'total_losses' => __( 'Losses', 'promatchups' ),
@@ -117,6 +118,7 @@ class Mai_AskNews_Shortcodes {
 				$keys = [
 					"xp_points_{$league}"    => __( 'XP', 'promatchups' ),
 					"total_points_{$league}" => __( 'Points', 'promatchups' ),
+					"total_votes_{$league}"  => __( 'Votes', 'promatchups' ),
 					"win_percent_{$league}"  => __( 'Win %', 'promatchups' ),
 					"total_wins_{$league}"   => __( 'Wins', 'promatchups' ),
 					"total_losses_{$league}" => __( 'Losses', 'promatchups' ),
