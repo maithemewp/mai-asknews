@@ -81,6 +81,80 @@ class Mai_AskNews_CLI {
 	}
 
 	/**
+	 * Update bot votes from matchups.
+	 *
+	 * Usage: wp maiasknews update_bot_votes --posts_per_page=10 --offset=0
+	 *
+	 * @param array $args       Standard command args.
+	 * @param array $assoc_args Keyed args like --posts_per_page and --offset.
+	 *
+	 * @return void
+	 */
+	function update_bot_votes( $args, $assoc_args ) {
+		// Parse args.
+		$assoc_args = wp_parse_args(
+			$assoc_args,
+			[
+				'post_type'              => 'matchup',
+				'post_status'            => 'any',
+				'posts_per_page'         => 10,
+				'offset'                 => 0,
+				'no_found_rows'          => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+			]
+		);
+
+		// Get posts.
+		$query = new WP_Query( $assoc_args );
+
+		// If we have posts.
+		if ( $query->have_posts() ) {
+			// Log how many total posts found.
+			WP_CLI::log( 'Posts found: ' . $query->post_count );
+
+			// Loop through posts.
+			while ( $query->have_posts() ) : $query->the_post();
+				$bot_id     = 2;
+				$matchup_id = get_the_ID();
+				$existing   = maiasknews_get_user_vote( $matchup_id, $bot_id );
+
+				// Skip if bot has already voted.
+				if ( array_filter( array_values( $existing ) ) ) {
+					continue;
+				}
+
+				$data = maiasknews_get_matchup_data( $matchup_id );
+				$team = isset( $data['prediction'] ) ? $data['prediction'] : '';
+
+				// Skip if no team.
+				if ( ! $team ) {
+					continue;
+				}
+
+				// Add bot vote.
+				$comment_id = maiasknews_add_user_vote( $matchup_id, $team, $bot_id );
+
+				// Skip if no comment ID.
+				if ( ! $comment_id ) {
+					continue;
+				}
+
+				// Log if updated.
+				WP_CLI::log( 'Bot vote added for post ID: ' . $matchup_id . ' ' . get_permalink() );
+
+			endwhile;
+
+		} else {
+			WP_CLI::log( 'No posts found.' );
+		}
+
+		wp_reset_postdata();
+
+		WP_CLI::success( 'Done.' );
+	}
+
+	/**
 	 * Updates user points.
 	 *
 	 * Usage: wp maiasknews update_user_points --number=10 --offset=0
