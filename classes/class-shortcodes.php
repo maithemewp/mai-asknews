@@ -72,6 +72,7 @@ class Mai_AskNews_Shortcodes {
 		$keys = [
 			'xp_points'    => __( 'XP', 'promatchups' ),
 			'total_points' => __( 'Points', 'promatchups' ),
+			'total_votes'  => __( 'Votes', 'promatchups' ),
 			'win_percent'  => __( 'Win %', 'promatchups' ),
 			'total_wins'   => __( 'Wins', 'promatchups' ),
 			'total_losses' => __( 'Losses', 'promatchups' ),
@@ -117,6 +118,7 @@ class Mai_AskNews_Shortcodes {
 				$keys = [
 					"xp_points_{$league}"    => __( 'XP', 'promatchups' ),
 					"total_points_{$league}" => __( 'Points', 'promatchups' ),
+					"total_votes_{$league}"  => __( 'Votes', 'promatchups' ),
 					"win_percent_{$league}"  => __( 'Win %', 'promatchups' ),
 					"total_wins_{$league}"   => __( 'Wins', 'promatchups' ),
 					"total_losses_{$league}" => __( 'Losses', 'promatchups' ),
