@@ -885,7 +885,7 @@ body {
 .pm-loading {
 	width: auto;
 	height: 1em;
-	fill: white;
+	fill: currentColor;
 	animation: pmSpin 1s infinite ease-in;
 }
 

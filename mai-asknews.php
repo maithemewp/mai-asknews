@@ -216,6 +216,7 @@ final class Mai_AskNews_Plugin {
 		$users      = new Mai_AskNews_Users;
 		$dashboard  = new Mai_AskNews_Dashboard;
 		$shortcodes = new Mai_AskNews_Shortcodes;
+		$askthebot  = new Mai_AskNews_AskTheBot;
 		$publisher  = new Mai_AskNews_Mai_Publisher;
 		$rank_math  = new Mai_AskNews_Rank_Math;
 		$pro_squad  = new Mai_AskNews_Pro_Squad;
