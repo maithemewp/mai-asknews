@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		event.submitter.disabled = true;
 
 		// Get the input text.
-		const question = document.getElementById('askthebot-question').value;
+		const textInput = document.getElementById('askthebot-question');
 
 		// Build new div.
 		const newUserDiv = document.createElement('div');
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		newUserDiv.classList.add('askthebot__message', 'askthebot__user');
 
 		// Add the message to the new div.
-		newUserDiv.innerHTML = question;
+		newUserDiv.innerHTML = textInput.value;
 
 		// Append the results to the placeholder.
 		chat.appendChild(newUserDiv);
@@ -95,6 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			// Append the results to the placeholder.
 			chat.appendChild(newBotChat);
+
+			// Remove the input value.
+			textInput.value = '';
+
+			// Enable the button.
+			event.submitter.disabled = false;
 		})
 		.catch( error => {
 			console.error( 'promatchups error:', error );
