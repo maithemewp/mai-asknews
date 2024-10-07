@@ -257,7 +257,8 @@ class Mai_AskNews_User_Points extends Mai_AskNews_Listener {
 	 */
 	function get_confidence( $votes, $req_min ) {
 		$confidence = tanh( (2 * $votes) / $req_min );
-		$confidence = round( $confidence, 3 );
+		$confidence = round( $confidence, 4 ); // Round to 4. We used 3, but .9998 rounded up to 1.
+		$confidence = substr( $confidence, 0, 5 ); // Trim the string to 5 characters.
 		$confidence = maiasknews_parse_float( $confidence );
 
 		return $confidence;

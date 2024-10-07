@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
 	// Get the form element.
 	const forms = document.querySelectorAll('.pm-vote__form');
 

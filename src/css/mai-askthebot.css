@@ -1,0 +1,54 @@
+.askthebot-chat {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: var(--spacing-md);
+}
+
+.askthebot-loading {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	margin-bottom: var(--spacing-md);
+
+	img {
+		max-width: 64px;
+	}
+}
+
+.askthebot-loading__text {
+	position: relative;
+	padding: var(--spacing-sm) var(--spacing-md);
+	color: white;
+	background: var(--color-accent);
+	border-radius: 12px;
+}
+
+.askthebot-loading__text::before {
+	position: absolute;
+	bottom: 12px;
+	left: -12px;
+	border: 6px solid;
+	border-top-color: currentcolor;
+	border-right-color: currentcolor;
+	border-bottom-color: currentcolor;
+	border-left-color: currentcolor;
+	border-color: var(--color-accent) var(--color-accent) transparent transparent;
+	content: "";
+}
+
+.askthebot__message {
+	margin-bottom: var(--spacing-md);
+
+	img {
+		display: block;
+		margin-block: var(--spacing-md);
+	}
+}
+
+.askthebot__user {
+	display: inline-block;
+	margin-inline-start: auto;
+	padding: var(--spacing-xxs) var(--spacing-md);
+	background-color: var(--color-alt);
+	border-radius: 12px;
+}

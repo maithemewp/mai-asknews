@@ -88,16 +88,21 @@ function maiasknews_get_key( $key, $array ) {
 /**
  * Get a file version based on last modified date.
  *
- * @param string $filename
- * @param string $type
+ * @since 0.4.0
+ *
+ * @param string $filename The file name. Example: `dapper`.
+ * @param string $type     The file type. Example: `css`.
+ * @param bool   $debug    Whether to use the debug version.
  *
  * @return string
  */
-function maiasknews_get_file_version( $filename, $type ) {
-	$version  = MAI_ASKNEWS_VERSION;
-	$suffix   = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-	$filepath = MAI_ASKNEWS_DIR . "build/{$type}/{$filename}{$suffix}.{$type}";
-	$version .= '.' . date( 'njYHi', filemtime( $filepath ) );
+function maiasknews_get_file_version( $filename, $type, $debug = null ) {
+	$version   = MAI_ASKNEWS_VERSION;
+	$debug     = is_null( $debug ) ? defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG : false;
+	$path      = $debug ? 'src' : 'build';
+	$suffix    = $debug ? '' : '.min';
+	$filepath  = MAI_ASKNEWS_DIR . "{$path}/{$type}/{$filename}{$suffix}.{$type}";
+	$version  .= '.' . date( 'njYHi', filemtime( $filepath ) );
 
 	return $version;
 }
@@ -110,13 +115,16 @@ function maiasknews_get_file_version( $filename, $type ) {
  *
  * @param string $filename The file name. Example: `dapper`.
  * @param string $type     The file type. Example: `css`.
+ * @param bool   $debug    Whether to use the debug version.
  *
  * @return string
  */
-function maiasknews_get_file_url( $filename, $type ) {
-	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+function maiasknews_get_file_url( $filename, $type, $debug = null ) {
+	$debug  = is_null( $debug ) ? defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG : false;
+	$path   = $debug ? 'src' : 'build';
+	$suffix = $debug ? '' : '.min';
 
-	return MAI_ASKNEWS_URL . "build/{$type}/{$filename}{$suffix}.{$type}";
+	return MAI_ASKNEWS_URL . "{$path}/{$type}/{$filename}{$suffix}.{$type}";
 }
 
 /**

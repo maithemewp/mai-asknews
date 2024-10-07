@@ -12,11 +12,14 @@ class ComposerStaticInit2c4caeea6ee45d7e952e25db3d3997af
         '22177d82d05723dff5b1903f4496520e' => __DIR__ . '/..' . '/alleyinteractive/wordpress-autoloader/src/class-autoloader.php',
         'd0b4d9ff2237dcc1a532ae9d039c0c2c' => __DIR__ . '/..' . '/alleyinteractive/composer-wordpress-autoloader/src/autoload.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
+        'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '91dcc74bdd4f7744d05727fdc296d8ae' => __DIR__ . '/..' . '/mantle-framework/support/autoload.php',
         'b68c986d100cce58b4f7580a7ebd1ae7' => __DIR__ . '/..' . '/alleyinteractive/wp-block-converter/src/helpers.php',
+        '3074abeef0bacf5811f59e9dee6311d1' => __DIR__ . '/..' . '/spatie/ray/src/helpers.php',
         '7166494aeff09009178f278afd86c83f' => __DIR__ . '/..' . '/yahnis-elsts/plugin-update-checker/load-v4p13.php',
     );
 
@@ -30,9 +33,14 @@ class ComposerStaticInit2c4caeea6ee45d7e952e25db3d3997af
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Contracts\\Translation\\' => 30,
+            'Symfony\\Contracts\\Service\\' => 26,
             'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\Stopwatch\\' => 28,
             'Symfony\\Component\\Finder\\' => 25,
+            'Spatie\\Ray\\' => 11,
+            'Spatie\\Macroable\\' => 17,
+            'Spatie\\Backtrace\\' => 17,
         ),
         'R' => 
         array (
@@ -42,6 +50,8 @@ class ComposerStaticInit2c4caeea6ee45d7e952e25db3d3997af
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Http\\Message\\' => 17,
+            'Psr\\Http\\Client\\' => 16,
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'Psr\\Clock\\' => 10,
@@ -54,6 +64,12 @@ class ComposerStaticInit2c4caeea6ee45d7e952e25db3d3997af
         array (
             'League\\Config\\' => 14,
             'League\\CommonMark\\' => 18,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
         ),
         'D' => 
         array (
@@ -69,6 +85,10 @@ class ComposerStaticInit2c4caeea6ee45d7e952e25db3d3997af
         'B' => 
         array (
             'Brick\\Math\\' => 11,
+        ),
+        'A' => 
+        array (
+            'AskNews\\' => 8,
         ),
     );
 
@@ -89,6 +109,10 @@ class ComposerStaticInit2c4caeea6ee45d7e952e25db3d3997af
         array (
             0 => __DIR__ . '/..' . '/symfony/translation-contracts',
         ),
+        'Symfony\\Contracts\\Service\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/service-contracts',
+        ),
         'Symfony\\Component\\VarDumper\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
@@ -97,9 +121,25 @@ class ComposerStaticInit2c4caeea6ee45d7e952e25db3d3997af
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
         ),
+        'Symfony\\Component\\Stopwatch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/stopwatch',
+        ),
         'Symfony\\Component\\Finder\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
+        ),
+        'Spatie\\Ray\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/ray/src',
+        ),
+        'Spatie\\Macroable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/macroable/src',
+        ),
+        'Spatie\\Backtrace\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/backtrace/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -112,6 +152,15 @@ class ComposerStaticInit2c4caeea6ee45d7e952e25db3d3997af
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/src',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Psr\\Http\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-client/src',
         ),
         'Psr\\EventDispatcher\\' => 
         array (
@@ -137,6 +186,18 @@ class ComposerStaticInit2c4caeea6ee45d7e952e25db3d3997af
         array (
             0 => __DIR__ . '/..' . '/league/commonmark/src',
         ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
         'Doctrine\\Inflector\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
@@ -160,6 +221,10 @@ class ComposerStaticInit2c4caeea6ee45d7e952e25db3d3997af
         'Brick\\Math\\' => 
         array (
             0 => __DIR__ . '/..' . '/brick/math/src',
+        ),
+        'AskNews\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/emergentmethods/asknews-php-sdk/lib',
         ),
     );
 
