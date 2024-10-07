@@ -105,37 +105,5 @@ document.addEventListener('DOMContentLoaded', () => {
 		.catch( error => {
 			console.error( 'promatchups error:', error );
 		});
-
-		// // Initialize the SDK with your client ID, client secret, and scopes.
-		// const sdk = new AskNewsSDK({
-		// 	clientId: 'TBD',
-		// 	clientSecret: 'TBD',
-		// 	scopes: ['chat'],
-		// });
-
-		// async function chatQuery() {
-		// 	try {
-		// 	  // Make the chat completion request
-		// 	  const response = await sdk.chat.getChatCompletions({
-		// 		createChatCompletionRequest: {
-		// 		  messages: [
-		// 			{
-		// 			  role: 'user',
-		// 			  content: "When is the next Yankees game?",
-		// 			},
-		// 		  ],
-		// 		  stream: false, // Disable streaming
-		// 		},
-		// 	  });
-
-		// 	  // Log the response content
-		// 	  console.log(response.choices[0].message.content);
-		// 	} catch (error) {
-		// 	  // Handle errors
-		// 	  console.error("Error fetching chat completions:", error);
-		// 	}
-		// }
-
-		// chatQuery();
 	});
 });

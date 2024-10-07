@@ -8,5 +8,8 @@
         "alleyinteractive/wp-block-converter": "^1.2",
         "yahnis-elsts/plugin-update-checker": "^4.5",
         "emergentmethods/asknews-php-sdk": "^0.2.16"
+    },
+    "require-dev": {
+        "spatie/ray": "^1.41"
     }
 }
