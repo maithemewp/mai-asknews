@@ -308,6 +308,43 @@ final class Mai_AskNews_Plugin {
 			'rewrite'            => false, // Handled in Mai_AskNews_Rewrites.
 		] );
 
+		// AskTheBot.
+		register_post_type( 'askthebot', [
+			'exclude_from_search' => false,
+			'has_archive'         => false,
+			'hierarchical'        => false,
+			'labels'              => [
+				'name'               => _x( 'AskTheBot', 'AskTheBot general name', 'promatchups' ),
+				'singular_name'      => _x( 'AskTheBot', 'AskTheBot singular name', 'promatchups' ),
+				'menu_name'          => _x( 'AskTheBot', 'AskTheBot admin menu', 'promatchups' ),
+				'name_admin_bar'     => _x( 'AskTheBot', 'AskTheBot add new on admin bar', 'promatchups' ),
+				'add_new'            => _x( 'Add New AskTheBot', 'AskTheBot', 'promatchups' ),
+				'add_new_item'       => __( 'Add New AskTheBot',  'promatchups' ),
+				'new_item'           => __( 'New AskTheBot', 'promatchups' ),
+				'edit_item'          => __( 'Edit AskTheBot', 'promatchups' ),
+				'view_item'          => __( 'View AskTheBot', 'promatchups' ),
+				'all_items'          => __( 'All AskTheBot', 'promatchups' ),
+				'search_items'       => __( 'Search AskTheBot', 'promatchups' ),
+				'parent_item_colon'  => __( 'Parent AskTheBot:', 'promatchups' ),
+				'not_found'          => __( 'No AskTheBot found.', 'promatchups' ),
+				'not_found_in_trash' => __( 'No AskTheBot found in Trash.', 'promatchups' )
+			],
+			'menu_icon'          => 'dashicons-format-chat',
+			'menu_position'      => 6,
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_in_menu'       => true,
+			'show_in_nav_menus'  => false,
+			'show_in_rest'       => true,
+			'show_ui'            => true,
+			'supports'           => [ 'title', 'editor', 'author', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'mai-archive-settings', 'mai-single-settings' ],
+			'taxonomies'         => [ 'team', 'league', 'season' ],
+			'rewrite'            => [
+				'slug'       => 'askthebot',
+				'with_front' => false,
+			],
+		] );
+
 		/***********************
 		 *  Custom Taxonomies  *
 		 ***********************/
