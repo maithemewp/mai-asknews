@@ -27,8 +27,8 @@ class Mai_AskNews_AskTheBot {
 	 * @return void
 	 */
 	function hooks() {
+		add_action( 'template_redirect',                         [ $this, 'maybe_redirect' ] );
 		add_action( 'wp_enqueue_scripts',                        [ $this, 'enqueue_scripts' ] );
-		// add_action( 'genesis_entry_content',                     [ $this, 'add_ask_chat_log' ] );
 		add_action( 'genesis_before_entry_content',              [ $this, 'add_ask_the_bot' ] );
 		add_action( 'admin_post_pm_askthebot_submission',        [ $this, 'handle_submission_single' ] );
 		add_action( 'admin_post_nopriv_pm_askthebot_submission', [ $this, 'handle_submission_single' ] );
@@ -38,6 +38,29 @@ class Mai_AskNews_AskTheBot {
 		// add_action( 'admin_post_nopriv_pm_askthebot_submission', [ $this, 'handle_submission_stream' ] );
 		// add_action( 'wp_ajax_pm_askthebot_submission',           [ $this, 'handle_submission_stream' ] );
 		// add_action( 'wp_ajax_nopriv_pm_askthebot_submission',    [ $this, 'handle_submission_stream' ] );
+	}
+
+	/**
+	 * Maybe redirect.
+	 *
+	 * @since TBD
+	 *
+	 * @return void
+	 */
+	function maybe_redirect() {
+		// If not a single askthebot post.
+		if ( ! is_singular( 'askthebot' ) ) {
+			return;
+		}
+
+		// If admininistrator.
+		if ( current_user_can( 'administrator' ) ) {
+			return;
+		}
+
+		// Redirect to the /dashboard/ page.
+		wp_safe_redirect( home_url( '/dashboard/' ) );
+		exit;
 	}
 
 	/**
@@ -70,26 +93,6 @@ class Mai_AskNews_AskTheBot {
 			'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
 		] );
 	}
-
-	/**
-	 * Add the ask chat log.
-	 *
-	 * @since TBD
-	 *
-	 * @return void
-	 */
-	// function add_ask_chat_log() {
-	// 	if ( ! is_singular( 'askthebot' ) ) {
-	// 		return;
-	// 	}
-
-	// 	echo '<div id="askthebot-container" class="askthebot-container">';
-	// 		echo '<div id="askthebot-chat" class="askthebot-chat">';
-	// 			echo $this->get_chat_html();
-	// 		echo '</div>';
-	// 	echo '</div>';
-	// }
-
 
 	/**
 	 * Add the ask the bot chat log and form.
