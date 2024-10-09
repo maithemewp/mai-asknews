@@ -115,7 +115,7 @@ class Mai_AskNews_CLI {
 
 			// Loop through posts.
 			while ( $query->have_posts() ) : $query->the_post();
-				$bot_id     = 2;
+				$bot_id     = maiasknews_get_bot_user_id();
 				$matchup_id = get_the_ID();
 				$existing   = maiasknews_get_user_vote( $matchup_id, $bot_id );
 

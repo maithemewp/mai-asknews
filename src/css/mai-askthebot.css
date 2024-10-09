@@ -37,9 +37,10 @@
 }
 
 .askthebot__message {
+	position: relative;
 	margin-bottom: var(--spacing-md);
 
-	img {
+	img:not(.avatar) {
 		display: block;
 		max-width: 300px;
 		margin-block: var(--spacing-md);
@@ -51,12 +52,58 @@
 	margin-bottom: var(--spacing-lg);
 }
 
+.askthebot__bot::before {
+	position: absolute;
+	top: 0;
+	left: calc(var(--side-spacing) * -1);
+	width: 32px;
+	height: 32px;
+	background: url('/wp-content/plugins/mai-asknews/src/img/chad-head.png') no-repeat;
+	background-size: contain;
+	content: "";
+}
+
+.askthebot__bot {
+
+	.avatar {
+		top: -2px;
+		left: calc(var(--side-spacing) * -1);
+	}
+}
+
+@media only screen and (max-width: 799px) {
+
+	.askthebot__bot::before {
+		left: calc(var(--side-spacing) * -1);
+	}
+
+	.askthebot__bot {
+		> :first-of-type {
+			text-indent: 12px;
+		}
+	}
+}
+
+@media only screen and (min-width: 800px) {
+
+	.askthebot__bot::before {
+		left: -40px;
+	}
+}
+
 .askthebot__user {
 	display: inline-block;
 	margin-inline-start: auto;
 	padding: var(--spacing-xxs) var(--spacing-md);
 	background-color: var(--color-alt);
 	border-radius: 12px;
+
+	.avatar {
+		position: absolute;
+		top: 4px;
+		right: -24px;
+		width: 32px;
+	}
 }
 
 .askthebot-form {

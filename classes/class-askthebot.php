@@ -134,16 +134,20 @@ class Mai_AskNews_AskTheBot {
 		// Get the chat messages.
 		$query = new WP_Query( $args );
 
+		// Bot avatar.
+		// $avatar_bot  = get_avatar( maiasknews_get_bot_user_id(), 64 );
+		$avatar_user = get_avatar( get_current_user_id(), 64 );
+
 		// Loop through the chat messages.
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) : $query->the_post();
 				// Get the question and answer.
 				$question = get_the_title();
-				$answer   = $this->get_converted_html( get_the_content() );
+				$answer   = get_the_content();
 
 				// Add the chat messages in reverse.
 				$chat[] = sprintf( '<div class="askthebot__message askthebot__bot">%s</div>', $answer );
-				$chat[] = sprintf( '<div class="askthebot__message askthebot__user">%s</div>', $question );
+				$chat[] = sprintf( '<div class="askthebot__message askthebot__user">%s%s</div>', $question, $avatar_user );
 			endwhile;
 		}
 		wp_reset_postdata();
@@ -194,7 +198,7 @@ class Mai_AskNews_AskTheBot {
 		$html .= sprintf( '<form id="askthebot-form" class="askthebot-form" action="%s" method="post">', esc_url( admin_url('admin-post.php') ) );
 			$html .= sprintf( '<p><button id="chat-down" class="button button-secondary button-small" style="display:block;margin-inline:auto;">%s</button></p>', __( 'Scroll to bottom ↓', 'mai-asknews' ) );
 			$html .= '<p><textarea name="askthebot-question" id="askthebot-question" placeholder="Ask the bot anything" required></textarea></p>';
-			$html .= sprintf( '<button type="submit">%s</button>', __( 'Ask the Bot', 'mai-asknews' ) );
+			$html .= sprintf( '<button type="submit" class="button button-ajax"><span class="button-text">%s</span></button>', __( 'Ask the Bot', 'mai-asknews' ) );
 			$html .= '<input type="hidden" name="action" value="pm_askthebot_submission">';
 			$html .= '<input type="hidden" name="action" value="pm_askthebot_submission">';
 			$html .= wp_nonce_field( 'pm_askthebot_nonce', '_wpnonce', true, false );

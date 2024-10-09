@@ -858,25 +858,24 @@ body {
 	line-height: var(--line-height-sm);
 }
 
-.pm-vote__buttons {
+.button-ajax:disabled {
+	opacity: 1;
+}
 
-	.button {
-		/* disable transitions on text-index */
-		transition-property: all, text-indent;
-		transition-duration: 0.3s, 0s;
-	}
+.button-ajax:disabled:has(.pm-loading),
+.button-ajax:has(.pm-loading) {
+	cursor: wait;
 
-	.button:disabled {
-		opacity: 1;
-	}
-
-	.button:has(.pm-loading) {
-		text-indent: -200vw; /* To hide the () that make the button keep the same height. */
-		cursor: wait;
+	.button-text {
+		opacity: 0;
 	}
 }
 
 .pm-loading-wrap {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	display: flex;
 	align-items: center;
 	gap: var(--spacing-xxs);
