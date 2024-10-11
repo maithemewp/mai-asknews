@@ -69,10 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const textInput = document.getElementById('askthebot-question');
 
 		// Add the new question to the chat.
-		bottom.insertAdjacentHTML( 'beforebegin', '<div class="askthebot__message askthebot__user">' + textInput.value + '</div>' );
-
-		// Scroll to the bottom of the chat container.
-		scrollToBottom();
+		bottom.insertAdjacentHTML( 'beforebegin', '<div class="askthebot__message askthebot__user">' + textInput.value + maiAskTheBotVars.userAvatar + '</div>' );
 
 		// Store options.
 		const textOptions = [
@@ -100,6 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		// Collect form data.
 		const formData = new FormData(form);
+
+		// Remove the text input value, after form data is collected.
+		textInput.value = '';
 
 		// Send the form data to the server using Fetch API.
 		fetch( maiAskTheBotVars.ajaxUrl, {

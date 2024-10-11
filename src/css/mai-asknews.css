@@ -872,10 +872,6 @@ body {
 }
 
 .pm-loading-wrap {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	display: flex;
 	align-items: center;
 	gap: var(--spacing-xxs);
@@ -886,6 +882,17 @@ body {
 	height: 1em;
 	fill: currentColor;
 	animation: pmSpin 1s infinite ease-in;
+}
+
+.button-ajax,
+.pm-vote__button {
+
+	.pm-loading-wrap {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 }
 
 .pm-outcome__prediction,

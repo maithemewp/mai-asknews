@@ -90,7 +90,8 @@ class Mai_AskNews_AskTheBot {
 		// Enqueue JS.
 		wp_enqueue_script( 'mai-askthebot', maiasknews_get_file_url( 'mai-askthebot', 'js', false ), [], maiasknews_get_file_version( 'mai-askthebot', 'js', false ), true );
 		wp_localize_script( 'mai-askthebot', 'maiAskTheBotVars', [
-			'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
+			'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
+			'userAvatar' => get_avatar( get_current_user_id(), 64 ),
 		] );
 	}
 
@@ -185,6 +186,18 @@ class Mai_AskNews_AskTheBot {
 			return $date->format('M j, Y @ g:i a');
 		}, $content );
 
+		// Set up tag processor.
+		$tags = new WP_HTML_Tag_Processor( $content );
+
+		// Loop through tags.
+		while ( $tags->next_tag( [ 'tag_name' => 'a' ] ) ) {
+			$tags->set_attribute( 'target', '_blank' );
+			$tags->set_attribute( 'rel', 'noopener' );
+		}
+
+		// Get the updated HTML.
+		$content = $tags->get_updated_html();
+
 		return $content;
 	}
 
@@ -273,8 +286,12 @@ class Mai_AskNews_AskTheBot {
 		// Create an instance of the ChatApi and request classes.
 		$chat_api = new AskNews\Api\ChatApi( new GuzzleHttp\Client(), $config );
 		$request  = new \AskNews\Model\CreateChatCompletionRequest([
-			'model'    => 'gpt-4o-mini', // or your preferred model
-			'messages' => [
+			// 'model'             => 'gpt-4o-mini',
+			'model'             => 'claude-3-5-sonnet-20240620',
+			'append_references' => false,
+			'asknews_watermark' => false,
+			'inline_citations'  => 'none',
+			'messages'          => [
 				[
 					'role'    => 'user',
 					'content' => $question,
