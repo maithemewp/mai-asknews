@@ -314,7 +314,7 @@ function maiasknews_get_vote_form( $data ) {
 		// Team buttons.
 		$html .= '<div class="pm-vote__buttons pm-actions">';
 			$html .= '<div class="pm-vote__button pm-action__col away">';
-				$html .= sprintf( '<button class="button button-small" type="submit" name="team" value="%s"%s>%s</button>', $data['away_full'], $data['vote'] === $data['away_full'] ? ' disabled' : '', $data['away_short'] );
+				$html .= sprintf( '<button class="button button-small button-ajax" type="submit" name="team" value="%s"%s><span class="button-text">%s</span></button>', $data['away_full'], $data['vote'] === $data['away_full'] ? ' disabled' : '', $data['away_short'] );
 
 				// Bot prediction.
 				if ( $data['away_full'] && $data['prediction'] && $data['away_full'] === $data['prediction'] ) {
@@ -327,7 +327,7 @@ function maiasknews_get_vote_form( $data ) {
 				}
 			$html .= '</div>';
 			$html .= '<div class="pm-vote__button pm-action__col home">';
-				$html .= sprintf( '<button class="button button-small" type="submit" name="team" value="%s"%s>%s</button>', $data['home_full'], $data['vote'] === $data['home_full'] ? ' disabled' : '', $data['home_short'] );
+				$html .= sprintf( '<button class="button button-small button-ajax" type="submit" name="team" value="%s"%s><span class="button-text">%s</span></button>', $data['home_full'], $data['vote'] === $data['home_full'] ? ' disabled' : '', $data['home_short'] );
 
 				// Bot prediction.
 				if ( $data['home_full'] && $data['prediction'] && $data['home_full'] === $data['prediction'] ) {

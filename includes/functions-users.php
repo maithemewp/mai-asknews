@@ -10,6 +10,17 @@ defined( 'ABSPATH' ) || die;
 // rcp_user_has_access( $user_id = 0, $access_level_needed = 0 )
 
 /**
+ * Get bot user ID.
+ *
+ * @since TBD
+ *
+ * @return int
+ */
+function maiasknews_get_bot_user_id() {
+	return 2;
+}
+
+/**
  * Get the current user.
  *
  * @since 0.8.0
