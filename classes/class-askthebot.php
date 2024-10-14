@@ -106,7 +106,7 @@ class Mai_AskNews_AskTheBot {
 	 * @return array
 	 */
 	function add_ccas( $ccas ) {
-		$ccas['ask-the-bot-restricted'] = [
+		$ccas['ask-the-bot-promo'] = [
 			'hook'     => 'genesis_entry_content',
 			'priority' => 15,
 			'condition' => function() {
