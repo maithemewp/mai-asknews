@@ -265,13 +265,18 @@ class Mai_AskNews_Singular {
 
 		$this->do_prediction( $data, ! maiasknews_has_access(), $first );
 		$this->do_people( $data, $first );
+
+		// Do CCA hook for Matchup Promo 1 (Mai Content Areas)
+		do_action( 'pm_promo_cca1', $data, $first );
+
+
 		$this->do_injuries( $data, $first );
 		$this->do_timeline( $data, $first );
 
-		// Do CCA hook.
-		do_action( 'pm_cca', $data, $first );
+		// Do CCA hook for Matchup Promo 2 (Mai Content Areas)
+		do_action( 'pm_promo_cca2', $data, $first );
 
-		$this->do_sources( $data, $first );
+		$this->do_sources( $data, $first );		// displayed on the site as Latest News
 		$this->do_web( $data, $first );
 	}
 
