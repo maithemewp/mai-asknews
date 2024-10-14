@@ -210,7 +210,7 @@ function maiasknews_has_pro_access( $league = '' ) {
 function maiasknews_has_free_membership() {
 	static $cache = null;
 
-	if ( null !== $cache ) {
+	if ( ! is_null( $cache ) ) {
 		return $cache;
 	}
 
@@ -229,7 +229,7 @@ function maiasknews_has_free_membership() {
 function maiasknews_has_paid_membership() {
 	static $cache = null;
 
-	if ( null !== $cache ) {
+	if ( ! is_null( $cache ) ) {
 		return $cache;
 	}
 
@@ -241,6 +241,8 @@ function maiasknews_has_paid_membership() {
 /**
  * If the current user has a pro membership.
  *
+ * // TODO: I think this is wrong. Access number is RCP level? Not ID? What's going on here.
+ *
  * @since 0.1.0
  *
  * @return bool
@@ -248,11 +250,30 @@ function maiasknews_has_paid_membership() {
 function maiasknews_has_pro_membership() {
 	static $cache = null;
 
-	if ( null !== $cache ) {
+	if ( ! is_null( $cache ) ) {
 		return $cache;
 	}
 
 	$cache = current_user_can( 'manage_options' ) || ( maiasknews_has_paid_membership() && maiasknews_has_access( 8 ) );
+
+	return $cache;
+}
+
+/**
+ * If the user has elite membership.
+ *
+ * @since TBD
+ *
+ * @return bool
+ */
+function maiasknews_has_elite_membership() {
+	static $cache = null;
+
+	if ( ! is_null( $cache ) ) {
+		return $cache;
+	}
+
+	$cache = current_user_can( 'manage_options' ) || in_array( 3, rcp_get_customer_membership_level_ids() );
 
 	return $cache;
 }
@@ -286,7 +307,7 @@ function maiasknews_has_access_level( $level ) {
 function maiasknews_has_active_membership() {
 	static $cache = null;
 
-	if ( null !== $cache ) {
+	if ( ! is_null( $cache ) ) {
 		return $cache;
 	}
 
@@ -305,7 +326,7 @@ function maiasknews_has_active_membership() {
 function maiasknews_has_expired_membership() {
 	static $cache = null;
 
-	if ( null !== $cache ) {
+	if ( ! is_null( $cache ) ) {
 		return $cache;
 	}
 
@@ -324,7 +345,7 @@ function maiasknews_has_expired_membership() {
 function maiasknews_get_membership_ids() {
 	static $cache = null;
 
-	if ( null !== $cache ) {
+	if ( ! is_null( $cache ) ) {
 		return $cache;
 	}
 
