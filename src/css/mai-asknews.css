@@ -96,13 +96,6 @@ body {
 	}
 }
 
-@media only screen and (min-width: 800px) {
-
-	.nav-after-header {
-		display: none !important;
-	}
-}
-
 .nav-header,
 .nav-after-header {
 	--menu-font-weight: var(--heading-font-weight);
