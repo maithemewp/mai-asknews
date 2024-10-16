@@ -348,21 +348,10 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 		return $html;
 	}
 
-	// Top sites.
-	$top_sites = [
-		'draftkings',
-		'betmgm',
-		'fanduel',
-		'bovada',
-		'pointsbet',
-		'hard rock bet',
-	];
-
 	// Start the odds.
-	// $html .= sprintf( '<div class="pm-odds%s">', $hidden ? ' pm-obfuscated' : '' );
-	$html .= '<div class="pm-odds">';
+	$html .= '<div class="pm-odds pm-datatable">';
 		// Heading.
-		$html .= sprintf( '<p id="odds" class="has-xs-margin-bottom"><strong>%s:</strong></p>', __( 'Odds', 'mai-asknews' ) );
+		$html .= sprintf( '<p id="odds" class="has-xs-margin-bottom"><strong>%s</strong></p>', __( 'Moneyline Odds', 'mai-asknews' ) );
 
 		// Add a checkbox to expand/collapse the odds.
 		$toggle = '<div class="pm-toggle">';
@@ -373,7 +362,7 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 			$toggle .= '</label>';
 		$toggle .= '</div>';
 
-		// Build the table
+		// Build the table.
 		$html .= '<table>';
 			$html .= '<thead>';
 				$html .= '<tr>';
@@ -402,10 +391,13 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 				}
 			$html .= '</tr>';
 
+			// Start index.
+			$i = 1;
+
 			// Loop through the sites.
 			foreach ( $sites as $maker ) {
 				// Set class and odds.
-				$class     = in_array( strtolower( $maker ), $top_sites ) ? 'is-top' : 'is-not-top';
+				$class     = $i <= 3 ? 'is-top' : 'is-not-top';
 				$away_odds = isset( $odds_data[ $away_team ]['odds'][ $maker ] ) ? (float) $odds_data[ $away_team ]['odds'][ $maker ] : '';
 				$home_odds = isset( $odds_data[ $home_team ]['odds'][ $maker ] ) ? (float) $odds_data[ $home_team ]['odds'][ $maker ] : '';
 
@@ -428,6 +420,148 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 						$html .= sprintf( '<td>%s</td>', $home_odds );
 					}
 				$html .= '</tr>';
+
+				// Increment index.
+				$i++;
+			}
+
+			$html .= '</tbody>';
+		$html .= '</table>';
+	$html .= '</div>';
+
+	return $html;
+}
+
+function maiasknews_get_spreads_table( $body, $hidden = false ) {
+	// Get the odds data.
+	$html         = '';
+	$league       = maiasknews_get_key( 'sport', $body );
+	$spreads_data = maiasknews_get_spreads_data( $body );
+
+	// If we have spread data.
+	if ( ! $spreads_data ) {
+		return $html;
+	}
+
+	// Get home and away teams.
+	list( $away_team, $home_team ) = array_keys( $spreads_data );
+
+	// Get short names.
+	$away_short = maiasknews_get_team_short_name( $away_team, $league );
+	$home_short = maiasknews_get_team_short_name( $home_team, $league );
+
+	// Start the table data.
+	$sites = [];
+
+	// Loop through spreads data.
+	foreach ( $spreads_data as $team => $data ) {
+		// Merge the sites.
+		$sites = array_merge( $sites, array_keys( $data['spreads'] ) );
+	}
+
+	// Remove duplicates.
+	$sites = array_unique( $sites );
+
+	// Bail if no sites.
+	if ( ! $sites ) {
+		return $html;
+	}
+
+	// Start the spreads.
+	$html .= '<div class="pm-spreads pm-datatable">';
+		// Heading.
+		$html .= sprintf( '<p id="spreads" class="has-xs-margin-bottom"><strong>%s</strong></p>', __( 'Point Spread Odds', 'mai-asknews' ) );
+
+		// Add a checkbox to expand/collapse the spreads.
+		$toggle = '<div class="pm-toggle">';
+			$toggle .= '<label class="pm-toggle_label">';
+				$toggle .= __( 'Show All', 'mai-asknews' );
+				$toggle .= '<input class="pm-toggle__input" name="pm-toggle__input" type="checkbox" />';
+				$toggle .= '<span class="pm-toggle__slider"></span>';
+			$toggle .= '</label>';
+		$toggle .= '</div>';
+
+		// Build the table.
+		$html .= '<table>';
+			$html .= '<thead>';
+				$html .= '<tr>';
+					$html .= sprintf( '<th>%s</th>', $toggle );
+					// $html .= sprintf( '<th colspan="2">%s</th>', $away_short );
+					// $html .= sprintf( '<th colspan="2">%s</th>', $home_short );
+					$html .= sprintf( '<th colspan="2">%s<span class="pm-spreads__th"><span>%s</span><span>%s</span></span></th>', $away_short, __( 'Odds', 'mai-asknews' ), __( 'Spread', 'mai-asknews' ) );
+					$html .= sprintf( '<th colspan="2">%s<span class="pm-spreads__th"><span>%s</span><span>%s</span></span></th>', $home_short, __( 'Odds', 'mai-asknews' ), __( 'Spread', 'mai-asknews' ) );
+				$html .= '</tr>';
+				// $html .= '<tr>';
+				// 	$html .= '<th></th>';
+				// 	$html .= sprintf( '<th>%s</th>', __( 'Odds', 'mai-asknews' ) );
+				// 	$html .= sprintf( '<th>%s</th>', __( 'Spread', 'mai-asknews' ) );
+				// 	$html .= sprintf( '<th>%s</th>', __( 'Odds', 'mai-asknews' ) );
+				// 	$html .= sprintf( '<th>%s</th>', __( 'Spread', 'mai-asknews' ) );
+				// $html .= '</tr>';
+			$html .= '</thead>';
+			$html .= '<tbody>';
+
+			$html .= '<tr class="is-top">';
+				$html .= sprintf( '<td class="pm-spreads__average">%s</td>', __( 'Average spreads', 'mai-asknews' ) );
+
+				// Loop through the spreads.
+				foreach ( $spreads_data as $team => $values ) {
+					// If hidden, show N/A.
+					if ( $hidden ) {
+						$rounded = 'N/A';
+						$html   .= sprintf( '<td class="pm-spreads_odd average">%s</td>', $rounded );
+						$html   .= sprintf( '<td class="pm-spreads_spread average">%s</td>', $rounded );
+					}
+					// Otherwise, show the average.
+					else {
+						// $odd_rounded     = round( $values['odd_average'], 2 );
+						// $spread_rounded  = round( $values['spread_average'], 2 );
+						$odd_rounded     = $values['odd_average'];
+						$spread_rounded  = $values['spread_average'];
+						$html           .= sprintf( '<td class="pm-spreads_odd average">%s%s</td>', $odd_rounded > 0 ? '+' : '', $odd_rounded );
+						$html           .= sprintf( '<td class="pm-spreads_spread average">%s%s</td>', $spread_rounded > 0 ? '+' : '', $spread_rounded );
+					}
+				}
+			$html .= '</tr>';
+
+			// Start index.
+			$i = 1;
+
+			// Loop through the sites.
+			foreach ( $sites as $maker ) {
+				// Set class and spreads.
+				$class       = $i <= 3 ? 'is-top' : 'is-not-top';
+				$away_odds   = isset( $spreads_data[ $away_team ]['spreads'][ $maker ][0] ) ? (float) $spreads_data[ $away_team ]['spreads'][ $maker ][0] : '';
+				$away_spread = isset( $spreads_data[ $away_team ]['spreads'][ $maker ][1] ) ? (float) $spreads_data[ $away_team ]['spreads'][ $maker ][1] : '';
+				$home_odds   = isset( $spreads_data[ $home_team ]['spreads'][ $maker ][0] ) ? (float) $spreads_data[ $home_team ]['spreads'][ $maker ][0] : '';
+				$home_spread = isset( $spreads_data[ $home_team ]['spreads'][ $maker ][1] ) ? (float) $spreads_data[ $home_team ]['spreads'][ $maker ][1] : '';
+
+				// If value, and it's positive, add a plus sign.
+				$away_odds   = $away_odds ? ( $away_odds > 0 ? '+' : '' ) . $away_odds : 'N/A';
+				$away_spread = $away_spread ? ( $away_spread > 0 ? '+' : '' ) . $away_spread : 'N/A';
+				$home_odds   = $home_odds ? ( $home_odds > 0 ? '+' : '' ) . $home_odds : 'N/A';
+				$home_spread = $home_spread ? ( $home_spread > 0 ? '+' : '' ) . $home_spread : 'N/A';
+
+				// Build the row.
+				$html .= sprintf( '<tr class="%s">', $class );
+					$html .= sprintf( '<td>%s</td>', ucwords( $maker ) );
+
+					// If hidden, show N/A.
+					if ( $hidden ) {
+						$html .= sprintf( '<td>%s</td>', __( 'N/A', 'mai-asknews' ) );
+						$html .= sprintf( '<td>%s</td>', __( 'N/A', 'mai-asknews' ) );
+					}
+					// Otherwise, show the spreads.
+					else {
+						$html .= sprintf( '<td class="pm-spreads_odd">%s</td>', $away_odds );
+						$html .= sprintf( '<td class="pm-spreads_spread">%s</td>', $away_spread );
+						$html .= sprintf( '<td class="pm-spreads_odd">%s</td>', $home_odds );
+						$html .= sprintf( '<td class="pm-spreads_spread">%s</td>', $home_spread );
+					}
+				$html .= '</tr>';
+
+				// Increment index.
+				$i++;
 			}
 
 			$html .= '</tbody>';

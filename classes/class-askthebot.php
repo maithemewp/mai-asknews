@@ -9,7 +9,7 @@ use League\CommonMark\CommonMarkConverter;
 /**
  * The comments class.
  *
- * @since TBD
+ * @since 0.9.0
  */
 class Mai_AskNews_AskTheBot {
 	/**
@@ -22,7 +22,7 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Run the hooks.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return void
 	 */
@@ -44,7 +44,7 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Maybe redirect.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return void
 	 */
@@ -67,7 +67,7 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Enqueue scripts.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return void
 	 */
@@ -99,7 +99,7 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Register CCAs.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @param array $ccas The current CCAs.
 	 *
@@ -120,7 +120,7 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Add the ask the bot chat log and form.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return void
 	 */
@@ -130,16 +130,25 @@ class Mai_AskNews_AskTheBot {
 			return;
 		}
 
-		echo '<div id="askthebot-chat" class="askthebot-chat">';
-			echo $this->get_chat_html();
-			echo $this->get_chat_form();
-		echo '</div>';
+		// echo '<div class="askthebot-container">';
+			// echo '<div class="askthebot-chats">';
+			// 	echo $this->get_chats_list_html();
+			// echo '</div>';
+			echo '<div id="askthebot-chat" class="askthebot-chat">';
+				echo $this->get_chat_html();
+				echo $this->get_chat_form();
+			echo '</div>';
+		// echo '</div>';
+	}
+
+	function get_chats_list_html() {
+
 	}
 
 	/**
 	 * Get the chat HTML.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return string
 	 */
@@ -188,7 +197,7 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Get the converted HTML.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @param string $content The content to convert.
 	 *
@@ -226,7 +235,7 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Get the chat form.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return string
 	 */
@@ -312,7 +321,7 @@ class Mai_AskNews_AskTheBot {
 			'model'             => 'claude-3-5-sonnet-20240620',
 			'append_references' => false,
 			'asknews_watermark' => false,
-			'inline_citations'  => 'none',
+			'inline_citations'  => 'markdown_link',
 			'messages'          => [
 				[
 					'role'    => 'user',

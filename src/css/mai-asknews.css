@@ -1315,7 +1315,7 @@ body {
 .pm-prediction__inner--obfuscated > ul,
 .pm-prediction__inner--obfuscated > p,
 .pm-prediction__inner--obfuscated > .pm-prediction__fantasy,
-.pm-prediction__inner--obfuscated > .pm-odds {
+.pm-prediction__inner--obfuscated > .pm-datatable {
 	filter: blur(6px);
 	opacity: 0.5;
 	-webkit-user-select: none;
@@ -1336,33 +1336,37 @@ body {
 	}
 }
 
-.pm-odds:has(.pm-toggle__input:not(:checked)) .is-not-top {
+.pm-datatable:has(.pm-toggle__input:not(:checked)) .is-not-top {
 	display: none;
 }
 
-.pm-odds {
+.pm-datatable {
 	--table-margin: 0;
+
+	+ .pm-datatable {
+		margin-top: var(--spacing-lg);
+	}
 }
 
-.pm-odds thead th {
+.pm-datatable thead th {
 	background-color: rgba(0,0,0,0.025);
 }
 
-.pm-odds tbody {
+.pm-datatable tbody {
 	font-size: var(--font-size-sm);
 }
 
-.pm-odds th:first-child,
-.pm-odds td:first-child {
+.pm-datatable th:first-child,
+.pm-datatable td:first-child {
 	width: 50%;
 }
 
-.pm-odds th:not(:first-child),
-.pm-odds td:not(:first-child) {
+.pm-datatable th:not(:first-child),
+.pm-datatable td:not(:first-child) {
 	text-align: center;
 }
 
-.pm-odds__average {
+.pm-datatable__average {
 	font-weight: bold;
 }
 
@@ -1412,6 +1416,27 @@ body {
 	--toggle-left: 'unset';
 	--toggle-right: 1px;
 	--toggle-bg: var(--color-success);
+}
+
+.pm-spreads__th {
+	display: flex;
+	gap: .5em;
+	margin-block: .5em -.75em;
+	font-size: .8em;
+	font-weight:normal;
+
+	span {
+		flex: 1;
+		text-align: center;
+	}
+}
+
+.pm-spreads_odd {
+	padding-right: var(--spacing-xxs);
+}
+
+.pm-spreads_spread {
+	padding-left: var(--spacing-xxs);
 }
 
 .pm-results {

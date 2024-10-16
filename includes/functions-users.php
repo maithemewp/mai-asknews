@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die;
 /**
  * Get bot user ID.
  *
- * @since TBD
+ * @since 0.10.0
  *
  * @return int
  */
@@ -262,7 +262,7 @@ function maiasknews_has_pro_membership() {
 /**
  * If the user has elite membership.
  *
- * @since TBD
+ * @since 0.11.0
  *
  * @return bool
  */

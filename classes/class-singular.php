@@ -638,12 +638,18 @@ class Mai_AskNews_Singular {
 						printf( '<div class="pm-prediction__fantasy">%s%s</div>', $heading, wpautop( $fantasy, false ) );
 					}
 
-					// Get odds table.
-					$odds = maiasknews_get_odds_table( $data, $hidden );
+					// Get odds/spread tables.
+					$odds    = maiasknews_get_odds_table( $data, $hidden );
+					$spreads = maiasknews_get_spreads_table( $data, $hidden );
 
 					// Display the odds.
 					if ( $odds ) {
 						echo $odds;
+					}
+
+					// Display the spreads.
+					if ( $spreads ) {
+						echo $spreads;
 					}
 				}
 
