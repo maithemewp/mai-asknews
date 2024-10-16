@@ -9,7 +9,7 @@ use League\CommonMark\CommonMarkConverter;
 /**
  * The comments class.
  *
- * @since TBD
+ * @since 0.9.0
  */
 class Mai_AskNews_AskTheBot {
 	/**
@@ -22,13 +22,14 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Run the hooks.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return void
 	 */
 	function hooks() {
 		add_action( 'template_redirect',                         [ $this, 'maybe_redirect' ] );
 		add_action( 'wp_enqueue_scripts',                        [ $this, 'enqueue_scripts' ] );
+		add_filter( 'mai_template-parts_config',                 [ $this, 'add_ccas' ] );
 		add_action( 'genesis_before_entry_content',              [ $this, 'add_ask_the_bot' ] );
 		add_action( 'admin_post_pm_askthebot_submission',        [ $this, 'handle_submission_single' ] );
 		add_action( 'admin_post_nopriv_pm_askthebot_submission', [ $this, 'handle_submission_single' ] );
@@ -43,7 +44,7 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Maybe redirect.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return void
 	 */
@@ -66,7 +67,7 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Enqueue scripts.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return void
 	 */
@@ -82,8 +83,8 @@ class Mai_AskNews_AskTheBot {
 		// Enqueue CSS.
 		wp_enqueue_style( 'mai-askthebot', maiasknews_get_file_url( 'mai-askthebot', 'css', false ), [], maiasknews_get_file_version( 'mai-askthebot', 'css', false ) );
 
-		// Bail if not form page.
-		if ( ! $form_page ) {
+		// Bail if not form page with access.
+		if ( ! $form_page && maiasknews_has_elite_membership() ) {
 			return;
 		}
 
@@ -96,28 +97,58 @@ class Mai_AskNews_AskTheBot {
 	}
 
 	/**
+	 * Register CCAs.
+	 *
+	 * @since 0.9.0
+	 *
+	 * @param array $ccas The current CCAs.
+	 *
+	 * @return array
+	 */
+	function add_ccas( $ccas ) {
+		$ccas['ask-the-bot-promo'] = [
+			'hook'     => 'genesis_entry_content',
+			'priority' => 15,
+			'condition' => function() {
+				return is_page( 'ask-the-bot' ) && ! maiasknews_has_elite_membership();
+			}
+		];
+
+		return $ccas;
+	}
+
+	/**
 	 * Add the ask the bot chat log and form.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return void
 	 */
 	function add_ask_the_bot() {
 		// Bail if not the ask the bot page.
-		if ( ! is_page( 'ask-the-bot' ) ) {
+		if ( ! ( is_page( 'ask-the-bot' ) && maiasknews_has_elite_membership() ) ) {
 			return;
 		}
 
-		echo '<div id="askthebot-chat" class="askthebot-chat">';
-			echo $this->get_chat_html();
-			echo $this->get_chat_form();
-		echo '</div>';
+		// echo '<div class="askthebot-container">';
+			// echo '<div class="askthebot-chats">';
+			// 	echo $this->get_chats_list_html();
+			// echo '</div>';
+			echo '<div id="askthebot-chat" class="askthebot-chat">';
+				echo $this->get_chat_html();
+				echo $this->get_chat_form();
+			echo '</div>';
+		// echo '</div>';
+	}
+
+	function get_chats_list_html() {
+
 	}
 
 	/**
 	 * Get the chat HTML.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return string
 	 */
@@ -166,7 +197,7 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Get the converted HTML.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @param string $content The content to convert.
 	 *
@@ -204,7 +235,7 @@ class Mai_AskNews_AskTheBot {
 	/**
 	 * Get the chat form.
 	 *
-	 * @since TBD
+	 * @since 0.9.0
 	 *
 	 * @return string
 	 */
@@ -290,7 +321,7 @@ class Mai_AskNews_AskTheBot {
 			'model'             => 'claude-3-5-sonnet-20240620',
 			'append_references' => false,
 			'asknews_watermark' => false,
-			'inline_citations'  => 'none',
+			'inline_citations'  => 'markdown_link',
 			'messages'          => [
 				[
 					'role'    => 'user',
