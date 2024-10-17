@@ -143,6 +143,9 @@ class Mai_AskNews_CLI {
 					$tags->set_attribute( 'rel', 'noopener' );
 				}
 
+				// Get the updated HTML.
+				$content = $tags->get_updated_html();
+
 				// Get the post_name.
 				$post_name = get_post_field( 'post_name', get_the_ID() );
 
@@ -156,9 +159,6 @@ class Mai_AskNews_CLI {
 				// Build UUID.
 				$uuid      = Uuid::uuid4();
 				$post_name = $uuid->toString();
-
-				// Get the updated HTML.
-				$content = $tags->get_updated_html();
 
 				// Update the post.
 				$post_id = wp_update_post(
