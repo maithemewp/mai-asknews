@@ -558,6 +558,7 @@ class Mai_AskNews_AskTheBot {
 			// Redirect back to the form page.
 			wp_safe_redirect( add_query_arg( [ 'chat' => $chat_id ], wp_get_referer() ) );
 			exit;
+
 		} catch ( Exception $e ) {
 			$chat = 'Exception when calling ChatApi->getChatCompletions: ' . $e->getMessage();
 
