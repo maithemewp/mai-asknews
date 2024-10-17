@@ -207,7 +207,7 @@ class Mai_AskNews_AskTheBot {
 		}
 		// No posts.
 		else {
-			$html .= sprintf( '<p>%s</div>', __( 'No chat messages yet.', 'mai-asknews' ) );
+			$html .= sprintf( '<div class="askthebot-chatlist">%s</div>', __( 'No chat messages yet.', 'mai-asknews' ) );
 		}
 
 		wp_reset_postdata();
