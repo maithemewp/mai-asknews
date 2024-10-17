@@ -8,6 +8,7 @@
         "alleyinteractive/wp-block-converter": "^1.2",
         "yahnis-elsts/plugin-update-checker": "^4.5",
         "emergentmethods/asknews-php-sdk": "^0.2.16",
-        "league/commonmark": "^2.5"
+        "league/commonmark": "^2.5",
+        "ramsey/uuid": "^4.7"
     }
 }
