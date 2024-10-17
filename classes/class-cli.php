@@ -156,10 +156,6 @@ class Mai_AskNews_CLI {
 	// 				$post_name = $uuid->toString();
 	// 			}
 
-	// 			// Build UUID.
-	// 			$uuid      = Uuid::uuid4();
-	// 			$post_name = $uuid->toString();
-
 	// 			// Update the post.
 	// 			$post_id = wp_update_post(
 	// 				[

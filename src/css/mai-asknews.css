@@ -852,7 +852,7 @@ body {
 }
 
 .button-ajax:disabled {
-	opacity: 1;
+	opacity: 1 !important;
 }
 
 .button-ajax:disabled:has(.pm-loading),
