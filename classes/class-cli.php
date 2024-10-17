@@ -83,105 +83,105 @@ class Mai_AskNews_CLI {
 		WP_CLI::success( 'Done.' );
 	}
 
-	/**
-	 * Cleans up AskTheBot posts.
-	 *
-	 * Usage: wp maiasknews cleanup_askthebot --posts_per_page=10 --offset=0
-	 *
-	 * @param array $args       Standard command args.
-	 * @param array $assoc_args Keyed args like --posts_per_page and --offset.
-	 *
-	 * @return void
-	 */
-	function cleanup_askthebot( $args, $assoc_args ) {
-		// Parse args.
-		$assoc_args = wp_parse_args(
-			$assoc_args,
-			[
-				'post_type'              => 'askthebot',
-				'post_status'            => 'any',
-				'posts_per_page'         => 100,
-				'offset'                 => 0,
-				'no_found_rows'          => true,
-				'update_post_meta_cache' => false,
-				'update_post_term_cache' => false,
-			]
-		);
+	// /**
+	//  * Cleans up AskTheBot posts.
+	//  *
+	//  * Usage: wp maiasknews cleanup_askthebot --posts_per_page=10 --offset=0
+	//  *
+	//  * @param array $args       Standard command args.
+	//  * @param array $assoc_args Keyed args like --posts_per_page and --offset.
+	//  *
+	//  * @return void
+	//  */
+	// function cleanup_askthebot( $args, $assoc_args ) {
+	// 	// Parse args.
+	// 	$assoc_args = wp_parse_args(
+	// 		$assoc_args,
+	// 		[
+	// 			'post_type'              => 'askthebot',
+	// 			'post_status'            => 'any',
+	// 			'posts_per_page'         => 100,
+	// 			'offset'                 => 0,
+	// 			'no_found_rows'          => true,
+	// 			'update_post_meta_cache' => false,
+	// 			'update_post_term_cache' => false,
+	// 		]
+	// 	);
 
-		// Get posts.
-		$query = new WP_Query( $assoc_args );
+	// 	// Get posts.
+	// 	$query = new WP_Query( $assoc_args );
 
-		// If we have posts.
-		if ( $query->have_posts() ) {
-			// Log how many total posts found.
-			WP_CLI::log( 'Posts found: ' . $query->post_count );
+	// 	// If we have posts.
+	// 	if ( $query->have_posts() ) {
+	// 		// Log how many total posts found.
+	// 		WP_CLI::log( 'Posts found: ' . $query->post_count );
 
-			// Loop through posts.
-			while ( $query->have_posts() ) : $query->the_post();
-				// Get the content.
-				$content = get_post_field( 'post_content', get_the_ID() );
+	// 		// Loop through posts.
+	// 		while ( $query->have_posts() ) : $query->the_post();
+	// 			// Get the content.
+	// 			$content = get_post_field( 'post_content', get_the_ID() );
 
-				// Set up the markdown converter.
-				$converter = new CommonMarkConverter([
-					'html_input'         => 'strip',
-					'allow_unsafe_links' => false,
-				]);
+	// 			// Set up the markdown converter.
+	// 			$converter = new CommonMarkConverter([
+	// 				'html_input'         => 'strip',
+	// 				'allow_unsafe_links' => false,
+	// 			]);
 
-				// Convert markdown and dates.
-				$content = $converter->convert( $content );
-				$content = preg_replace_callback('/Published: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\+\d{2}:\d{2})/', function($matches) {
-					$date = new DateTime( $matches[1] );
-					return $date->format('M j, Y @ g:i a');
-				}, $content );
+	// 			// Convert markdown and dates.
+	// 			$content = $converter->convert( $content );
+	// 			$content = preg_replace_callback('/Published: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\+\d{2}:\d{2})/', function($matches) {
+	// 				$date = new DateTime( $matches[1] );
+	// 				return $date->format('M j, Y @ g:i a');
+	// 			}, $content );
 
-				// Set up tag processor.
-				$tags = new WP_HTML_Tag_Processor( $content );
+	// 			// Set up tag processor.
+	// 			$tags = new WP_HTML_Tag_Processor( $content );
 
-				// Loop through tags.
-				while ( $tags->next_tag( [ 'tag_name' => 'a' ] ) ) {
-					$tags->set_attribute( 'target', '_blank' );
-					$tags->set_attribute( 'rel', 'noopener' );
-				}
+	// 			// Loop through tags.
+	// 			while ( $tags->next_tag( [ 'tag_name' => 'a' ] ) ) {
+	// 				$tags->set_attribute( 'target', '_blank' );
+	// 				$tags->set_attribute( 'rel', 'noopener' );
+	// 			}
 
-				// Get the updated HTML.
-				$content = $tags->get_updated_html();
+	// 			// Get the updated HTML.
+	// 			$content = $tags->get_updated_html();
 
-				// Get the post_name.
-				$post_name = get_post_field( 'post_name', get_the_ID() );
+	// 			// Get the post_name.
+	// 			$post_name = get_post_field( 'post_name', get_the_ID() );
 
-				// If post_name is not a uuid, update it.
-				if ( ! Uuid::isValid( $post_name ) ) {
-					// Build UUID.
-					$uuid      = Uuid::uuid4();
-					$post_name = $uuid->toString();
-				}
+	// 			// If post_name is not a uuid, update it.
+	// 			if ( ! Uuid::isValid( $post_name ) ) {
+	// 				// Build UUID.
+	// 				$uuid      = Uuid::uuid4();
+	// 				$post_name = $uuid->toString();
+	// 			}
 
-				// Build UUID.
-				$uuid      = Uuid::uuid4();
-				$post_name = $uuid->toString();
+	// 			// Build UUID.
+	// 			$uuid      = Uuid::uuid4();
+	// 			$post_name = $uuid->toString();
 
-				// Update the post.
-				$post_id = wp_update_post(
-					[
-						'ID'           => get_the_ID(),
-						'post_content' => $content,
-						'post_name'    => $post_name,
-					]
-				);
+	// 			// Update the post.
+	// 			$post_id = wp_update_post(
+	// 				[
+	// 					'ID'           => get_the_ID(),
+	// 					'post_content' => $content,
+	// 					'post_name'    => $post_name,
+	// 				]
+	// 			);
 
-				// Log if updated.
-				WP_CLI::log( 'Cleaned up askthebot: ' . $post_id . ' ' . get_permalink() );
+	// 			// Log if updated.
+	// 			WP_CLI::log( 'Cleaned up askthebot: ' . $post_id . ' ' . get_permalink() );
 
-			endwhile;
+	// 		endwhile;
 
-		} else {
-			WP_CLI::log( 'No posts found.' );
-		}
+	// 	} else {
+	// 		WP_CLI::log( 'No posts found.' );
+	// 	}
 
-		wp_reset_postdata();
+	// 	wp_reset_postdata();
 
-		WP_CLI::success( 'Done.' );
-	}
+	// 	WP_CLI::success( 'Done.' );
+	// }
 
 	/**
 	 * Update bot votes from matchups.
