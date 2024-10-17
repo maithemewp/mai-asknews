@@ -248,6 +248,11 @@ class Mai_AskNews_AskTheBot {
 			return '';
 		}
 
+		// Bail if the chat is not published.
+		if ( 'publish' !== $chat->post_status ) {
+			return '';
+		}
+
 		// Get the chat post.
 		printf( '<h2>%s</h2>', get_the_title( $chat_id ) );
 		echo get_post_field( 'post_content', $chat_id );
