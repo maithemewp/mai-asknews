@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc5ead85f54ef66bb6a608489613b1d5",
+    "content-hash": "726d3a2ab9cc0b576381393b06b49548",
     "packages": [
         {
             "name": "alleyinteractive/composer-wordpress-autoloader",
@@ -465,16 +465,16 @@
         },
         {
             "name": "emergentmethods/asknews-php-sdk",
-            "version": "0.2.16",
+            "version": "0.2.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/emergentmethods/asknews-php-sdk.git",
-                "reference": "0fc96ced16b6c798ff5f5786ec11cc5e0307c134"
+                "reference": "5a32b7160a126d0794c0a524caffc946515e24cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/emergentmethods/asknews-php-sdk/zipball/0fc96ced16b6c798ff5f5786ec11cc5e0307c134",
-                "reference": "0fc96ced16b6c798ff5f5786ec11cc5e0307c134",
+                "url": "https://api.github.com/repos/emergentmethods/asknews-php-sdk/zipball/5a32b7160a126d0794c0a524caffc946515e24cc",
+                "reference": "5a32b7160a126d0794c0a524caffc946515e24cc",
                 "shasum": ""
             },
             "require": {
@@ -517,9 +517,9 @@
             ],
             "support": {
                 "issues": "https://github.com/emergentmethods/asknews-php-sdk/issues",
-                "source": "https://github.com/emergentmethods/asknews-php-sdk/tree/0.2.16"
+                "source": "https://github.com/emergentmethods/asknews-php-sdk/tree/0.2.18"
             },
-            "time": "2024-09-22T11:33:46+00:00"
+            "time": "2024-10-16T21:34:48+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

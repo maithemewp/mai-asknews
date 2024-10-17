@@ -4,15 +4,23 @@ import dayjs from 'dayjs';
 
 // DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', () => {
-	const chat   = document.getElementById('askthebot-chat');
-	const form   = document.getElementById('askthebot-form');
-	const bottom = document.getElementById('chat-bottom');
-	const button = document.getElementById('chat-down');
+	const chat     = document.getElementById('askthebot-chat');
+	const form     = document.getElementById('askthebot-form');
+	const bottom   = document.getElementById('chat-bottom');
+	const chatDown = document.getElementById('chat-down');
+	const chatNew  = document.getElementById('chat-new');
 	let observer;
 
 	// Bail if we don't have the necessary elements.
-	if ( ! ( chat && form && bottom && button ) ) {
+	if ( ! ( chat && form && bottom && chatDown ) ) {
 		return;
+	}
+
+	console.log( chatNew, chat.children.length );
+
+	// If we have a new-chat button, and chat has more than 3 elements inside it, hide the chatNew button.
+	if ( chatNew && chat.children.length <= 3 ) {
+		chatNew.style.display = 'none';
 	}
 
 	// Set up the IntersectionObserver.
@@ -36,11 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	function handleIntersect(entries) {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
-				// Hide the button when the bottom of the chat container is in view
-				button.style.display = 'none';
+				// Hide the button when the bottom of the chat container is in view.
+				chatDown.style.display = 'none';
 			} else {
-				// Show the button when the bottom of the chat container is not in view
-				button.style.display = 'block';
+				// Show the button when the bottom of the chat container is not in view.
+				chatDown.style.display = 'block';
 			}
 		});
 	}
@@ -49,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	setupObserver();
 
 	// On click listener.
-	button.addEventListener('click', (e) => {
+	chatDown.addEventListener('click', (e) => {
 		e.preventDefault();
 		scrollToBottom();
 	});
@@ -69,7 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		const textInput = document.getElementById('askthebot-question');
 
 		// Add the new question to the chat.
-		bottom.insertAdjacentHTML( 'beforebegin', '<div class="askthebot__message askthebot__user">' + textInput.value + maiAskTheBotVars.userAvatar + '</div>' );
+		// bottom.insertAdjacentHTML( 'beforebegin', '<div class="askthebot__message askthebot__user">' + textInput.value + maiAskTheBotVars.userAvatar + '</div>' );
+		bottom.insertAdjacentHTML( 'beforebegin', '<h2>' + textInput.value + '</h2>' );
 
 		// Store options.
 		const textOptions = [
@@ -126,7 +135,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			chat.querySelector('.askthebot-loading').remove();
 
 			// Add before the form.
-			bottom.insertAdjacentHTML( 'beforebegin', '<div class="askthebot__message askthebot__bot">' + marked( message ) + '</div>' );
+			// bottom.insertAdjacentHTML( 'beforebegin', '<div class="askthebot__message askthebot__bot">' + marked( message ) + '</div>' );
+			bottom.insertAdjacentHTML( 'beforebegin', marked( message ) );
+
+			// If we have a chat ID, add it as a query arg, updating the old one if it exists.
+			if ( data.data.chatId ) {
+				const url = new URL( window.location.href );
+				url.searchParams.set( 'chat', data.data.chatId );
+				window.history.replaceState( null, '', url );
+			}
 
 			// Reset the observer.
 			setupObserver();
@@ -139,6 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			// Remove the loading icon.
 			event.submitter.querySelector('.pm-loading-wrap').remove();
+
+			// Show the new-chat button if it exists.
+			if ( chatNew ) {
+				chatNew.style.display = 'inline-flex';
+			}
 		})
 		.catch( error => {
 			console.error( 'promatchups error:', error );
