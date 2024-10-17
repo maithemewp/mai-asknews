@@ -3,6 +3,7 @@
 // Prevent direct file access.
 defined( 'ABSPATH' ) || die;
 
+use Ramsey\Uuid\Uuid;
 use League\CommonMark\CommonMarkConverter;
 
 /**
@@ -142,6 +143,20 @@ class Mai_AskNews_CLI {
 					$tags->set_attribute( 'rel', 'noopener' );
 				}
 
+				// Get the post_name.
+				$post_name = get_post_field( 'post_name', get_the_ID() );
+
+				// If post_name is not a uuid, update it.
+				if ( ! Uuid::isValid( $post_name ) ) {
+					// Build UUID.
+					$uuid      = Uuid::uuid4();
+					$post_name = $uuid->toString();
+				}
+
+				// Build UUID.
+				$uuid      = Uuid::uuid4();
+				$post_name = $uuid->toString();
+
 				// Get the updated HTML.
 				$content = $tags->get_updated_html();
 
@@ -150,6 +165,7 @@ class Mai_AskNews_CLI {
 					[
 						'ID'           => get_the_ID(),
 						'post_content' => $content,
+						'post_name'    => $post_name,
 					]
 				);
 
