@@ -115,6 +115,12 @@ function maiasknews_has_access( $league = '' ) {
 		return $cache[ $league ];
 	}
 
+	// If elite, they have access.
+	if ( maiasknews_has_elite_membership() ) {
+		$cache[ $league ] = true;
+		return $cache[ $league ];
+	}
+
 	// Get current page leage and user levels.
 	$league = $league ?: maiasknews_get_page_league();
 	$levels = maiasknews_get_membership_ids();
@@ -130,22 +136,18 @@ function maiasknews_has_access( $league = '' ) {
 		'MLB' => [
 			1, // Monthly,
 			2, // Season,
-			3, // Pro,
 		],
 		'NBA' => [
 			10, // Monthly,
 			11, // Season,
-			12, // Pro,
 		],
 		'NFL' => [
 			4, // Monthly,
 			5, // Season,
-			6, // Pro,
 		],
 		'NHL' => [
 			7, // Monthly,
 			8, // Season,
-			9, // Pro,
 		],
 	];
 
