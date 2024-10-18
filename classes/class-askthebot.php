@@ -142,6 +142,7 @@ class Mai_AskNews_AskTheBot {
 				printf( '<style>.askthebot-chat { --user-avatar-url:url(\'%s\'); }</style>', $avatar_url );
 				echo $this->get_chat_html();
 				echo $this->get_chat_form();
+				printf( '<p class="has-xl-margin-top has-sm-font-size" style="opacity:.75;"><em>%s</em></p>', __( 'Please review the SportsDesk Bot’s chats to make sure they’re accurate.', 'mai-asknews' ) );
 			echo '</div>';
 		echo '</div>';
 	}
