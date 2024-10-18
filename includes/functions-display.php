@@ -206,14 +206,17 @@ function maiasknews_get_matchup_teams_list( $atts = [] ) {
  * @return array
  */
 function maiasknews_get_prediction_list( $body, $hidden = false ) {
-	$list       = [];
-	$home        = isset( $body['home_team'] ) ? $body['home_team'] : '';
-	$away        = isset( $body['away_team'] ) ? $body['away_team'] : '';
-	$choice      = maiasknews_get_key( 'choice', $body );
-	$probability = maiasknews_get_key( 'probability', $body );
-	$probability = $probability ? $probability . '%' : '';
-	$likelihood  = maiasknews_get_key( 'likelihood', $body );
-	$final_score = maiasknews_get_key( 'final_score', $body );
+	$list           = [];
+	$home           = isset( $body['home_team'] ) ? $body['home_team'] : '';
+	$away           = isset( $body['away_team'] ) ? $body['away_team'] : '';
+	$league         = maiasknews_get_key( 'sport', $body );
+	$choice         = maiasknews_get_key( 'choice', $body );
+	$probability    = maiasknews_get_key( 'probability', $body );
+	$probability    = $probability ? $probability . '%' : '';
+	$likelihood     = maiasknews_get_key( 'likelihood', $body );
+	$final_score    = maiasknews_get_key( 'final_score', $body );
+	$spread_covered = maiasknews_get_key( 'spread_covered', $body );
+	$spreads_data   = maiasknews_get_spreads_data( $body );
 
 	// $confidence     = maiasknews_get_key( 'confidence', $body );
 	// $confidence     = $confidence ? maiasknews_format_confidence( $confidence ) : '';
@@ -221,10 +224,63 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 
 	// If choice.
 	if ( $choice ) {
-		$list['choice'] = [
-			'hidden'  => __( 'Members Only', 'mai-asknews' ),
-			'visible' => $choice,
-		];
+		$prediction = '';
+
+		// If final score.
+		if ( $final_score ) {
+			$team_name_1  = isset( $final_score[0]['team'] ) ? $final_score[0]['team'] : '';
+			$team_name_2  = isset( $final_score[1]['team'] ) ? $final_score[1]['team'] : '';
+			$team_score_1 = isset( $final_score[0]['score'] ) ? $final_score[0]['score'] : '';
+			$team_score_2 = isset( $final_score[1]['score'] ) ? $final_score[1]['score'] : '';
+
+			if ( $team_name_1 && $team_name_2 && $team_score_1 && $team_score_2 ) {
+				// Build short names.
+				$team_name_1 = maiasknews_get_team_short_name( $team_name_1, $league );
+				$team_name_2 = maiasknews_get_team_short_name( $team_name_2, $league );
+
+				// If tie.
+				if ( $team_score_1 === $team_score_2 ) {
+					$prediction .= sprintf( "tie %s-%s", $team_score_1, $team_score_2 );
+				}
+				// If team 1 wins.
+				elseif ( $team_score_1 > $team_score_2 ) {
+					$prediction .= ' ' . sprintf( "%s win %s-%s", $team_name_1, $team_score_1, $team_score_2 );
+				}
+				// If team 2 wins.
+				else {
+					$prediction .= ' ' . sprintf( "%s win %s-%s", $team_name_2, $team_score_2, $team_score_1 );
+				}
+			}
+		}
+
+		// If we have a prediction.
+		if ( $prediction ) {
+			$list['choice'] = [
+				'hidden'  => __( 'Members Only', 'mai-asknews' ),
+				'visible' => $prediction,
+			];
+		}
+		// No prediction, fallback to choice.
+		else {
+			$list['choice'] = [
+				'hidden'  => __( 'Members Only', 'mai-asknews' ),
+				'visible' => $choice,
+			];
+		}
+	}
+
+	// If spread covered.
+	if ( $spread_covered && $choice && isset( $spreads_data[ $choice ] ) ) {
+		$team_name = maiasknews_get_team_short_name( $choice, $league );
+		$spread    = isset( $spreads_data[ $choice ][ 'spread_average' ] ) ? abs( $spreads_data[ $choice ][ 'spread_average' ] ) : null;
+
+		if ( ! is_null( $spread ) ) {
+			$list['spread'] = [
+				'hidden'  => __( 'Members Only', 'mai-asknews' ),
+				'visible' => sprintf( '%s cover %s', $team_name, $spread ),
+				// 'visible' => sprintf( 'Covers the spread (%s)', $spread ),
+			];
+		}
 	}
 
 	// If probability and likelihood.
@@ -235,45 +291,8 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 		// ];
 		$list['probability'] = [
 			'hidden'  => __( 'Members Only', 'mai-asknews' ),
-			'visible' => sprintf( '%s, %s', $probability, $likelihood ),
+			'visible' => sprintf( '%s, %s', $probability, ucfirst( strtolower( $likelihood ) ) ),
 		];
-	}
-
-	// If final score.
-	if ( $final_score ) {
-		$team_name_1  = isset( $final_score[0]['team'] ) ? $final_score[0]['team'] : '';
-		$team_name_2  = isset( $final_score[1]['team'] ) ? $final_score[1]['team'] : '';
-		$team_score_1 = isset( $final_score[0]['score'] ) ? $final_score[0]['score'] : '';
-		$team_score_2 = isset( $final_score[1]['score'] ) ? $final_score[1]['score'] : '';
-
-		if ( $team_name_1 && $team_name_2 && $team_score_1 && $team_score_2 ) {
-			// Build short names.
-			$league      = maiasknews_get_key( 'sport', $body );
-			$team_name_1 = maiasknews_get_team_short_name( $team_name_1, $league );
-			$team_name_2 = maiasknews_get_team_short_name( $team_name_2, $league );
-
-			// If tie.
-			if ( $team_score_1 === $team_score_2 ) {
-				$list['score'] = [
-					'hidden'  => __( 'Members Only', 'mai-asknews' ),
-					'visible' => sprintf( "Tie %s-%s", $team_score_1, $team_score_2 ),
-				];
-			}
-			// If team 1 wins.
-			elseif ( $team_score_1 > $team_score_2 ) {
-				$list['score'] = [
-					'hidden'  => __( 'Members Only', 'mai-asknews' ),
-					'visible' => sprintf( "%s win %s-%s", $team_name_1, $team_score_1, $team_score_2 ),
-				];
-			}
-			// If team 2 wins.
-			else {
-				$list['score'] = [
-					'hidden'  => __( 'Members Only', 'mai-asknews' ),
-					'visible' => sprintf( "%s win %s-%s", $team_name_2, $team_name_2, $team_score_1 ),
-				];
-			}
-		}
 	}
 
 	// 0.3.0.
