@@ -296,7 +296,6 @@ body {
 	display: flex;
 	gap: var(--spacing-sm);
 	align-items: center;
-
 }
 
 .pm-prediction__item.choice::before,

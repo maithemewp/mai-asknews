@@ -269,7 +269,6 @@ class Mai_AskNews_Singular {
 		// Do CCA hook for Matchup Promo 1 (Mai Content Areas)
 		do_action( 'pm_promo_cca1', $data, $first );
 
-
 		$this->do_injuries( $data, $first );
 		$this->do_timeline( $data, $first );
 
@@ -570,6 +569,10 @@ class Mai_AskNews_Singular {
 					'label'  => __( 'Forecast', 'mai-asknews' ),
 					'hidden' => sprintf( '%s %s %s', $home, __( 'or', 'mai-asknews' ), $away ),
 				],
+				'high_or_low_score' => [
+					'label'  => __( 'Rationale', 'mai-asknews' ),
+					'hidden' => $reasoning,
+				],
 				'reasoning'              => [
 					'label'  => __( 'Reasoning', 'mai-asknews' ),
 					'hidden' => $reasoning,
@@ -626,6 +629,20 @@ class Mai_AskNews_Singular {
 						$heading = sprintf( '<strong>%s:</strong> ', __( 'Interesting Statistic', 'mai-asknews' ) );
 
 						printf( '<p>%s%s</p>', $heading, $stat );
+					}
+
+					// Get the facets.
+					$facets = maiasknews_get_key( 'key_facets', $data );
+
+					// Display the facets.
+					if ( $facets ) {
+						printf( '<p><strong>%s:</strong></p>', __( 'Key Facets', 'mai-asknews' ) );
+
+						echo '<ul>';
+							foreach ( (array) $facets as $facet ) {
+								printf( '<li>%s</li>', $facet );
+							}
+						echo '</ul>';
 					}
 
 					// Get the fantasy tip.
