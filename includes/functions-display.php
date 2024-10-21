@@ -569,7 +569,7 @@ function maiasknews_get_spreads_table( $body, $hidden = false ) {
 			// Loop through the sites.
 			foreach ( $sites as $maker ) {
 				// Set class and spreads.
-				$class       = $i <= 3 ? 'is-top' : 'is-not-top';
+				$class       = $i <= 4 ? 'is-top' : 'is-not-top';
 				$away_odds   = isset( $spreads_data[ $away_team ]['spreads'][ $maker ][0] ) ? (float) $spreads_data[ $away_team ]['spreads'][ $maker ][0] : '';
 				$away_spread = isset( $spreads_data[ $away_team ]['spreads'][ $maker ][1] ) ? (float) $spreads_data[ $away_team ]['spreads'][ $maker ][1] : '';
 				$home_odds   = isset( $spreads_data[ $home_team ]['spreads'][ $maker ][0] ) ? (float) $spreads_data[ $home_team ]['spreads'][ $maker ][0] : '';
