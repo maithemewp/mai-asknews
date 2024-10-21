@@ -271,12 +271,14 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 	}
 
 	// If spread covered.
-	if ( ! is_null( $spread_covered ) && $choice && isset( $spreads_data[ $choice ] ) ) {
+	if ( ! is_null( $spread_covered ) && $choice && isset( $spreads_data[ $choice ]['spreads'] ) ) {
 		$team_name = maiasknews_get_team_short_name( $choice, $league );
-		$spread    = isset( $spreads_data[ $choice ][ 'spread_average' ] ) ? abs( $spreads_data[ $choice ][ 'spread_average' ] ) : null;
+		$spreads   = $spreads_data[ $choice ]['spreads'];
+		$spreads   = array_column( $spreads, 1 );
+		$spread    = max( $spreads );
 
 		// If spread.
-		if ( ! is_null( $spread ) ) {
+		if ( ! is_null( $spread ) && $spread ) {
 			if ( $spread_covered ) {
 				$list['spread'] = [
 					'hidden'  => __( 'Members Only', 'mai-asknews' ),
@@ -288,7 +290,6 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 					'visible' => sprintf( '%s won\'t cover %s', $team_name, $spread ),
 				];
 			}
-
 		}
 	}
 
@@ -460,6 +461,16 @@ function maiasknews_get_odds_table( $body, $hidden = false ) {
 	return $html;
 }
 
+/**
+ * Get the spreads table
+ *
+ * @since TBD
+ *
+ * @param array $body   The insight body.
+ * @param bool  $hidden Whether to obfuscate the table.
+ *
+ * @return string
+ */
 function maiasknews_get_spreads_table( $body, $hidden = false ) {
 	// Get the odds data.
 	$html         = '';
