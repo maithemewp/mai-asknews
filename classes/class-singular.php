@@ -569,12 +569,12 @@ class Mai_AskNews_Singular {
 					'label'  => __( 'Forecast', 'mai-asknews' ),
 					'hidden' => sprintf( '%s %s %s', $home, __( 'or', 'mai-asknews' ), $away ),
 				],
-				'high_or_low_score' => [
-					'label'  => __( 'Rationale', 'mai-asknews' ),
-					'hidden' => $reasoning,
-				],
 				'reasoning'              => [
 					'label'  => __( 'Reasoning', 'mai-asknews' ),
+					'hidden' => $reasoning,
+				],
+				'high_or_low_score' => [
+					'label'  => __( 'Score Rationale', 'mai-asknews' ),
 					'hidden' => $reasoning,
 				],
 				// Disabled per Rob's request. "reconciled info is not really meant for anything besides internal thinking of the LLM".
@@ -636,7 +636,7 @@ class Mai_AskNews_Singular {
 
 					// Display the facets.
 					if ( $facets ) {
-						printf( '<p><strong>%s:</strong></p>', __( 'Key Facets', 'mai-asknews' ) );
+						printf( '<p><strong>%s:</strong></p>', __( 'Key Takeaways', 'mai-asknews' ) );
 
 						echo '<ul>';
 							foreach ( (array) $facets as $facet ) {
