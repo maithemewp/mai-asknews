@@ -540,28 +540,28 @@ function maiasknews_get_spreads_table( $body, $hidden = false ) {
 			$html .= '</thead>';
 			$html .= '<tbody>';
 
-			$html .= '<tr class="is-top">';
-				$html .= sprintf( '<td class="pm-spreads__average">%s</td>', __( 'Average spreads', 'mai-asknews' ) );
+			// $html .= '<tr class="is-top">';
+			// 	$html .= sprintf( '<td class="pm-spreads__average">%s</td>', __( 'Average spreads', 'mai-asknews' ) );
 
-				// Loop through the spreads.
-				foreach ( $spreads_data as $team => $values ) {
-					// If hidden, show N/A.
-					if ( $hidden ) {
-						$rounded = 'N/A';
-						$html   .= sprintf( '<td class="pm-spreads_odd average">%s</td>', $rounded );
-						$html   .= sprintf( '<td class="pm-spreads_spread average">%s</td>', $rounded );
-					}
-					// Otherwise, show the average.
-					else {
-						// $odd_rounded     = round( $values['odd_average'], 2 );
-						// $spread_rounded  = round( $values['spread_average'], 2 );
-						$odd_rounded     = $values['odd_average'];
-						$spread_rounded  = $values['spread_average'];
-						$html           .= sprintf( '<td class="pm-spreads_odd average">%s%s</td>', $odd_rounded > 0 ? '+' : '', $odd_rounded );
-						$html           .= sprintf( '<td class="pm-spreads_spread average">%s%s</td>', $spread_rounded > 0 ? '+' : '', $spread_rounded );
-					}
-				}
-			$html .= '</tr>';
+			// 	// Loop through the spreads.
+			// 	foreach ( $spreads_data as $team => $values ) {
+			// 		// If hidden, show N/A.
+			// 		if ( $hidden ) {
+			// 			$rounded = 'N/A';
+			// 			$html   .= sprintf( '<td class="pm-spreads_odd average">%s</td>', $rounded );
+			// 			$html   .= sprintf( '<td class="pm-spreads_spread average">%s</td>', $rounded );
+			// 		}
+			// 		// Otherwise, show the average.
+			// 		else {
+			// 			// $odd_rounded     = round( $values['odd_average'], 2 );
+			// 			// $spread_rounded  = round( $values['spread_average'], 2 );
+			// 			$odd_rounded     = $values['odd_average'];
+			// 			$spread_rounded  = $values['spread_average'];
+			// 			$html           .= sprintf( '<td class="pm-spreads_odd average">%s%s</td>', $odd_rounded > 0 ? '+' : '', $odd_rounded );
+			// 			$html           .= sprintf( '<td class="pm-spreads_spread average">%s%s</td>', $spread_rounded > 0 ? '+' : '', $spread_rounded );
+			// 		}
+			// 	}
+			// $html .= '</tr>';
 
 			// Start index.
 			$i = 1;
