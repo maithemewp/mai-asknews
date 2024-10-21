@@ -1097,6 +1097,8 @@ body {
 		display: block;
 		width: 64px;
 		height: 64px;
+		margin-top: calc(var(--spacing-md) * -1);
+		margin-left: calc(var(--spacing-md) * -2);
 		border-radius: 100vw;
 	}
 
