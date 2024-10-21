@@ -216,6 +216,7 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 	$likelihood     = maiasknews_get_key( 'likelihood', $body );
 	$final_score    = maiasknews_get_key( 'final_score', $body );
 	$spread_covered = maiasknews_get_key( 'spread_covered', $body );
+	$spread_covered = ! is_null( $spread_covered ) && '' !== $spread_covered ? (bool) $spread_covered : null;
 	$spreads_data   = maiasknews_get_spreads_data( $body );
 
 	// $confidence     = maiasknews_get_key( 'confidence', $body );
@@ -270,16 +271,24 @@ function maiasknews_get_prediction_list( $body, $hidden = false ) {
 	}
 
 	// If spread covered.
-	if ( $spread_covered && $choice && isset( $spreads_data[ $choice ] ) ) {
+	if ( ! is_null( $spread_covered ) && $choice && isset( $spreads_data[ $choice ] ) ) {
 		$team_name = maiasknews_get_team_short_name( $choice, $league );
 		$spread    = isset( $spreads_data[ $choice ][ 'spread_average' ] ) ? abs( $spreads_data[ $choice ][ 'spread_average' ] ) : null;
 
+		// If spread.
 		if ( ! is_null( $spread ) ) {
-			$list['spread'] = [
-				'hidden'  => __( 'Members Only', 'mai-asknews' ),
-				'visible' => sprintf( '%s cover %s', $team_name, $spread ),
-				// 'visible' => sprintf( 'Covers the spread (%s)', $spread ),
-			];
+			if ( $spread_covered ) {
+				$list['spread'] = [
+					'hidden'  => __( 'Members Only', 'mai-asknews' ),
+					'visible' => sprintf( '%s cover %s', $team_name, $spread ),
+				];
+			} else {
+				$list['spread'] = [
+					'hidden'  => __( 'Members Only', 'mai-asknews' ),
+					'visible' => sprintf( '%s won\'t cover %s', $team_name, $spread ),
+				];
+			}
+
 		}
 	}
 
