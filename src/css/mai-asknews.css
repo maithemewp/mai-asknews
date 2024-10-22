@@ -76,6 +76,10 @@ body {
 
 .menu-dashboard {
 	font-size: var(--font-size-sm);
+
+	.menu-item-link > span {
+		gap: .5em;
+	}
 }
 
 @media only screen and (max-width: 799px) {
@@ -83,9 +87,12 @@ body {
 	.header-right {
 		--header-section-display: flex;
 		--nav-header-width: auto;
+		--nav-header-margin: 0;
 	}
 
 	.nav-header-right {
+		--nav-header-padding: 0;
+
 		.sub-menu,
 		.menu-item-has-children > a::after,
 		.menu-item:not(.menu-dashboard):not(.menu-item-button):not(.menu-item-last.menu-item-icon) {
@@ -97,7 +104,7 @@ body {
 		--menu-item-link-padding: 0;
 
 		.menu-item-link {
-			width: 56px;
+			min-width: 48px;
 			font-size: 0;
 		}
 	}
