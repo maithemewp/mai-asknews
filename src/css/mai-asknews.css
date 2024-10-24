@@ -38,16 +38,14 @@ body {
 	/* --site-header-background: var(--color-gradient-dark); */
 }
 
-/* remove stripe bar in header
 .site-header::before {
-	display: block;
+	display: none;
 	width: 100%;
 	height: 20px;
 	background: var(--background-lines-inherit);
 	opacity: .2;
 	content: "";
 }
-*/
 
 .site-footer > .wp-block-group:first-child::before {
 	position: absolute;
