@@ -719,7 +719,7 @@ body {
 .pm-jumps {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
-	position: sticky;
+	position: static;
 	top: var(--body-top);
 	overflow-x: auto;
 	z-index: 9;
